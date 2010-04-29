@@ -1,0 +1,38 @@
+alias grep='grep --color=auto'
+alias ls='ls --color=auto --group-directories-first -F'
+alias l='ls -1'
+alias s='screen'
+alias gdb='gdb -q' # quiet
+alias gdb_graphical='gdb -tui'
+alias valgrind-full='valgrind --leak-check=full --show-reachable=yes'
+alias pstree='ps auxwwwf'
+
+# point to non-existant file, to ignore GTK theme
+alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
+alias soffice='GTK2_RC_FILES=/tim soffice'
+
+addtopath(){
+  if [ $# -eq 0 ]
+  then
+    echo "addtopath() - need an argument"
+  else
+    echo $PATH | grep $@ &> /dev/null
+    if [ $? -ne 0 ]
+    then
+      export PATH=$PATH:$@
+    fi
+  fi
+}
+
+nohist(){
+  histf="$HOME/.zsh_history"
+  histt="$histf.$$"
+
+  cp $histf $histt
+  zsh
+  mv $histt $histf
+}
+
+
+addtopath "/home/rob/sh"
+addtopath "/home/rob/bin"

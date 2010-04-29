@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences app="tagtool" ver="0.12.3">
+  <attr name="tt:format_mru" type="string list">
+    <value>&lt;title&gt;</value>
+    <value>&lt;track&gt; - &lt;artist&gt; - &lt;title&gt; (&lt;*&gt;)</value>
+    <value>&lt;track&gt; - &lt;artist&gt; - &lt;title&gt; &lt;*&gt;</value>
+    <value>Download - &lt;track&gt; - &lt;artist&gt; - &lt;title&gt;</value>
+    <value>Bonus - &lt;track&gt; - &lt;artist&gt; - &lt;title&gt;</value>
+    <value>&lt;artist&gt; - &lt;title&gt;</value>
+    <value>&lt;track&gt; - &lt;title&gt; (&lt;artist&gt;)</value>
+    <value>&lt;track&gt; - &lt;artist&gt; - &lt;title&gt;</value>
+    <value>&lt;album&gt; - &lt;track&gt; - &lt;title&gt; - &lt;artist&gt;</value>
+    <value>&lt;title&gt; - &lt;artist&gt;</value>
+  </attr>
+  <attr name="chconv:rename_case_conv" type="int">
+    <value>117067889227333632</value>
+  </attr>
+  <attr name="mw:width" type="int">
+    <value>1440</value>
+  </attr>
+  <attr name="chconv:rename_space_conv" type="boolean">
+    <value>false</value>
+  </attr>
+  <attr name="tt:use_filename" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="rt:format_mru" type="string list">
+    <value>&lt;track&gt;. &lt;title&gt;</value>
+    <value>&lt;artist&gt; - &lt;title&gt;</value>
+    <value>&lt;artist&gt; - &lt;album&gt;/&lt;track&gt;. &lt;title&gt;</value>
+    <value>&lt;artist&gt;/&lt;album&gt;/&lt;track&gt;. &lt;title&gt;</value>
+    <value>&lt;artist&gt;/&lt;album&gt; (&lt;year&gt;)/&lt;track&gt;. &lt;title&gt;</value>
+  </attr>
+  <attr name="pt:create_in" type="int">
+    <value>0</value>
+  </attr>
+  <attr name="ct:clear_option" type="int">
+    <value>0</value>
+  </attr>
+  <attr name="pt:name" type="string">
+    <value>playlist</value>
+  </attr>
+  <attr name="prog:height" type="int">
+    <value>345</value>
+  </attr>
+  <attr name="common_edit:genre_mru" type="string list"/>
+  <attr name="chconv:tag_space_conv" type="boolean">
+    <value>false</value>
+  </attr>
+  <attr name="prog:width" type="int">
+    <value>661</value>
+  </attr>
+  <attr name="chconv:tag_space_conv_chars" type="string">
+    <value>_</value>
+  </attr>
+  <attr name="pref:write_id3_version" type="int">
+    <value>4294967296</value>
+  </attr>
+  <attr name="pt:extension" type="string">
+    <value>m3u</value>
+  </attr>
+  <attr name="chconv:tag_case_conv" type="int">
+    <value>117067889227333632</value>
+  </attr>
+  <attr name="pt:sort_field" type="int">
+    <value>0</value>
+  </attr>
+  <attr name="vorbis_edit:current_tab" type="int">
+    <value>117067889227333632</value>
+  </attr>
+  <attr name="pref:preserve_existing" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="pt:sort_across_dirs" type="boolean">
+    <value>false</value>
+  </attr>
+  <attr name="chconv:rename_invalid_conv" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="chconv:rename_invalid_conv_chars" type="string">
+    <value>-</value>
+  </attr>
+  <attr name="id3_edit:current_tab" type="int">
+    <value>117244635721498626</value>
+  </attr>
+  <attr name="pt:name_dir" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="mw:height" type="int">
+    <value>885</value>
+  </attr>
+  <attr name="ds:dir_mru" type="string list">
+    <value>/home/rob/Music/Music Link/</value>
+    <value>/home/rob/Music/Music Link/Coldplay/Best Of/</value>
+    <value>/home/rob/Music/Music Link/ColdPlay/</value>
+    <value>/home/rob/</value>
+    <value>/home/rob/--hlep/</value>
+    <value>/home/rob/Music/Music Link/Other/</value>
+    <value>/home/rob/Music/Music Link/Guitar Hero/</value>
+    <value>/home/rob</value>
+  </attr>
+  <attr name="pt:sort_by_name" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="ds:recurse" type="boolean">
+    <value>true</value>
+  </attr>
+  <attr name="chconv:rename_space_conv_chars" type="string">
+    <value>_</value>
+  </attr>
+</preferences>

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# This works only when in the same shell as the terminal jobby
+# aka
+# % . $0
+
+if grep -q 'tty' <<< `tty`
+then
+    clear
+fi

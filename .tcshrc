@@ -1,0 +1,70 @@
+set autolist=ambiguous
+
+# Few shell settings
+set history=1000    # Frobit
+set notify
+set filec           # tcsh doesn't need it, but if you're using csh...
+unset autologout    # Man, I hate this...
+unset noclobber     # Live on the edge
+#set printexitvalue
+
+# These aren't useful in csh, but...
+set pushdtohome
+set pushdsilent
+
+
+# Change what's considered a 'word' for fwd/back-word
+set wordchars="*?[]~="
+
+
+if( -X less ) then
+	setenv PAGER 'less'
+else
+	setenv PAGER 'more'
+endif
+
+# Other Env's
+setenv EDITOR       'vi'
+
+# Gotta make sure we have some bindings right...
+# These don't exist in csh either
+bindkey -b ^I complete-word
+bindkey -b ^B backward-word
+bindkey -b ^F forward-word
+bindkey -b ^W backward-delete-word
+
+bindkey -k down history-search-forward
+bindkey -k up   history-search-backward
+
+unlimit
+
+set prompt="\n[%?][%B%n%b@%M/%l:%B%.%b]%% "
+
+if ( $?term ) then # prevent "term: undefined variable"
+    if ( "x$term" != "x" ) then
+        if ($term == "xterm" || $term == "vt100" \
+            || $term == "vt102" || $term !~ "con*") then
+          # bind keypad keys for console, vt100, vt102, xterm
+          bindkey "\e[1~" beginning-of-line  # Home
+          bindkey "\e[7~" beginning-of-line  # Home rxvt
+          bindkey "\e[2~" overwrite-mode     # Ins
+          bindkey "\e[3~" delete-char        # Delete
+          bindkey "\e[4~" end-of-line        # End
+          bindkey "\e[8~" end-of-line        # End rxvt
+        endif
+    endif
+endif
+
+if ( -d $HOME/bin ) then
+  set path=($path $HOME/bin)
+endif
+
+bindkey -v # viper!
+
+alias grep 'grep --color'
+alias ls 'ls -h --color=always --group-directories-first'
+alias s 'screen'
+alias gdb 'gdb -q' # quiet
+alias valgrind-full 'valgrind --leak-check=full --show-reachable=yes'
+alias ls 'ls -F --color=auto'
+alias l 'ls -1'

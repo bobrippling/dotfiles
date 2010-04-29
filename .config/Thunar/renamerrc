@@ -1,0 +1,22 @@
+[Configuration]
+LastActiveMode=THUNAR_RENAMER_MODE_NAME
+LastActiveRenamer=ThunarSbrNumberRenamer
+
+[ThunarSbrReplaceRenamer]
+Pattern=\ \ 
+Replacement=\ 
+CaseSensitive=FALSE
+Regexp=FALSE
+
+[ThunarSbrRemoveRenamer]
+EndOffset=39
+StartOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+EndOffsetMode=THUNAR_SBR_OFFSET_MODE_LEFT
+StartOffset=0
+
+[ThunarSbrNumberRenamer]
+Mode=THUNAR_SBR_NUMBER_MODE_123
+Start=1
+TextMode=THUNAR_SBR_TEXT_MODE_TN
+Text=stick\ 
+

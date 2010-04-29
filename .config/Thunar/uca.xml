@@ -1,0 +1,2 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions><action><icon>xfce-terminal</icon><name>Open Terminal Here</name><command>exo-open --working-directory %f --launch TerminalEmulator</command><description>Duh</description><patterns>*</patterns><directories/></action></actions>

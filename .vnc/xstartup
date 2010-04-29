@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cd
+
+xsetroot -solid grey
+xset r rate 200 25
+
+urxvtd -q -f -o
+urxvtc -ls &
+
+exec wmii

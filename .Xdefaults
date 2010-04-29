@@ -1,0 +1,153 @@
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! Custom ------------------------------------------------------------------
+! fixes some annoying shizdongles
+*backarrowKeyIsErase: true
+!false
+
+
+! Xft settings -------------------------------------------------------------
+! DO NOT TOUCH
+!Xft*hinting:        1
+!Xft*dpi:            96
+Xft*antialias:      true
+!Xft*hintstyle:      hintslight
+!Xft*rgba:           rgb
+
+Xft:Profont:        pixelsize=11
+!Xcursor.theme:      entis
+!Xcursor.theme:      entis mini
+!Xcursor.theme:      GT3
+!Xcursor.size:       16
+!32, 48 or 64 are probably good values (16?)
+
+
+! urxvt settings -----------------------------------------------------------
+!urxvt*font:            xft:ProggyTinyTT:pixelsize=16
+urxvt*font:            xft:profont:pixelsize=11
+!urxvt*font:            -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
+!urxvt*font:            -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+!urxvt*font:            -*-proggytinytt-*-*-*-*-13-*-*-*-*-*-*-*
+!urxvt*font:            -misc-fixed-medium-r-*-*-10-*-*-*-*-*-*-1
+!urxvt*boldfont:        xft:profont:pixelsize=10
+!urxvt*boldFont:        xft:fixed:pixelsize=16:bold
+!urxvt*boldFont:        -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
+!urxvt*italicFont:      xft:ProggyTinyTT :pixelsize=16 :style=italic
+urxvt*boldFont:         -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
+! ----------
+urxvt*title:            rxvt-unicode
+urxvt*termname:         rxvt-unicode
+urxvt*cursorBlink:      false
+urxvt*geometry:         80x24
+!urxvt*fading:           25%
+urxvt*shading:          5
+urxvt*tintColor:        #000000
+urxvt*transparent:      true
+urxvt*matcher.button:   1
+!urxvt*background:       #000000
+!urxvt*foreground:       grey
+urxvt*transparent:      true
+!urxvt*depth:            32
+urxvt*scrollBar:        false
+urxvt*scrollBar_right:  true
+!urxvt*borderLess:       true <---------- fails hard
+urxvt*inheritPixmap:    true
+urxvt.tintColor:        white
+urxvt.internalBorder:   2
+urxvt.cursorBlink:      false
+urxvt.cursorColor:      #f5a400
+urxvt.borderless:       false
+urxvt*cutchars:         "()*,<>[]{}|'
+!                         ^------------------ delimiters for double-click mouse selection
+! 10 = opaque, 90 = transparent
+urxvt*shading:          40
+! Colours are set at the bottom, globally
+!! BEGIN urlLauncher settings !!
+urxvt*perl-lib:         /usr/lib/urxvt/perl/
+urxvt*perl-ext-common:  matcher
+!urxvt*urlLauncher:      /opt/swiftweasel/swiftweasel
+urxvt*urlLauncher:      firefox
+urxvt*matcher.button:   1
+!! END urlLauncher settings !!
+
+! XLOCK -------------------------------------------------------------------
+!XLock.mode:          blank
+!XLock.mode:         fzort
+!XLock.mode:         atunnels
+!XLock.icongeometry: 256x256
+!XLock.username:      Username:
+!XLock.password:      Password:
+!XLock.foreground:    White
+!XLock.background:    Gray20
+!XLock.description:   false
+!XLock.echokeys:      true
+!XLock.echokey:       *
+!XLock.info:          
+!XLock.info:         Enter password to unlock \nSelect icon to lock
+!XLock.font:          -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!XLock.planfont:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!XLock.messagefont:   -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!XLock.ncolors:      200
+!XLock.dpmsstandby:  600
+!XLock.dpmssuspend:  1200
+!XLock.dpmsoff:      1800
+XLock.validate:      Validating login...
+XLock.invalid:       Login failed
+XLock.messagefont:   -*-profont-*-*-*-*-12-*-*-*-*-*-*-*
+
+! xterm settings -----------------------------------------------------------
+xterm*background:          black
+!xterm*foreground:          grey
+!xterm*highlightColor:      blue
+xterm*scrollBar:           false
+xterm*vt100.scrollBar:     false
+!xterm*vt100.font:         dejavu sans mono      <------------------------------###
+xterm*multiScroll:         on
+xterm*jumpScroll:          on
+xterm*SaveLines:           1000
+!xterm*faceName:            terminus
+!xterm*pixelsize:           ???
+!xterm*faceName             pixelsize:           31
+xterm*dynamicColors:       true
+xterm*utf8:                2
+!xterm*eightBitInput:      true
+xterm*scrollTtyKeypress:   true
+!xterm*scrollTtyOutput:    false
+xterm*rightScrollBar:      false
+xterm*loginShell:          true
+xterm*toolBar:             false
+
+! xpdf -----------------------------------------------------------------------
+xpdf*enableFreetype:      yes
+xpdf*antialias:           yes
+xpdf*foreground:          #000000
+xpdf*background:          #999999
+xpdf*urlCommand:          firefox %s
+xpdf*viKeys:              on
+
+! Terminal Colours ------------------------------------------------------------
+*background:  #222222
+*foreground:  #cccccc
+! Black
+*color0:      #000000
+*color8:      #555753
+! Red
+*color1:      #ce5c00
+*color9:     #f57900
+! Green
+*color2:      #93d48f
+*color10:     #c8e7a8
+! Yellow
+*color3:      #eab93d
+*color11:     #ffc123
+! Blue
+*color4:      #204ac7
+*color12:     #3465a4
+! Magenta
+*color5:      #ff6565
+*color13:      #ff8d8d
+! Cyan
+*color6:      #89b6e2
+*color14:     #46a4ff
+! White
+*color7:      #eeeeee
+*color15:     #cccccc
