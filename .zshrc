@@ -379,6 +379,8 @@ pullout(){
   esac
 }
 
+# only zsh supports -g
+alias -g bga='>&/dev/null&'
 
 # open a GUI app from CLI
 open(){
@@ -411,6 +413,7 @@ nh(){
     echo "usage: nh program [args]"
   else
     nohup $@ &> /dev/null &
+    disown %nohup
   fi
 }
 

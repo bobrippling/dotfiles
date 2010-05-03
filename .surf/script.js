@@ -304,19 +304,28 @@ function get_key(evt){
     return ctrl+meta+key;
 }
 
-/* middle click (unused - in config.h)
-(function() {
-	window.addEventListener("click", function(e) {
-			if (
-										e.button == 1 // for middle click
-										//|| e.ctrlKey   // for ctrl + click
-								 ) {
-					var new_uri = e.srcElement.href;
-					if (new_uri) {
-							e.stopPropagation();
-							e.preventDefault();
-							window.open(new_uri);
-					}
-			}
-	}, false); })();
-*/
+(function()
+{
+  window.addEventListener("click",
+    function(e)
+    {
+      // 1 == middle
+      //|| e.ctrlKey   // for ctrl + click
+      if(e.button == 1){
+        var new_uri = e.srcElement.href;
+
+        if(!new_uri){
+          var t = e.target;
+          if(t.nodeType == 1)
+            new_uri = t.parentElement.href; // images
+        }
+
+        if(new_uri){
+          e.stopPropagation();
+          e.preventDefault();
+          window.open(new_uri);
+        }
+      }
+    },
+  false);
+})();
