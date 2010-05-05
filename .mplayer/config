@@ -1,0 +1,4 @@
+# Write your default config options here!
+
+# enable software volume control - normal doesn't work
+softvol=1
