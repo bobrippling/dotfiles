@@ -12,9 +12,11 @@ if has("autocmd")
   filetype indent on
   filetype plugin on
 
-  autocmd FileType c           set formatoptions+=ro
-  autocmd FileType c,cpp,slang set cindent " c indentation > other two
-  autocmd FileType Makefile    set noet
+  autocmd FileType c             set formatoptions+=ro
+  autocmd FileType c,cpp,slang   set cindent " c indentation > other two
+  autocmd FileType Makefile      set noet
+  autocmd FileType *.s,asm,nasm  set syntax=nasm
+  autocmd FileType *.s,asm,nasm  set noet
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit
@@ -53,7 +55,7 @@ set matchpairs+=<:> " have % bounce between angled brackets, as well as t'other 
 set smartcase  " if search term has caps in, don't ignore case
 set backspace=indent,eol,start " make backspace a more flexible
 "set virtualedit=all " allow the cursor to roam anywhere
-set nomodeline
+"set nomodeline
 set laststatus=2
 set showcmd
 set scrolloff=5 " buffer zone at top and bottom
