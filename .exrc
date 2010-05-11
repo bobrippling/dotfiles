@@ -4,7 +4,7 @@ set autoindent
 set shiftwidth=2
 set tabstop=2
 "set modeline
-set number
+"set number
 set ruler
 set shiftwidth=2
 set tabstop=2
