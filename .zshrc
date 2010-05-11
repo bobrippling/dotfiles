@@ -243,11 +243,11 @@ bindkey "^G" history-beginning-search-backward
 blueprompt=0
 twolineprompt=0
 extrastats=1
+liteprompt=1
 
 promptcolbot=
 promptcoldir=
 
-promptpwd="%."
 
 if [[ $UID -eq 0 ]]
 then
@@ -279,20 +279,30 @@ fi
 # %(test.success.failure)
 #  e.g. %(?.EXIT_SUCCESS.EXIT_FAILURE)
 
-if [[ $twolineprompt -eq 0 ]]
+promptpwd="%B%{$fg[$promptcoldir]%}%.%{$reset_color%}%b"
+
+if [ $liteprompt -eq 1 ]
 then
-  if [[ $extrastats -eq 0 ]]
+  opensquare="%{$fg[$promptcolbot]%}[%{$reset_color%}"
+  closesquare="%{$fg[$promptcolbot]%}]%{$reset_color%}"
+  export PS1="
+$opensquare%?%{$fg[$promptcolbot]%}][%{$reset_color%}$promptpwd$closesquare%# "
+else
+  if [ $twolineprompt -eq 0 ]
   then
-    export PS1="
-[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m%{$reset_color%} %B%{$fg[$promptcoldir]%}${promptpwd}%{$reset_color%}%b]%# "
+    if [ $extrastats -eq 0 ]
+    then
+      export PS1="
+  [%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m%{$reset_color%} ${promptpwd}]%# "
+    else
+      export PS1="
+  %{$fg[$promptcolbot]%}[%{$reset_color%}%j,%?%{$fg[$promptcolbot]%}]%{$reset_color%}[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%} %B%{$fg[$promptcoldir]%}${promptpwd}%{$reset_color%}%b]%# "
+    fi
   else
     export PS1="
-%{$fg[$promptcolbot]%}[%{$reset_color%}%j,%?%{$fg[$promptcolbot]%}]%{$reset_color%}[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%} %B%{$fg[$promptcoldir]%}${promptpwd}%{$reset_color%}%b]%# "
+  ╔═[%j][${promptpwd}][%{$fg[red]%}%?%{$reset_color%}]
+  ╚═[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%}]%# "
   fi
-else
-  export PS1="
-╔═[%j][%B%{$fg[$promptcoldir]%}${promptpwd}%{$reset_color%}%b][%{$fg[red]%}%?%{$reset_color%}]
-╚═[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%}]%# "
 fi
 
 
