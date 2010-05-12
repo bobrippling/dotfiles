@@ -16,7 +16,6 @@ if has("autocmd")
   autocmd FileType c,cpp,slang   set cindent " c indentation > other two
   autocmd FileType Makefile      set noet
   autocmd FileType *.s,asm,nasm  set syntax=nasm
-  autocmd FileType *.s,asm,nasm  set noet
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit
