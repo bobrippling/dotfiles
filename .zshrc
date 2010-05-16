@@ -401,10 +401,10 @@ open(){
 search(){
   if [ $# -ne 1 ]
   then
-    echo "usage: $0 file_to_search_for"
+    echo "usage: $0 file_to_search_for" >&2
     return 1
   else
-    echo 'find . -iname \*$1\*'
+    echo "find . -iname \"\*$1\*\"" >&2
     find . -iname \*$1\*
   fi
 }
