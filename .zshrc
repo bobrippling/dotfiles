@@ -285,8 +285,14 @@ if [ $liteprompt -eq 1 ]
 then
   opensquare="%{$fg[$promptcolbot]%}[%{$reset_color%}"
   closesquare="%{$fg[$promptcolbot]%}]%{$reset_color%}"
+
+	# percent is coloured if background jobs > 1
+	#percent="%#"
+	#percent='%(j.n.y)%# '
+	percent='%# '
+
   export PS1="
-$opensquare%?%{$fg[$promptcolbot]%}][%{$reset_color%}$promptpwd$closesquare%# "
+$opensquare%?%{$fg[$promptcolbot]%}][%{$reset_color%}$promptpwd$closesquare$percent"
 else
   if [ $twolineprompt -eq 0 ]
   then
