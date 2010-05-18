@@ -7,7 +7,13 @@ source ~/.aliases
 #PS1='[\u@\h \W]\$ '
 #PS1="\n${gray}[$?:${green}\u${gray}@${green}\h:\W${gray}]\\$ "
 reset_color="\e[0m"
-export PS1="\n${green}[${reset_color}${?}${green}][\e[1;34m\W${green}]${reset_color}\\$ "
+if [ $UID -eq 0 ]
+then colour=${red}
+else colour=${green}
+fi
+
+export PS1="\n${colour}[${reset_color}${?}${colour}][\e[1;34m\W${colour}]${reset_color}\\$ "
+
 
 #bind '"\e[A": history-search-backward'
 #bind '"\e[B": history-search-forward'
