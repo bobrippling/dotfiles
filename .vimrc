@@ -12,7 +12,7 @@ if has("autocmd")
   filetype indent on
   filetype plugin on
 
-  autocmd FileType c             set formatoptions+=ro
+  autocmd FileType c             set et
   autocmd FileType c,cpp,slang   set cindent " c indentation > other two
   autocmd FileType Makefile      set noet
   autocmd FileType *.s,asm,nasm  set syntax=nasm
@@ -82,8 +82,9 @@ set statusline=\ \%f%m%r%h%w\ ::\ %y[%{&ff}]\%=\ [%02v\ %p%%\ %l/%L]
 
 " set chars to show
 "set listchars=tab:>-,trail:%
-set listchars=tab:»·,trail:·
-set list!
+"set listchars=tab:»·,trail:·
+"set listchars=trail:·,tab:..
+"set list!
 
 
 " Tell vim to remember certain things when we exit
@@ -94,7 +95,7 @@ set list!
 "  n... : where to save the viminfo files
 set viminfo='20,\"100,:200,%,n~/.viminfo
 
-set et " expandtab - for tab <C-V><Tab>
+"set et " expandtab - for tab <C-V><Tab>
 set smarttab
 set sw=2 " shiftwidth - >> and << adjustment
 set shiftwidth=2 " general width of indents
@@ -106,7 +107,7 @@ set ignorecase " searching
 "set autoindent " indents to same as last line
 set smartindent " uses c syntax etc to see where to indent to
 
-let c_space_errors = 0
+let c_space_errors = 1
 
 
 " Display - status line, etc
