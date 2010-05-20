@@ -12,7 +12,7 @@ if has("autocmd")
   filetype indent on
   filetype plugin on
 
-  autocmd FileType c             set et
+  "autocmd FileType c             set et
   autocmd FileType c,cpp,slang   set cindent " c indentation > other two
   autocmd FileType Makefile      set noet
   autocmd FileType *.s,asm,nasm  set syntax=nasm
@@ -84,7 +84,9 @@ set statusline=\ \%f%m%r%h%w\ ::\ %y[%{&ff}]\%=\ [%02v\ %p%%\ %l/%L]
 "set listchars=tab:>-,trail:%
 "set listchars=tab:»·,trail:·
 "set listchars=trail:·,tab:..
+"set listchars=trail:·,tab: 
 "set list!
+
 
 
 " Tell vim to remember certain things when we exit
@@ -115,19 +117,10 @@ colorscheme neutral
 " View colours:
 " :runtime syntax/colortest.vim
 
-" Rebind S to work as the opposite as J (join lines) - split lines
-nnoremap S i<CR><Esc>
-
 " C commenting
 inoremap <F3> /*<End>*/<Esc>^i
 
-" bind tN to new tab, tn to next tab and tp to prev tab
-"nnoremap tT :tabnew<CR>
-"nnoremap tn :tabnext<CR><CR>
-"nnoremap tp :tabprev<CR>
-"nnoremap tT :tabclose<CR>
-
-nnoremap <F4> :Tlist<CR>
+nnoremap <F2> :Tlist<CR>
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
@@ -135,11 +128,6 @@ nnoremap <F4> :Tlist<CR>
 "highlight MyTagListTitle     guifg=blue ctermfg=blue
 "highlight MyTagListComment   guifg=blue ctermfg=blue
 "highlight MyTagListFileName  guifg=blue ctermfg=blue
-
-
-" Alt+J/K
-"nnoremap k 3k
-"nnoremap j 3j
 
 " move up/down without changing cursor pos
 nnoremap <C-Y>    3<C-Y>
