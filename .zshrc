@@ -405,7 +405,7 @@ open(){
 
 
 search(){
-  if [ $# -ne 1 ]
+  if [ $# -ne 1 -o "$1" = "--help" ]
   then
     echo "usage: $0 file_to_search_for" >&2
     return 1
