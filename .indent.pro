@@ -1,4 +1,4 @@
---blank-lines-after-declarations
+//--blank-lines-after-declarations
 --blank-lines-before-block-comments
 --braces-after-func-def-line
 --braces-after-struct-decl-line
@@ -16,4 +16,4 @@
 --no-space-after-if
 --no-space-after-while
 --leave-optional-blank-lines
---no-tabs
+--use-tabs
