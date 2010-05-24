@@ -100,7 +100,6 @@ set viminfo='20,\"100,:200,%,n~/.viminfo
 "set et " expandtab - for tab <C-V><Tab>
 set smarttab
 set sw=2 " shiftwidth - >> and << adjustment
-set shiftwidth=2 " general width of indents
 set tabstop=2
 set nobackup
 set ignorecase " searching
