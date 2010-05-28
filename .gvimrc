@@ -16,7 +16,7 @@ set nu
 set guicursor+=a:blinkon0
 set guioptions=egLt " add m for menu, T for toolbar, r for right scoll bar
 
-colorscheme zenburn
+colorscheme molokai
 
 if has("gui_running")
     set guifont=profont
