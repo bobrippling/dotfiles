@@ -1,0 +1,18 @@
+pcm.plugequal{
+  type equal
+  slave.pcm "plug:dmix"
+}
+
+ctl.equal{
+  type equal;
+}
+
+pcm.equal{
+  type plug;
+  slave.pcm "plug:dmix";
+}
+
+pcm.!default {
+  type plug;
+  slave.pcm "plugequal";
+}

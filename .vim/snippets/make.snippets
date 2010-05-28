@@ -1,0 +1,15 @@
+snippet inc
+	include ${1:config.mk}${2}
+snippet if
+	ifeq (${1:a},${2:b})
+		${3}
+	else
+		${4}
+	endif
+snippet cc
+	@${CC} ${CFLAGS} -o $@ $<
+snippet clean
+	clean:
+		rm -f *.o ${1:tim}
+snippet dep
+	${1:tim.o}: ${1}.c ${1}.h ${2:another.h}
