@@ -109,6 +109,7 @@ xterm*SaveLines:           1000
 !xterm*faceName             pixelsize:           31
 xterm*dynamicColors:       true
 xterm*utf8:                2
+xterm*utf8Title:           1
 !xterm*eightBitInput:      true
 xterm*scrollTtyKeypress:   true
 !xterm*scrollTtyOutput:    false
