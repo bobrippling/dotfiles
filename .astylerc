@@ -1,0 +1,68 @@
+#--style=kr
+
+# Once this is done, carry out
+# %s/ {/{/g
+# %s/} /}/g
+# %s/ (/(/g
+
+# to squeeze all the bracket stuff together
+
+# Tab indenting ------------------------------------------------------
+
+#--indent=spaces=2
+--indent=tab=2
+--min-conditional-indent=1 # 2 * indent=#
+
+#--indent=[force-]tab=4
+# Force tab will have tabs even where there are multi-lines
+
+
+
+
+
+# Indentation --------------------------------------------------------
+--indent-classes     # indents public:/private:, etc
+--indent-switches    # indents case: and the following statements one more
+--indent-preprocessor
+--indent-namespaces
+
+#--indent-cases
+# indents { and } inside case blocks
+# switch(a){
+#     case 1:
+#         a+=2;
+#         break;
+#     case 2:
+#     {           <---|
+#         a-=2;       | these get indented
+#         break;      |
+#     }           <---|
+# }
+
+# Brackets etc -------------------------------------------------------
+
+# Attach brackets to statements within functions only
+--brackets=linux
+
+# Separate unrelated blocks
+--break-blocks
+
+
+# Padding ------------------------------------------------------------
+--pad=oper
+
+#--unpad=paren
+# Leave the insides of parens alone
+
+--one-line=keep-blocks
+--convert-tabs
+#--fill-empty-lines
+
+# Extras -------------------------------------------------------------
+
+#--recursive
+#--preserve-date
+#--formatted - only show formatted files
+
+# Don't have a timmy.c.orig file
+--suffix=none
