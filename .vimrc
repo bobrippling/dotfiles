@@ -45,6 +45,7 @@ if has("autocmd")
 endif
 
 syntax on " syntax highlighting
+set guioptions=egLtcf
 set number " line numbering
 set nowrap " don't wrap lines
 set bs=indent,eol " allow backspacing over everything in insert mode
