@@ -85,10 +85,10 @@ set statusline=\ \%f%m%r%h%w\ ::\ %y[%{&ff}]\%=\ [%02v\ %p%%\ %l/%L]
 
 " set chars to show
 "set listchars=tab:>-,trail:%
-"set listchars=tab:»·,trail:·
+set listchars=tab:»·,trail:·
 "set listchars=trail:·,tab:..
-"set listchars=trail:·,tab: 
-"set list!
+"set listchars=trail:·,tab:
+set list
 
 
 
@@ -120,9 +120,11 @@ colorscheme neutral
 " :runtime syntax/colortest.vim
 
 " C commenting
-inoremap <F3> /*<End>*/<Esc>^i
+nnoremap <leader>t :Tlist<CR>
+inoremap <leader>c /*<End>*/<Esc>^i
+nnoremap <leader>l :set list!<CR>
+" backslash + [tcl]
 
-nnoremap <F2> :Tlist<CR>
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
 "highlight MyTagListTagName   guifg=blue ctermfg=blue

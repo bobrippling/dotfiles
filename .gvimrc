@@ -8,10 +8,10 @@ set guioptions=egLtcf " already set in .vimrc (need to for 'f')
 colorscheme molokai
 
 if has("gui_running")
-    set guifont=profont
-    "set guifont=ProggyTinyTT:h11:cANSI
-    set lines=50
-    set columns=160
+	set guifont=profont
+	"set guifont=ProggyTinyTT:h11:cANSI
+	set lines=50
+	set columns=160
 endif
 
 filetype plugin indent on
