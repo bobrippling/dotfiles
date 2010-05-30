@@ -2,10 +2,12 @@
 
 cd
 
-xsetroot -solid grey
+#xsetroot -solid grey
+randomwallpaper.sh
 xset r rate 200 25
 
-urxvtd -q -f -o
-urxvtc -ls &
+#urxvtd -q -f -o
+#urxvtc -ls &
+xterm
 
 exec wmii
