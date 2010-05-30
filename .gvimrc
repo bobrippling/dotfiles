@@ -1,18 +1,4 @@
 set background=dark
-set ic
-set scs
-set nowrap
-set sbr=^
-set sm
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set sta
-set et
-set ai
-set si
-set nu
-
 set guicursor+=a:blinkon0
 set guioptions=egLtcf " already set in .vimrc (need to for 'f')
 " e: tab pages, g: grey menu items, L: lhs scrollbar, t: 'tearoff' menu items

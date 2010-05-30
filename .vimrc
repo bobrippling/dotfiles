@@ -48,6 +48,8 @@ syntax on " syntax highlighting
 set guioptions=egLtcf
 set number " line numbering
 set nowrap " don't wrap lines
+set sbr=^
+set showmatch
 set bs=indent,eol " allow backspacing over everything in insert mode
 set incsearch
 set showmatch " bracket matching
