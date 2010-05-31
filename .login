@@ -82,3 +82,9 @@ export EDITOR="vim"
 export VISUAL="vim" #gvim
 export BROWSER="surf"
 export XTERM="urxvt"
+
+# history notes
+# echo one two three
+# echo !:n
+# will echo the nth arg, 0 = echo, 1 = one, 2 = two
+# echo !:$ = last, !:^ = first (1)
