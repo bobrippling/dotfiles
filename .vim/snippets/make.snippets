@@ -11,5 +11,7 @@ snippet cc
 snippet clean
 	clean:
 		rm -f *.o ${1:tim}
+snippet .ph
+	.PHONY: ${1}
 snippet dep
 	${1:tim.o}: ${1}.c ${1}.h ${2:another.h}
