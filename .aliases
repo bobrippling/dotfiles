@@ -1,7 +1,6 @@
 alias grep='grep --color=auto'
 alias ls='ls --color=auto --group-directories-first -F'
 alias l='ls -1'
-alias s='screen'
 alias gdb='gdb -q' # quiet
 alias gdb_graphical='gdb -tui'
 alias valgrind-full='valgrind --leak-check=full --show-reachable=yes'
