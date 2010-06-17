@@ -1,8 +1,8 @@
 # DO NOT EDIT!  This file will be overwritten by LXAppearance.
 # Any customization should be done in ~/.gtkrc-2.0.mine
 
-gtk-theme-name="Glow Water Dark"
+gtk-theme-name="Glow Water"
 gtk-icon-theme-name="gTango"
 gtk-font-name="Verdana 9"
-gtk-toolbar-style=0
+gtk-toolbar-style=2
 include "/home/rob/.gtkrc-2.0.mine"
