@@ -12,10 +12,10 @@ if has("autocmd")
   filetype indent on
   filetype plugin on
 
-  "autocmd FileType c             set et
-  autocmd FileType c,cpp,slang   set cindent " c indentation > other two
-  autocmd FileType Makefile      set noet
-  autocmd FileType *.s,asm,nasm  set syntax=nasm
+  autocmd BufRead,BufNewFile *.s,asm,nasm set ft=nasm
+  autocmd BufRead,BufNewFile *.go         set ft=go
+  autocmd FileType c,cpp,slang            set cindent " c indentation > other two
+  autocmd FileType Makefile               set noet
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit

@@ -65,7 +65,7 @@ urxvt*shading:          40
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
 urxvt*perl-ext-common:  matcher
 !urxvt*urlLauncher:      /opt/swiftweasel/swiftweasel
-urxvt*urlLauncher:      firefox
+urxvt*urlLauncher:      /home/rob/bin/openurl.sh
 urxvt*matcher.button:   1
 !! END urlLauncher settings !!
 
@@ -122,7 +122,7 @@ xpdf*enableFreetype:      yes
 xpdf*antialias:           yes
 xpdf*foreground:          #000000
 xpdf*background:          #999999
-xpdf*urlCommand:          firefox %s
+xpdf*urlCommand:          /home/rob/bin/openurl.sh %s
 xpdf*viKeys:              on
 
 ! Terminal Colours ------------------------------------------------------------

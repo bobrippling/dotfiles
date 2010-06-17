@@ -4,6 +4,9 @@ var hint_elems = [];
 var hint_open_in_new_tab = false;
 var hint_enabled = false;
 
+/* non hint vars */
+var middleclick_uris = [];
+
 function hintMode(newtab){
 		hint_enabled = true;
 		if (newtab) {
@@ -304,6 +307,12 @@ function get_key(evt){
 		return ctrl+meta+key;
 }
 
+/*
+ * --------------------------------------------
+ * End of ^F code
+ * --------------------------------------------
+ */
+
 (function()
 {
 	window.addEventListener("click",
@@ -322,11 +331,22 @@ function get_key(evt){
 				}
 
 				if(new_uri){
-					e.stopPropagation();
-					e.preventDefault();
-					window.open(new_uri);
+					var i, found = false;
+
+					// dirty bodge attempt to fix multiple window bs
+					for(var i = 0; i < middleclick_uris.length; i++)
+						if(middleclick_uris[i] == new_uri){
+							found = true;
+							break;
+						}
+
+					if(!found){
+						middleclick_uris[middleclick_uris.length] = new_uri;
+
+						e.stopPropagation();
+						e.preventDefault();
+						window.open(new_uri);
+					}
 				}
 			}
-		},
-	false);
-})();
+		}, false); })();
