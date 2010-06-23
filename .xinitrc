@@ -41,8 +41,7 @@ dwmStuff(){
 	#trayer --edge right --align center --widthtype pixel --width 24 --heighttype pixel --height 24 --SetDockType true --expand true --alpha 5 &
 	#stalonetray
 
-	~/bin/dwm/dwmextra.sh &
-	~/bin/dwm/rundwm.sh
+	~/bin/dwm/dwm_run.sh
 }
 
 
