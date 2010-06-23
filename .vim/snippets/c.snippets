@@ -117,3 +117,12 @@ snippet .
 	[${1}]${2}
 snippet un
 	unsigned
+snippet usage
+	static void usage(const char *);
+
+	static void usage(const char *n)
+	{
+		fprintf(stderr, "Usage: %s ${1:[OPTIONS]} ${2:etc}\n", n);
+		fputs("${3:extra}", stderr);
+	}
+	
