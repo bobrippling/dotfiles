@@ -3,6 +3,9 @@
 "
 " :cn - Goto the next error in source code.
 " :cp - Goto the previous error in source code.
+" ^Wv = split vertically
+" zg = add to dict
+" z= = show list of suggestions
 
 set nocompatible " prevents vim emulating vi's bugs/limits
 
