@@ -16,12 +16,12 @@ snippet map
 snippet vector
 	std::vector<${1:char}> v${2};
 # Namespace
-snippet ns
+snippet namespace
 	namespace ${1:`Filename('', 'my')`} {
 		${2}
 	} /* $1 */
 # Class
-snippet cl
+snippet class
 	class ${1:`Filename('$1_t', 'name')`}
 	{
 		public:
@@ -31,3 +31,7 @@ snippet cl
 		private:
 			${3:/* data */}
 	};
+snippet for(
+	for(${1:int} ${2:i} = 0; $2 < ${3:count}; $3${4:++}){
+		${5}
+	}
