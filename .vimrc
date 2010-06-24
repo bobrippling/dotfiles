@@ -15,10 +15,21 @@ if has("autocmd")
   filetype indent on
   filetype plugin on
 
+
+  function! TrimSpaces()
+    normal mZ
+    %s/\s\+$//e
+    if line("'Z") != line(".")
+      echo "Stripped whitespace\n"
+    endif
+    normal `Z
+  endfunction
+
   autocmd BufRead,BufNewFile *.s,asm,nasm set ft=nasm
   autocmd BufRead,BufNewFile *.go         set ft=go
   autocmd FileType c,cpp,slang            set cindent " c indentation > other two
   autocmd FileType Makefile               set noet
+  autocmd BufWritePre *                   call TrimSpaces()
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit
