@@ -81,7 +81,7 @@ urxvt*matcher.button:   1
 !XLock.description:   false
 !XLock.echokeys:      true
 !XLock.echokey:       *
-!XLock.info:          
+!XLock.info:
 !XLock.info:         Enter password to unlock \nSelect icon to lock
 !XLock.font:          -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !XLock.planfont:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
