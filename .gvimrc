@@ -1,6 +1,6 @@
 set background=dark
 set guicursor+=a:blinkon0
-set guioptions=egLtcf " already set in .vimrc (need to for 'f')
+set guioptions=egtcf " already set in .vimrc (need to for 'f')
 " e: tab pages, g: grey menu items, L: lhs scrollbar, t: 'tearoff' menu items
 " c: console dialogues, f: foreground
 " add m for menu, T for toolbar, r for right scoll bar

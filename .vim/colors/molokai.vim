@@ -3,7 +3,7 @@
 " Author: Tomas Restrepo <tomas@winterdom.com>
 "
 " Note: Based on the monokai theme for textmate
-" by Wimer Hazenberg and its darker variant 
+" by Wimer Hazenberg and its darker variant
 " by Hamish Stuart Macpherson
 "
 
@@ -33,7 +33,8 @@ hi Number          guifg=#AE81FF
 hi String          guifg=#E6DB74
 hi Conditional     guifg=#F92672               gui=bold
 hi Constant        guifg=#AE81FF               gui=bold
-hi Cursor          guifg=#000000 guibg=#F8F8F0
+hi Cursor          guifg=#000000 guibg=#f5a400
+"                                      #F8F8F0
 hi Debug           guifg=#BCA3A3               gui=bold
 hi Define          guifg=#66D9EF
 hi Delimiter       guifg=#8F8F8F
