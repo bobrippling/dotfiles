@@ -58,6 +58,14 @@ if has("autocmd")
       augroup END
 endif
 
+function! Wm()
+	" :wq
+	" :mak
+	w
+	mak
+endfunction
+nnoremap <leader>m :call Wm()<CR>
+
 syntax on " syntax highlighting
 set guioptions=egLtcf
 set number " line numbering
