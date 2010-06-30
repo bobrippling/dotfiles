@@ -1,9 +1,10 @@
 # shebang
 snippet #!
 	#!/usr/bin/tcc -run
-	
+
 # main()
 snippet main
+	/* main screen turn on */
 	int main(${1:int argc, const char **argv})
 	{
 		${2}
@@ -21,9 +22,9 @@ snippet Def
 	#define ${1:SYMBOL} ${2:value}
 	#endif${3}
 snippet def
-	#define 
+	#define
 snippet undef
-	#undef 
+	#undef
 snippet ifdef
 	#ifdef ${1:FOO}
 		${2:#define }
@@ -125,4 +126,4 @@ snippet usage
 		fprintf(stderr, "Usage: %s ${1:[OPTIONS]} ${2:etc}\n", n);
 		fputs("${3:extra}\n", stderr);
 	}
-	
+

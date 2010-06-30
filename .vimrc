@@ -145,6 +145,7 @@ colorscheme neutral
 nnoremap <leader>t :Tlist<CR>
 inoremap <leader>c /*<End>*/<Esc>^i
 nnoremap <leader>l :set list!<CR>
+nnoremap <leader>h :set hls!<CR>
 " backslash + [tcl]
 
 " custom highlighting
