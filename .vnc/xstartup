@@ -8,6 +8,6 @@ xset r rate 200 25
 
 #urxvtd -q -f -o
 #urxvtc -ls &
-xterm&
+urxvt&
 
 exec wmii
