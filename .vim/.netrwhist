@@ -1,6 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/home/rob/code/c/Programs/compiler/comp/common'
 let g:netrw_dirhist_2='/home/rob/code/c/tools'
 let g:netrw_dirhist_3='/home/rob/code/c/Programs/compiler/comp/include'
 let g:netrw_dirhist_4='/home/rob/bin/skvm/init'
+let g:netrw_dirhist_5='/tmp/ranger/ranger'
