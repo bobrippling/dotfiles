@@ -51,7 +51,10 @@ compdef _pacman powerpill=pacman
 compdef _pacman bauerbill=pacman
 
 setopt extendedglob # cp ^*.(tar|bz2|gz) . will work
-setopt appendhistory extendedglob histignoredups
+setopt appendhistory
+setopt extendedglob
+setopt histignoredups
+setopt sharehistory
 setopt append_history
 setopt inc_append_history
 setopt extended_history
@@ -63,6 +66,8 @@ setopt hist_no_store
 setopt hist_no_functions
 setopt no_hist_beep
 setopt hist_save_no_dups
+setopt hist_expire_dups_first
+setopt correct_all
 
 unsetopt beep
 
