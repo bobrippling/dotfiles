@@ -26,12 +26,10 @@ startStuff(){
 	#/usr/bin/xset m 30/10 4
 
 	xsetroot -d :0 -cursor_name left_ptr
-	${SH_PATH}x_kbd_rate.sh &> /dev/null # this prints out some bs error
 	#urxvtd -q -f -o &> /dev/null # -f: fork to bg, -o: open connection to X server (basically makes urxvtd end when the X server goes down)
 	#tilda &> /dev/null
 
-	setxkbmap gb
-	setxkbmap -option caps:escape # remap
+	xsetup.sh
 }
 
 dwmStuff(){
