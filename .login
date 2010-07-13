@@ -68,37 +68,37 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;34m'
 
-gcc=0
+#gcc=0
+#
+## see http://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#C_002b_002b-Dialect-Options
+#if [ $SHELL = `which bash` ]
+#then
 
-# see http://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#C_002b_002b-Dialect-Options
-if [ $SHELL = `which bash` ]
-then
+#	if [ $gcc -eq 0 ]
+#	then
+#		CC="tcc"
+#		CFLAGS="-Wall -Wunusupported -Wwrite-strings"
+#	else
+#		CC="gcc"
+#		CFLAGS="-march=native -O2 -fomit-frame-pointer -pipe -W -Wall -Wcast-align -Wcast-qual -Wshadow -Wnested-externs -Waggregate-return -Wbad-function-cast -Wpointer-arith -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Winline -Wredundant-decls -Wextra -pedantic -ansi"
+#	fi
 
-	if [ $gcc -eq 0 ]
-	then
-		CC="tcc"
-		CFLAGS="-Wall -Wunusupported -Wwrite-strings"
-	else
-		CC="gcc"
-		CFLAGS="-march=native -O2 -fomit-frame-pointer -pipe -W -Wall -Wcast-align -Wcast-qual -Wshadow -Wnested-externs -Waggregate-return -Wbad-function-cast -Wpointer-arith -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Winline -Wredundant-decls -Wextra -pedantic -ansi"
-	fi
+#	CXXFLAGS="-W -Wall -Wcast-align -Wcast-qual -Wshadow -Waggregate-return -Wpointer-arith -Wcast-align -Wwrite-strings -Winline -Wredundant-decls -Wextra -pedantic -ansi -Wabi -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Weffc++ -Wstrict-null-sentinel -Wno-non-template-friend -Wold-style-cast -Woverloaded-virtual -Wsign-promo"
+#else
+#	if [ $gcc -eq 0 ]
+#	then
+#		CC="tcc"
+#		CFLAGS=(-Wall -Wunusupported -Wwrite-strings)
+#	else
+#		CC="gcc"
+#		CFLAGS=(-march=native -O2 -fomit-frame-pointer -pipe -W -Wall -Wcast-align -Wcast-qual -Wshadow -Wnested-externs -Waggregate-return -Wbad-function-cast -Wpointer-arith -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Winline -Wredundant-decls -Wextra -pedantic -ansi)
+#	fi
+#	CXXFLAGS=(-W -Wall -Wcast-align -Wcast-qual -Wshadow -Waggregate-return -Wpointer-arith -Wcast-align -Wwrite-strings -Winline -Wredundant-decls -Wextra -pedantic -ansi -Wabi -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Weffc++ -Wstrict-null-sentinel -Wno-non-template-friend -Wold-style-cast -Woverloaded-virtual -Wsign-promo)
+#fi
 
-	CXXFLAGS="-W -Wall -Wcast-align -Wcast-qual -Wshadow -Waggregate-return -Wpointer-arith -Wcast-align -Wwrite-strings -Winline -Wredundant-decls -Wextra -pedantic -ansi -Wabi -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Weffc++ -Wstrict-null-sentinel -Wno-non-template-friend -Wold-style-cast -Woverloaded-virtual -Wsign-promo"
-else
-	if [ $gcc -eq 0 ]
-	then
-		CC="tcc"
-		CFLAGS=(-Wall -Wunusupported -Wwrite-strings)
-	else
-		CC="gcc"
-		CFLAGS=(-march=native -O2 -fomit-frame-pointer -pipe -W -Wall -Wcast-align -Wcast-qual -Wshadow -Wnested-externs -Waggregate-return -Wbad-function-cast -Wpointer-arith -Wcast-align -Wwrite-strings -Wstrict-prototypes -Wmissing-prototypes -Winline -Wredundant-decls -Wextra -pedantic -ansi)
-	fi
-	CXXFLAGS=(-W -Wall -Wcast-align -Wcast-qual -Wshadow -Waggregate-return -Wpointer-arith -Wcast-align -Wwrite-strings -Winline -Wredundant-decls -Wextra -pedantic -ansi -Wabi -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Weffc++ -Wstrict-null-sentinel -Wno-non-template-friend -Wold-style-cast -Woverloaded-virtual -Wsign-promo)
-fi
-
-export CC
-export CFLAGS
-export CXXFLAGS
+#export CC
+#export CFLAGS
+#export CXXFLAGS
 
 export PREFIX="/usr"
 
