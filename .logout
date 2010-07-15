@@ -4,7 +4,7 @@
 # aka
 # % . $0
 
-if grep -q 'tty' <<< `tty`
+if tty | grep -q 'tty'
 then
     clear
 fi
