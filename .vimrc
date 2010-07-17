@@ -29,7 +29,10 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.go         set ft=go
   autocmd FileType c,cpp,slang            set cindent " c indentation > other two
   autocmd FileType Makefile               set noet
+
   autocmd BufWritePre *                   call TrimSpaces()
+  " binding to turn off ^
+  nnoremap <leader>s :autocmd! BufWritePre<CR>
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit
