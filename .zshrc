@@ -23,7 +23,7 @@ zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character 
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' '' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' match-original both
-zstyle ':completion:*' max-errors 2 numeric
+#zstyle ':completion:*' max-errors 2 numeric
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' old-list always
 zstyle ':completion:*' original true
