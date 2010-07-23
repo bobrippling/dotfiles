@@ -146,10 +146,11 @@ colorscheme neutral
 
 " C commenting
 nnoremap <leader>t :Tlist<CR>
-inoremap <leader>c /*<End>*/<Esc>^i
+inoremap <leader>c <Esc>mpi/*<End>*/<Esc>`p
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>h :set hls!<CR>
-" backslash + [tcl]
+nnoremap <leader>x :r!xsel -o<CR>
+" backslash + [tcl etc]
 
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
