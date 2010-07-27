@@ -32,7 +32,7 @@ if has("autocmd")
 
   autocmd BufWritePre *                   call TrimSpaces()
   " binding to turn off ^
-  nnoremap <leader>s :autocmd! BufWritePre<CR>
+  nnoremap <leader>w :autocmd! BufWritePre<CR>
 
   " when we reload, tell vim to restore the cursor to the saved position
   augroup JumpCursorOnEdit
@@ -146,7 +146,7 @@ colorscheme neutral
 
 " C commenting
 nnoremap <leader>t :Tlist<CR>
-inoremap <leader>c <Esc>mpi/*<End>*/<Esc>`p
+inoremap <leader>c <Esc>mpa/*<End>*/<Esc>`pl
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>h :set hls!<CR>
 nnoremap <leader>x :r!xsel -o<CR>
