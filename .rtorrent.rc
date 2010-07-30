@@ -15,11 +15,12 @@ max_uploads = 8
 
 # Global upload and download rate in KiB. "0" for unlimited.
 download_rate = 0
-upload_rate = 35
+upload_rate = 40
 
 # Default directory to save the downloaded torrents.
 #directory = /home/rob/Downloads
-directory = /mnt/mBig/Torrents
+directory = /home/rob/Downloads/Files
+#/mnt/mBig/Torrents
 
 # Default session directory. Make sure you don't run multiple instance
 # of rtorrent using the same session directory. Perhaps using a
