@@ -106,7 +106,8 @@ export EDITOR="vim"
 export VISUAL="vim" #gvim
 export BROWSER="surf"
 export XTERM="urxvt"
-export ESCDELAY=25 # ncurses escape wait time (ms)
+export ESCDELAY=10 # ncurses escape wait time (ms)
+export PAGER="less"
 
 # history notes
 # echo one two three
