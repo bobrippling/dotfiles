@@ -55,7 +55,7 @@ setopt extendedglob # cp ^*.(tar|bz2|gz) . will work
 setopt appendhistory
 setopt extendedglob
 setopt histignoredups
-setopt sharehistory
+#setopt sharehistory
 setopt append_history
 setopt inc_append_history
 setopt extended_history
