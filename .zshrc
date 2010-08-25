@@ -246,6 +246,10 @@ bindkey -M vicmd 'j' history-beginning-search-forward
 # Custom
 bindkey "^G" history-beginning-search-backward
 
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+
 
 blueprompt=0
 twolineprompt=0
