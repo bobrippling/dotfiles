@@ -50,6 +50,7 @@ compdef _pacman clyde=pacman
 compdef _pacman powerpill=pacman
 compdef _pacman bauerbill=pacman
 compdef _netcat ncat
+compdef _ncftp  lftp
 
 setopt extendedglob # cp ^*.(tar|bz2|gz) . will work
 setopt appendhistory
