@@ -15,25 +15,21 @@ alias soffice='GTK2_RC_FILES=/tim soffice'
 alias xselo='xsel -o|(cat;echo)'
 
 addtopath(){
-  if [ $# -eq 0 ]
-  then
-    echo "addtopath() - need an argument"
-  else
-    echo $PATH | grep $@ &> /dev/null
-    if [ $? -ne 0 ]
-    then
-      export PATH=$PATH:$@
-    fi
-  fi
+	if [ $# -eq 0 ]
+	then
+		echo "addtopath() - need an argument"
+	else
+		echo $PATH | grep $@ &> /dev/null
+		if [ $? -ne 0 ]
+		then
+			export PATH=$PATH:$@
+		fi
+	fi
 }
 
 nohist(){
-  histf="$HOME/.zsh_history"
-  histt="$histf.$$"
-
-  cp $histf $histt
-  zsh
-  mv $histt $histf
+	unset HISTFILE
+	sed -i '/nohist/d' ~/.zsh_history
 }
 
 
