@@ -144,13 +144,13 @@ colorscheme neutral
 " View colours:
 " :runtime syntax/colortest.vim
 
-" C commenting
-nnoremap <leader>t :Tlist<CR>
+" backslash + [tcl etc]
 inoremap <leader>c <Esc>mpa/*<End>*/<Esc>`pl
+nnoremap <leader>t :Tlist<CR>
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>h :set hls!<CR>
 nnoremap <leader>x :r!xsel -o<CR>
-" backslash + [tcl etc]
+nnoremap <leader>s s<Space><Esc>pa<Space><Esc>l
 
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
