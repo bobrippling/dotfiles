@@ -8,11 +8,13 @@ alias pstree='ps auxwwwf'
 alias bc='bc -q'
 # file size:
 alias dub='du -b'
+alias shreduvz='shred -uvz'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
 alias soffice='GTK2_RC_FILES=/tim soffice'
 alias xselo='xsel -o|(cat;echo)'
+alias gccW='gcc -Wall -Wextra -pedantic'
 
 addtopath(){
 	if [ $# -eq 0 ]
@@ -32,6 +34,10 @@ nohist(){
 	sed -i '/nohist/d' ~/.zsh_history
 }
 
+car()  { echo $1; }
+cdr()  { shift; echo $@; }
+ucar() { echo ${!#}; }
+ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
 
 addtopath "/home/rob/sh"
 addtopath "/home/rob/bin"
