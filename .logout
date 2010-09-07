@@ -4,6 +4,8 @@
 # aka
 # % . $0
 
+#sudo -k # revoke
+
 if tty | grep -q 'tty'
 then
     clear
