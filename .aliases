@@ -32,6 +32,9 @@ addtopath(){
 nohist(){
 	unset HISTFILE
 	sed -i '/nohist/d' ~/.zsh_history
+	if [ $# -ne 0 ]
+	then echo 'nohist: ignored args'
+	fi
 }
 
 unicode(){
@@ -54,3 +57,5 @@ ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
 
 addtopath "/home/rob/sh"
 addtopath "/home/rob/bin"
+
+# vim: ft=sh
