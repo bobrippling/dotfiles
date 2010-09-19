@@ -13,10 +13,10 @@
 ##
 #key_up = 259 'k'
 #key_down = 258 'j'
-#key_page_up = 339
-#key_page_down = 338
-#key_home = 262
-#key_end = 360
+key_page_up = 339 'K'
+key_page_down = 338 'J'
+key_home = 262 '^'
+key_end = 360 '$'
 #key_space = 32
 #key_enter = 10
 #key_delete = 330 'd'

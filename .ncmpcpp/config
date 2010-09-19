@@ -26,7 +26,7 @@ playlist_disable_highlight_delay = "0"
 #
 ## defines how long various messages are supposed to be visible
 #
-message_delay_time = "4"
+message_delay_time = "1"
 #
 ##### song format #####
 ##
@@ -163,3 +163,5 @@ statusbar_color = "white"
 active_column_color = "red" #THIS
 window_border_color = "white"
 active_window_border = "magenta"
+cyclic_scrolling = "yes"
+display_bitrate = "yes"
