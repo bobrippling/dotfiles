@@ -9,6 +9,7 @@ alias bc='bc -q'
 # file size:
 alias dub='du -b'
 alias shreduvz='shred -uvz'
+alias netstat='netstat 2> /dev/null'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
