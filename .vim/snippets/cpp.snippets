@@ -32,6 +32,8 @@ snippet class
 			${3:/* data */}
 	};
 snippet for(
-	for(${1:int} ${2:i} = 0; $2 < ${3:count}; $3${4:++}){
-		${5}
+	for(std::vector<${1:type}>::iterator ${2:it} = ${3:vec}.begin();
+			$2 != $3.end();
+			++$2){
+		(*$2).${4:dosomething()};
 	}
