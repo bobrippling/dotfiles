@@ -87,6 +87,9 @@ set laststatus=2
 set showcmd
 set scrolloff=5 " buffer zone at top and bottom
 set cmdheight=1
+set ttyfast
+set wildmode=list:longest
+
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=0x%02.2B]\ [POS=%04l/%L,%04v,%p%%]\
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%04v,%04l,%p%%]\ [LEN=%L]
@@ -132,6 +135,8 @@ set tabstop=2
 set nobackup
 set ignorecase " searching
 
+set foldlevel=256 " annoying
+
 "set copyindent " buh
 "set autoindent " indents to same as last line
 set smartindent " uses c syntax etc to see where to indent to
@@ -140,6 +145,9 @@ let c_space_errors = 1
 
 
 " Display - status line, etc
+" reverse-comment the two lines below for 256-terminal-vim
+let CSApprox_loaded = 1
+"set t_Co=256
 colorscheme neutral
 " View colours:
 " :runtime syntax/colortest.vim
@@ -151,6 +159,7 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <leader>h :set hls!<CR>
 nnoremap <leader>x :r!xsel -o<CR>
 nnoremap <leader>s s<Space><Esc>pa<Space><Esc>l
+nnoremap <leader>W :set wrap!<CR>
 
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
