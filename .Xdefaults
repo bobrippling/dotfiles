@@ -8,7 +8,7 @@
 ! DO NOT TOUCH
 !Xft*hinting:        1
 !Xft*dpi:            96
-Xft*antialias:      false
+Xft*antialias:      true
 !Xft*hintstyle:      hintslight
 !Xft*rgba:           rgb
 
