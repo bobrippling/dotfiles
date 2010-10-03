@@ -12,7 +12,7 @@ Xft*antialias:      true
 !Xft*hintstyle:      hintslight
 !Xft*rgba:           rgb
 
-Xft:Profont:        pixelsize=11
+!Xft:Profont:        pixelsize=11
 !Xcursor.theme:      entis
 !Xcursor.theme:      entis mini
 !Xcursor.theme:      GT3
@@ -67,39 +67,14 @@ urxvt*perl-ext-common:  matcher
 urxvt*urlLauncher:      /home/rob/bin/openurl.sh
 urxvt*matcher.button:   1
 !! END urlLauncher settings !!
-
-! XLOCK -------------------------------------------------------------------
-!XLock.mode:          blank
-!XLock.mode:         fzort
-!XLock.mode:         atunnels
-!XLock.icongeometry: 256x256
-!XLock.username:      Username:
-!XLock.password:      Password:
-!XLock.foreground:    White
-!XLock.background:    Gray20
-!XLock.description:   false
-!XLock.echokeys:      true
-!XLock.echokey:       *
-!XLock.info:
-!XLock.info:         Enter password to unlock \nSelect icon to lock
-!XLock.font:          -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!XLock.planfont:      -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!XLock.messagefont:   -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
-!XLock.ncolors:      200
-!XLock.dpmsstandby:  600
-!XLock.dpmssuspend:  1200
-!XLock.dpmsoff:      1800
-XLock.validate:      Validating login...
-XLock.invalid:       Login failed
-XLock.messagefont:   -*-profont-*-*-*-*-12-*-*-*-*-*-*-*
-
 ! xterm settings -----------------------------------------------------------
 xterm*background:          black
 !xterm*foreground:          grey
 !xterm*highlightColor:      blue
 xterm*scrollBar:           false
 xterm*vt100.scrollBar:     false
-!xterm*vt100.font:         dejavu sans mono      <------------------------------###
+!xterm*vt100.font:         dejavu sans mono
+!xterm*font:                dejavu sans mono
 xterm*multiScroll:         on
 xterm*jumpScroll:          on
 xterm*SaveLines:           1000
