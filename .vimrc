@@ -89,6 +89,7 @@ set scrolloff=5 " buffer zone at top and bottom
 set cmdheight=1
 set ttyfast
 set wildmode=list:longest
+set completeopt+=longest
 
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=0x%02.2B]\ [POS=%04l/%L,%04v,%p%%]\
