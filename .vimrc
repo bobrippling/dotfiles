@@ -1,13 +1,15 @@
-" :sp - new window above
-" :vs -  "     "   left
-"
 " :cn - Goto the next error in source code.
 " :cp - Goto the previous error in source code.
 " ^Wv = split vertically
 " zg = add to dict
 " z= = show list of suggestions
-
-set nocompatible " prevents vim emulating vi's bugs/limits
+"
+" [cdv][ai]X
+" where X is one of: {[}]"'wsbBp
+" s: sentence
+" b: () block
+" B: {} block
+" p: paragraph
 
 filetype on
 
@@ -70,6 +72,7 @@ endfunction
 nnoremap <leader>m :call Wm()<CR>
 
 syntax on " syntax highlighting
+set nocompatible " prevents vim emulating vi's bugs/limits
 set guioptions=egLtcf
 set number " line numbering
 set nowrap " don't wrap lines
@@ -161,6 +164,8 @@ nnoremap <leader>h :set hls!<CR>
 nnoremap <leader>x :r!xsel -o<CR>
 nnoremap <leader>s s<Space><Esc>pa<Space><Esc>l
 nnoremap <leader>W :set wrap!<CR>
+nnoremap <tab>     >>
+nnoremap <S-tab>   <<
 
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
