@@ -100,7 +100,7 @@ selected_item_suffix = "$9"
 ##
 ## - color is optional (if you want the default one, type [])
 ##
-#  l = time, a = artist, b = album, t = title 
+#  l = time, a = artist, b = album, t = title
 song_columns_list_format = "(5)[white]{l} (20)[red]{a} (35)[green]{t} (25)[blue]{b}"
 #
 ##### various settings #####
@@ -163,5 +163,5 @@ statusbar_color = "white"
 active_column_color = "red" #THIS
 window_border_color = "white"
 active_window_border = "magenta"
-cyclic_scrolling = "yes"
+cyclic_scrolling = "no"
 display_bitrate = "yes"
