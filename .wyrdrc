@@ -1,0 +1,164 @@
+# command for the Remind executable
+set remind_command="remind"
+set reminders_file="$HOME/.reminders"
+
+set edit_old_command="$EDITOR +%line% %file%"
+set edit_new_command="$EDITOR +999999 %file%"
+set edit_any_command="$EDITOR %file%"
+
+
+# %monname% -> month name
+# %mon% -> month number
+# %mday% -> day of the month
+# %year% -> year
+# %hour% -> hour
+# %min% -> minute
+# %wdayname% -> weekday name
+# %wday% -> weekday number
+set timed_template="REM %monname% %mday% %year% AT %hour%:%min% DURATION 1:00 MSG "
+set untimed_template="REM %monname% %mday% %year% MSG "
+
+# weekly recurrence
+set template0="REM %wdayname% AT %hour%:%min% DURATION 1:00 MSG "
+set template1="REM %wdayname% MSG "
+
+# monthly recurrence
+set template2="REM %mday% AT %hour%:%min% DURATION 1:00 MSG "
+set template3="REM %mday% MSG "
+
+
+# algorithm to use for determining busy level
+# "1" -> count the number of reminders in each day
+# "2" -> count the number of hours of reminders in each day
+set busy_algorithm="1"
+# for "2", assume that untimed reminders occupy this many minutes
+#set untimed_duration="60"
+
+# if busy_algorithm="1", number of reminders per day allowed for each calendar
+# colorization level; if busy_algorithm="2", use number of hours of reminders
+# per day
+set busy_level1="1"   # level1 color
+set busy_level2="3"   # level2 color
+set busy_level3="5"   # level2 color, bold
+set busy_level4="7"   # level3 color
+                      # (everything else is level3 color, bold)
+
+set week_starts_monday="true"
+
+# 12/24 hour time settings
+set schedule_12_hour="false"
+set selection_12_hour="false"
+set status_12_hour="false"
+set description_12_hour="false"
+
+# whether or not to keep the cursor centered when scrolling through timed
+# reminders
+set center_cursor="true"
+
+# date syntax for the 'go to date' command can be big or little endian
+# big endian: YY..., little: DD...
+set goto_big_endian="false"
+# date syntax for the "quick reminder" command can be US style
+# (6/1 -> June 1) or non-US style (6/1 -> January 6)
+set quick_date_US="false"
+
+# whether or not to number weeks within the month calendar
+set number_weeks="true"
+
+# whether or not the cursor should follow the current time
+# after pressing the "home" key
+set home_sticky="true"
+
+# whether or not to display advance warnings
+set advance_warning="true"
+
+# width of the untimed reminders window
+set untimed_window_width="40"
+
+# whether or not to render untimed reminders in boldface
+set untimed_bold="false"
+
+
+# key bindings
+bind "j"                 scroll_down
+bind "k"                 scroll_up
+bind "h"                 switch_window
+bind "l"                 switch_window
+bind "H"                 previous_day
+bind "L"                 next_day
+bind "K"                 previous_week
+bind "J"                 next_week
+
+bind "{"                 previous_month
+bind "}"                 next_month
+
+bind "^"                 home
+
+bind "g"                 goto
+bind "z"                 zoom
+
+bind "<return>"          edit
+bind "<enter>"           edit
+bind "e"                 edit_any
+
+bind "y"                 copy
+bind "d"                 cut
+bind "p"                 paste
+bind "P"                 paste_dialog
+
+# \\C = ctrl
+bind "\\Ce"              scroll_description_up
+bind "\\Cy"              scroll_description_down
+
+bind "q"                 quick_add
+bind "t"                 new_timed
+bind "T"                 new_timed_dialog
+bind "u"                 new_untimed
+bind "U"                 new_untimed_dialog
+
+bind "w"                 new_template0
+bind "W"                 new_template1
+bind "m"                 new_template2
+bind "M"                 new_template3
+
+bind "/"                 begin_search
+bind "n"                 search_next
+bind "<tab>"             next_reminder
+
+bind "r"                 view_remind
+bind "R"                 view_remind_all
+bind "c"                 view_week
+bind "C"                 view_month
+bind "?"                 help
+bind "\\Cl"              refresh
+bind "Q"                 quit
+
+bind "<return>"          entry_complete
+bind "<enter>"           entry_complete
+bind "<backspace>"       entry_backspace
+bind "<esc>"             entry_cancel
+
+
+# black, red, green, yellow, blue, magenta, cyan, white, default
+color help               white    default
+color timed_default      white    default
+color timed_current      white    default
+color timed_reminder1    yellow   default
+color timed_reminder2    yellow   default
+color timed_reminder3    white    default
+color timed_reminder4    yellow   default
+color untimed_reminder   green    default
+color timed_date         cyan     default
+
+color selection_info     red      default
+color description        yellow   default
+color status             red      default
+
+color calendar_labels    white    default
+color calendar_level1    white    default
+color calendar_level2    magenta  default
+color calendar_level3    red      default
+color calendar_today     green    default
+
+color left_divider       blue     default
+color right_divider      blue     default
