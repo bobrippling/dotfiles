@@ -6,6 +6,7 @@ alias gdb_graphical='gdb -tui'
 alias valgrind-full='valgrind --leak-check=full --show-reachable=yes'
 alias pstree='ps auxwwwf'
 alias bc='bc -q'
+alias jerbs='jobs'
 # file size:
 alias dub='du -b'
 alias shreduvz='shred -uvz'
