@@ -84,6 +84,7 @@ set showmatch " bracket matching
 set matchpairs+=<:> " have % bounce between angled brackets, as well as t'other kinds:
 set smartcase  " if search term has caps in, don't ignore case
 set backspace=indent,eol,start " make backspace a more flexible
+set noet
 "set virtualedit=all " allow the cursor to roam anywhere
 "set nomodeline
 set laststatus=2
