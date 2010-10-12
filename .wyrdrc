@@ -38,9 +38,9 @@ set busy_algorithm="1"
 # colorization level; if busy_algorithm="2", use number of hours of reminders
 # per day
 set busy_level1="1"   # level1 color
-set busy_level2="3"   # level2 color
-set busy_level3="5"   # level2 color, bold
-set busy_level4="7"   # level3 color
+set busy_level2="2"   # level2 color
+set busy_level3="4"   # level2 color, bold
+set busy_level4="5"   # level3 color
                       # (everything else is level3 color, bold)
 
 set week_starts_monday="true"
@@ -136,6 +136,7 @@ bind "Q"                 quit
 bind "<return>"          entry_complete
 bind "<enter>"           entry_complete
 bind "<backspace>"       entry_backspace
+bind \177                entry_backspace
 bind "<esc>"             entry_cancel
 
 
@@ -155,10 +156,11 @@ color description        yellow   default
 color status             red      default
 
 color calendar_labels    white    default
-color calendar_level1    white    default
-color calendar_level2    magenta  default
-color calendar_level3    red      default
 color calendar_today     green    default
+
+color calendar_level1    white    default
+color calendar_level2    yellow   default
+color calendar_level3    red      default
 
 color left_divider       blue     default
 color right_divider      blue     default
