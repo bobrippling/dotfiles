@@ -132,6 +132,7 @@ bind "C"                 view_month
 bind "?"                 help
 bind "\\Cl"              refresh
 bind "Q"                 quit
+bind "Z"                 quit
 
 bind "<return>"          entry_complete
 bind "<enter>"           entry_complete
@@ -146,16 +147,16 @@ color timed_default      white    default
 color timed_current      white    default
 color timed_reminder1    yellow   default
 color timed_reminder2    yellow   default
-color timed_reminder3    white    default
+color timed_reminder3    yellow   default
 color timed_reminder4    yellow   default
-color untimed_reminder   green    default
-color timed_date         cyan     default
+color untimed_reminder   yellow   default
+color timed_date         white    default
 
-color selection_info     red      default
+color selection_info     cyan     default
 color description        yellow   default
-color status             red      default
+color status             blue     default
 
-color calendar_labels    white    default
+color calendar_labels    cyan     default
 color calendar_today     green    default
 
 color calendar_level1    white    default
