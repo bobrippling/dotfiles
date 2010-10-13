@@ -1,0 +1,110 @@
+# Local folder
+set mbox_type=Maildir
+set folder=~/.mutt/mail
+
+# IMAP Settings
+set from="Rob <robpilling@gmail.com>"
+set realname="Robert Pilling"
+set imap_user=robpilling@gmail.com
+#set imap_pass=<prompted>
+
+# match gmail settings - move sent to Sent, etc
+set folder="imaps://imap.gmail.com"
+set spoolfile="imaps://imap.gmail.com/INBOX"
+set postponed="imaps://imap.gmail.com/[Gmail]/Drafts"
+set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
+
+set header_cache=~/.mutt/cache
+
+mailboxes =INBOX # check for new email here
+
+# Reading Mail
+set timeout=10
+set mail_check=5
+set sort=reverse-threads
+set sort_aux=date
+set move=no
+set mark_old=no
+ignore * # ignore all headers except for
+unignore Date: From: To: CC: Bcc: Subject: Reply-To:
+hdr_order Subject: Date: From: To: Reply-To: CC: Bcc:
+set index_format="%{%b %d} %-15.15L [%Z] %s" # custom index format
+
+# Composing Mail
+set editor="vim"
+set markers=no
+#set signature=~/.sig
+set include=yes
+set forward_format="Fwd: %s"
+
+# Sending Mail
+set copy=yes
+# get gmail to envelope the outgoing as originating from gmail
+set smtp_url="smtps://robpilling\@gmail.com@smtp.gmail.com/"
+
+
+# View Special Formats
+#set mailcap_path=~/.mailcap
+#auto_view text/html # auto-render html inline mutt
+
+# black, red, green, yellow, blue, magenta, cyan, white, default
+color status brightblue    default
+
+color index brightgreen    default ~N  # new
+color index red            default ~D  # deleted
+color index brightmagenta  default ~T  # tagged
+color index brightyellow   default ~F  # flagged
+
+color header yellow        default "^Subject:"
+color header cyan          default "^Date:"
+color header cyan          default "^To:"
+color header brightcyan    default "^Cc:"
+color header cyan          default "^Bcc:"
+color header brightcyan    default "^(From|Reply-To):"
+color header red           default "^X-.*:"
+
+bind  attach       ' '         select-entry
+bind  editor       <delete>    delete-char
+bind  index,pager  !           flag-message
+bind  index,pager  :           enter-command
+bind  index,pager  *           tag-message
+
+
+bind  index,pager  \t          next-unread
+bind  index,pager  \S\t        previous-unread
+
+bind  index        zt          current-top
+bind  index        zz          current-middle
+bind  index        zb          current-bottom
+
+bind  index        j           next-entry
+bind  index        k           previous-entry
+bind  pager        j           next-line
+bind  pager        k           previous-line
+
+bind  index        \Ce         next-line
+bind  index        \Cy         previous-line
+bind  pager        h           next-entry
+bind  pager        l           previous-entry
+#bind  pager        l           next-undeleted
+#bind  pager        h           previous-undeleted
+
+bind  pager        g           top
+bind  pager        G           bottom
+bind  index        g           first-entry
+bind  index        G           last-entry
+bind  index        H           top-page
+bind  index        L           bottom-page
+
+bind  index,pager  \Cf         next-page
+bind  index,pager  \Cb         previous-page
+
+bind  index,pager  \Cd         half-down
+bind  index,pager  \Cu         half-up
+
+
+macro index        <esc>\Cf    forget-passphrase
+bind  index        r           sync-mailbox
+bind  pager        R           reply
+
+bind  index,pager  /           search
