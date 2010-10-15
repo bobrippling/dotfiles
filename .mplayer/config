@@ -5,3 +5,13 @@ softvol=1
 
 # allow fullscreen with dwm
 fstype=none
+
+ao="alsa"
+# mixer-channel="Master"
+
+
+#vo="xv"
+double = "yes" # double buffering
+
+#quiet="yes"
+#really-quiet="yes"
