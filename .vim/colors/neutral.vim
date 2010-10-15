@@ -1,13 +1,14 @@
 "%% SiSU Vim color file
 " Fork of "Slate" Maintainer: Ralph Amissah <ralph@amissah.com>
 " (originally looked at desert Hans Fugal <hans@fugal.net> http://hans.fugal.net/vim/colors/desert.vim (2003/05/06)
+" modified by Rob
 
 set background=dark
 highlight clear
 if version > 580
 	hi clear
 	if exists("syntax_on")
-	syntax reset
+		syntax reset
 	endif
 endif
 let colors_name = "neutral"

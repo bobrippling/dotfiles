@@ -1,6 +1,8 @@
 " :cn - Goto the next error in source code.
 " :cp - Goto the previous error in source code.
 " ^Wv = split vertically
+"
+" set spell
 " zg = add to dict
 " z= = show list of suggestions
 "
@@ -94,6 +96,7 @@ set cmdheight=1
 set ttyfast
 set wildmode=list:longest
 set completeopt+=longest
+set shortmess=filmnrwxtToO
 
 
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=0x%02.2B]\ [POS=%04l/%L,%04v,%p%%]\
@@ -150,9 +153,11 @@ let c_space_errors = 1
 
 
 " Display - status line, etc
-" reverse-comment the two lines below for 256-terminal-vim
-let CSApprox_loaded = 1
-"set t_Co=256
+"if (&term =~ "-256color")
+"	set t_Co=256
+"else
+	let CSApprox_loaded = 1
+"endif
 colorscheme neutral
 " View colours:
 " :runtime syntax/colortest.vim
@@ -167,6 +172,8 @@ nnoremap <leader>s s<Space><Esc>pa<Space><Esc>l
 nnoremap <leader>W :set wrap!<CR>
 nnoremap <tab>     >>
 nnoremap <S-tab>   <<
+" man page auto ret
+nmap K K<cr>
 
 " custom highlighting
 "highlight MyTagListTagName   guifg=blue ctermfg=blue
