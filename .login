@@ -100,7 +100,7 @@ export LESS_TERMCAP_us=$'\e[01;34m'
 #export CFLAGS
 #export CXXFLAGS
 
-export PREFIX="/usr"
+export PREFIX="/usr/local/"
 
 export EDITOR="vim"
 export VISUAL="vim" #gvim
@@ -108,6 +108,9 @@ export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less"
+
+[ "x$TERM" = "xxterm"  ] && export TERM="xterm-256color" || {
+	[ "x$TERM" = "xscreen" ] && export TERM="screen-256color" }
 
 # history notes
 # echo one two three
