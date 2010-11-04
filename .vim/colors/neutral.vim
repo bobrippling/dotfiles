@@ -1,4 +1,5 @@
 "%% SiSU Vim color file
+" vim: ts=16 sw=16
 " Fork of "Slate" Maintainer: Ralph Amissah <ralph@amissah.com>
 " (originally looked at desert Hans Fugal <hans@fugal.net> http://hans.fugal.net/vim/colors/desert.vim (2003/05/06)
 " modified by Rob
@@ -44,7 +45,8 @@ hi	String	guifg=SkyBlue	ctermfg=red	cterm=none
 hi	Special	guifg=darkkhaki	ctermfg=red	cterm=none
 " old comment (blue)
 "hi	Comment	term=none	guifg=grey	ctermfg=cyan	cterm=bold
-hi	Comment	term=none	guifg=grey	ctermfg=black	cterm=bold
+"hi	Comment	term=none	guifg=grey	ctermfg=black	cterm=bold
+hi	Comment	term=none	guifg=grey	ctermfg=brown
 " V NULL
 hi	Constant	guifg=#ffa0a0	ctermfg=blue	cterm=bold
 hi	Identifier	guifg=salmon	ctermfg=red
@@ -70,3 +72,7 @@ hi	DiffText	cterm=bold	ctermbg=1
 hi	Underlined	cterm=underline	ctermfg=5
 hi	Error	guifg=White	guibg=Red	cterm=bold	ctermfg=7	ctermbg=1
 hi	SpellErrors	guifg=White	guibg=Red	cterm=bold	ctermfg=7	ctermbg=1
+hi	ColorColumn	guifg=Grey	guibg=Grey	ctermbg=8
+
+" 1 red  | 2 green | 3 yellow | 4 blue
+" 5 pink | 6 cyan  | 7 white  | 8 grey

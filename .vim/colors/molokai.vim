@@ -107,6 +107,8 @@ hi Visual                        guibg=#504D4D
 hi WarningMsg      guifg=#FFFFFF guibg=#333333 gui=bold
 hi WildMenu        guifg=#66D9EF guibg=#000000
 
+hi ColorColumn     guifg=Grey    guibg=Grey    ctermbg=8
+
 if s:molokai_original == 1
    hi Normal          guifg=#F8F8F2 guibg=#272822
    hi Comment         guifg=#75715E

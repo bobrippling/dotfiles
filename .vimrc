@@ -14,55 +14,55 @@
 " p: paragraph
 
 filetype on
+set colorcolumn=
 
 if has("autocmd")
-  filetype indent on
-  filetype plugin on
+	filetype indent on
+	filetype plugin on
 
 
-  function! TrimSpaces()
-    normal mZ
-    %s/\s\+$//e
-    if line("'Z") != line(".")
-      echo "Stripped whitespace\n"
-    endif
-    normal `Z
-  endfunction
+	function! TrimSpaces()
+		normal mZ
+		%s/\s\+$//e
+		if line("'Z") != line(".")
+			echo "Stripped whitespace\n"
+		endif
+		normal `Z
+	endfunction
 
-  autocmd BufRead,BufNewFile *.s,asm,nasm set ft=nasm
-  autocmd BufRead,BufNewFile *.go         set ft=go
-  autocmd FileType c,cpp,slang            set cindent " c indentation > other two
-  autocmd FileType Makefile               set noet
+	autocmd BufRead,BufNewFile *.s,asm,nasm set ft=nasm
+	autocmd FileType c,cpp,slang            set cindent
+	autocmd FileType Makefile               set noet
 
-  autocmd BufWritePre *                   call TrimSpaces()
-  " binding to turn off ^
-  nnoremap <leader>w :autocmd! BufWritePre<CR>
+	autocmd BufWritePre *                   call TrimSpaces()
+	" binding to turn off ^
+	nnoremap <leader>w :autocmd! BufWritePre<CR>
 
-  " when we reload, tell vim to restore the cursor to the saved position
-  augroup JumpCursorOnEdit
-   au!
-    autocmd BufReadPost *
-      \ if expand("<afile>:p:h") !=? $TEMP |
-      \ if line("'\"") > 1 && line("'\"") <= line("$") |
-      \ let JumpCursorOnEdit_foo = line("'\"") |
-      \ let b:doopenfold = 1 |
-      \ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
-      \ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
-      \ let b:doopenfold = 2 |
-      \ endif |
-      \ exe JumpCursorOnEdit_foo |
-      \ endif |
-      \ endif
-      " Need to postpone using "zv" until after reading the modelines.
-      autocmd BufWinEnter *
-      \ if exists("b:doopenfold") |
-      \ exe "normal zv" |
-      \ if(b:doopenfold > 1) |
-      \ exe "+".1 |
-      \ endif |
-      \ unlet b:doopenfold |
-      \ endif
-      augroup END
+	" when we reload, tell vim to restore the cursor to the saved position
+	augroup JumpCursorOnEdit
+	 au!
+		autocmd BufReadPost *
+			\ if expand("<afile>:p:h") !=? $TEMP |
+			\ if line("'\"") > 1 && line("'\"") <= line("$") |
+			\ let JumpCursorOnEdit_foo = line("'\"") |
+			\ let b:doopenfold = 1 |
+			\ if (foldlevel(JumpCursorOnEdit_foo) > foldlevel(JumpCursorOnEdit_foo - 1)) |
+			\ let JumpCursorOnEdit_foo = JumpCursorOnEdit_foo - 1 |
+			\ let b:doopenfold = 2 |
+			\ endif |
+			\ exe JumpCursorOnEdit_foo |
+			\ endif |
+			\ endif
+			" Need to postpone using "zv" until after reading the modelines.
+			autocmd BufWinEnter *
+			\ if exists("b:doopenfold") |
+			\ exe "normal zv" |
+			\ if(b:doopenfold > 1) |
+			\ exe "+".1 |
+			\ endif |
+			\ unlet b:doopenfold |
+			\ endif
+			augroup END
 endif
 
 function! Wm()
@@ -172,6 +172,7 @@ nnoremap <leader>s s<Space><Esc>pa<Space><Esc>l
 nnoremap <leader>W :set wrap!<CR>
 nnoremap <tab>     >>
 nnoremap <S-tab>   <<
+
 " man page auto ret
 nmap K K<cr>
 
@@ -192,3 +193,7 @@ nnoremap <C-E>    3<C-E>
 "nnoremap zh 4zl
 
 "vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
+
+" time to cock it all up with dvorak
+":e $VIMRUNTIME/macros/dvorak
+"set langmap='q,\,w,.e,pr,yt,fy,gu,ci,ro,lp,/[,=],aa,os,ed,uf,ig,dh,hj,tk,nl,s\\;,-',\\;z,qx,jc,kv,xb,bn,mm,w\,,v.,z/,[-,]=,\"Q,<W,>E,PR,YT,FY,GU,CI,RO,LP,?{,+},AA,OS,ED,UF,IG,DH,HJ,TK,NL,S:,_\",:Z,QX,JC,KV,XB,BN,MM,W<,V>,Z?
