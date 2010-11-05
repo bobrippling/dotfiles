@@ -1,1 +1,0 @@
-/home/rob/.vim/GIT/vim-markdown/ftdetect/markdown.vim
