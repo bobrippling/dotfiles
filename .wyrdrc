@@ -149,7 +149,7 @@ color timed_reminder1    yellow   default
 color timed_reminder2    magenta  default
 color timed_reminder3    red      default
 color timed_reminder4    green    default
-color untimed_reminder   blue     default
+color untimed_reminder   yellow   default
 color timed_date         white    default
 
 color selection_info     cyan     default
