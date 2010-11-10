@@ -39,6 +39,32 @@ nohist(){
 	fi
 }
 
+search(){
+  if [ $# -ne 1 -o "$1" = "--help" ]
+  then
+    echo "usage: $0 file_to_search_for" >&2
+    return 1
+  else
+    echo "find . -iname \*$1\*" >&2
+    find . -iname \*$1\*
+  fi
+}
+
+searchgrep(){
+  echo 'grep -Rin "$@" *'
+  grep -Rin "$@" *
+}
+
+nh(){
+  if [ $# -eq 0 ]
+  then
+    echo "usage: nh program [args]"
+  else
+    nohup $@ &> /dev/null &
+    disown %nohup
+  fi
+}
+
 car()  { echo $1; }
 cdr()  { shift; echo $@; }
 ucar() { echo ${!#}; }

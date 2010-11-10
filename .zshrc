@@ -1,5 +1,7 @@
 source ~/.login
+source ~/.shcolours
 source ~/.aliases
+
 
 # Run `zsh-newuser-install [-f]` to reset settings
 
@@ -38,6 +40,7 @@ zstyle ':completion:*:scp:*' tag-order files 'hosts:-host hosts:-domain:domain h
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' verbose true
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle :compinstall filename '/home/rob/.zshrc'
 
 autoload -Uz compinit
@@ -45,6 +48,7 @@ compinit
 # End of lines added by compinstall
 autoload colors && colors
 
+# completion aliases
 compdef _pacman pacman-color=pacman
 compdef _pacman clyde=pacman
 compdef _pacman powerpill=pacman
@@ -53,7 +57,6 @@ compdef _netcat ncat
 compdef _ncftp  lftp
 
 # _:s are optional
-#setopt sharehistory
 setopt append_history
 setopt auto_pushd
 setopt bsd_echo # no auto echo -e
@@ -70,120 +73,10 @@ setopt hist_no_store
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
-setopt no_hist_beep
 
+unsetopt share_history
+unsetopt hist_beep
 unsetopt beep
-
-export DIRSTACKSIZE=11 # stack size of eleven gives me a list with ten entries
-
-
-bindkey -v # vi mode
-# If I am using vi keys, I want to know what mode I'm currently using.
-# zle-keymap-select is executed every time KEYMAP changes.
-# From http://zshwiki.org/home/examples/zlewidgets
-#function zle-line-init zle-keymap-select {
-#  # Right side prompt
-#  #RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#  RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#  RPS2=$RPS1
-#  zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-
-
-# zsh Options
-#   setopt             \
-#    NO_all_export       \
-#       always_last_prompt   \
-#    NO_always_to_end    \
-#       append_history     \
-#    NO_auto_cd        \
-#       auto_list      \
-#       auto_menu      \
-#    NO_auto_name_dirs     \
-#       auto_param_keys    \
-#       auto_param_slash   \
-#       auto_pushd       \
-#       auto_remove_slash  \
-#    NO_auto_resume      \
-#       bad_pattern      \
-#       bang_hist      \
-#    NO_beep         \
-#       brace_ccl      \
-#       correct_all      \
-#    NO_bsd_echo       \
-#       cdable_vars      \
-#    NO_chase_links      \
-#    NO_clobber        \
-#       complete_aliases   \
-#       complete_in_word   \
-#    correct         \
-#    NO_correct_all      \
-#       csh_junkie_history   \
-#    NO_csh_junkie_loops   \
-#    NO_csh_junkie_quotes  \
-#    NO_csh_null_glob    \
-#       equals         \
-#       extended_glob    \
-#       extended_history   \
-#       function_argzero   \
-#       glob         \
-#    NO_glob_assign      \
-#       glob_complete    \
-#    NO_glob_dots      \
-#       glob_subst       \
-#       hash_cmds      \
-#       hash_dirs      \
-#       hash_list_all    \
-#       hist_allow_clobber   \
-#       hist_beep      \
-#       hist_ignore_dups   \
-#       hist_ignore_space  \
-#    NO_hist_no_store    \
-#       hist_verify      \
-#    NO_hup          \
-#    NO_ignore_braces    \
-#    NO_ignore_eof       \
-#       interactive_comments \
-#     inc_append_history   \
-#    NO_list_ambiguous     \
-#    NO_list_beep      \
-#       list_types       \
-#       long_list_jobs     \
-#       magic_equal_subst  \
-#    NO_mail_warning     \
-#    NO_mark_dirs      \
-#    NO_menu_complete    \
-#       multios        \
-#       nomatch        \
-#       notify         \
-#    NO_null_glob      \
-#       numeric_glob_sort  \
-#    NO_overstrike       \
-#       path_dirs      \
-#       posix_builtins     \
-#    NO_print_exit_value   \
-#    NO_prompt_cr      \
-#       prompt_subst     \
-#       pushd_ignore_dups  \
-#    NO_pushd_minus      \
-#       pushd_silent     \
-#       pushd_to_home    \
-#       rc_expand_param    \
-#    NO_rc_quotes      \
-#    NO_rm_star_silent     \
-#    NO_sh_file_expansion  \
-#       sh_option_letters  \
-#       short_loops      \
-#    NO_sh_word_split    \
-#    NO_single_line_zle    \
-#    NO_sun_keyboard_hack  \
-#       unset        \
-#    NO_verbose        \
-#       zle
-
-
 
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
@@ -191,12 +84,10 @@ HISTFILE=~/.zsh_history
 #HISTSIZE=100
 SAVEHIST=1000
 
-
-## Ctrl-W stops at a directory
-## see http://www.zsh.org/mla/users/1995/msg00088.html
 #WORDCHARS='*?_-.[]~\!#$%^(){}<>|`@#$%^*()+:?'
 WORDCHARS='*?~\!#$%^()[]{}<>|`@:'
 
+bindkey -v # viper!
 
 bindkey "\e[1~" beginning-of-line
 bindkey "\e[4~" end-of-line
@@ -222,26 +113,18 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
-
-
 # Numpad enter
 bindkey '\eOM' accept-line
-
 # Bash style ctrl+u and ctrl+k
 bindkey "^U" backward-kill-line
 bindkey "^K" vi-kill-eol
-
-
 # When pressing [Up] after typing ls, only previous commands beginning with ls (the current input) will be shown
 # built in:
 bindkey "\e[A" history-beginning-search-backward
 bindkey "\e[B" history-beginning-search-forward
-
 # other mode is viins
 bindkey -M vicmd 'k' history-beginning-search-backward
 bindkey -M vicmd 'j' history-beginning-search-forward
-
-
 # Custom
 bindkey "^G" history-beginning-search-backward
 
@@ -250,28 +133,13 @@ zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 
 
-blueprompt=0
-twolineprompt=0
-extrastats=1
-liteprompt=1
-
-promptcolbot=
-promptcoldir=
-
-
+# Prompt
 if [[ $UID -eq 0 ]]
 then
-  promptcolbot=red
-  promptcoldir=blue
-elif [[ $blueprompt -eq 1 ]]
-then
-  promptcolbot=blue
-  promptcoldir=blue
+	col_prompt=red
 else
-  promptcolbot=green
-  promptcoldir=blue
+	col_prompt=green
 fi
-
 
 # %T    System time (HH:MM)
 # %*    System time (HH:MM:SS)
@@ -289,145 +157,37 @@ fi
 # %(test.success.failure)
 #  e.g. %(?.EXIT_SUCCESS.EXIT_FAILURE)
 
-promptpwd="%B%{$fg[$promptcoldir]%}%.%{$reset_color%}%b"
+#pwdcol="%{$fg[$promptcoldir]%}"
 
-if [ $liteprompt -eq 1 ]
-then
-  opensquare="%{$fg[$promptcolbot]%}[%{$reset_color%}"
-  closesquare="%{$fg[$promptcolbot]%}]%{$reset_color%}"
+col_reset="%{$reset_color%}"
+col_bracket="%{$fg[$col_prompt]%}"
 
-	# percent is coloured if background jobs > 1
-	#percent="%#"
-	#percent='%(j.n.y)%# '
-	percent='%# '
+col_pwd="[1;38;5;30m"
 
-  export PS1="
-$opensquare%?%{$fg[$promptcolbot]%}][%{$reset_color%}$promptpwd$closesquare$percent"
-else
-  if [ $twolineprompt -eq 0 ]
-  then
-    if [ $extrastats -eq 0 ]
-    then
-      export PS1="
-  [%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m%{$reset_color%} ${promptpwd}]%# "
-    else
-      export PS1="
-  %{$fg[$promptcolbot]%}[%{$reset_color%}%j,%?%{$fg[$promptcolbot]%}]%{$reset_color%}[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%} %B%{$fg[$promptcoldir]%}${promptpwd}%{$reset_color%}%b]%# "
-    fi
-  else
-    export PS1="
-  ╔═[%j][${promptpwd}][%{$fg[red]%}%?%{$reset_color%}]
-  ╚═[%{$fg[$promptcolbot]%}%n%{$reset_color%}@%{$fg[$promptcolbot]%}%m/%l%{$reset_color%}]%# "
-  fi
-fi
+# colours _must_ be inside a %{ %} pair
 
+export PS1="
+${col_bracket}[${col_reset}%?${col_bracket}][${col_reset}%B%{${col_pwd}%}%.${col_reset}\
+%b${col_bracket}]${col_reset}%# "
 
-# Simple:
-#export PS1="[%j][%n@%m/%l][%B%~%b][%?]%# "
-# Colours
-# %{$reset_color%}
-# %{$fg[red]%}
-# %{$fg[blue]%}
-# %{$fg[green]%}
-# %B - bold on
-# %b - bold off
-#
-# %j - jobs
-# %l - terminal dev
-# %~ - pwd
-# %? - return val
-# %n - user
-# %m - host
-# %# - % or #
-
-# -------------------------------------------------------------------------------------
-### set title block
 HOSTTITLE=${(%):-%n@%m}
 TITLE=$HOSTTITLE
 
 case $TERM in
-  xterm* | *rxvt | screen)
-  precmd(){
-    print -Pn "\e]0;$TITLE \a"
-#   if [ $UID -eq 0 ]
-#   then
-#     print -rP ""
-#     print -rP "╔═[%j][%{$fg[red]%}%l%{$reset_color%}][%B%{$fg[blue]%}%~%{$reset_color%}%b]"
-#     #[%{$fg[green]%}%?%{$reset_color%}]"
-#   else
-#     print -rP ""
-#     print -rP "┌─[%j][%{$fg[green]%}%l%{$reset_color%}][%B%{$fg[blue]%}%~%{$reset_color%}%b]"
-#     #[%{$fg[red]%}%?%{$reset_color%}]"
-#   fi
-  }
-  preexec(){
-    print -Pn "\e]0;$TITLE \a"
-  }
-  ;;
+	xterm* | *rxvt | screen)
+		precmd(){
+			print -Pn "\e]0;$TITLE \a"
+		}
+		preexec(){
+			print -Pn "\e]0;$TITLE \a"
+		}
+		;;
 esac
 
 function title (){
-  if (( ${#argv} == 0 )); then
-    TITLE=$HOSTTITLE
-  else
-    TITLE=$*
-  fi
-}
-
-# Functions
-# go to google for a definition
-define(){
-  local LNG=$(echo $LANG | cut -d '_' -f 1)
-  local CHARSET=$(echo $LANG | cut -d '.' -f 2)
-  local browser=lynx
-  $browser -accept_all_cookies -dump -hiddenlinks=ignore -nonumbers -assume_charset="$CHARSET" -display_charset="$CHARSET" "http://www.google.com/search?hl=${LNG}&q=define%3A+${1}&btnG=Google+Search" | grep -m 5 -C 2 -A 5 -w "*" > /tmp/define
-  if [ ! -s /tmp/define ]; then
-  echo "No definition found."
-  rm -f /tmp/define
-  return 1
-  else
-  cat /tmp/define | grep -v Search
-  echo ""
-  fi
-  rm -f /tmp/define
-}
-
-
-# pull a single file out of a .tar.gz
-pullout(){
-  if [ $# -ne 2 ]; then
-  echo "usage: pullout [file] [archive{.tar.gz,.tgz}]"
-  return 1
-  fi
-  case $2 in
-  *.tar.gz|*.tgz) gunzip < $2 | tar -xf - $1           ;;
-  *)        echo "$2 is not a valid archive" && return 1 ;;
-  esac
-}
-
-
-search(){
-  if [ $# -ne 1 -o "$1" = "--help" ]
-  then
-    echo "usage: $0 file_to_search_for" >&2
-    return 1
-  else
-    echo "find . -iname \*$1\*" >&2
-    find . -iname \*$1\*
-  fi
-}
-
-searchgrep(){
-  echo 'grep -Rin "$@" *'
-  grep -Rin "$@" *
-}
-
-nh(){
-  if [ $# -eq 0 ]
-  then
-    echo "usage: nh program [args]"
-  else
-    nohup $@ &> /dev/null &
-    disown %nohup
-  fi
+	if (( ${#argv} == 0 )); then
+		TITLE=$HOSTTITLE
+	else
+		TITLE=$*
+	fi
 }
