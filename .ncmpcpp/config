@@ -7,7 +7,7 @@
 #
 ## set it in order to make tag editor and renaming files work properly
 #
-#mpd_host = "localhost"
+mpd_host = "localhost"
 #
 #mpd_port = "6600"
 #
@@ -165,3 +165,8 @@ window_border_color = "white"
 active_window_border = "magenta"
 cyclic_scrolling = "no"
 display_bitrate = "yes"
+playlist_separate_albums = "yes"
+regular_expressions = "extended"
+mouse_support = "no"
+allow_physical_files_deletion = "no"
+allow_physical_directories_deletion = "no"

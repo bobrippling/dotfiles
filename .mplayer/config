@@ -15,3 +15,10 @@ double = "yes" # double buffering
 
 #quiet="yes"
 #really-quiet="yes"
+
+# Anti-alias subs. (4: best and slowest)
+spuaa=4
+fs=yes
+
+slang=en
+alang=en

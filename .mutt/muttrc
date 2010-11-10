@@ -40,8 +40,8 @@ set certificate_file="~/.mutt/certs"
 
 
 # Reading Mail
-set timeout=10
-set mail_check=5
+#set timeout=10
+set mail_check=30
 #set sort=reverse-threads
 set sort=threads
 set sort_aux=date
@@ -51,7 +51,8 @@ set charset=utf-8
 ignore * # ignore all headers except for
 unignore Date: From: To: CC: Bcc: Subject: Reply-To:
 hdr_order Subject: Date: From: To: Reply-To: CC: Bcc:
-set index_format="%{%b %d} %-15.15L [%Z] %s" # custom index format
+#set index_format="%{%b %d} %-15.15L [%Z] %s" # custom index format
+set index_format = "%Z %4D %40.40s▕▏ %n"
 
 # Composing Mail
 set editor="vim"
@@ -70,38 +71,6 @@ source ~/.mutt/muttrc.mailboxes
 # View Special Formats
 #set mailcap_path=~/.mailcap
 #auto_view text/html # auto-render html inline mutt
-
-# black, red, green, yellow, blue, magenta, cyan, white, default
-color status     brightblue    default
-color indicator  black         cyan
-
-color index brightgreen    default ~N  # new
-color index red            default ~D  # deleted
-color index brightmagenta  default ~T  # tagged
-color index brightyellow   default ~F  # flagged
-
-color header yellow        default "^Subject:"
-color header cyan          default "^Date:"
-color header cyan          default "^To:"
-color header brightcyan    default "^Cc:"
-color header cyan          default "^Bcc:"
-color header brightcyan    default "^(From|Reply-To):"
-color header red           default "^X-.*:"
-
-set   quote_regexp="^( {0,4}[>|:%]| {0,4}[a-z0-9]+[>|]+)+"
-color quoted     green       default
-color quoted1    yellow      default
-color quoted2    yellow      default
-color quoted3    cyan        default
-color quoted4    red         default
-color quoted5    magenta     default
-
-color signature  cyan        default
-color attachment yellow      default
-color tree       red         default
-color tilde      blue        default
-color normal     default     default
-color index      brightwhite default "~N"
 
 macro index gi "<change-folder>=INBOX<enter>" "Go to Inbox"
 macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to All Mail"
