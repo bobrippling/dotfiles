@@ -162,7 +162,12 @@ fi
 col_reset="%{$reset_color%}"
 col_bracket="%{$fg[$col_prompt]%}"
 
-col_pwd="[1;38;5;30m"
+if tty | grep -F '/dev/tty' > /dev/null
+then
+	col_pwd="$fg[blue]"
+else
+	col_pwd="[1;38;5;30m"
+fi
 
 # colours _must_ be inside a %{ %} pair
 
