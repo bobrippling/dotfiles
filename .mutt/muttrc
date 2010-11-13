@@ -40,8 +40,8 @@ set certificate_file="~/.mutt/certs"
 
 
 # Reading Mail
-#set timeout=10
-set mail_check=30
+set timeout=10
+set mail_check=60
 #set sort=reverse-threads
 set sort=threads
 set sort_aux=date

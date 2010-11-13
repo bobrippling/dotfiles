@@ -18,7 +18,7 @@ double = "yes" # double buffering
 
 # Anti-alias subs. (4: best and slowest)
 spuaa=4
-fs=yes
+#fs=yes
 
 slang=en
 alang=en
