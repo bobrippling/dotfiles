@@ -122,3 +122,9 @@ peer_exchange = yes
 # before forcing. Overworked systems might need lower values to get a
 # decent hash checking rate.
 #hash_max_tries = 10
+
+# unlimited between 2300 and 0600
+#schedule = throttle_0,23:00:00,06:00:00,download_rate=0
+
+# limited
+#schedule = throttle_1,06:00:00,23:00:00,download_rate=1
