@@ -1,130 +1,29 @@
-# Local folder
-set mbox_type=Maildir
-set folder=~/wJunk/Mail
-
 set from="Rob <robpilling@gmail.com>"
 set realname="Robert Pilling"
 
 # IMAP Settings
 # GMail direct
+set smtp_url = "smtps://robpilling\@gmail.com@smtp.gmail.com/"
 set imap_user=robpilling@gmail.com
-set imap_keepalive=900
-set folder="imaps://imap.gmail.com"
+#set imap_keepalive=900
+#set imap_check_subscribed
+set folder="imaps://imap.gmail.com:993"
 # Local IMAP
 #set folder    = "~/wJunk/Mail"
+#set mbox_type=Maildir
 
-
-# folder settings
-# http://pbrisbin.com/posts/mutt_gmail_offlineimap/
-set record    = "+[Gmail]/Sent Mail"
+# Remote gmail
+#set mbox        = "+archive"
 set spoolfile   = "+INBOX"
-set mbox        = "+archive"
-set postponed   = "+drafts"
-#set trash="+[Gmail]/Trash"
-unset record # prevent dups in Sent
+set hostname    = gmail.com
+set record      = "+[Gmail]/Sent Mail"
+set postponed   = "+[Gmail]/Drafts"
+#set trash="=[Gmail]/Trash" # archive by default (see binds)
 
 # mailboxes
-mailboxes +INBOX +archive +sent +drafts +spam +trash
-
-# bindings
-macro index D "<save-message>+trash<enter>"   "move message to the trash"
-macro index S "<save-message>+spam<enter>"    "mark message as spam"
+mailboxes +INBOX
 
 source ~/.mutt/muttrc.set
 source ~/.mutt/muttrc.col
 source ~/.mutt/muttrc.bind
-
-set header_cache="~/.mutt/hcache"
-set message_cachedir="~/.mutt/msgcache/"
-set certificate_file="~/.mutt/certs"
-
-
-# Reading Mail
-set timeout=10
-set mail_check=60
-#set sort=reverse-threads
-set sort=threads
-set sort_aux=date
-set move=no
-set mark_old=no
-set charset=utf-8
-ignore * # ignore all headers except for
-unignore Date: From: To: CC: Bcc: Subject: Reply-To:
-hdr_order Subject: Date: From: To: Reply-To: CC: Bcc:
-#set index_format="%{%b %d} %-15.15L [%Z] %s" # custom index format
-set index_format = "%Z %4D %40.40s▕▏ %n"
-
-# Composing Mail
-set editor="vim"
-set markers=no
-#set signature=~/.sig
-set include=yes
-set forward_format="Fwd: %s"
-
-# Sending Mail
-set copy=yes
-# get gmail to envelope the outgoing as originating from gmail
-set smtp_url="smtps://robpilling\@gmail.com@smtp.gmail.com/"
-
-source ~/.mutt/muttrc.mailboxes
-
-# View Special Formats
-#set mailcap_path=~/.mailcap
-#auto_view text/html # auto-render html inline mutt
-
-macro index gi "<change-folder>=INBOX<enter>" "Go to Inbox"
-macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to All Mail"
-macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
-macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to Drafts"
-
-bind  attach       ' '         select-entry
-bind  editor       <delete>    delete-char
-#bind  index,pager  !           flag-message
-bind  index,pager  f           flag-message
-bind  index,pager  :           enter-command
-bind        pager  *           tag-message
-
-
-bind  index,pager  \t          next-unread
-bind  index,pager  \S\t        previous-unread
-bind  pager        \Cn         next-entry
-bind  pager        \Cp         previous-entry
-
-bind  index        zt          current-top
-bind  index        zz          current-middle
-bind  index        zb          current-bottom
-
-bind  index        j           next-entry
-bind  index        k           previous-entry
-bind  pager        j           next-line
-bind  pager        k           previous-line
-
-bind  index        \Ce         next-line
-bind  index        \Cy         previous-line
-bind  pager        h           next-entry
-bind  pager        l           previous-entry
-#bind  pager        l           next-undeleted
-#bind  pager        h           previous-undeleted
-
-bind  pager        ^           top
-bind  pager        $           bottom
-bind  index        ^           first-entry
-bind  index        $           last-entry
-bind  index        H           top-page
-bind  index        L           bottom-page
-
-bind  index,pager  \Cf         next-page
-bind  index,pager  \Cb         previous-page
-
-bind  index,pager  \Cd         half-down
-bind  index,pager  \Cu         half-up
-
-
-macro index        <esc>\Cf    forget-passphrase
-bind  index        r           sync-mailbox
-bind  pager        R           reply
-
-bind  index,pager  /           search
-
-bind index         q           noop
-bind index         Q           quit
+#source ~/.mutt/muttrc.mailboxes
