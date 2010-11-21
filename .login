@@ -46,6 +46,11 @@ elif [ "x$TERM" = "xscreen" ]
 then export TERM="screen-256color"
 fi
 
+agent_file="$HOME/.ssh/env_agent"
+if [ -f "$agent_file" ]
+then . "$agent_file"
+fi
+
 # history notes
 # echo one two three
 # echo !:n
