@@ -170,3 +170,8 @@ regular_expressions = "extended"
 mouse_support = "no"
 allow_physical_files_deletion = "no"
 allow_physical_directories_deletion = "no"
+
+visualizer_fifo_path     "/home/rob/Music/mpd/fifo"
+visualizer_output_name   "feefifofum"
+visualizer_sync_interval "30"
+visualizer_type          "wave"
