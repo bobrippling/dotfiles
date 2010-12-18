@@ -49,14 +49,14 @@
 
 
 # Padding ------------------------------------------------------------
---pad=oper
+--pad-oper
+--unpad-paren
+--delete-empty-lines
 
-#--unpad=paren
-# Leave the insides of parens alone
-
---one-line=keep-blocks
+--keep-one-line-blocks # FIXME
 --convert-tabs
 #--fill-empty-lines
+--align-pointer=name
 
 # Extras -------------------------------------------------------------
 
