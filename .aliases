@@ -66,6 +66,10 @@ nh(){
   fi
 }
 
+quiet(){
+	shhcat|$@ > /dev/null
+}
+
 car()  { echo $1; }
 cdr()  { shift; echo $@; }
 ucar() { echo ${!#}; }

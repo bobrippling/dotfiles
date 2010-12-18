@@ -69,7 +69,6 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_no_functions
-setopt hist_no_store
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
@@ -81,8 +80,8 @@ unsetopt beep
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
 HISTFILE=~/.zsh_history
-#HISTSIZE=100
-SAVEHIST=1000
+HISTSIZE=50000
+SAVEHIST=50000
 
 #WORDCHARS='*?_-.[]~\!#$%^(){}<>|`@#$%^*()+:?'
 WORDCHARS='*?~\!#$%^()[]{}<>|`@:'

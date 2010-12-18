@@ -38,7 +38,7 @@ export VISUAL="vim" #gvim
 export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
-export PAGER="less"
+#export PAGER="less"
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
