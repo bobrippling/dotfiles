@@ -51,6 +51,10 @@ if [ -f "$agent_file" ]
 then . "$agent_file"
 fi
 
+if ! pidof ssh-agent > /dev/null
+then echo "ssh-agent not running" >&2
+fi
+
 # history notes
 # echo one two three
 # echo !:n

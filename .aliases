@@ -15,14 +15,23 @@ alias lst='lst -F'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
-alias soffice='GTK2_RC_FILES=/tim soffice'
 alias xselo='xsel -o|(cat;echo)'
 alias gccW='gcc -Wall -Wextra -pedantic'
+alias ctags_update='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .'
+
+
+office(){
+	local ret
+	GTK2_RC_FILES=/tim soffice $@
+	ret=$?
+	rm -f /tmp/sv*.tmp >& /dev/null
+	return $ret
+}
 
 addtopath(){
 	if [ $# -eq 0 ]
 	then
-		echo "addtopath() - need an argument"
+		echo "addtopath() - need an argument" >&2
 	else
 		echo $PATH | grep $@ &> /dev/null
 		if [ $? -ne 0 ]
@@ -41,29 +50,33 @@ nohist(){
 }
 
 search(){
-  if [ $# -ne 1 -o "$1" = "--help" ]
-  then
-    echo "usage: $0 file_to_search_for" >&2
-    return 1
-  else
-    echo "find . -iname \*$1\*" >&2
-    find . -iname \*$1\*
-  fi
+	if [ $# -ne 1 -o "$1" = "--help" ]
+	then
+		echo "usage: $0 file_to_search_for" >&2
+		return 1
+	else
+		echo "find . -iname \*$1\*" >&2
+		find . -iname \*$1\*
+	fi
+}
+
+findin(){
+	find -iname $@
 }
 
 searchgrep(){
-  echo 'grep -Rin "$@" *'
-  grep -Rin "$@" *
+	echo 'grep -Rin "$@" *'
+	grep -Rin "$@" *
 }
 
 nh(){
-  if [ $# -eq 0 ]
-  then
-    echo "usage: nh program [args]"
-  else
-    nohup $@ &> /dev/null &
-    disown %nohup
-  fi
+	if [ $# -eq 0 ]
+	then
+		echo "usage: nh program [args]"
+	else
+		nohup $@ &> /dev/null &
+		disown %nohup
+	fi
 }
 
 quiet(){

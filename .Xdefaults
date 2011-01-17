@@ -58,7 +58,7 @@ urxvt.borderless:       false
 urxvt*cutchars:         "()*,<>[]{}|'
 !                         ^------------------ delimiters for double-click mouse selection
 ! 10 = opaque, 90 = transparent
-urxvt*shading:          25
+urxvt*shading:          40
 ! Colours are set at the bottom, globally
 !! BEGIN urlLauncher settings !!
 urxvt*perl-lib:         /usr/lib/urxvt/perl/

@@ -2,26 +2,29 @@ set from="Rob <robpilling@gmail.com>"
 set realname="Robert Pilling"
 
 # IMAP Settings
-# GMail direct
-set smtp_url = "smtps://robpilling\@gmail.com@smtp.gmail.com/"
-set imap_user=robpilling@gmail.com
-#set imap_keepalive=900
-#set imap_check_subscribed
-set folder="imaps://imap.gmail.com:993"
+#		# GMail direct
+#		set smtp_url = "smtps://robpilling\@gmail.com@smtp.gmail.com/"
+#		set imap_user=robpilling@gmail.com
+#		#set imap_keepalive=900
+#		#set imap_check_subscribed
+#		set folder="imaps://imap.gmail.com:993"
+#		set hostname    = gmail.com
+#		set record      = "+[Gmail]/Sent Mail"
+#		set postponed   = "+[Gmail]/Drafts"
+#		#set trash="=[Gmail]/Trash" # archive by default (see binds)
+# --------------------------------------------------
 # Local IMAP
-#set folder    = "~/wJunk/Mail"
-#set mbox_type=Maildir
+set folder    = "~/wJunk/Mail"
+set mbox_type=Maildir
 
-# Remote gmail
+
+# Both remote and local gmail
 #set mbox        = "+archive"
 set spoolfile   = "+INBOX"
-set hostname    = gmail.com
-set record      = "+[Gmail]/Sent Mail"
-set postponed   = "+[Gmail]/Drafts"
-#set trash="=[Gmail]/Trash" # archive by default (see binds)
 
 # mailboxes
 mailboxes +INBOX
+
 
 source ~/.mutt/muttrc.set
 source ~/.mutt/muttrc.col

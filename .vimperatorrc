@@ -1,15 +1,19 @@
 "2.3.1 (created: 2010/04/07 18:56:53)
 
-nmap gm :set<Space>guioptions-=m<Return>
-nmap gM :set<Space>guioptions+=m<Return>
-nmap \\h :set<Space>hls!<Return>
-nmap <C-S-N> :tabm!<Space>+1<Return>
-nmap <C-S-P> :tabm!<Space>-1<Return>
+nmap <silent> gm      :silent set<Space>guioptions-=m<Return>
+nmap <silent> gM      :silent set<Space>guioptions+=m<Return>
+nmap <silent> \\h     :silent set<Space>hls!<Return>
+nmap <silent> <C-S-N> :silent tabm!<Space>+1<Return>
+nmap <silent> <C-S-P> :silent tabm!<Space>-1<Return>
 
+nmap <silent> go1 :o mail.google.com<Return>
+nmap <silent> go2 :o facebook.com<Return>
+
+set wildmode=list:longest
 set defsearch=duck
 set guioptions=rb
 colo neut
-set "hinttags=//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
+"set hinttags=//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
 set runtimepath=/home/rob/.vimperator
 source! /home/rob/.vimperatorrc.local
 
