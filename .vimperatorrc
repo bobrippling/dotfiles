@@ -1,15 +1,19 @@
 "2.3.1 (created: 2010/04/07 18:56:53)
 
-nmap <silent> gm      :silent set<Space>guioptions-=m<Return>
-nmap <silent> gM      :silent set<Space>guioptions+=m<Return>
-nmap <silent> \\h     :silent set<Space>hls!<Return>
-nmap <silent> <C-S-N> :silent tabm!<Space>+1<Return>
-nmap <silent> <C-S-P> :silent tabm!<Space>-1<Return>
+nmap <silent> gm      :set<Space>guioptions-=m<Return>
+nmap <silent> gM      :set<Space>guioptions+=m<Return>
+nmap <silent> \\h     :set<Space>hls!<Return>
+nmap <silent> <C-S-N> :tabm!<Space>+1<Return>
+nmap <silent> <C-S-P> :tabm!<Space>-1<Return>
 
 nmap <silent> go1 :o mail.google.com<Return>
-nmap <silent> go2 :o facebook.com<Return>
 nmap <silent> gO1 :t mail.google.com<Return>
+
+nmap <silent> go2 :o facebook.com<Return>
 nmap <silent> gO2 :t facebook.com<Return>
+
+nmap <silent> go3 :o duo.dur.ac.uk<Return>
+nmap <silent> gO3 :t duo.dur.ac.uk<Return>
 
 set wildmode=list:longest
 set defsearch=duck
