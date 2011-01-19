@@ -8,6 +8,8 @@ nmap <silent> <C-S-P> :silent tabm!<Space>-1<Return>
 
 nmap <silent> go1 :o mail.google.com<Return>
 nmap <silent> go2 :o facebook.com<Return>
+nmap <silent> gO1 :t mail.google.com<Return>
+nmap <silent> gO2 :t facebook.com<Return>
 
 set wildmode=list:longest
 set defsearch=duck
