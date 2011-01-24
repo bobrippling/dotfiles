@@ -11,7 +11,7 @@ ao="alsa"
 
 
 #vo="xv"
-double = "yes" # double buffering
+double="yes" # double buffering
 
 #quiet="yes"
 #really-quiet="yes"
@@ -22,3 +22,5 @@ spuaa=4
 
 slang=en
 alang=en
+
+prefer-ipv4
