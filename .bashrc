@@ -12,7 +12,7 @@ then colour="\[${red}\]"
 else colour="\[${green}\]"
 fi
 
-export PS1="\n${colour}[${reset_color}${?}${colour}][\e[1;34m\W${colour}]${reset_color}\\$ "
+export PS1="\n${colour}[${reset_color}\${?}${colour}][\e[1;34m\W${colour}]${reset_color}\\$ "
 
 
 #bind '"\e[A": history-search-backward'
