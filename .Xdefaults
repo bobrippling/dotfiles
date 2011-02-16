@@ -21,8 +21,9 @@ Xft*antialias:      true
 
 
 ! urxvt settings -----------------------------------------------------------
-!urxvt*font:            xft:ProggyTinyTT:pixelsize=16
 urxvt*font:            xft:profont:pixelsize=11
+!urxvt*font:            tamsyn
+!urxvt*font:            xft:ProggyTinyTT:pixelsize=16
 !urxvt.font:            xft:ProggyTinyTTSZ:pixelsize=16
 !urxvt.font:            -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
 !urxvt*font:            -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
@@ -58,7 +59,7 @@ urxvt.borderless:       false
 urxvt*cutchars:         "()*,<>[]{}|'
 !                         ^------------------ delimiters for double-click mouse selection
 ! 10 = opaque, 90 = transparent
-urxvt*shading:          40
+urxvt*shading:          30
 ! Colours are set at the bottom, globally
 !! BEGIN urlLauncher settings !!
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
@@ -80,7 +81,7 @@ xterm*background:          black
 xterm*scrollBar:           false
 xterm*vt100.scrollBar:     false
 !xterm*vt100.font:         dejavu sans mono
-!xterm*font:                dejavu sans mono
+xterm*font:                Tamsyn
 xterm*multiScroll:         on
 xterm*jumpScroll:          on
 xterm*SaveLines:           1000
@@ -218,24 +219,24 @@ dmenu.selbackground:  #2e3436
 
 
 ! New hotness (Original changed)
-*color0:      #000000
-*color8:      #3A494B
-*color1:      #ff3a00
-*color9:      #ff6767
+ *color0:      #000000
+ *color1:      #ff3a00
 !*color2:      #afd700
-*color2:      #93d47f
-*color10:     #6be603
-*color3:      #eab93d
-*color11:     #ff8f00
-*color4:      #1165e9
-*color12:     #5496ff
+ *color2:      #93d47f
+ *color3:      #eab93d
+ *color4:      #1165e9
 !*color5:      #b50077
-*color5:      #ff6565
-!*color13:     #b03b31
-*color13:      #ff8d8d
+ *color5:      #ff6565
 !*color6:      #afafff
-*color6:      #89b6e2
+ *color6:      #89b6e2
+ *color7:      #ffffff
+ *color8:      #4A494B
+ *color9:      #ff6767
+ *color10:     #6be603
+ *color11:     #ff8f00
+ *color12:     #5496ff
+!*color13:     #b03b31
+ *color13:      #ff8d8d
 !*color14:     #a2b2ef
-*color14:      #96a4ff
-*color7:      #ffffff
-*color15:     #ffffff
+ *color14:      #96a4ff
+ *color15:     #ffffff
