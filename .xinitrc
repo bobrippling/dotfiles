@@ -61,7 +61,7 @@ case $1 in
 	*)
 		echo "$ECHO_PREFIX Starting default - \"$DEFAULT_SESSION\""
 		startStuff
-		if [ "$DEFAULT_SESSION" == "dwm" ]
+		if [ "$DEFAULT_SESSION" = "dwm" ]
 		then
 			echo "$ECHO_PREFIX (jumping to dwmStuff)"
 			dwmStuff
