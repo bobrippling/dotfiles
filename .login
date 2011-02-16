@@ -38,7 +38,7 @@ export VISUAL="vim" #gvim
 export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
-#export PAGER="less"
+export PAGER="less"
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
@@ -54,6 +54,8 @@ fi
 if ! pidof ssh-agent > /dev/null
 then echo "ssh-agent not running" >&2
 fi
+
+[ -z "$DISPLAY" ] && pidof X > /dev/null && export DISPLAY=':0'
 
 # history notes
 # echo one two three
