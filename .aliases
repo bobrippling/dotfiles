@@ -13,12 +13,14 @@ alias shreduvz='shred -uvz'
 alias netstat='netstat 2> /dev/null'
 alias lst='lst -F'
 alias less='less -R'
+alias cpv='rsync -P -rR' # verbose copy
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
 alias xselo='xsel -o|(cat;echo)'
 alias gccW='gcc -Wall -Wextra -pedantic'
 alias ctags_update='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .'
+alias rsync_auto='rsync --progress --inplace --append --delete -varuph'
 
 alias oo='openoffice'
 
@@ -30,15 +32,25 @@ alias oo='openoffice'
 #	return $ret
 #}
 
+mkcd(){
+	if [ $# -ne 1 ]
+	then
+		echo "Usage: $0 dir" >&2
+		return 1
+	fi
+	mkdir -p "$1"
+	cd "$1"
+}
+
 addtopath(){
 	if [ $# -eq 0 ]
 	then
 		echo "addtopath() - need an argument" >&2
+		return 1
 	else
 		echo $PATH | grep $@ &> /dev/null
 		if [ $? -ne 0 ]
-		then
-			export PATH=$PATH:$@
+		then export PATH=$PATH:$@
 		fi
 	fi
 }
@@ -47,7 +59,7 @@ nohist(){
 	unset HISTFILE
 	sed -i '/nohist/d' ~/.zsh_history
 	if [ $# -ne 0 ]
-	then echo 'nohist: ignored args'
+	then echo 'nohist: ignored args' >&2
 	fi
 }
 
@@ -62,21 +74,13 @@ search(){
 	fi
 }
 
-findin(){
-	find -iname $@
-}
-
-searchgrep(){
-	echo 'grep -Rin "$@" *'
-	grep -Rin "$@" *
-}
-
 nh(){
 	if [ $# -eq 0 ]
 	then
-		echo "usage: nh program [args]"
+		echo "usage: nh program [args]" >&2
+		return 1
 	else
-		nohup $@ &> /dev/null &
+		nohup $@ >& /dev/null &
 		disown %nohup
 	fi
 }
@@ -90,7 +94,6 @@ cdr()  { shift; echo $@; }
 ucar() { echo ${!#}; }
 ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
 
-addtopath "/usr/local/bin"
 addtopath "/home/rob/sh"
 addtopath "/home/rob/bin"
 

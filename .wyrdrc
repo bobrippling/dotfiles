@@ -30,9 +30,9 @@ set template3="REM %mday% MSG "
 # algorithm to use for determining busy level
 # "1" -> count the number of reminders in each day
 # "2" -> count the number of hours of reminders in each day
-set busy_algorithm="1"
+set busy_algorithm="2"
 # for "2", assume that untimed reminders occupy this many minutes
-#set untimed_duration="60"
+set untimed_duration="10"
 
 # if busy_algorithm="1", number of reminders per day allowed for each calendar
 # colorization level; if busy_algorithm="2", use number of hours of reminders
@@ -73,7 +73,7 @@ set home_sticky="true"
 set advance_warning="true"
 
 # width of the untimed reminders window
-set untimed_window_width="40"
+set untimed_window_width="50"
 
 # whether or not to render untimed reminders in boldface
 set untimed_bold="false"

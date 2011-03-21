@@ -45,7 +45,6 @@ urxvt*shading:          5
 urxvt*tintColor:        #000000
 urxvt*transparent:      true
 urxvt*matcher.button:   1
-!urxvt*background:       #000000
 !urxvt*foreground:       grey
 !urxvt*depth:            32
 urxvt*scrollBar:        false
@@ -59,7 +58,7 @@ urxvt.borderless:       false
 urxvt*cutchars:         "()*,<>[]{}|'
 !                         ^------------------ delimiters for double-click mouse selection
 ! 10 = opaque, 90 = transparent
-urxvt*shading:          30
+urxvt*shading:          20
 ! Colours are set at the bottom, globally
 !! BEGIN urlLauncher settings !!
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
@@ -75,13 +74,12 @@ urxvt*matcher.button:   1
 ! ? xterm*colorBDMode:			true
 
 ! xterm settings -----------------------------------------------------------
-xterm*background:          black
 !xterm*foreground:          grey
 !xterm*highlightColor:      blue
 xterm*scrollBar:           false
 xterm*vt100.scrollBar:     false
 !xterm*vt100.font:         dejavu sans mono
-xterm*font:                Tamsyn
+!xterm*font:                Tamsyn
 xterm*multiScroll:         on
 xterm*jumpScroll:          on
 xterm*SaveLines:           1000
@@ -148,8 +146,7 @@ dmenu.selbackground:  #2e3436
 ! http://phraktured.net/config/.Xcolors
 
 ! Old
-!*background:  #222222
-*background:  #121212
+*background:  #212121
 *foreground:  #cccccc
 
 ! Black     color0, color8:

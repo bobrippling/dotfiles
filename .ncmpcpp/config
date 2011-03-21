@@ -16,6 +16,8 @@ mpd_music_dir = "/home/rob/Music/"
 
 mpd_connection_timeout = "5"
 
+mpd_communication_mode = "notifications"
+
 mpd_crossfade_time = "0"
 #
 ##### delays #####

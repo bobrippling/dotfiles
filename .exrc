@@ -11,3 +11,4 @@ set tabstop=2
 set ts=2
 set showmatch
 set directory=/tmp
+set noexrc
