@@ -14,6 +14,7 @@ alias netstat='netstat 2> /dev/null'
 alias lst='lst -F'
 alias less='less -R'
 alias cpv='rsync -P -rR' # verbose copy
+alias rd='rmdir'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
