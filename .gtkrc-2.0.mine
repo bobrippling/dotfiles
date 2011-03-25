@@ -1,4 +1,4 @@
 #http://awesome.naquadah.org/wiki/Customizing_GTK_Apps
-gtk-toolbar-style = GTK_TOOLBAR_ICONS              #Only icons
 
-# use lxapperance to change
+gtk-toolbar-style = GTK_TOOLBAR_ICONS
+gtk-can-change-accels = 1
