@@ -15,6 +15,9 @@ nmap <silent> gO3 :t youtube.com<Return>
 nmap <silent> go4 :o duo.dur.ac.uk<Return>
 nmap <silent> gO4 :t duo.dur.ac.uk<Return>
 
+nnoremap <C-E> 5<C-E>
+nnoremap <C-Y> 5<C-Y>
+
 set wildmode=list:longest
 set defsearch=duck
 set gui=none,tabs
