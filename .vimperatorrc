@@ -1,7 +1,7 @@
 "2.3.1 (created: 2010/04/07 18:56:53)
 
-nmap <silent> gm      :set<Space>guioptions-=m<Return>
-nmap <silent> gM      :set<Space>guioptions+=m<Return>
+nmap <silent> gm      :set<Space>gui+=nomenu<Return>
+nmap <silent> gM      :set<Space>gui+=menu<Return>
 nmap <silent> \\h     :set<Space>hls!<Return>
 nmap <silent> <C-S-N> :tabm!<Space>+1<Return>
 nmap <silent> <C-S-P> :tabm!<Space>-1<Return>
@@ -17,10 +17,9 @@ nmap <silent> gO4 :t duo.dur.ac.uk<Return>
 
 set wildmode=list:longest
 set defsearch=duck
-set guioptions=rb
-"set gui=noaddons,nobookmarks,nomenu,nonavigation
+set gui=none,tabs
 "set activate=addons,downloads,extoptions,help,homepage,quickmark,paste
-colo neut
+"colo neut
 "set hinttags=//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
 set runtimepath=/home/rob/.vimperator
 set urlseparator=",,\s*"
