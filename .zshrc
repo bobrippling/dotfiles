@@ -21,11 +21,12 @@ zstyle ':completion:*:scp:*' group-order files all-files hosts-domain hosts-host
 zstyle ':completion:*' ignore-parents parent pwd .. directory
 zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' list-suffixes true
 zstyle ':completion:*' matcher-list '' '' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' match-original both
-#zstyle ':completion:*' max-errors 2 numeric
+zstyle ':completion:*' max-errors 0 not-numeric
 zstyle ':completion:*' menu select=1
 zstyle ':completion:*' old-list always
 zstyle ':completion:*' original true
@@ -40,7 +41,6 @@ zstyle ':completion:*:scp:*' tag-order files 'hosts:-host hosts:-domain:domain h
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' verbose true
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle :compinstall filename '/home/rob/.zshrc'
 
 autoload -Uz compinit
@@ -60,7 +60,6 @@ compdef _ncftp  lftp
 setopt append_history
 setopt auto_pushd
 setopt bsd_echo # no auto echo -e
-setopt correct_all
 setopt extended_glob
 setopt extended_history
 setopt hist_expire_dups_first
@@ -76,6 +75,7 @@ setopt inc_append_history
 unsetopt share_history
 unsetopt hist_beep
 unsetopt beep
+unsetopt correct_all
 
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
