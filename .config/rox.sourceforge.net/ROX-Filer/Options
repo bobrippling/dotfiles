@@ -43,7 +43,7 @@
   <Option name="pinboard_bg_colour">#888</Option>
   <Option name="pinboard_bottom_margin">0</Option>
   <Option name="pinboard_forward_buttons_13">0</Option>
-  <Option name="dnd_spring_open">1</Option>
+  <Option name="dnd_spring_open">0</Option>
   <Option name="toolbar_disable">gtk-close, gtk-jump-to, gtk-refresh, rox-select, gtk-help</Option>
   <Option name="display_show_headers">1</Option>
   <Option name="display_small_width">250</Option>
