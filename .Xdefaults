@@ -41,10 +41,8 @@ urxvt*termname:         rxvt-unicode
 urxvt*cursorBlink:      false
 urxvt*geometry:         80x24
 !urxvt*fading:           25%
-urxvt*shading:          5
 urxvt*tintColor:        #000000
 urxvt*transparent:      true
-urxvt*matcher.button:   1
 !urxvt*foreground:       grey
 !urxvt*depth:            32
 urxvt*scrollBar:        false
@@ -55,7 +53,7 @@ urxvt.tintColor:        white
 urxvt.internalBorder:   2
 urxvt.cursorBlink:      false
 urxvt.borderless:       false
-urxvt*cutchars:         "()*,<>[]{}|'
+urxvt*cutchars:         "()*,<>[]{}|'"
 !                         ^------------------ delimiters for double-click mouse selection
 ! 10 = opaque, 90 = transparent
 urxvt*shading:          20
