@@ -1,5 +1,13 @@
-alias grep='grep --color=auto'
-alias ls='ls --color=auto --group-directories-first -F'
+if echo "$TERM" | grep st > /dev/null
+then
+	col=''
+else
+	col='--color=auto'
+fi
+
+alias grep="grep $col"
+alias ls="ls --color=auto --group-directories-first -F"
+
 alias l='ls -1'
 alias gdb='gdb -q' # quiet
 alias gdb_graphical='gdb -tui'
@@ -11,19 +19,18 @@ alias jerbs='jobs'
 alias dub='du -b'
 alias shreduvz='shred -uvz'
 alias netstat='netstat 2> /dev/null'
-alias lst='lst -F'
+alias lst='lst -F -s'
 alias less='less -R'
 alias cpv='rsync -P -rR' # verbose copy
 alias rd='rmdir'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
-alias xselo='xsel -o|(cat;echo)'
 alias gccW='gcc -Wall -Wextra -pedantic'
 alias ctags_update='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .'
-alias rsync_auto='rsync --inplace --append --delete -Puvarph'
+alias rsync_auto='rsync -Puvarph'
 
-alias oo='openoffice'
+alias oo='libreoffice -nologo'
 
 #office(){
 #	local ret
@@ -41,6 +48,10 @@ mkcd(){
 	fi
 	mkdir -p "$1"
 	cd "$1"
+}
+
+randbits(){
+	head -c 10 /dev/urandom | perl -ne 'print ord $_ for split //'
 }
 
 addtopath(){
@@ -62,6 +73,11 @@ nohist(){
 	if [ $# -ne 0 ]
 	then echo 'nohist: ignored args' >&2
 	fi
+}
+
+careful(){
+	alias mv='mv -i'
+	alias cp='cp -i'
 }
 
 search(){
