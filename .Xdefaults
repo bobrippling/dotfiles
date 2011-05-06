@@ -231,7 +231,7 @@ dmenu.selbackground:  #2e3436
  *color11:     #ff8f00
  *color12:     #5496ff
 !*color13:     #b03b31
- *color13:      #ff8d8d
+ *color13:     #ff8d8d
 !*color14:     #a2b2ef
- *color14:      #96a4ff
+ *color14:     #96a4ff
  *color15:     #ffffff
