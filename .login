@@ -46,16 +46,21 @@ elif [ "x$TERM" = "xscreen" ]
 then export TERM="screen-256color"
 fi
 
-agent_file="$HOME/.ssh/env_agent"
-if [ -f "$agent_file" ]
-then . "$agent_file"
-fi
-
 if ! pidof ssh-agent > /dev/null
-then echo "ssh-agent not running" >&2
+then
+	echo "ssh-agent not running" >&2
+else
+	agent_file="$HOME/.ssh/env_agent"
+	if [ -f "$agent_file" ]
+	then . "$agent_file"
+	fi
 fi
 
-[ -z "$DISPLAY" ] && pidof X > /dev/null && export DISPLAY=':0'
+if [ -z "$DISPLAY" ] && pidof X > /dev/null
+then
+	export DISPLAY=':0'
+	echo "DISPLAY set to $DISPLAY" >&2
+fi
 
 # history notes
 # echo one two three

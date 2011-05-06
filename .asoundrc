@@ -12,9 +12,17 @@ pcm.equal{
   slave.pcm "plug:dmix";
 }
 
-pcm.!default {
-  type plug;
-  slave.pcm "plugequal";
+#pcm.!default front:Intel
+
+pcm.dmixout {
+  # Just pass this on to the system dmix
+  type plug
+  slave {
+     pcm "dmix"
+  }
 }
 
-#pcm.!default front:Intel
+pcm.!default {
+  type plug;
+	slave { pcm "dmix" }
+}

@@ -43,7 +43,7 @@ hi CompDesc				color: gray; width: 50%;
 " hi HintElem				background-color: yellow; color: black;
 " hi HintImage				opacity: .5;
 " hi Indicator				color: blue;
-" hi InfoMsg				color: black; background: white;
+hi InfoMsg				color: blue; background: white;
 " hi LineNr				color: orange; background: white;
 " hi Message				white-space: normal; min-width: 100%; padding-left: 2em; text-indent: -2em; display: block;
 " hi ModeMsg				color: black; background: white;

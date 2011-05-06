@@ -2,7 +2,7 @@
 
 nmap <silent> gm      :set<Space>gui+=nomenu<Return>
 nmap <silent> gM      :set<Space>gui+=menu<Return>
-nmap <silent> \\h     :set<Space>hls!<Return>
+nmap <silent> \\h     :noh<Return>
 nmap <silent> <C-S-N> :tabm!<Space>+1<Return>
 nmap <silent> <C-S-P> :tabm!<Space>-1<Return>
 
@@ -17,6 +17,8 @@ nmap <silent> gO4 :t duo.dur.ac.uk<Return>
 
 nnoremap <C-E> 5<C-E>
 nnoremap <C-Y> 5<C-Y>
+
+hi InfoMsg 'color: blue; background: white'
 
 set wildmode=list:longest
 set defsearch=duck

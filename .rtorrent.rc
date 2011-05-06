@@ -41,6 +41,12 @@ session = ~/Downloads/session
 
 #schedule = watch_directory_2,10,10,"load_start=/home/rob/Download/watch_stuff/*.torrent,d.set_directory=/home/rob/Download/stuff/"
 
+# Watch a directory for new torrents, and stop those that have been
+# deleted.
+schedule = watch_directory,5,5,load_start=/home/rob/Downloads/torrents/*.autotorrent
+schedule = untied_directory,5,5,stop_untied=
+schedule = tied_directory,5,5,start_tied=
+
 
 # Close torrents when diskspace is low.
 #schedule = low_diskspace,5,60,close_low_diskspace=100M
@@ -99,7 +105,7 @@ dht = auto
 
 # UDP port to use for DHT.
 #
-# dht_port = 6881
+dht_port = 6881
 
 # Enable peer exchange (for torrents not marked private)
 #
