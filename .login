@@ -39,6 +39,7 @@ export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less"
+export ALSA_OUTPUT_MAIN='Front'
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
