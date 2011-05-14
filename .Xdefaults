@@ -1,149 +1,73 @@
-! Custom ------------------------------------------------------------------
-! fixes some annoying shizdongles
-*backarrowKeyIsErase: true
-!false
-
-
-! Xft settings -------------------------------------------------------------
-! DO NOT TOUCH
-!Xft*hinting:        1
-!Xft*dpi:            96
 Xft*antialias:      true
-!Xft*hintstyle:      hintslight
-!Xft*rgba:           rgb
 
-!Xft:Profont:        pixelsize=11
-!Xcursor.theme:      entis
-!Xcursor.theme:      entis mini
-!Xcursor.theme:      GT3
-!Xcursor.size:       16
-!32, 48 or 64 are probably good values (16?)
-
-
-! urxvt settings -----------------------------------------------------------
+! urxvt
 urxvt*font:            xft:profont:pixelsize=11
-!urxvt*font:            tamsyn
-!urxvt*font:            xft:ProggyTinyTT:pixelsize=16
-!urxvt.font:            xft:ProggyTinyTTSZ:pixelsize=16
-!urxvt.font:            -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-!urxvt*font:            -*-profont-*-*-*-*-11-*-*-*-*-*-*-*
-!urxvt*font:            -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
-!urxvt*font:            -*-proggytinytt-*-*-*-*-13-*-*-*-*-*-*-*
-!urxvt*font:            -misc-fixed-medium-r-*-*-10-*-*-*-*-*-*-1
-!urxvt*boldfont:        xft:profont:pixelsize=10
-!urxvt*boldFont:        xft:fixed:pixelsize=16:bold
-!urxvt*boldFont:        -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
-!urxvt*italicFont:      xft:ProggyTinyTT :pixelsize=16 :style=italic
 urxvt*boldFont:         -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
-! ----------
 urxvt*title:            rxvt-unicode
 urxvt*termname:         rxvt-unicode
 urxvt*cursorBlink:      false
 urxvt*geometry:         80x24
-!urxvt*fading:           25%
 urxvt*tintColor:        #000000
 urxvt*transparent:      true
-!urxvt*foreground:       grey
-!urxvt*depth:            32
 urxvt*scrollBar:        false
 urxvt*scrollBar_right:  true
-!urxvt*borderLess:       true <---------- fails hard
 urxvt*inheritPixmap:    true
 urxvt.tintColor:        white
 urxvt.internalBorder:   2
 urxvt.cursorBlink:      false
 urxvt.borderless:       false
 urxvt*cutchars:         "()*,<>[]{}|'"
-!                         ^------------------ delimiters for double-click mouse selection
+urxvt*urgentOnBell:     True
 ! 10 = opaque, 90 = transparent
 urxvt*shading:          20
-! Colours are set at the bottom, globally
-!! BEGIN urlLauncher settings !!
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
 urxvt*perl-ext-common:  matcher
-!urxvt*urlLauncher:      /opt/swiftweasel/swiftweasel
 urxvt*urlLauncher:      /home/rob/bin/openurl.sh
 urxvt*matcher.button:   1
-!! END urlLauncher settings !!
 
-! shared between xterm & urxvt
-*cursorColor:      #f5a400
-! ? xterm*colorBD:				#ffffff
-! ? xterm*colorBDMode:			true
 
 ! xterm settings -----------------------------------------------------------
-!xterm*foreground:          grey
-!xterm*highlightColor:      blue
+!xterm*highlightColor:      #ffffff
 xterm*scrollBar:           false
 xterm*vt100.scrollBar:     false
-!xterm*vt100.font:         dejavu sans mono
-!xterm*font:                Tamsyn
+xterm*rightScrollBar:      false
 xterm*multiScroll:         on
 xterm*jumpScroll:          on
 xterm*SaveLines:           1000
-!xterm*faceName:            terminus
-!xterm*pixelsize:           ???
-!xterm*faceName             pixelsize:           31
 xterm*dynamicColors:       true
 xterm*utf8:                2
 xterm*utf8Title:           1
-!xterm*eightBitInput:      true
 xterm*scrollTtyKeypress:   true
-!xterm*scrollTtyOutput:    false
-xterm*rightScrollBar:      false
 xterm*loginShell:          true
 xterm*toolBar:             false
-xterm*on4Clicks:           group
-xterm*on5Clicks:           page
-
-! xpdf -----------------------------------------------------------------------
-xpdf*enableFreetype:      yes
-xpdf*antialias:           yes
-xpdf*foreground:          #000000
-xpdf*background:          #999999
-xpdf*urlCommand:          /home/rob/bin/openurl.sh %s
-xpdf*viKeys:              on
-
 
 ! xmessage settings:
-!.xmessage.form.okay.shapeStyle:    round
-.xmessage.form.okay.background:    #333333
-.xmessage.form.okay.foreground:    snow
-.xmessage.message.font:      -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
-.xmessage.message.background:    #333333
-.xmessage.form.background:    #333333
-.xmessage.defaultButton:    okay
-.Xmessage.form.message.Scroll:    WhenNeeded
-
-xmessage*form.okay.shapeStyle:    rectangle
-xmessage*form.okay.background:    IndianRed
-xmessage*form.okay.foreground:    rgb:e/b/b
-xmessage*message*background:    ivory3
-xmessage*background:      gray85
-xmessage*foreground:      gray15
-xmessage*Scrollbar.width:    1
-xmessage*Scrollbar.borderWidth:    0
-xmessage*Text.?.cursorColor:    rgb:d/5/5
-xmessage*Text.borderColor:    gray65
-xmessage*Text*background:    gray95
-xmessage*Command.highlightThickness:  1
-xmessage*Command.internalWidth:    5
-xmessage*Command.internalHeight:  3
-xmessage*Command.borderColor:    gray40
-xmessage*Command.shapeStyle:    Rectangle
-xmessage*Command.background:    gray80
-xmessage*font:        -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*
-
-! dmenu
-dmenu.foreground:     #777885
-dmenu.background:     #222222
-dmenu.selforeground:  #f5a400
-dmenu.selbackground:  #2e3436
+xmessage*background:                     gray85
+xmessage*Command.background:             gray80
+xmessage*Command.borderColor:            gray40
+xmessage*Command.highlightThickness:     1
+xmessage*Command.internalHeight:         3
+xmessage*Command.internalWidth:          5
+xmessage*Command.shapeStyle:             Rectangle
+xmessage.defaultButton:                  okay
+xmessage*font:                           -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*
+xmessage*foreground:                     gray15
+xmessage.form.background:                #333333
+xmessage.form.message.Scroll:            WhenNeeded
+xmessage.form.okay.background:           #333333
+xmessage.form.okay.foreground:           snow
+xmessage.message.background:             #333333
+xmessage*message*background:             ivory3
+xmessage.message.font:                   -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
+xmessage*Scrollbar.borderWidth:          0
+xmessage*Scrollbar.width:                1
+xmessage*Text*background:                gray95
+xmessage*Text.borderColor:               gray65
 
 ! Terminal Colours ------------------------------------------------------------
 ! http://phraktured.net/config/.Xcolors
 
-! Old
+*cursorColor: #f5a400
 *background:  #212121
 *foreground:  #cccccc
 
