@@ -18,6 +18,7 @@ zstyle ':completion:*:scp:*' group-order files all-files hosts-domain hosts-host
 zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host hosts-ipaddr
 zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host hosts-ipaddr
 zstyle ':completion:*:scp:*' group-order files all-files hosts-domain hosts-host hosts-ipaddr
+#zstyle ':completion:*' hosts off
 zstyle ':completion:*' ignore-parents parent pwd .. directory
 zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-colors ''
