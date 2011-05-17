@@ -17,7 +17,7 @@ urxvt.internalBorder:   2
 urxvt.cursorBlink:      false
 urxvt.borderless:       false
 urxvt*cutchars:         "()*,<>[]{}|'"
-urxvt*urgentOnBell:     True
+urxvt*urgentOnBell:     true
 ! 10 = opaque, 90 = transparent
 urxvt*shading:          20
 urxvt*perl-lib:         /usr/lib/urxvt/perl/
@@ -40,6 +40,7 @@ xterm*utf8Title:           1
 xterm*scrollTtyKeypress:   true
 xterm*loginShell:          true
 xterm*toolBar:             false
+xterm*bellIsUrgent:        true
 
 ! xmessage settings:
 xmessage*background:                     gray85
