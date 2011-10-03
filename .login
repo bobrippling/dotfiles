@@ -33,13 +33,12 @@ export LESS_TERMCAP_us=$'\e[01;34m'
 
 export PREFIX="/usr/local/"
 
-export EDITOR="vim"
-export VISUAL="vim" #gvim
+export EDITOR=uvi
+export VISUAL=$EDITOR
 export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less"
-export ALSA_OUTPUT_MAIN='Front'
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
@@ -49,7 +48,7 @@ fi
 
 if ! pidof ssh-agent > /dev/null
 then
-	echo "ssh-agent not running" >&2
+	echo >&2 "no ssh-agent"
 else
 	agent_file="$HOME/.ssh/env_agent"
 	if [ -f "$agent_file" ]
@@ -63,8 +62,12 @@ then
 	echo "DISPLAY set to $DISPLAY" >&2
 fi
 
+pidof pulseaudio > /dev/null || echo >&2 "no pulseaudio"
+
 # history notes
 # echo one two three
 # echo !:n
 # will echo the nth arg, 0 = echo, 1 = one, 2 = two
 # echo !:$ = last, !:^ = first (1)
+
+ulimit -c unlimited

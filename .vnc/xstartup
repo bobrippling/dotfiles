@@ -10,4 +10,8 @@ xset r rate 200 25
 #urxvtc -ls &
 urxvt&
 
-exec wmii
+dwm="$HOME/src/Suckless/dwm/extra"
+. $dwm/env
+randomwallpaper.sh
+
+exec $dwm/dwm_run.sh

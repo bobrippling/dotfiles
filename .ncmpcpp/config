@@ -1,16 +1,16 @@
-####################################################
+
 ## this is example configuration file, copy it to ##
 ## ~/.ncmpcpp/config and set up your preferences  ##
-####################################################
-#
+
+
 ##### connection settings #####
-#
+
 ## set it in order to make tag editor and renaming files work properly
-#
+
 mpd_host = "localhost"
-#
+
 #mpd_port = "6600"
-#
+
 #mpd_music_dir = "/mnt/share/Shared/Music/"
 mpd_music_dir = "/home/rob/Music/"
 
@@ -19,21 +19,21 @@ mpd_connection_timeout = "5"
 mpd_communication_mode = "notifications"
 
 mpd_crossfade_time = "0"
-#
+
 ##### delays #####
-#
+
 ## delay after playlist highlighting will be disabled (0 = don't disable)
-#
+
 playlist_disable_highlight_delay = "0"
-#
+
 ## defines how long various messages are supposed to be visible
-#
+
 message_delay_time = "1"
-#
+
 ##### song format #####
-##
+
 ## for song format you can use:
-##
+
 ## %l - length
 ## %f - short filename
 ## %F - full filename
@@ -48,16 +48,16 @@ message_delay_time = "1"
 ## %d - disc
 ## %C - comment
 ## %r - begin right align
-##
+
 ## you can also put them in { } and then it will be displayed
 ## only if all requested values are available and/or define alternate
 ## value with { }|{ } eg. {%a - %t}|{%f}
-##
+
 ## text can also have different color than the main window has,
 ## eg. if you want length to be green, write $3%l$9
-##
+
 ## available values:
-##
+
 ## - 0 - default window color
 ## - 1 - black
 ## - 2 - red
@@ -68,9 +68,9 @@ message_delay_time = "1"
 ## - 7 - cyan
 ## - 8 - white
 ## - 9 - end of current color
-##
+
 ## Note: colors can be nested.
-##
+
 
 song_list_format = "{$8(%l)$9 }{%a - }{%t}|{$8%f$9}"
 
@@ -85,28 +85,28 @@ browser_playlist_prefix = "$7playlist$9 "
 selected_item_prefix = "$8"
 
 selected_item_suffix = "$9"
-#
+
 ## colors are not supported for below veriables
-#
+
 #song_status_format = "{(%l) }{%a - }{%t}|{%f}"
-#
+
 #song_window_title_format = "{%a - }{%t}|{%f}"
-#
+
 ##### columns settings #####
-##
+
 ## syntax of song columns list format is "column column etc."
-##
+
 ## - syntax for each column is:
-##
+
 ## (width of column in %)[column's color]{displayed tag}
-##
+
 ## - color is optional (if you want the default one, type [])
-##
+
 #  l = time, a = artist, b = album, t = title
 song_columns_list_format = "(5)[white]{l} (20)[red]{a} (35)[green]{t} (25)[blue]{b}"
-#
+
 ##### various settings #####
-#
+
 playlist_display_mode = "columns"
 browser_display_mode = "columns"
 #search_engine_display_mode = "classic" (classic/columns)
@@ -128,27 +128,16 @@ follow_now_playing_lyrics = "yes"
 display_screens_numbers_on_start = "yes"
 # clock_display_seconds = "no"
 user_interface = "alternative" #(classic/alternative)
-#
-##
+
+
 ## Note: If below is enabled, ncmpcpp will ignore leading
 ## "The" word while sorting items in browser, tags in
 ## media library, etc.
-##
-ignore_leading_the = "yes"
-#
-enable_window_title = "no"
-#
-##### lyrics support #####
-##
-## supported lyrics databases:
-##
-## - 1 - lyricwiki.org
-## - 2 - lyricsplugin.com
-##
-#
-lyrics_database = "1"
 
-##### colors definitions #####
+ignore_leading_the = "yes"
+
+enable_window_title = "no"
+
 
 colors_enabled = "yes"
 empty_tag_color = "white"

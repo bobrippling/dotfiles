@@ -4,9 +4,9 @@ softvol=1
 # allow fullscreen with dwm
 fstype=none
 
-ao="alsa"
+ao=pulse,jack,alsa
+#ao=alsa
 # mixer-channel="Master"
-
 
 #vo="xv"
 double="yes" # double buffering
@@ -22,5 +22,3 @@ slang=en
 alang=en
 
 prefer-ipv4=1
-
-softvol=1

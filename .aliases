@@ -23,6 +23,7 @@ alias lst='lst -F -s'
 alias less='less -R'
 alias cpv='rsync -P -rR' # verbose copy
 alias rd='rmdir'
+alias htop='htop.sh'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
@@ -30,7 +31,7 @@ alias gccW='gcc -Wall -Wextra -pedantic'
 alias ctags_update='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .'
 alias rsync_auto='rsync -Puvarph'
 
-alias oo='libreoffice -nologo'
+alias oo='libreoffice --nologo'
 
 #office(){
 #	local ret
@@ -48,6 +49,10 @@ mkcd(){
 	fi
 	mkdir -p "$1"
 	cd "$1"
+}
+
+coredump_enable(){
+	ulimit -c unlimited
 }
 
 randbits(){
@@ -76,6 +81,7 @@ nohist(){
 }
 
 careful(){
+	[ $# -ne 0 ] && echo >&2 "$0: ignoring args"
 	alias mv='mv -i'
 	alias cp='cp -i'
 }
@@ -86,7 +92,6 @@ search(){
 		echo "usage: $0 file_to_search_for" >&2
 		return 1
 	else
-		echo "find . -iname \*$1\*" >&2
 		find . -iname \*$1\*
 	fi
 }
@@ -110,6 +115,9 @@ car()  { echo $1; }
 cdr()  { shift; echo $@; }
 ucar() { echo ${!#}; }
 ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
+perldoc(){
+	/usr/bin/core_perl/perldoc $@
+}
 
 addtopath "/home/rob/sh"
 addtopath "/home/rob/bin"

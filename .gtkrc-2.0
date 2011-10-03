@@ -4,7 +4,7 @@
 # use lxapperance to change
 
 gtk-theme-name="Glow Water"
-gtk-icon-theme-name="gTango"
+#gtk-icon-theme-name="gTango"
 gtk-font-name="Verdana 9"
 gtk-toolbar-style=2
 include "/home/rob/.gtkrc-2.0.mine"
