@@ -1,7 +1,5 @@
 "2.3.1 (created: 2010/04/07 18:56:53)
 
-nmap <silent> gm      :set<Space>gui+=nomenu<Return>
-nmap <silent> gM      :set<Space>gui+=menu<Return>
 nmap <silent> \\h     :set hls!<Return>
 nmap <silent> <C-S-N> :tabm!<Space>+1<Return>
 nmap <silent> <C-S-P> :tabm!<Space>-1<Return>
@@ -18,6 +16,7 @@ nnoremap <C-Y> 5<C-Y>
 
 hi InfoMsg 'color: blue; background: white'
 
+set editor=guvi
 set wildmode=list:longest
 set defsearch=duck
 set gui=none,tabs

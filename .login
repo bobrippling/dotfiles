@@ -27,6 +27,9 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;34m'
 
+export SHELL=zsh
+export LANG=en_GB.UTF8
+
 #export CC
 #export CFLAGS
 #export CXXFLAGS
@@ -39,6 +42,23 @@ export BROWSER="browser"
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less"
+export XINERAMA_SCREEN=2
+
+addtopath(){
+	if [ $# -eq 0 ]
+	then
+		echo "addtopath() - need an argument" >&2
+		return 1
+	else
+		echo $PATH | grep $@ &> /dev/null
+		if [ $? -ne 0 ]
+		then export PATH=$PATH:$@
+		fi
+	fi
+}
+
+addtopath "/home/rob/sh"
+addtopath "/home/rob/bin"
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"

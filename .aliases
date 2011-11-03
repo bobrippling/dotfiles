@@ -59,19 +59,6 @@ randbits(){
 	head -c 10 /dev/urandom | perl -ne 'print ord $_ for split //'
 }
 
-addtopath(){
-	if [ $# -eq 0 ]
-	then
-		echo "addtopath() - need an argument" >&2
-		return 1
-	else
-		echo $PATH | grep $@ &> /dev/null
-		if [ $? -ne 0 ]
-		then export PATH=$PATH:$@
-		fi
-	fi
-}
-
 nohist(){
 	unset HISTFILE
 	sed -i '/nohist/d' ~/.zsh_history
@@ -118,8 +105,5 @@ ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
 perldoc(){
 	/usr/bin/core_perl/perldoc $@
 }
-
-addtopath "/home/rob/sh"
-addtopath "/home/rob/bin"
 
 # vim: ft=sh

@@ -61,7 +61,7 @@
   <Option name="display_bdev_colour">#11116565e9e9</Option>
   <Option name="action_move">1</Option>
   <Option name="pinboard_bottom_margin">0</Option>
-  <Option name="menu_xterm">xterm</Option>
+  <Option name="menu_xterm">urxvt</Option>
   <Option name="display_show_hidden">0</Option>
   <Option name="dnd_middle_menu">1</Option>
   <Option name="vertical_order_large">0</Option>
