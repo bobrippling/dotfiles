@@ -143,6 +143,7 @@ xmessage*Text.borderColor:               gray65
 !*color7:  #D3D7CF
 !*color15: #EEEEEC
 
+*fading: 30%
 
 ! New hotness (Original changed)
  *color0:      #000000
