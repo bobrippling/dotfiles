@@ -4,7 +4,7 @@ softvol=1
 # allow fullscreen with dwm
 fstype=none
 
-ao=pulse,jack,alsa
+ao=alsa #pulse,jack,alsa
 #ao=alsa
 # mixer-channel="Master"
 

@@ -1,69 +1,38 @@
-pcm.!default {
-	#type plug
-	#slave { pcm "jack" }
-	#slave { pcm "plugequal" } # route through equaliser, then to jack
-	#slave { pcm "dmixer" }
-	type pulse
-}
-ctl.!default {
-	type pulse
-	#type plug
-	#slave { pcm "plugequal" }
-	#type equal;
+ctl.equal {
+  type equal;
 }
 
-# jack -----------------------------
-pcm.jackplug {
-	type plug
-	slave { pcm "jack" }
-}
-pcm.jack {
-	type jack
-	playback_ports {
-		0 system:playback_1
-		1 system:playback_2
-		#0 jamin:in_L
-		#1 jamin:in_R
-	}
-	capture_ports {
-		0 system:capture_1
-		1 system:capture_2
-	}
-}
-ctl.mixer0 {
-	type hw
-	card 0
-}
-
-# pulse ----------------------------
-pcm.pulse {
-  type pulse
-	hint.description "Pulse Device"
-}
-ctl.pulse {
-  type pulse
-}
-
-# equaliser ------------------------
-pcm.plugequal{
-	type equal
+pcm.plugequal {
+  type equal;
   # Modify the line below if you don't
   # want to use sound card 0.
   #slave.pcm "plughw:0,0";
   # or if you want to use with multiple applications output to dmix
-	slave.pcm "plug:dmix"
-	#slave.pcm "plug:jack"
+  slave.pcm "plug:dmix"
 }
-ctl.equal{
-	type equal;
-}
-pcm.equal{
-	type plug;
-	slave.pcm "plug:dmix";
-	#slave.pcm "plug:jack";
-}
+
 pcm.dmixout {
-	# for skype
 	type plug
-	slace { pcm "dmux" };
+	slave {
+		pcm "dmix"
+	}
+}
+
+#pcm.equal {
+  # Or if you want the equalizer to be your
+  # default soundcard uncomment the following
+  # line and comment the above line.
+pcm.!default {
+	type asym
+
+	playback.pcm {
+		type plug;
+		slave.pcm pcm.plugequal;
+	}
+
+	capture.pcm {
+		type hw
+		card 0
+		device 0
+	}
 }

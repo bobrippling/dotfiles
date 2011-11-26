@@ -2,3 +2,4 @@
 
 gtk-toolbar-style = GTK_TOOLBAR_ICONS
 gtk-can-change-accels = 1
+gtk-key-theme-name = "Unix"

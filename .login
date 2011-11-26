@@ -82,7 +82,7 @@ then
 	echo "DISPLAY set to $DISPLAY" >&2
 fi
 
-pidof pulseaudio > /dev/null || echo >&2 "no pulseaudio"
+#pidof pulseaudio > /dev/null || echo >&2 "no pulseaudio"
 
 # history notes
 # echo one two three
