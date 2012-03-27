@@ -1,38 +1,19 @@
 ctl.equal {
-  type equal;
+	type equal;
 }
 
 pcm.plugequal {
-  type equal;
-  # Modify the line below if you don't
-  # want to use sound card 0.
-  #slave.pcm "plughw:0,0";
-  # or if you want to use with multiple applications output to dmix
-  slave.pcm "plug:dmix"
+	type equal;
+# Modify the line below if you don't
+# want to use sound card 0.
+	slave.pcm "plug:dmix";
 }
 
-pcm.dmixout {
-	type plug
-	slave {
-		pcm "dmix"
-	}
-}
-
-#pcm.equal {
-  # Or if you want the equalizer to be your
-  # default soundcard uncomment the following
-  # line and comment the above line.
+# pcm.equal {
+# Or if you want the equalizer to be your
+# default soundcard uncomment the following
+# line and comment the above line.
 pcm.!default {
-	type asym
-
-	playback.pcm {
-		type plug;
-		slave.pcm pcm.plugequal;
-	}
-
-	capture.pcm {
-		type hw
-		card 0
-		device 0
-	}
+	type plug;
+	slave.pcm plugequal;
 }

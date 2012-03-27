@@ -1,0 +1,8 @@
+# vim: ts=8 sw=8
+video; mplayer %s
+image; sxiv %s
+
+# patch
+application/octet-stream; vim %s
+
+text; vim %s

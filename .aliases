@@ -10,6 +10,7 @@ alias ls="ls --color=auto --group-directories-first -F"
 
 alias l='ls -1'
 alias gdb='gdb -q' # quiet
+alias make='make --no-print-directory'
 alias gdb_graphical='gdb -tui'
 alias valgrind-full='valgrind --leak-check=full --show-reachable=yes'
 alias pstree='ps auxwwwf'

@@ -9,7 +9,16 @@ yeahconsole*toggleKey: Win+grave
 !yeahconsole*term:      st
 
 ! urxvt
-urxvt*font:            xft:profont:pixelsize=11
+URxvt.iso14755:    false
+URxvt.iso14755_52: false
+
+!URxvt.font: xft:montecarlo:size=8
+!URxvt.boldFont: xft:montecarlo:size=8
+
+urxvt*font:            xft:ProFont:pixelsize=11
+!http://gobase.org/dict/JIS/helponXfonts.html
+!urxvt*font:            fixed
+!urxvt*boldFont:            fixed
 urxvt*boldFont:         -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
 urxvt*title:            rxvt-unicode
 urxvt*termname:         rxvt-unicode

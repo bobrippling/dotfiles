@@ -27,8 +27,8 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;34m'
 
-export SHELL=zsh
-export LANG=en_GB.UTF8
+#export SHELL=zsh
+#export LANG=en_GB.UTF8
 
 #export CC
 #export CFLAGS
@@ -57,8 +57,9 @@ addtopath(){
 	fi
 }
 
-addtopath "/home/rob/sh"
-addtopath "/home/rob/bin"
+addtopath "/usr/local/bin"
+addtopath "$HOME/sh"
+addtopath "$HOME/bin"
 
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
