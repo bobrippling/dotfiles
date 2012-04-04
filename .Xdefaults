@@ -15,7 +15,8 @@ URxvt.iso14755_52: false
 !URxvt.font: xft:montecarlo:size=8
 !URxvt.boldFont: xft:montecarlo:size=8
 
-urxvt*font:            xft:ProFont:pixelsize=11
+!urxvt*font:            xft:ProFont:pixelsize=11
+urxvt*font:            -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !http://gobase.org/dict/JIS/helponXfonts.html
 !urxvt*font:            fixed
 !urxvt*boldFont:            fixed
