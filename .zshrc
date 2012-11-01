@@ -77,6 +77,7 @@ unsetopt share_history
 unsetopt hist_beep
 unsetopt beep
 unsetopt correct_all
+unsetopt nomatch # no-matches aren't errors
 
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
