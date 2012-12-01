@@ -9,6 +9,17 @@ pcm.plugequal {
 	slave.pcm "plug:dmix";
 }
 
+pcm.equal {
+	type plug;
+	slave.pcm "plug:dmix";
+}
+
+pcm.dmixout {
+	# for skype
+	type plug
+	slace { pcm "dmux" };
+}
+
 # pcm.equal {
 # Or if you want the equalizer to be your
 # default soundcard uncomment the following

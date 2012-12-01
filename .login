@@ -36,7 +36,7 @@ export LESS_TERMCAP_us=$'\e[01;34m'
 
 export PREFIX="/usr/local/"
 
-export EDITOR=uvi
+export EDITOR=tim
 export VISUAL=$EDITOR
 export BROWSER="browser"
 export XTERM="urxvt"

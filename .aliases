@@ -24,7 +24,6 @@ alias lst='lst -F -s'
 alias less='less -R'
 alias cpv='rsync -P -rR' # verbose copy
 alias rd='rmdir'
-alias htop='htop.sh'
 
 # point to non-existant file, to ignore GTK theme
 alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
@@ -103,8 +102,4 @@ car()  { echo $1; }
 cdr()  { shift; echo $@; }
 ucar() { echo ${!#}; }
 ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
-perldoc(){
-	/usr/bin/core_perl/perldoc $@
-}
-
 # vim: ft=sh
