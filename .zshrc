@@ -49,14 +49,6 @@ compinit
 # End of lines added by compinstall
 autoload colors && colors
 
-# completion aliases
-compdef _pacman pacman-color=pacman
-compdef _pacman clyde=pacman
-compdef _pacman powerpill=pacman
-compdef _pacman bauerbill=pacman
-compdef _netcat ncat
-compdef _ncftp  lftp
-
 # _:s are optional
 setopt append_history
 setopt auto_pushd
@@ -78,6 +70,7 @@ unsetopt hist_beep
 unsetopt beep
 unsetopt correct_all
 unsetopt nomatch # no-matches aren't errors
+unset MAIL MAILPATH MAILCHECK
 
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
