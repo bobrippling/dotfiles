@@ -1,10 +1,5 @@
 # vim: ft=csh
 
-if echo $TERM | grep '^st' > /dev/null
-then
-return
-fi
-
 # sl=        non-matching selected lines
 # cx=        non-matching context lines
 # mt=01;31   match

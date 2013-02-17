@@ -1,9 +1,4 @@
-if echo "$TERM" | grep st > /dev/null
-then
-	col=''
-else
-	col='--color=auto'
-fi
+col='--color=auto'
 
 alias grep="grep $col"
 alias ls="ls --color=auto --group-directories-first -F"
