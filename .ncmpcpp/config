@@ -12,7 +12,7 @@ mpd_host = "localhost"
 #mpd_port = "6600"
 
 #mpd_music_dir = "/mnt/share/Shared/Music/"
-mpd_music_dir = "/home/rob/Music/"
+mpd_music_dir = "/home/rob/music/"
 
 mpd_connection_timeout = "5"
 
@@ -162,7 +162,7 @@ mouse_support = "no"
 allow_physical_files_deletion = "no"
 allow_physical_directories_deletion = "no"
 
-visualizer_fifo_path     "/home/rob/Music/mpd/fifo"
+visualizer_fifo_path     "/home/rob/music/mpd/fifo"
 visualizer_output_name   "feefifofum"
 visualizer_sync_interval "30"
 visualizer_type          "wave"
