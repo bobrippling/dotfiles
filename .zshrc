@@ -166,7 +166,8 @@ fi
 # colours _must_ be inside a %{ %} pair
 
 export PS1="
-${col_bracket}[${col_reset}%?${col_bracket}][${col_reset}%B%{${col_pwd}%}%.${col_reset}\
+${col_bracket}[${col_reset}%? %j${col_bracket}]\
+[${col_reset}%B%{${col_pwd}%}%.${col_reset}\
 %b${col_bracket}]${col_reset}%# "
 
 HOSTTITLE=${(%):-%n@%m}
