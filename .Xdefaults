@@ -75,11 +75,11 @@ xmessage*Command.internalWidth:          5
 xmessage*Command.shapeStyle:             Rectangle
 xmessage.defaultButton:                  okay
 xmessage*font:                           -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*
-xmessage*foreground:                     gray15
+!xmessage*foreground:                     gray15
 xmessage.form.background:                #333333
 xmessage.form.message.Scroll:            WhenNeeded
 xmessage.form.okay.background:           #333333
-xmessage.form.okay.foreground:           snow
+!xmessage.form.okay.foreground:           snow
 xmessage.message.background:             #333333
 xmessage*message*background:             ivory3
 xmessage.message.font:                   -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
