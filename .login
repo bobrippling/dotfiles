@@ -38,7 +38,7 @@ export PREFIX="/usr/local/"
 
 export EDITOR=tim
 export VISUAL=$EDITOR
-export BROWSER="browser"
+export BROWSER=open
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less"
