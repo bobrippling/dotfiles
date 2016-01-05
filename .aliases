@@ -19,11 +19,6 @@ alias lst='lst -F -s'
 alias less='less -R'
 alias cpv='rsync -P -rR' # verbose copy
 alias rd='rmdir'
-
-# point to non-existant file, to ignore GTK theme
-alias codeblocks='GTK2_RC_FILES=/tim codeblocks'
-alias gccW='gcc -Wall -Wextra -pedantic'
-alias ctags_update='ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .'
 alias rsync_auto='rsync -Puvarph'
 
 alias oo='libreoffice --nologo'
