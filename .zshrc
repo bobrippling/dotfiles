@@ -153,22 +153,26 @@ fi
 
 #pwdcol="%{$fg[$promptcoldir]%}"
 
-col_reset="%{$reset_color%}"
-col_bracket="%{$fg[$col_prompt]%}"
-
-if echo $TERM | grep 256 > /dev/null
-then
-	col_pwd="`printf '\e[1;38;5;30m'`"
-else
-	col_pwd="$fg[blue]"
-fi
-
 # colours _must_ be inside a %{ %} pair
 
+col_reset="%{$reset_color%}"
+col_bracket="%{$fg[$col_prompt]%}"
+col_red="%{$fg[red]%}"
+
+#if echo $TERM | grep 256 > /dev/null
+#then
+#	col_pwd="`printf '\e[1;38;5;30m'`"
+#else
+#	col_pwd="$fg[blue]"
+#fi
+
+#export PS1="
+#${col_bracket}[%(?.${col_reset}.${col_red})%? ${col_reset}%j${col_bracket}]\
+#[${col_reset}%B%{${col_pwd}%}%.${col_reset}\
+#%b${col_bracket}]${col_reset}%# "
+
 export PS1="
-${col_bracket}[${col_reset}%? %j${col_bracket}]\
-[${col_reset}%B%{${col_pwd}%}%.${col_reset}\
-%b${col_bracket}]${col_reset}%# "
+%{%(?.$fg[$col_prompt].${col_red})%}%? %{$fg[$col_prompt]%}%j${col_reset} %# "
 
 HOSTTITLE=${(%):-%n@%m}
 TITLE=$HOSTTITLE
