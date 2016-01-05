@@ -61,21 +61,34 @@ addtopath "/usr/local/bin"
 addtopath "$HOME/sh"
 addtopath "$HOME/bin"
 
+export PLAN9="$HOME/src/Suckless/plan9port"
+addtopath "$PLAN9/bin"
+
 if [ "x$TERM" = "xxterm"  ]
 then export TERM="xterm-256color"
 elif [ "x$TERM" = "xscreen" ]
 then export TERM="screen-256color"
 fi
 
-if ! pidof ssh-agent > /dev/null
-then
-	echo >&2 "no ssh-agent"
-else
-	agent_file="$HOME/.ssh/env_agent"
-	if [ -f "$agent_file" ]
-	then . "$agent_file"
+check_agent(){
+	proc_name="$1"
+	agent_file="$2"
+
+	if pidof "$proc_name" > /dev/null
+	then
+		if [ -f "$agent_file" ]
+		then
+			. "$agent_file"
+		else
+			echo not source "$agent_file"
+		fi
+	else
+		echo >&2 "no $proc_name"
 	fi
-fi
+}
+
+check_agent ssh-agent "$HOME/.ssh/env_agent"
+check_agent gpg-agent "$HOME/.ssh/gpg_env_agent"
 
 if [ -z "$DISPLAY" ] && pidof X > /dev/null
 then
