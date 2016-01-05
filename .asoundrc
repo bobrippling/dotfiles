@@ -1,30 +1,77 @@
-ctl.equal {
-	type equal;
-}
+#pcm.!default {
+#	type plug
+#	slave { pcm "dmix" }
+#}
+##ctl.!default {
+#	#type plug
+#	#slave { pcm "dmix" }
+##}
+#
+#pcm.plugequal{
+#	type equal
+#  # Modify the line below if you don't
+#  # want to use sound card 0.
+#  #slave.pcm "plughw:0,0";
+#  # or if you want to use with multiple applications output to dmix
+#	slave.pcm "plug:dmix"
+#	#slave.pcm "plug:jack"
+#}
+#ctl.equal{
+#	type equal;
+#}
+#pcm.equal{
+#	type plug;
+#	slave.pcm "plug:dmix";
+#}
+#pcm.dmixout {
+#	# for skype
+#	type plug
+#	slave { pcm "dmix" };
+#}
+#
 
-pcm.plugequal {
-	type equal;
-# Modify the line below if you don't
-# want to use sound card 0.
-	slave.pcm "plug:dmix";
-}
 
-pcm.equal {
-	type plug;
-	slave.pcm "plug:dmix";
-}
 
-pcm.dmixout {
-	# for skype
-	type plug
-	slace { pcm "dmux" };
-}
 
-# pcm.equal {
-# Or if you want the equalizer to be your
-# default soundcard uncomment the following
-# line and comment the above line.
-pcm.!default {
-	type plug;
-	slave.pcm plugequal;
-}
+
+
+
+## ----------------------- file capture
+#
+#pcm.!default {
+#	type plug;
+#
+#	slave {
+#		pcm rate48000Hz # to the below converter
+#	}
+#}
+#
+#pcm.rate48000Hz {
+#	type rate
+#	slave {
+#		pcm writeFile # to the plugin
+#		format S16_LE
+#		#channels 2
+#		rate 48000
+#	}
+#	#route_policy copy
+#}
+#
+#pcm.writeFile {
+#	type file
+#	slave {
+#		pcm card0 # write to sound card ... ?
+#	}
+#	file "aplay-yo.raw"
+#	format "wav"
+#}
+#
+#pcm.card0 {
+#	type hw
+#	card 0
+#}
+#
+#ctl.card0 {
+#	type hw
+#	card 0
+#}
