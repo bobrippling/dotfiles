@@ -41,7 +41,7 @@ export VISUAL=$EDITOR
 export BROWSER=open
 export XTERM="urxvt"
 export ESCDELAY=10 # ncurses escape wait time (ms)
-export PAGER="less"
+export PAGER="less -RS"
 export XINERAMA_SCREEN=2
 
 addtopath(){
