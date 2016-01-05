@@ -16,7 +16,7 @@ mpd_music_dir = "/home/rob/music/"
 
 mpd_connection_timeout = "5"
 
-mpd_communication_mode = "notifications"
+#mpd_communication_mode = "notifications"
 
 mpd_crossfade_time = "0"
 
@@ -76,7 +76,7 @@ song_list_format = "{$8(%l)$9 }{%a - }{%t}|{$8%f$9}"
 
 song_library_format = "{%n - }{%t}|{%f}"
 
-media_library_album_format = "{(%y) }%b"
+#media_library_album_format = "{(%y) }%b"
 
 tag_editor_album_format = "{(%y) }%b"
 
@@ -122,10 +122,10 @@ autocenter_mode = "no"
 # default_tag_editor_pattern = "%n - %t"
 header_visibility = "yes"
 statusbar_visibility = "yes"
-fancy_scrolling = "yes"
+#fancy_scrolling = "yes"
 follow_now_playing_lyrics = "yes"
 # ncmpc_like_songs_adding = "no" (enabled - add/remove, disabled - always add)
-display_screens_numbers_on_start = "yes"
+#display_screens_numbers_on_start = "yes"
 # clock_display_seconds = "no"
 user_interface = "alternative" #(classic/alternative)
 
@@ -159,8 +159,8 @@ display_bitrate = "yes"
 #playlist_separate_albums = "yes"
 regular_expressions = "extended"
 mouse_support = "no"
-allow_physical_files_deletion = "no"
-allow_physical_directories_deletion = "no"
+#allow_physical_files_deletion = "no"
+#allow_physical_directories_deletion = "no"
 
 visualizer_fifo_path     "/home/rob/music/mpd/fifo"
 visualizer_output_name   "feefifofum"
