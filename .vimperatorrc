@@ -18,7 +18,7 @@ hi InfoMsg 'color: blue; background: white'
 
 set editor=guvi
 set wildmode=list:longest
-set defsearch=duck
+set defsearch=duckduckgo
 set gui=none,tabs
 set noautocomplete
 "set activate=addons,downloads,extoptions,help,homepage,quickmark,paste
