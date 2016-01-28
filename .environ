@@ -1,0 +1,58 @@
+addtopath(){
+	if [ $# -eq 0 ]
+	then
+		echo "addtopath() - need an argument" >&2
+		return 1
+	else
+		echo $PATH | grep "$@" >/dev/null
+		if [ $? -ne 0 ]
+		then export PATH="$PATH:$@"
+		fi
+	fi
+}
+
+checkagent(){
+	proc_name="$1"
+	agent_file="$2"
+
+	if pidof "$proc_name" > /dev/null
+	then
+		if [ -f "$agent_file" ]
+		then
+			. "$agent_file"
+		else
+			echo >&2 not source "$agent_file"
+		fi
+	else
+		echo >&2 "no $proc_name"
+	fi
+}
+
+export_if_exists(){
+	if which "$2" >/dev/null
+	then export "$1=$2"
+	fi
+}
+
+export GREP_COLORS="rv:mt=1;31:sl=1;30"
+export LS_COLORS="di=1;34:ln=1;36:pi=1;33:bd=44;37:cd=44;37:or=7;36:so=33:su=1;31:sg=31:tw=1;35:ow=0;34:ex=1;32:mi=31"
+
+export LESS_TERMCAP_mb='[32m'
+export LESS_TERMCAP_md='[32m'
+export LESS_TERMCAP_me='[m'
+export LESS_TERMCAP_se='[m'
+export LESS_TERMCAP_so='[1;44;33m'
+export LESS_TERMCAP_ue='[m'
+export LESS_TERMCAP_us='[1;34m'
+
+export ESCDELAY=10 # ncurses escape wait time (ms)
+export PAGER="less -RS"
+
+export_if_exists EDITOR ed
+export_if_exists VISUAL tim
+
+addtopath "/usr/local/bin"
+addtopath "$HOME/bin"
+
+checkagent ssh-agent "$HOME/.ssh/env_agent"
+checkagent gpg-agent "$HOME/.ssh/gpg_env_agent"

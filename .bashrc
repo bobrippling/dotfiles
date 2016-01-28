@@ -1,11 +1,9 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-source ~/.login
 source ~/.aliases
+source ~/.environ
 
-#PS1='[\u@\h \W]\$ '
-#PS1="\n${gray}[$?:${green}\u${gray}@${green}\h:\W${gray}]\\$ "
 reset_color="\[\e[m\]"
 if [ $UID -eq 0 ]
 then colour="\[${red}\]"

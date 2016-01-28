@@ -1,36 +1,14 @@
-col='--color=auto'
-
-alias grep="grep $col"
+# coreutils
+alias grep="grep --color=auto"
 alias ls="ls --color=auto --group-directories-first -F"
-
 alias l='ls -1'
+alias bc='bc -q'
+
+# programming
 alias gdb='gdb -q' # quiet
 alias make='make --no-print-directory'
-alias gdb_graphical='gdb -tui'
-alias valgrind-full='valgrind --leak-check=full --show-reachable=yes'
-alias pstree='ps auxwwwf'
-alias bc='bc -q'
-alias jerbs='jobs'
-# file size:
-alias dub='du -b'
-alias shreduvz='shred -uvz'
-alias netstat='netstat 2> /dev/null'
-alias lst='lst -F -s'
-alias less='less -R'
-alias cpv='rsync -P -rR' # verbose copy
-alias rd='rmdir'
-alias rsync_auto='rsync -Puvarph'
 
-alias oo='libreoffice --nologo'
-
-#office(){
-#	local ret
-#	GTK2_RC_FILES=/tim soffice $@
-#	ret=$?
-#	rm -f /tmp/sv*.tmp >& /dev/null
-#	return $ret
-#}
-
+# aliases affecting shell state
 mkcd(){
 	if [ $# -ne 1 ]
 	then
@@ -41,55 +19,13 @@ mkcd(){
 	cd "$1"
 }
 
-coredump_enable(){
-	ulimit -c unlimited
-}
-
-randbits(){
-	head -c 10 /dev/urandom | perl -ne 'print ord $_ for split //'
-}
-
-nohist(){
-	unset HISTFILE
-	sed -i '/nohist/d' ~/.zsh_history
-	if [ $# -ne 0 ]
-	then echo 'nohist: ignored args' >&2
-	fi
-}
-
-careful(){
-	[ $# -ne 0 ] && echo >&2 "$0: ignoring args"
-	alias mv='mv -i'
-	alias cp='cp -i'
-}
-
-search(){
-	if [ $# -ne 1 -o "$1" = "--help" ]
-	then
-		echo "usage: $0 file_to_search_for" >&2
-		return 1
-	else
-		find . -iname \*$1\*
-	fi
-}
-
 nh(){
 	if [ $# -eq 0 ]
 	then
 		echo "usage: nh program [args]" >&2
 		return 1
 	else
-		nohup $@ >& /dev/null &
+		nohup "$@" >& /dev/null &
 		disown %nohup
 	fi
 }
-
-quiet(){
-	shhcat|$@ > /dev/null
-}
-
-car()  { echo $1; }
-cdr()  { shift; echo $@; }
-ucar() { echo ${!#}; }
-ucdr() { echo "$*" | sed 's/ [^ ]*$//'; }
-# vim: ft=sh

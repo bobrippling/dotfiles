@@ -1,6 +1,5 @@
-source ~/.login
-source ~/.shcolours
 source ~/.aliases
+source ~/.environ
 
 
 # Run `zsh-newuser-install [-f]` to reset settings
