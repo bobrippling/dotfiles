@@ -69,7 +69,6 @@ unsetopt hist_beep
 unsetopt beep
 unsetopt correct_all
 unsetopt nomatch # no-matches aren't errors
-unset MAIL MAILPATH MAILCHECK
 
 HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
@@ -126,71 +125,22 @@ zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 
 
+# -------------------------------------------------------------------------------------
 # Prompt
-if [[ $UID -eq 0 ]]
-then
-	col_prompt=red
-else
-	col_prompt=green
+col_failure='[1;31m'
+
+if test $UID -eq 0
+then col_prompt=
+else col_prompt='[32m'
 fi
 
-# %T    System time (HH:MM)
-# %*    System time (HH:MM:SS)
-# %D    System date (YY-MM-DD)
-# %n    Your username
-# %B | %b Begin - end bold print
-# %U | %u Begin - end underlining
-# %d    Your current working directory
-# %~    Your current working directory, relative to ~
-# %.    Your current directory (truncated), relative to ~. %2. gives two directories
-# %M    The computer's hostname
-# %m    The computer's hostname (truncated before the first period)
-# %l    Your current tty
-#
 # %(test.success.failure)
 #  e.g. %(?.EXIT_SUCCESS.EXIT_FAILURE)
+# colours should be inside a %{ %} pair
 
-#pwdcol="%{$fg[$promptcoldir]%}"
-
-# colours _must_ be inside a %{ %} pair
-
-col_reset="%{$reset_color%}"
-col_bracket="%{$fg[$col_prompt]%}"
-col_red="%{$fg[red]%}"
-
-#if echo $TERM | grep 256 > /dev/null
-#then
-#	col_pwd="`printf '\e[1;38;5;30m'`"
-#else
-#	col_pwd="$fg[blue]"
-#fi
-
-#export PS1="
-#${col_bracket}[%(?.${col_reset}.${col_red})%? ${col_reset}%j${col_bracket}]\
-#[${col_reset}%B%{${col_pwd}%}%.${col_reset}\
-#%b${col_bracket}]${col_reset}%# "
+col_reset='%{[m%}'
+col_bracket="%{$col_prompt%}"
+col_red="%{$col_red%}"
 
 export PS1="
-%{%(?.$fg[$col_prompt].${col_red})%}%? %{$fg[$col_prompt]%}%j${col_reset} %# "
-
-HOSTTITLE=${(%):-%n@%m}
-TITLE=$HOSTTITLE
-
-case $TERM in
-	xterm* | *rxvt | screen)
-		precmd(){
-			print -Pn "\e]0;$TITLE \a"
-		}
-		preexec(){
-			print -Pn "\e]0;$TITLE \a"
-		}
-		;;
-esac
-
-function title (){
-	if (( ${#argv} == 0 )); then
-		TITLE=$HOSTTITLE
-	else
-		TITLE=$*
-	fi
-}
+%{%(?.$col_prompt.$col_red)%}%? %{$col_prompt%}%j$col_reset %# "
