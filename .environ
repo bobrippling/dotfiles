@@ -30,7 +30,11 @@ checkagent(){
 
 export_if_exists(){
 	if which "$2" >/dev/null
-	then export "$1=$2"
+	then
+		export "$1=$2"
+		return 0
+	else
+		return 1
 	fi
 }
 
@@ -49,7 +53,10 @@ export ESCDELAY=10 # ncurses escape wait time (ms)
 export PAGER="less -RS"
 
 export_if_exists EDITOR ed
-export_if_exists VISUAL tim
+
+export_if_exists VISUAL tim \
+	|| export_if_exists VISUAL vim \
+	|| export VISUAL=vi
 
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin"
