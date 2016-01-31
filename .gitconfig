@@ -1,0 +1,55 @@
+[core]
+	pager = less -F -X
+
+[alias]
+	ci = commit
+	di = diff
+	co = checkout
+	st = status -sb
+	t = status -sb
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%ae>%Creset'
+	ll = log --oneline
+	lauth = log --graph --pretty=format:'%h %an <%ae> %s'
+	amend = commit --amend
+	adp = add -p
+	adu = add -u
+	dic = diff --cached
+	rbc = rebase --con
+	rbi = rebase -i
+	c-p = cherry-pick
+	smu = submodule update
+
+[grep]
+	extendedRegexp = yes
+
+[color]
+	ui = true
+
+[interactive]
+	singlekey = true
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autosquash = true
+
+[diff]
+	renames = copies
+	mnemonicprefix = true
+
+[merge]
+	defaultToUpstream = true
+
+[advice]
+	pushUpdateRejected = false
+	pushNonFFCurrent = false
+	pushNonFFDefault = false
+	pushNonFFMatching = false
+	pushAlreadyExists = false
+	pushFetchFirst = false
+	pushNeedsForce = false
+	statusHints = false
+	commitBeforeMerge = false
+	resolveConflict = false
+	detachedHead = false
