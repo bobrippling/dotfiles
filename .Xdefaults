@@ -16,11 +16,11 @@ URxvt.iso14755_52: false
 !URxvt.boldFont: xft:montecarlo:size=8
 
 !urxvt*font:            xft:ProFont:pixelsize=11
-urxvt*font:            -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
+!urxvt*font:            -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 !http://gobase.org/dict/JIS/helponXfonts.html
 !urxvt*font:            fixed
 !urxvt*boldFont:            fixed
-urxvt*boldFont:         -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
+!urxvt*boldFont:         -*-courier-bold-r-*-*-10-100-*-*-m-*-iso10646-1,-*-lucidatypewriter-bold-r-*-*-10-100-*-*-m-*-iso10646-1
 urxvt*title:            rxvt-unicode
 urxvt*termname:         rxvt-unicode
 urxvt*cursorBlink:      false
@@ -39,16 +39,16 @@ urxvt*urgentOnBell:     true
 ! 10 = opaque, 90 = transparent
 urxvt*shading:          20
 
-urxvt*perl-lib: /home/rob/.urxvt
+urxvt*perl-lib: /Users/rpilling/src/urxvt-perls
 ! /usr/lib/urxvt/perl/
 
 urxvt.underlineURLs: true
 urxvt.keysym.M-u: perl:url-select:select_next
-urxvt.url-select.launcher: /home/rob/bin/open
+urxvt.url-select.launcher: /usr/bin/open
 urxvt.url-select.underline: true
 
-urxvt*perl-ext-common:  matcher,url-select
-urxvt*urlLauncher:      /home/rob/bin/open
+urxvt*perl-ext-common:  url-select
+urxvt*urlLauncher:      /usr/bin/open
 urxvt*matcher.button:   1
 
 ! xterm settings -----------------------------------------------------------
@@ -68,31 +68,32 @@ xterm*bellIsUrgent:        true
 ! xmessage settings:
 xmessage*background:                     gray85
 xmessage*Command.background:             gray80
-xmessage*Command.borderColor:            gray40
+!xmessage*Command.borderColor:            gray40
 xmessage*Command.highlightThickness:     1
 xmessage*Command.internalHeight:         3
 xmessage*Command.internalWidth:          5
 xmessage*Command.shapeStyle:             Rectangle
 xmessage.defaultButton:                  okay
-xmessage*font:                           -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*
+!xmessage*font:                           -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*
 !xmessage*foreground:                     gray15
 xmessage.form.background:                #333333
 xmessage.form.message.Scroll:            WhenNeeded
 xmessage.form.okay.background:           #333333
 !xmessage.form.okay.foreground:           snow
-xmessage.message.background:             #333333
-xmessage*message*background:             ivory3
-xmessage.message.font:                   -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
+!xmessage.message.background:             #333333
+!xmessage*message*background:             ivory3
+!xmessage.message.font:                   -*-proggyclean-*-*-*-*-*-*-*-*-*-*-*-*
 xmessage*Scrollbar.borderWidth:          0
 xmessage*Scrollbar.width:                1
-xmessage*Text*background:                gray95
-xmessage*Text.borderColor:               gray65
+xmessage*Text*background:                #ffffff
+xmessage*Text*foreground:                #000000
+!xmessage*Text.borderColor:               gray65
 
 ! Terminal Colours ------------------------------------------------------------
 ! http://phraktured.net/config/.Xcolors
 
-*cursorColor: #f5a400
-*background:  #212121
+*cursorColor: #00dddd
+*background:  #050505
 *foreground:  #cccccc
 
 ! Black     color0, color8:
