@@ -131,7 +131,21 @@ col_failure='[1;31m'
 
 if test $UID -eq 0
 then col_prompt=
-else col_prompt='[32m'
+else
+	case "$(hostname)" in
+		egbert)
+			col_prompt='[34m'
+			;;
+		jeffraw)
+			col_prompt='[38m'
+			;;
+		rip)
+			col_prompt='[32m'
+			;;
+		*)
+			col_prompt='[33m'
+			;;
+	esac
 fi
 
 # %(test.success.failure)
