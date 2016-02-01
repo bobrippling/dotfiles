@@ -12,7 +12,7 @@ mpd_host = "localhost"
 #mpd_port = "6600"
 
 #mpd_music_dir = "/mnt/share/Shared/Music/"
-mpd_music_dir = "/home/rob/music/"
+mpd_music_dir = "/Users/rpilling/.music/"
 
 mpd_connection_timeout = "5"
 
@@ -101,7 +101,7 @@ selected_item_suffix = "$9"
 ## - color is optional (if you want the default one, type [])
 
 #  l = time, a = artist, b = album, t = title
-song_columns_list_format = "(5)[white]{l} (20)[red]{a} (35)[green]{t} (25)[blue]{b} (20)[black]{f}"
+song_columns_list_format = "(7)[white]{l} (13)[red]{a} (20)[green]{t} (13)[blue]{b} (20)[black]{f}"
 
 ##### various settings #####
 
