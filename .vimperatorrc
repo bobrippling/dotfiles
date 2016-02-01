@@ -1,33 +1,26 @@
-"2.3.1 (created: 2010/04/07 18:56:53)
+"3.9 (created: 2015/02/15 15:49:05)
 
-nmap <silent> \\h     :set hls!<Return>
+"highlight InfoMsg 'color: blue; background: white'
+nmap <silent> "\\h" :set<Space>hls!<Return>
 nmap <silent> <C-S-N> :tabm!<Space>+1<Return>
 nmap <silent> <C-S-P> :tabm!<Space>-1<Return>
-
-nmap <silent> go1 :o mail.google.com<Return>
-nmap <silent> gO1 :t mail.google.com<Return>
-nmap <silent> go2 :o facebook.com<Return>
-nmap <silent> gO2 :t facebook.com<Return>
-nmap <silent> go3 :o youtube.com<Return>
-nmap <silent> gO3 :t youtube.com<Return>
 
 nnoremap <C-E> 5<C-E>
 nnoremap <C-Y> 5<C-Y>
 
-hi InfoMsg 'color: blue; background: white'
+"hi InfoMsg 'color: blue; background: white'
 
 set editor=guvi
 set wildmode=list:longest
 set defsearch=duckduckgo
-set gui=none,tabs
+set gui=bookmarks,menu,navigation,tabs
+
 set noautocomplete
-"set activate=addons,downloads,extoptions,help,homepage,quickmark,paste
-"colo neut
-"set hinttags=//*[@onclick or @onmouseover or @onmousedown or @onmouseup or @oncommand or @class='lk' or @role='link' or @role='button'] | //input[not(@type='hidden')] | //a | //area | //iframe | //textarea | //button | //select | //xhtml:input[not(@type='hidden')] | //xhtml:a | //xhtml:area | //xhtml:iframe | //xhtml:textarea | //xhtml:button | //xhtml:select | //div[contains(@class,'J-K-I J-J5-Ji')]"
-set runtimepath=/home/rob/.vimperator
-set urlseparator=",,\s*"
-"set hintchars=vcxzdsaewq
+set runtimepath=/Users/rpilling/.vimperator
+"set urlseparator=,,s*
+set wildmode=list:longest
+"source! /Users/rpilling/.vimperatorrc.local
 
-source! /home/rob/.vimperatorrc.local
+set editor=/usr/local/bin/urxvt\ -e\ vim
 
-" vim: ft=vim
+" vim: set ft=vimperator:
