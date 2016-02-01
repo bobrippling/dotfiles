@@ -156,5 +156,10 @@ col_reset='%{[m%}'
 col_bracket="%{$col_prompt%}"
 col_red="%{$col_red%}"
 
-export PS1="
-%{%(?.$col_prompt.$col_red)%}%? %{$col_prompt%}%j$col_reset %# "
+# non-colour version
+#export PS1='
+#%? %j %# '
+
+# colour version - %(x.true.false) - the '.' is an arbitrary separator
+export PS1='
+%(?,,%F{red})%?%F{off} %j %# '
