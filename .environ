@@ -38,6 +38,23 @@ export_if_exists(){
 	fi
 }
 
+ssh(){
+	ssh=$(/bin/which ssh)
+
+	if test -t 0 && ! ssh-add -l >/dev/null
+	then
+		printf >&2 "ssh wrapper: no identities, add? (Y/n) "
+		if read ans
+		then
+			if test -z "$ans" || test "$ans" = y || test "$ans" = Y
+			then ssh-add
+			fi
+		fi
+	fi
+
+	$ssh "$@"
+}
+
 export GREP_COLORS="rv:mt=1;31:sl=1;30"
 export LS_COLORS="di=1;34:ln=1;36:pi=1;33:bd=44;37:cd=44;37:or=7;36:so=33:su=1;31:sg=31:tw=1;35:ow=0;34:ex=1;32:mi=31"
 
