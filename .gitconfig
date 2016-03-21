@@ -18,6 +18,7 @@
 	rbi = rebase -i
 	c-p = cherry-pick
 	smu = submodule update
+	ff = merge --ff-only
 
 [grep]
 	extendedRegexp = yes
