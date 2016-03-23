@@ -39,8 +39,6 @@ export_if_exists(){
 }
 
 ssh(){
-	ssh=$(/bin/which ssh)
-
 	if test -t 0 && ! ssh-add -l >/dev/null
 	then
 		printf >&2 "ssh wrapper: no identities, add? (Y/n) "
@@ -52,7 +50,9 @@ ssh(){
 		fi
 	fi
 
-	$ssh "$@"
+	# prevent recursion
+	next=$(whereis ssh | tr ' ' '\n' | sed -n '/:$/d' | head -1)
+	${next:-/usr/bin/ssh} "$@"
 }
 
 export GREP_COLORS="rv:mt=1;31:sl=1;30"
