@@ -45,7 +45,7 @@ ssh(){
 		if read ans
 		then
 			if test -z "$ans" || test "$ans" = y || test "$ans" = Y
-			then ssh-add
+			then ssh-add -t 1h30m
 			fi
 		fi
 	fi
