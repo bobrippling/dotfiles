@@ -1,6 +1,8 @@
 autoload -Uz compinit
 compinit # for compdef in aliases
 
+export fpath=($fpath ~/.zsh/completion)
+
 # Run `zsh-newuser-install [-f]` to reset settings
 
 # -------------------------------------------------------------------------------------
@@ -159,3 +161,6 @@ PS1="
 %(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
 
 setopt prompt_subst
+
+source ~/.config/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh
