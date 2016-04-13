@@ -1,6 +1,7 @@
 source ~/.aliases
 source ~/.environ
 
+export fpath=($fpath ~/.zsh/completion)
 
 # Run `zsh-newuser-install [-f]` to reset settings
 
