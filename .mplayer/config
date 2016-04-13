@@ -2,7 +2,7 @@
 softvol=1
 
 # allow fullscreen with dwm
-fstype=none
+#fstype=none
 
 #ao=alsa #pulse,jack,alsa
 #ao=alsa
