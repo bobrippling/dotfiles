@@ -56,3 +56,15 @@
 
 [color]
 	ui = true
+
+[cola]
+	spellcheck = false
+[diff "bin"]
+	textconv = hexdump -v -C
+[core]
+	pager = less -F -X
+	attributesfile = /Users/robp/.config/git/attributes
+[github]
+	user = bobrippling
+[ghi]
+	token = !security find-internet-password -a bobrippling -s github.com -l 'ghi token' -w
