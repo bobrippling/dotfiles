@@ -39,7 +39,9 @@ export_if_exists(){
 }
 
 ssh(){
-	if test -t 0 && ! ssh-add -l >/dev/null
+	if test -n "$SSH_AUTH_SOCK" \
+		&& test -t 0 \
+		&& ! ssh-add -l >/dev/null
 	then
 		printf >&2 "ssh wrapper: no identities, add? (Y/n) "
 		if read ans
