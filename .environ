@@ -20,11 +20,14 @@ checkagent(){
 		if [ -f "$agent_file" ]
 		then
 			. "$agent_file"
+			return 0
 		else
 			echo >&2 "environ: $agent_file doesn't exist"
+			return 1
 		fi
 	else
 		echo >&2 "environ: $proc_name not running"
+		return 1
 	fi
 }
 
@@ -36,25 +39,6 @@ export_if_exists(){
 	else
 		return 1
 	fi
-}
-
-ssh(){
-	if test -n "$SSH_AUTH_SOCK" \
-		&& test -t 0 \
-		&& ! ssh-add -l >/dev/null
-	then
-		printf >&2 "ssh wrapper: no identities, add? (Y/n) "
-		if read ans
-		then
-			if test -z "$ans" || test "$ans" = y || test "$ans" = Y
-			then ssh-add -t 1h30m
-			fi
-		fi
-	fi
-
-	# prevent recursion
-	next=$(whereis ssh | tr ' ' '\n' | sed -n '/:$/d' | head -1)
-	${next:-/usr/bin/ssh} "$@"
 }
 
 export GREP_COLORS="rv:mt=1;31:sl=1;30"
@@ -80,5 +64,12 @@ export_if_exists VISUAL tim \
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin"
 
-checkagent ssh-agent "$HOME/.ssh/env_agent"
+if checkagent ssh-agent "$HOME/.ssh/env_agent"
+then
+	nssh=$(ssh-add -l | grep '^[0-9]' | wc -l)
+	if test $nssh -eq 0
+	then echo >&2 "environ: no ssh identities"
+	fi
+fi
+
 checkagent gpg-agent "$HOME/.ssh/gpg_env_agent"
