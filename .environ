@@ -21,10 +21,10 @@ checkagent(){
 		then
 			. "$agent_file"
 		else
-			echo >&2 not source "$agent_file"
+			echo >&2 "environ: $agent_file doesn't exist"
 		fi
 	else
-		echo >&2 "no $proc_name"
+		echo >&2 "environ: $proc_name not running"
 	fi
 }
 
