@@ -1,0 +1,40 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          backlight permissions
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# Default-Start:     S
+# Default-Stop:      0 6
+# Short-Description: Set backlight
+# Description:       Set backlight
+### END INIT INFO
+
+
+. /lib/lsb/init-functions
+
+f=/sys/class/backlight/intel_backlight/brightness
+
+case "$1" in
+	start)
+		log_daemon_msg "Setting backlight permissions" "backlight" || true
+		chgrp video "$f" && chmod g+w "$f"
+		q=$?
+		log_end_msg $q || true
+		exit $q
+		;;
+
+	stop)
+		log_daemon_msg "Nothing to stop" "backlight" || true
+		log_end_msg 0 || true
+		;;
+
+	status)
+		ls -l "$f" | tr -d '\n'
+		log_end_msg 0 || true
+		;;
+
+	*)
+		log_action_msg "Usage: /etc/init.d/xshd {start|stop|status}" || true
+		exit 1
+		;;
+esac
