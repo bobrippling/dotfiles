@@ -35,3 +35,8 @@ nh(){
 		disown %nohup
 	fi
 }
+
+if test "$(uname -s)" = Darwin
+then
+	alias shred=srm
+fi
