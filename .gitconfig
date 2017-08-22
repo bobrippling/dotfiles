@@ -3,7 +3,7 @@
 
 [alias]
 	ci = commit
-	di = diff
+	di = diff --ws-error-highlight=all
 	co = checkout
 	st = status -sb
 	t = status -sb
