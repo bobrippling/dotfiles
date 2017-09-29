@@ -19,6 +19,7 @@
 	c-p = cherry-pick
 	smu = submodule update
 	ff = merge --ff-only
+	standup = log --all --since=1.day --committer=Pilling
 
 [grep]
 	extendedRegexp = yes
