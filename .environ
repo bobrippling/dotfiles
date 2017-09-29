@@ -88,3 +88,5 @@ addtopath /usr/local/opt/llvm36/bin
 ulimit -c 0
 
 . "$HOME/bin/dyld_insert.sh"
+
+stty dsusp undef
