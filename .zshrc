@@ -164,3 +164,5 @@ col_red="%{$col_red%}"
 # colour version - %(x.true.false) - the '.' is an arbitrary separator
 export PS1='
 %(?,,%F{red})%?%F{off} %j %# '
+
+source ~/.config/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
