@@ -7,7 +7,7 @@
 	co = checkout
 	st = status -sb
 	t = status -sb
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%ae>%Creset'
+	lg = log --graph --pretty=format:'%C(auto,red)%h%C(auto,reset) -%C(auto,yellow)%d%C(auto,reset) %s %C(auto,bold blue)<%ae>%C(auto,reset)'
 	ll = log --oneline
 	lauth = log --graph --pretty=format:'%h %an <%ae> %s'
 	amend = commit --amend
