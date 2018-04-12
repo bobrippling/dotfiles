@@ -1,0 +1,14 @@
+BoldAsFont=yes
+Transparency=off
+OpaqueWhenFocused=no
+CursorType=block
+CursorBlinks=no
+CopyAsRTF=no
+Scrollbar=none
+ForegroundColour=131,147,149
+BackgroundColour=4,40,51
+CursorColour=192,98,12
+Font=Consolas
+FontHeight=9
+BoldAsColour=no
+ThemeFile=flat-ui
