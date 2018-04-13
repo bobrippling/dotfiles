@@ -1,20 +1,30 @@
 set nocompatible
+
+" movement
 set matchpairs+=<:>
 set virtualedit=all
-set noequalalways
-set novisualbell
 set tildeop
+
+" search
 set ignorecase smartcase
-set scrolloff=1
 set nowrapscan
-set nowrap
 set incsearch
-set splitbelow splitright
-set wildmode=list:longest
-set cindent
+
+" line wrapping
+set nowrap
+
+" os/files
 set clipboard=
 set undofile
 set undodir=~/.vim/undo
+
+" display
+set noequalalways
+set novisualbell
+set scrolloff=1
+set splitbelow splitright
+set wildmode=list:longest
+set cindent
 set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%=\ [%p%%]
 
 let g:netrw_banner = 0
