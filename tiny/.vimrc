@@ -72,3 +72,6 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v[\/](\.git|node_modules)$',
 	\ 'file': '\v\.(exe|so|dll)$'
 	\ }
+
+highlight PmenuSel ctermfg=2 ctermbg=0
+highlight Pmenu ctermfg=0 ctermbg=2
