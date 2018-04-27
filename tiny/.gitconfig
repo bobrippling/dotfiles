@@ -11,6 +11,7 @@
 	dic = diff --cached
 	ff = merge --ff-only
 	rbi = rebase -i
+	rbc = rebase --con
 	amend = commit --amend
 
 [interactive]
