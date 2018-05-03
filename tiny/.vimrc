@@ -45,6 +45,7 @@ nmap <silent> <leader>J :w\|n<CR>
 nmap <silent> <leader>h :set hls!<CR>
 nmap <silent> <leader>g :grep <CR>
 nmap <silent> <leader>G :grep '\b\b'<CR>
+nmap <silent> <leader>* :match IncSearch /\<\>/<CR>
 nmap <silent> <leader>l :set list!<CR>
 nmap <silent> <leader>w :set wrap!<CR>
 nmap <silent> <leader>S :set spell!<CR>
