@@ -59,6 +59,8 @@ nmap <silent> [< :call searchpair('<', '', '>', 'Wb')<CR>
 nmap <silent> ]> :call searchpair('<', '', '>', 'W')<CR>
 
 nnoremap ' `
+nnoremap <C-Y> 3<C-Y>
+nnoremap <C-E> 3<C-E>
 
 function Joinoperator(submode)
 	normal $mj
