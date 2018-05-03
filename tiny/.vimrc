@@ -26,12 +26,15 @@ set novisualbell
 set scrolloff=1
 set splitbelow splitright
 set wildmode=list:longest
-set cindent
 set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%=\ [%p%%]
 set laststatus=1
 set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
+
+" editing
+set cindent
+set cinoptions+=j1,J1
 
 let g:netrw_banner = 0
 
