@@ -64,6 +64,9 @@ endfunction
 nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
 set nojoinspaces
 
+highlight PmenuSel ctermfg=2 ctermbg=0
+highlight Pmenu ctermfg=0 ctermbg=2
+
 execute pathogen#infect()
 
 let g:ctrlp_switch_buffer = ''
@@ -72,6 +75,3 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v[\/](\.git|node_modules)$',
 	\ 'file': '\v\.(exe|so|dll)$'
 	\ }
-
-highlight PmenuSel ctermfg=2 ctermbg=0
-highlight Pmenu ctermfg=0 ctermbg=2
