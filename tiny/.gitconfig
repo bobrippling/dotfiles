@@ -30,3 +30,5 @@
 	resolveConflict = false
 	detachedHead = false
 
+[rerere]
+	enabled = true
