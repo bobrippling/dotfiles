@@ -20,13 +20,12 @@ checkagent(){
 		if [ -f "$agent_file" ]
 		then
 			. "$agent_file"
+			echo >&2 "environ: loaded $proc_name"
 			return 0
 		else
-			echo >&2 "environ: $agent_file doesn't exist"
 			return 1
 		fi
 	else
-		echo >&2 "environ: $proc_name not running"
 		return 1
 	fi
 }
