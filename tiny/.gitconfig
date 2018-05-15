@@ -13,6 +13,8 @@
 	rbi = rebase -i
 	rbc = rebase --con
 	amend = commit --amend
+	c-p = cherry-pick
+	b = branch-ls
 
 [interactive]
 	singlekey = true
@@ -32,3 +34,6 @@
 
 [rerere]
 	enabled = true
+
+[merge]
+	tool = vimdiff
