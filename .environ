@@ -86,6 +86,6 @@ export MPD_HOST=dog@127.0.0.1
 
 ulimit -c 0
 
-. "$HOME/bin/dyld_insert.sh"
+#. "$HOME/bin/dyld_insert.sh"
 
 stty dsusp undef
