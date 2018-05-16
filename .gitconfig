@@ -68,3 +68,5 @@
 	user = bobrippling
 [ghi]
 	token = !security find-internet-password -a bobrippling -s github.com -l 'ghi token' -w
+[cola]
+	spellcheck = false
