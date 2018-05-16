@@ -40,6 +40,9 @@
 	renames = copies
 	mnemonicprefix = true
 
+[diff "bin"]
+	textconv = hexdump -v -C
+
 [merge]
 	defaultToUpstream = true
 
