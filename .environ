@@ -94,3 +94,7 @@ init_nvm(){
 	export NVM_DIR="$HOME/.nvm"
 	. "$(brew --prefix nvm)/nvm.sh"
 }
+
+# disgusting
+export GPG_TTY=$(tty)
+export PINENTRY_USER_DATA="USE_CURSES=0"
