@@ -19,3 +19,7 @@ bind 'set match-hidden-files off'
 bind -m vi '"j": history-search-forward'
 bind -m vi '"k": history-search-backward'
 set -o vi
+
+# history
+export HISTCONTROL=erasedups:ignorespace:ignoredups
+shopt -s histappend
