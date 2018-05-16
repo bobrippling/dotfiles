@@ -89,3 +89,8 @@ ulimit -c 0
 #. "$HOME/bin/dyld_insert.sh"
 
 stty dsusp undef
+
+init_nvm(){
+	export NVM_DIR="$HOME/.nvm"
+	. "$(brew --prefix nvm)/nvm.sh"
+}
