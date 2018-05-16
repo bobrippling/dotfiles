@@ -4,13 +4,9 @@
 source ~/.aliases
 source ~/.environ
 
-reset_color="\[\e[m\]"
-if [ $UID -eq 0 ]
-then colour="\[${red}\]"
-else colour="\[${green}\]"
-fi
+export PS1='
+\[[1;$(e=$?; if test $e -eq 0; then printf "32m"; else printf "31m"; fi; exit $e)\]$? \[[32m\]$\[[0m\] '
 
-export PS1="\n${colour}[${reset_color}\$?${colour}][\[\e[1;34m\]\W${colour}]${reset_color}\\$ "
 
 complete -d cd rmdir
 bind 'set match-hidden-files off'
