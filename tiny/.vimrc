@@ -53,6 +53,7 @@ nmap <silent> <leader>S :set spell!<CR>
 nmap <silent> <leader>f :let @" = bufname("%")<CR>
 nmap <silent> <leader>F :let @" = expand("%:p")<CR>
 nmap <silent> ZW :w<CR>
+nmap <silent> ZE :e<CR>
 
 nmap <silent> [% :call searchpair('\[', '', '\]', 'Wb')<CR>
 nmap <silent> ]% :call searchpair('\[', '', '\]', 'W')<CR>
