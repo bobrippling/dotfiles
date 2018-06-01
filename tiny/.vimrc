@@ -28,7 +28,7 @@ set scrolloff=1
 set splitbelow splitright
 set wildmode=list:longest
 set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%=\ [%p%%]
-set laststatus=1
+set laststatus=2
 set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
