@@ -25,6 +25,7 @@ set fileencodings+=utf-16le
 set noequalalways
 set novisualbell
 set scrolloff=1
+set sidescroll=1
 set splitbelow splitright
 set wildmode=list:longest
 set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}%=\ [%l/%L]
