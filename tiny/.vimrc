@@ -33,6 +33,7 @@ set laststatus=2
 set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
+set termkey=<C-B>
 
 " editing
 set cindent
@@ -53,8 +54,11 @@ nmap <silent> <leader>w :set wrap!<CR>
 nmap <silent> <leader>S :set spell!<CR>
 nmap <silent> <leader>f :let @" = bufname("%")<CR>
 nmap <silent> <leader>F :let @" = expand("%:p")<CR>
+nmap <silent> <leader>M :set modifiable!<CR>
 nmap <silent> ZW :w<CR>
 nmap <silent> ZE :e<CR>
+tmap <silent> <C-B>gt <C-B>:tabn<CR>
+tmap <silent> <C-B>gT <C-B>:tabp<CR>
 
 nmap <silent> [% :call searchpair('\[', '', '\]', 'Wb')<CR>
 nmap <silent> ]% :call searchpair('\[', '', '\]', 'W')<CR>
@@ -80,6 +84,8 @@ function Evalmath(submode)
     let @a = save_reg_a
 endfunc
 nnoremap g= :silent set operatorfunc=Evalmath<CR>g@
+
+cabbrev termene term ++curwin
 
 highlight PmenuSel ctermfg=2 ctermbg=0
 highlight Pmenu ctermfg=0 ctermbg=2
