@@ -67,6 +67,8 @@ nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
 nmap g<CR> gjg^
 
+tnoremap <C-W><C-W> <C-W>.
+
 function Joinoperator(submode)
 	normal $mj
 	'[,']join
