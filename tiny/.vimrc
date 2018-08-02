@@ -65,6 +65,7 @@ nmap <silent> ]> :call searchpair('<', '', '>', 'W')<CR>
 nnoremap ' `
 nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
+nnoremap Y y$
 nmap g<CR> gjg^
 
 tnoremap <C-W><C-W> <C-W>.
