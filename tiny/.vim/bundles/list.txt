@@ -2,3 +2,4 @@ http://github.com/ctrlpvim/ctrlp.vim
 http://github.com/b4winckler/vim-angry
 http://github.com/tpope/vim-fugitive
 http://github.com/tpope/vim-surround
+http://github.com/coderifous/textobj-word-column.vim
