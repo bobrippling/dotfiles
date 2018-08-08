@@ -1,23 +1,36 @@
 # see global ignore file @ ~/.config/git/ignore
 
 [alias]
-	t = status -sb
-	co = checkout
-	ci = commit
-	di = diff
-	lg = log --oneline
-	adu = add -u
 	adp = add -p
-	dic = diff --cached
-	ff = merge --ff-only
-	rbi = rebase -i
-	rbc = rebase --con
+	adu = add -u
 	amend = commit --amend
 	c-p = cherry-pick
-	b = branch-ls
+	ci = commit
+	co = checkout
+	di = diff --ws-error-highlight=all
+	dic = diff --cached
+	ff = merge --ff-only
+	lg = log --oneline
+	rbc = rebase --con
+	rbi = rebase -i
+	t = status -sb
 
 [interactive]
 	singlekey = true
+
+[rerere]
+	enabled = true
+
+[rebase]
+	autosquash = true
+
+[diff]
+	renames = copies
+	mnemonicprefix = true
+
+[merge]
+	defaultToUpstream = true
+	tool = vimdiff
 
 [advice]
 	pushUpdateRejected = false
@@ -32,8 +45,5 @@
 	resolveConflict = false
 	detachedHead = false
 
-[rerere]
-	enabled = true
-
-[merge]
-	tool = vimdiff
+[push]
+	default = nothing

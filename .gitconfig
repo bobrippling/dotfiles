@@ -2,30 +2,22 @@
 	pager = less -F -X
 
 [alias]
-	ci = commit
-	di = diff --ws-error-highlight=all
-	co = checkout
-	st = status -sb
-	t = status -sb
-	lg = log --graph --pretty=format:'%C(auto,red)%h%C(auto,reset) -%C(auto,yellow)%d%C(auto,reset) %s %C(auto,bold blue)<%ae>%C(auto,reset)'
-	ll = log --oneline
-	lauth = log --graph --pretty=format:'%h %an <%ae> %s'
-	amend = commit --amend
 	adp = add -p
 	adu = add -u
+	amend = commit --amend
+	c-p = cherry-pick
+	ci = commit
+	co = checkout
+	di = diff --ws-error-highlight=all
 	dic = diff --cached
+	ff = merge --ff-only
+	lauth = log --graph --pretty=format:'%h %an <%ae> %s'
+	lg = log --graph --pretty=format:'%C(auto,red)%h%C(auto,reset) -%C(auto,yellow)%d%C(auto,reset) %s %C(auto,bold blue)<%ae>%C(auto,reset)'
 	rbc = rebase --con
 	rbi = rebase -i
-	c-p = cherry-pick
-	smu = submodule update
-	ff = merge --ff-only
+	st = status -sb
 	standup = log --all --since=1.day --committer=Pilling
-
-[grep]
-	extendedRegexp = yes
-
-[color]
-	ui = true
+	t = status -sb
 
 [interactive]
 	singlekey = true
@@ -40,11 +32,9 @@
 	renames = copies
 	mnemonicprefix = true
 
-[diff "bin"]
-	textconv = hexdump -v -C
-
 [merge]
 	defaultToUpstream = true
+	tool = vimdiff
 
 [advice]
 	pushUpdateRejected = false
@@ -61,3 +51,14 @@
 
 [push]
 	default = nothing
+
+[grep]
+	extendedRegexp = yes
+
+[color]
+	ui = true
+
+[cola]
+	spellcheck = false
+[diff "bin"]
+	textconv = hexdump -v -C
