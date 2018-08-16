@@ -12,7 +12,10 @@ set incsearch
 
 " line wrapping
 set nowrap
-set linebreak breakindent showbreak=>
+set linebreak showbreak=>
+if exists("&breakindent")
+	set breakindent
+endif
 
 " os/files
 set clipboard=
