@@ -78,13 +78,6 @@ endfunction
 nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
 set nojoinspaces
 
-function Evalmath(submode)
-    let save_reg_a = @a
-    norm v`]"adi=a
-    let @a = save_reg_a
-endfunc
-nnoremap g= :silent set operatorfunc=Evalmath<CR>g@
-
 highlight PmenuSel ctermfg=2 ctermbg=0
 highlight Pmenu ctermfg=0 ctermbg=2
 
