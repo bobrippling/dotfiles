@@ -39,7 +39,7 @@ set diffopt+=vertical
 
 " editing
 set cindent
-set cinoptions+=j1,J1
+set cinoptions+=j1,J1,l1,N-s,t0
 
 let g:netrw_banner = 0
 
