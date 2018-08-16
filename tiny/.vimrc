@@ -40,6 +40,10 @@ set diffopt+=vertical
 " editing
 set cindent
 set cinoptions+=j1,J1,l1,N-s,t0
+set formatoptions+=tcroqnl
+if v:version >= 704
+	set formatoptions+=j
+endif
 
 let g:netrw_banner = 0
 
