@@ -104,6 +104,8 @@ filetype on
 filetype indent plugin on
 
 colorscheme grb256
+highlight PmenuSel ctermfg=2 ctermbg=0
+highlight Pmenu ctermfg=0 ctermbg=2
 
 execute pathogen#infect()
 
