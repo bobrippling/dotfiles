@@ -97,6 +97,10 @@ if has("gui_running")
 	set guioptions-=mi!aPATrRlLB
 endif
 
+syntax on
+filetype on
+filetype indent plugin on
+
 colorscheme grb256
 
 execute pathogen#infect()
