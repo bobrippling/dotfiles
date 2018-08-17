@@ -94,6 +94,8 @@ if has("gui_running")
 	set guioptions-=mi!aPATrRlLB
 endif
 
+colorscheme grb256
+
 execute pathogen#infect()
 
 let g:ctrlp_switch_buffer = ''
