@@ -61,6 +61,9 @@ nmap <silent> <leader>S :set spell!<CR>
 nmap <silent> <leader>f :let @" = bufname("%")<CR>
 nmap <silent> <leader>F :let @" = expand("%:p")<CR>
 nmap <silent> <leader>M :set modifiable!<CR>
+nmap <silent> <leader>m :update\|make<CR>
+nmap <silent> <leader>a :vertical ball<CR>
+
 nmap <silent> ZW :w<CR>
 nmap <silent> ZE :e<CR>
 
