@@ -108,6 +108,10 @@ colorscheme grb256
 highlight PmenuSel ctermfg=2 ctermbg=0
 highlight Pmenu ctermfg=0 ctermbg=2
 
+if exepath("ag") != ""
+	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ \"node_modules\"\ --ignore\ \"\*.min.\*\"
+endif
+
 execute pathogen#infect()
 
 let g:ctrlp_switch_buffer = ''
