@@ -78,7 +78,9 @@ nnoremap <C-E> 3<C-E>
 nnoremap Y y$
 nmap g<CR> gjg^
 
-tnoremap <C-W><C-W> <C-W>.
+if has("terminal")
+	tnoremap <C-W><C-W> <C-W>.
+endif
 
 function Joinoperator(submode)
 	normal $mj
