@@ -1,3 +1,7 @@
+[user]
+	name = Rob Pilling
+	email = robpilling@gmail.com
+
 [core]
 	pager = less -F -X
 
