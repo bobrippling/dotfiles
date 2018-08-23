@@ -7,5 +7,8 @@ set -o vi
 
 complete -d cd rmdir
 
+alias ls='ls --color'
+alias grep='grep --color'
+
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 shopt -s histappend
