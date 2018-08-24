@@ -70,7 +70,7 @@ unsetopt beep
 unsetopt correct_all
 unsetopt nomatch # no-matches aren't errors
 
-HISTIGNORE="ls:ll:la:cd:exit:clear:logout"
+HISTIGNORE="ls:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
