@@ -81,6 +81,7 @@ nmap g<CR> gjg^
 
 if has("terminal")
 	tnoremap <C-W><C-W> <C-W>.
+	cabbrev vter vert term
 endif
 
 function Joinoperator(submode)
