@@ -47,6 +47,7 @@ if v:version >= 704
 endif
 
 let g:netrw_banner = 0
+let g:netrw_dirhistmax = 0
 
 nmap <silent> <leader>n :cn<CR>
 nmap <silent> <leader>N :w\|cn<CR>
