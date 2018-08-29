@@ -126,3 +126,5 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v[\/](\.git|node_modules)$',
 	\ 'file': '\v\.(exe|so|dll)$'
 	\ }
+
+let g:Blockwise_default_mapping = 0

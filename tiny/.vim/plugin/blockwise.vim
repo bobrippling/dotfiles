@@ -18,7 +18,7 @@ set cpo&vim
 if !exists('g:Blockwise_selector')
     let g:Blockwise_selector = 'B'
 endif
-if strlen(g:Blockwise_selector)
+if strlen(g:Blockwise_selector) && g:Blockwise_default_mapping
     exec 'xnoremap  ' . g:Blockwise_selector . ' :Blockwise<SPACE>'
 endif
 
