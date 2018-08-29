@@ -36,7 +36,7 @@ set laststatus=2
 set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
-set tabstop=2 shiftwidth=2
+set tabstop=2 shiftwidth=2 noexpandtab
 
 " editing
 set cindent
