@@ -3,39 +3,36 @@ runtime colors/ir_black.vim
 
 let g:colors_name = "grb256"
 
-hi pythonSpaceError ctermbg=red guibg=red
+" tweak existing ---------
+highlight Comment ctermfg=gray
 
-hi Comment ctermfg=gray
+highlight StatusLine ctermfg=grey ctermbg=NONE cterm=underline
+highlight StatusLineNC ctermfg=lightgrey ctermbg=NONE cterm=underline
 
-hi StatusLine cterm=underline ctermbg=NONE ctermfg=lightgrey
-hi StatusLineNC cterm=underline ctermbg=NONE ctermfg=grey
+highlight VertSplit ctermfg=lightgrey ctermbg=black
+highlight Function ctermfg=yellow
+highlight Visual ctermfg=NONE ctermbg=darkgray cterm=reverse
 
-hi VertSplit ctermbg=black ctermfg=lightgrey
-hi LineNr ctermfg=darkgray
-hi CursorLine     guifg=NONE        guibg=#121212     gui=NONE      ctermfg=NONE        ctermbg=234
-hi Function         guifg=#FFD2A7     guibg=NONE        gui=NONE      ctermfg=yellow       ctermbg=NONE        cterm=NONE
-"hi Visual           guifg=NONE        guibg=#262D51     gui=NONE      ctermfg=NONE        ctermbg=236    cterm=NONE
-hi Visual gui=none guifg=khaki guibg=olivedrab cterm=reverse
+highlight Error ctermfg=NONE cterm=NONE
+highlight ErrorMsg ctermfg=NONE
+highlight WarningMsg ctermfg=NONE ctermbg=red cterm=NONE
+highlight SpellBad ctermfg=NONE ctermbg=NONE
 
-hi Error            guifg=NONE        guibg=NONE        gui=undercurl ctermfg=16       ctermbg=red         cterm=NONE     guisp=#FF6C60 " undercurl color
-hi ErrorMsg         guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=16       ctermbg=red         cterm=NONE
-hi WarningMsg       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=16       ctermbg=red         cterm=NONE
-hi SpellBad       guifg=white       guibg=#FF6C60     gui=BOLD      ctermfg=16       ctermbg=160         cterm=NONE
+highlight Operator ctermfg=lightblue
 
-" ir_black doesn't highlight operators for some reason
-hi Operator        guifg=#6699CC     guibg=NONE        gui=NONE ctermfg=lightblue   ctermbg=NONE        cterm=NONE
+highlight SpecialKey ctermfg=black cterm=bold
 
-hi DiffAdd cterm=none ctermfg=black ctermbg=lightgreen
-hi DiffDelete cterm=none ctermfg=black ctermbg=lightred
-hi DiffChange cterm=none ctermfg=black ctermbg=lightcyan
-hi DiffText ctermfg=white ctermbg=cyan cterm=none
+highlight Search ctermfg=black ctermbg=darkgreen cterm=standout
 
-hi SpecialKey guifg=#4a4a59 ctermfg=black cterm=bold
+highlight NonText ctermfg=blue cterm=bold
 
-hi Search    guibg=peru  guifg=wheat ctermbg=darkgreen ctermfg=black cterm=standout
-hi IncSearch guifg=green guibg=black cterm=none ctermfg=black ctermbg=green
+highlight Pmenu ctermfg=black ctermbg=darkgreen
+highlight PmenuSel ctermfg=darkgreen ctermbg=black
 
-hi Pmenu ctermfg=white ctermbg=darkgrey
-hi PmenuSel ctermfg=16 ctermbg=156
+" new --------------------
+highlight DiffAdd ctermfg=black ctermbg=lightgreen cterm=NONE
+highlight DiffDelete ctermfg=black ctermbg=lightred cterm=NONE
+highlight DiffChange ctermfg=black ctermbg=lightcyan cterm=NONE
+highlight DiffText ctermfg=white ctermbg=cyan cterm=NONE
 
-hi NonText guifg=#4a4a59 guibg=grey15 cterm=bold ctermfg=blue
+highlight IncSearch ctermfg=black ctermbg=green cterm=NONE

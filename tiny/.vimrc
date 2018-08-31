@@ -95,9 +95,6 @@ endfunction
 nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
 set nojoinspaces
 
-highlight PmenuSel ctermfg=2 ctermbg=0
-highlight Pmenu ctermfg=0 ctermbg=2
-
 if has("gui_running")
 	set guicursor+=a:blinkon0
 	set guioptions+=gtcf
