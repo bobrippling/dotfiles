@@ -16,7 +16,6 @@ highlight Visual ctermfg=NONE ctermbg=darkgray cterm=reverse
 highlight Error ctermfg=NONE cterm=NONE
 highlight ErrorMsg ctermfg=NONE
 highlight WarningMsg ctermfg=NONE ctermbg=red cterm=NONE
-highlight SpellBad ctermfg=NONE ctermbg=NONE
 
 highlight Operator ctermfg=lightblue
 
@@ -36,3 +35,5 @@ highlight DiffChange ctermfg=black ctermbg=lightcyan cterm=NONE
 highlight DiffText ctermfg=white ctermbg=cyan cterm=NONE
 
 highlight IncSearch ctermfg=black ctermbg=green cterm=NONE
+
+highlight SpellBad ctermfg=white ctermbg=red cterm=none
