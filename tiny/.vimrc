@@ -41,7 +41,7 @@ set tabstop=2 shiftwidth=2 noexpandtab
 " editing
 set cindent
 set cinoptions+=j1,J1,l1,N-s,t0
-set formatoptions+=tcroqnl
+set formatoptions+=clnoqrt
 if v:version >= 704
 	set formatoptions+=j
 endif
