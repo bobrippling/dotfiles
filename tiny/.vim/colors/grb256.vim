@@ -1,7 +1,7 @@
 "based on
 runtime colors/ir_black.vim
 
-let g:colors_name = "grb256"
+let colors_name = "grb256"
 
 " tweak existing ---------
 highlight Comment ctermfg=gray
