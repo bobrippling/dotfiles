@@ -1,7 +1,7 @@
 function! GotoJsTag()
     let tag = expand("<cword>")
     let savesearch = @/
-    execute "normal gg/^import[^']*" . tag . "$F'hgf"
+    execute "normal gg/^import[^']*\\<" . tag . "\\>$F'hgf"
     let @/ = savesearch
 endfunction
 
