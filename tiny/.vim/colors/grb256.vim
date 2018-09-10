@@ -34,6 +34,7 @@ highlight DiffDelete ctermfg=black ctermbg=lightred cterm=NONE
 highlight DiffChange ctermfg=black ctermbg=lightcyan cterm=NONE
 highlight DiffText ctermfg=white ctermbg=cyan cterm=NONE
 
-highlight IncSearch ctermfg=black ctermbg=green cterm=NONE
+highlight Search ctermbg=yellow cterm=none ctermfg=red
+highlight IncSearch ctermbg=yellow ctermfg=red cterm=reverse
 
 highlight SpellBad ctermfg=white ctermbg=red cterm=none
