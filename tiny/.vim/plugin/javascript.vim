@@ -2,6 +2,7 @@ function! GotoJsTag()
     let tag = expand("<cword>")
     let savesearch = @/
     execute "normal gg/^import[^']*\\<" . tag . "\\>$F'hgf"
+    call histdel("/", -1)
     let @/ = savesearch
 endfunction
 
