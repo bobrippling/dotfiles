@@ -23,6 +23,7 @@ set undofile
 set undodir=~/.vim/undo
 set cpoptions+=i
 set fileencodings+=utf-16le
+set sessionoptions-=options | set sessionoptions+=localoptions
 
 " display
 set noequalalways
