@@ -38,3 +38,6 @@ highlight Search ctermbg=yellow cterm=none ctermfg=red
 highlight IncSearch ctermbg=yellow ctermfg=red cterm=reverse
 
 highlight SpellBad ctermfg=white ctermbg=red cterm=none
+
+highlight StatusLineTerm ctermfg=green ctermbg=none cterm=underline,reverse
+highlight StatusLineTermNC ctermfg=green ctermbg=none cterm=underline
