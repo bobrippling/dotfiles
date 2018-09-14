@@ -37,8 +37,11 @@ function! GotoJsTag()
 
     if bufnr("%") != curbuf
         " import 'gf' was successful, find ident
-        let ident_search = "\\<" . ident . "\\>"
-        execute "keepjumps silent! normal gg/" . ident_search . ""
+        if searchdecl(ident, 1) != 0
+            " not found via searchdecl
+            let ident_search = "\\<" . ident . "\\>"
+            execute "keepjumps silent! normal gg/" . ident_search . ""
+        endif
     endif
 
     call histdel("/", -1)
