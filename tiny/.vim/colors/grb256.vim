@@ -10,7 +10,7 @@ highlight StatusLine ctermfg=grey ctermbg=NONE cterm=underline
 highlight StatusLineNC ctermfg=lightgrey ctermbg=NONE cterm=underline
 
 highlight VertSplit ctermfg=lightgrey ctermbg=black
-highlight Function ctermfg=yellow
+highlight Function ctermfg=yellow cterm=none
 highlight Visual ctermfg=NONE ctermbg=darkgray cterm=reverse
 
 highlight Error ctermfg=NONE cterm=NONE
