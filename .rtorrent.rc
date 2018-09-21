@@ -1,3 +1,4 @@
+# vim:ft=conf
 # This is an example resource file for rTorrent. Copy to
 # /home/rob/.rtorrent.rc and enable/modify the options as needed. Remember to
 # uncomment the options you wish to enable.
