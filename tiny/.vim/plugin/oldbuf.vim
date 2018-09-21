@@ -56,9 +56,14 @@ endfunction
 function! TrimOldBuffers(count, bang)
     let recents = filter(s:recentbuffers(), { idx, buf -> !bufloaded(buf) })
 
-    let count_to_trim = min([len(recents) - 1, a:count_to_trim])
+    if len(a:bang)
+        let remaining = min([len(recents) - 1, a:count])
+        let delete = recents[:-remaining]
+    else
+        let count_to_trim = min([len(recents) - 1, a:count])
+        let delete = recents[:count_to_trim - 1]
+    endif
 
-    let delete = recents[:count_to_trim - 1]
     for i in delete
         execute "bdelete " . i
     endfor
