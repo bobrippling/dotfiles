@@ -65,7 +65,7 @@ export_if_exists VISUAL tim \
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin"
 
-if loadagent ssh-agent "$HOME/.ssh/env_agent"
+if test -z "$SSH_AUTH_SOCK" && loadagent ssh-agent "$HOME/.ssh/env_agent"
 then
 	nssh=$(ssh-add -l | grep '^[0-9]' | wc -l)
 	if test $nssh -eq 0
