@@ -1,7 +1,7 @@
 let g:trim_spaces = 1
 
 function! s:trim_spaces()
-	if g:trim_spaces == 0
+	if g:trim_spaces == 0 || (exists('b:trim_spaces') && b:trim_spaces == 0)
 		return
 	endif
 
