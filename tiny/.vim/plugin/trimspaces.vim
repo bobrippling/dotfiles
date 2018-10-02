@@ -16,3 +16,4 @@ function! s:trim_spaces()
 endfunction
 
 autocmd BufWritePre * call s:trim_spaces()
+command! -complete=command -nargs=+ NoTrim let b:trim_spaces = 0 | <args> | unlet b:trim_spaces
