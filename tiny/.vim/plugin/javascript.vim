@@ -33,7 +33,7 @@ function! GotoJsTag()
 
     let curbuf = bufnr("%")
     let import_search = "^import[^'\"]*\\<" . tag . "\\>"
-    execute "keepjumps normal gg/" . import_search . "$?['\"]hgf"
+    execute "keepjumps normal G?" . import_search . "$?['\"]hgf"
 
     if bufnr("%") != curbuf
         " import 'gf' was successful, find ident
@@ -41,6 +41,8 @@ function! GotoJsTag()
             " not found via searchdecl
             execute "silent! keepjumps ijump " . ident
         endif
+    else
+        keepjumps normal ''
     endif
 
     call histdel("/", -1)
