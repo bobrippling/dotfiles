@@ -39,6 +39,7 @@ set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
 set tabstop=2 shiftwidth=2 noexpandtab
+set history=400
 
 " editing
 set cindent
