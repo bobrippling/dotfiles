@@ -85,13 +85,6 @@ nnoremap gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
 nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 
-if has("terminal")
-	tnoremap <C-W><C-W> <C-W>.
-	tnoremap <C-W>gT <C-W>:tabp<CR>
-	tnoremap <C-W>gt <C-W>:tabn<CR>
-	cabbrev vter vert term
-endif
-
 function Joinoperator(submode)
 	normal $mj
 	'[,']join
@@ -99,6 +92,13 @@ function Joinoperator(submode)
 endfunction
 nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
 set nojoinspaces
+
+if has("terminal")
+	tnoremap <C-W><C-W> <C-W>.
+	tnoremap <C-W>gT <C-W>:tabp<CR>
+	tnoremap <C-W>gt <C-W>:tabn<CR>
+	cabbrev vter vert term
+endif
 
 if has("gui_running")
 	set guicursor+=a:blinkon0
