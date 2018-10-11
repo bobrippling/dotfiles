@@ -123,9 +123,7 @@ if exepath("ag") != ""
 	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ \"node_modules\"\ --ignore\ \"\*.min.\*\"
 endif
 
-if exists("*pathogen#infect")
-	execute pathogen#infect()
-endif
+execute pathogen#infect()
 
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_working_path_mode = ''
