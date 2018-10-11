@@ -1,5 +1,10 @@
 # see global ignore file @ ~/.config/git/ignore
 
+[user]
+	name = Rob Pilling
+	email = robpilling@gmail.com
+	useConfigOnly = true
+
 [alias]
 	adp = add -p
 	adu = add -u
