@@ -1,10 +1,9 @@
+# see global ignore file @ ~/.config/git/ignore
+
 [user]
 	name = Rob Pilling
 	email = robpilling@gmail.com
 	useConfigOnly = true
-
-[core]
-	pager = less -F -X
 
 [alias]
 	adp = add -p
@@ -16,13 +15,11 @@
 	di = diff --ws-error-highlight=all
 	dic = diff --cached
 	ff = merge --ff-only
-	lauth = log --graph --pretty=format:'%h %an <%ae> %s'
-	lg = log --graph --pretty=format:'%C(auto,red)%h%C(auto,reset) -%C(auto,yellow)%d%C(auto,reset) %s %C(auto,bold blue)<%ae>%C(auto,reset)'
+	lg = log --oneline
 	rbc = rebase --con
 	rbi = rebase -i
-	st = status -sb
-	standup = log --all --since=1.day --committer=Pilling
 	t = status -sb
+	fe = fetch -p
 
 [interactive]
 	singlekey = true
@@ -57,13 +54,5 @@
 [push]
 	default = nothing
 
-[grep]
-	extendedRegexp = yes
-
 [color]
 	ui = true
-
-[cola]
-	spellcheck = false
-[diff "bin"]
-	textconv = hexdump -v -C
