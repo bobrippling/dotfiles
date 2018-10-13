@@ -319,8 +319,7 @@ set history_disable_easter_egg 1
 
 # Web searching binds
 # NOTE you may search Google by adding "!g" to your DuckDuckGo search string
-#@cbind  ddg<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
-@cbind  sd<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
+@cbind  ddg<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
 # These bindings should be entered as simply \wiki but due to escaping
 # happening in multiple stages it needs to be written like this
 @cbind  \\\\awiki<Archwiki:>_  = uri https://wiki.archlinux.org/index.php/Special:Search?search=\@-encodeURIComponent(%r)-\@&go=Go
@@ -546,6 +545,7 @@ spawn_sync_exec @scripts_dir/load_cookies.sh
 spawn_sync_exec @scripts_dir/load_cookies.sh @(echo "${UZBL_SESSION_COOKIE_FILE:-@data_home/session-cookies.txt}")@
 
 # Set the "home" page.
-uri uzbl.org/doesitwork/@COMMIT
+#uri uzbl.org/doesitwork/@COMMIT
+uri about:blank
 
 # vim: set fdm=syntax:
