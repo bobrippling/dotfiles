@@ -111,7 +111,7 @@ set enable_builtin_auth 0
 set forward_keys      0
 
 set show_status       1
-set status_top        0
+set status_top        1
 set status_background #dc322f
 
 set modcmd_style      weight="bold" foreground="#dc322f"
@@ -284,11 +284,14 @@ set history_disable_easter_egg 1
 @cbind  <Shift><Ctrl>F  = toggle frozen
 
 # Navigation binds
-@cbind  b   = back
-@cbind  m   = forward
+#@cbind  b   = back
+#@cbind  m   = forward
+@cbind  H   = back
+@cbind  L   = forward
 @cbind  gb  = uri \@< encodeURI(uzbl.navigation.prev()) >\@
 @cbind  gf  = uri \@< encodeURI(uzbl.navigation.next()) >\@
-@cbind  S   = stop
+#@cbind  S   = stop
+@cbind  <Ctrl>c   = stop
 @cbind  r   = reload cached
 @cbind  R   = reload full
 
@@ -316,7 +319,8 @@ set history_disable_easter_egg 1
 
 # Web searching binds
 # NOTE you may search Google by adding "!g" to your DuckDuckGo search string
-@cbind  ddg<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
+#@cbind  ddg<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
+@cbind  sd<DuckDuckGo:>_      = uri https://duckduckgo.com/?q=\@-encodeURIComponent(%r)-\@
 # These bindings should be entered as simply \wiki but due to escaping
 # happening in multiple stages it needs to be written like this
 @cbind  \\\\awiki<Archwiki:>_  = uri https://wiki.archlinux.org/index.php/Special:Search?search=\@-encodeURIComponent(%r)-\@&go=Go
@@ -485,7 +489,7 @@ set preset event PRESET_TABS
 # === Context menu items =====================================================
 
 # Default context menu
-menu add link Google "uri https://google.com"
+#menu add link Google "uri https://google.com"
 menu add link "Go Home" "uri https://uzbl.org"
 menu add_separator separator_1
 menu add link "Quit uzbl" exit
@@ -529,7 +533,8 @@ set default_mode command
 # === SSL related configuration ==============================================
 
 # Set it to certificates store of your distribution, or your own CAfile.
-set ssl_ca_file /etc/ssl/certs/ca-bundle.crt
+#set ssl_ca_file /etc/ssl/certs/ca-bundle.crt
+set ssl_ca_file /etc/ssl/certs/ca-certificates.crt
 set ssl_policy fail
 # Command to toggle ssl_policy value:
 @cbind  !ssl = chain 'toggle ssl_policy fail ignore' 'reload'
