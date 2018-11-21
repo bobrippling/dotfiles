@@ -32,7 +32,7 @@ function! GotoJsTag()
     mark `
 
     let curbuf = bufnr("%")
-    let import_search = "^import[^'\"]*\\<" . tag . "\\>"
+    let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
     execute "keepjumps normal G?" . import_search . "$?['\"]hgf"
 
     if bufnr("%") != curbuf
