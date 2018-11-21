@@ -23,7 +23,7 @@ highlight SpecialKey ctermfg=black cterm=bold
 
 highlight Search ctermfg=black ctermbg=darkgreen cterm=standout
 
-highlight NonText ctermfg=blue cterm=bold
+highlight EndOfBuffer ctermfg=blue cterm=bold
 
 highlight Pmenu ctermfg=black ctermbg=darkgreen
 highlight PmenuSel ctermfg=darkgreen ctermbg=black
@@ -41,3 +41,5 @@ highlight SpellBad ctermfg=white ctermbg=red cterm=none
 
 highlight StatusLineTerm ctermfg=green ctermbg=none cterm=underline,reverse
 highlight StatusLineTermNC ctermfg=green ctermbg=none cterm=underline
+
+highlight NonText ctermfg=red cterm=bold
