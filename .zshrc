@@ -52,7 +52,6 @@ autoload colors && colors
 setopt append_history
 setopt auto_pushd
 setopt bsd_echo # no auto echo -e
-setopt extended_glob
 setopt extended_history
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
@@ -64,6 +63,7 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
 
+unsetopt extended_glob # don't want ^ expanding
 unsetopt share_history
 unsetopt hist_beep
 unsetopt beep
