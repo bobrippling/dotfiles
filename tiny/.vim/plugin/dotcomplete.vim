@@ -84,7 +84,7 @@ function! Dotcomplete(findstart, base)
             execute 'echom "Dotcomplete match=' . member . ', at line ' . matchpos[1] . ', column ' . col . '"'
         endif
 
-        if len(member) && (len(a:base) == 0 || member[0 : len(a:base) - 1] == a:base)
+        if len(member) && (len(a:base) == 0 || member[0 : len(a:base) - 1] ==# a:base)
             call add(matches, member)
         endif
     endwhile
