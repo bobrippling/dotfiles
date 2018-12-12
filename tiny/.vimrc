@@ -32,7 +32,8 @@ set novisualbell
 set scrolloff=1
 set sidescroll=1
 set splitbelow splitright
-set wildmode=list:longest
+set wildmode=list:longest,full
+set wildmenu
 set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}%=\ [%l/%L]
 set laststatus=2
 set showcmd
