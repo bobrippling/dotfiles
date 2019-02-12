@@ -43,3 +43,4 @@ highlight StatusLineTerm ctermfg=green ctermbg=none cterm=underline,reverse
 highlight StatusLineTermNC ctermfg=green ctermbg=none cterm=underline
 
 highlight NonText ctermfg=red cterm=bold
+hi Normal ctermfg=lightgrey ctermbg=black
