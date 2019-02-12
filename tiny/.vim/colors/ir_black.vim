@@ -211,3 +211,11 @@ hi  link csXmlTag             Keyword
 
 
 " Special for PHP
+
+" Rob
+hi QuickFixLine ctermfg=black ctermbg=yellow cterm=none
+hi illuminatedWord cterm=underline
+hi StatusLineNC ctermfg=7
+hi StatusLine ctermfg=3
+hi Comment ctermfg=6
+hi Search cterm=none ctermbg=white ctermfg=black

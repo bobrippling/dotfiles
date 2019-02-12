@@ -165,3 +165,5 @@ let g:Blockwise_default_mapping = 0
 
 let g:Illuminate_delay = 0
 let g:Illuminate_ftblacklist = []
+
+colorscheme ir_black
