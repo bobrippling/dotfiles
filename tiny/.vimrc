@@ -40,6 +40,7 @@ set shortmess=aoOTIt
 set diffopt+=vertical
 set tabstop=2 shiftwidth=2 noexpandtab
 set history=400
+set lazyredraw
 
 " editing
 set cindent
