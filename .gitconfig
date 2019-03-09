@@ -20,6 +20,7 @@
 	rbi = rebase -i
 	t = status -sb
 	fe = fetch -p
+	logf = log --format=fuller
 
 [interactive]
 	singlekey = true
