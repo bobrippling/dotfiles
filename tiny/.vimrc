@@ -93,6 +93,9 @@ nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 nmap <C-W>v <C-W>vgf
 
+cnoreabbrev <expr> vsb getcmdtype() == ':' && getcmdline() == 'vsb' ? 'vert sb' : 'vsb'
+cnoreabbrev <expr> tabcp getcmdtype() == ':' && getcmdline() == 'tabcp' ? 'tabc\|tabp' : 'tabcp'
+
 function Joinoperator(submode)
 	normal $mj
 	'[,']join
