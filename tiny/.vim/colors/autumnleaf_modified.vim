@@ -177,3 +177,15 @@ hi Error	ctermbg=12  ctermfg=15
 hi Todo		ctermbg=bg  ctermfg=15
 
 hi Normal	ctermbg=none  ctermfg=none " - unset Normal - don't interfere with :terminal (but use above for <fg/bg>
+
+" additions
+hi StatusLineNC ctermfg=white ctermbg=cyan cterm=none
+hi QuickFixLine cterm=none ctermbg=green ctermfg=white
+hi Ignore ctermfg=darkcyan
+hi LineNr ctermfg=brown
+hi clear Conditional | hi link Conditional Keyword
+hi clear Repeat | hi link Repeat Keyword
+hi DiffAdd ctermfg=white
+hi Search ctermbg=cyan ctermfg=white
+hi QuickFixLine ctermbg=4
+hi SpellBad ctermfg=white
