@@ -93,8 +93,14 @@ nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 nmap <C-W>v <C-W>vgf
 
-cnoreabbrev <expr> vsb getcmdtype() == ':' && getcmdline() =~ '\v(^\|\\|)\s*vsb' ? 'vert sb' : 'vsb'
-cnoreabbrev <expr> tabcp getcmdtype() == ':' && getcmdline() =~ '\v(^\|\\|)\s*tabcp' ? 'tabc\|tabp' : 'tabcp'
+function! IsLoneCmd(cmd)
+	return getcmdtype() == ':' && getcmdline() =~ ('\v(^|\|)\s*' . a:cmd)
+endfunction
+function! CmdAlias(lhs, rhs)
+	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+endfunction
+call CmdAlias('vsb', 'vert sb')
+call CmdAlias('tabcp', 'tabc\|tabp')
 
 function Joinoperator(submode)
 	normal $mj
