@@ -11,6 +11,8 @@ complete -d cd rmdir
 bind 'set match-hidden-files off'
 bind -m vi '"j": history-search-forward'
 bind -m vi '"k": history-search-backward'
+bind -m emacs-standard '"\e[B": history-search-forward'
+bind -m emacs-standard '"\e[A": history-search-backward'
 set -o vi
 
 complete -d cd rmdir
