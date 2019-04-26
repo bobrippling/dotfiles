@@ -1,11 +1,12 @@
 addtopath(){
 	if test $# -eq 1 || (test $# -eq 2 && test "$2" = prepend)
 	then
-		if ! echo "$PATH" | grep -F "$1" >/dev/null
+		if test "$2" = prepend
 		then
-			if test "$2" = prepend
-			then export PATH="$1:$PATH"
-			else export PATH="$PATH:$1"
+			export PATH="$1:$PATH"
+		else
+			if ! echo "$PATH" | grep -F "$1" >/dev/null
+			then export PATH="$PATH:$1"
 			fi
 		fi
 	else
