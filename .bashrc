@@ -5,7 +5,7 @@ source ~/.aliases
 source ~/.environ
 
 export PS1='
-\[[1;$(e=$?; if test $e -eq 0; then printf "32m"; else printf "31m"; fi; exit $e)\]$? \j \[[32m\]$\[[0m\] '
+\[[1;$(__e=$?; if test $__e -eq 0; then printf "32m"; else printf "31m"; fi; exit $__e)\]$? \j \[[32m\]$\[[0m\] '
 
 complete -d cd rmdir
 bind 'set match-hidden-files off'
