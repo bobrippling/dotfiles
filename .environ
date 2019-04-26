@@ -55,8 +55,8 @@ export LESS_TERMCAP_se='[m'
 export LESS_TERMCAP_so='[1;44;33m'
 export LESS_TERMCAP_ue='[m'
 export LESS_TERMCAP_us='[1;34m'
-export PAGER="less -iRFS"
-export MANPAGER="less -iRS"
+export PAGER="less -iRS" # no -F - causes instant exit bug
+#export MANPAGER="less -iRS"
 
 export ESCDELAY=10 # ncurses escape wait time (ms)
 
