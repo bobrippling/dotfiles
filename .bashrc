@@ -21,7 +21,11 @@ alias ls='ls --color'
 alias grep='grep --color'
 
 export HISTCONTROL=erasedups:ignorespace:ignoredups
+export HISTTIMEFORMAT="%s (%F %T)"
 shopt -s histappend
+
+export HISTSIZE=2000
+export HISTFILESIZE=5000
 
 # disable ctrl-p
 bind '"": '
