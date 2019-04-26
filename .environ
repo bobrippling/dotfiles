@@ -1,13 +1,16 @@
 addtopath(){
-	if [ $# -eq 0 ]
+	if test $# -eq 1 || (test $# -eq 2 && test "$2" = prepend)
 	then
-		echo "addtopath() - need an argument" >&2
-		return 1
-	else
-		echo $PATH | grep "$@" >/dev/null
-		if [ $? -ne 0 ]
-		then export PATH="$PATH:$@"
+		if ! echo "$PATH" | grep -F "$1" >/dev/null
+		then
+			if test "$2" = prepend
+			then export PATH="$1:$PATH"
+			else export PATH="$PATH:$1"
+			fi
 		fi
+	else
+		echo "Usage: addtopath new-entry [prepend]" >&2
+		return 1
 	fi
 }
 
