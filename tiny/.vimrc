@@ -137,7 +137,7 @@ filetype indent plugin on
 colorscheme grb256
 
 if exepath("ag") != ""
-	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ \"node_modules\"\ --ignore\ \"\*.min.\*\"
+	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ node_modules\ --ignore\ \"\*.min.\*\"\ --ignore\ dist
 endif
 
 autocmd BufReadPost *
