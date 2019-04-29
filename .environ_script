@@ -50,4 +50,9 @@ addtopath "/usr/local/bin"
 addtopath "$HOME/bin" prepend
 addtopath "$HOME/.cargo/bin"
 
-ulimit -c unlimited
+ulimit -c 0
+
+export TMUX_TMPDIR="$HOME/.tmux"
+export LANG=en_GB.UTF-8
+#export ASAN_SYMBOLIZER_PATH="$HOME/src/llvm/build/Debug+Asserts/bin/llvm-symbolizer"
+export MPD_HOST=dog@127.0.0.1

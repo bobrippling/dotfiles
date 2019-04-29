@@ -27,3 +27,28 @@ then
 fi
 
 loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
+
+#. "$HOME/bin/dyld_insert.sh"
+
+init_nvm(){
+	export NVM_DIR="$HOME/.nvm"
+	. "$(brew --prefix nvm)/nvm.sh"
+}
+
+if [[ -n "$PS1" ]] && [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]]
+then
+	stty dsusp undef
+
+	export GPG_TTY=$(tty)
+	export PINENTRY_USER_DATA="USE_CURSES=0"
+
+	case "$TERM" in
+		rxvt-unicode-256color|tmux-256color)
+			printf >&2 '\x1b[31mbogus term %s, resetting to' "$TERM"
+			TERM=xterm-256color
+			printf >&2 ' \x1b[1;31m%s\x1b[0;0m\n' "$TERM"
+			;;
+	esac
+
+	~/bin/tips
+fi
