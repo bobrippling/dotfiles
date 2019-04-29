@@ -1,8 +1,12 @@
 # coreutils
 alias grep="grep --color=auto"
 alias ls="ls --color=auto --group-directories-first -F"
-alias l='ls -1'
+
 alias bc='bc -q'
+
+# shell
+alias fgfg=fg
+alias ifg=fg
 
 # programming
 alias gdb='gdb -q' # quiet
