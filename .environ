@@ -66,7 +66,7 @@ export_if_exists VISUAL tim \
 	|| export VISUAL=vi
 
 addtopath "/usr/local/bin"
-addtopath "$HOME/bin"
+addtopath "$HOME/bin" prepend
 
 if test -z "$SSH_AUTH_SOCK" && loadagent ssh-agent "$HOME/.ssh/env_agent"
 then
