@@ -135,4 +135,6 @@ let g:ctrlp_custom_ignore = {
 	\ 'file': '\v\.(exe|so|dll)$'
 	\ }
 
+let g:Blockwise_default_mapping = 0
+
 let g:grepper = { 'open': 0 }
