@@ -127,6 +127,11 @@ if exepath("ag") != ""
 	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ \"node_modules\"\ --ignore\ \"\*.min.\*\"
 endif
 
+autocmd BufReadPost *
+\ if line("'\"") > 1 && line("'\"") <= line("$")
+\ | exe "normal! g`\""
+\ | endif
+
 execute pathogen#infect()
 
 let g:ctrlp_switch_buffer = ''
