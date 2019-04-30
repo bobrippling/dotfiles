@@ -33,7 +33,8 @@ function! GotoJsTag()
 
     let curbuf = bufnr("%")
     let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
-    execute "keepjumps normal G?" . import_search . "$?['\"]hgf"
+    " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
+    execute "keepjumps normal G?" . import_search . "/['\"]lgf"
 
     if bufnr("%") != curbuf
         " import 'gf' was successful, find ident
