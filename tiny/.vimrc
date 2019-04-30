@@ -75,6 +75,7 @@ nmap <silent> <leader>F :let @" = expand("%:p")<CR>
 nmap <silent> <leader>M :set modifiable!<CR>
 nmap <silent> <leader>m :update\|make<CR>
 nmap <silent> <leader>a :vertical ball<CR>
+nmap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
 
 nmap <silent> ZW :w<CR>
 nmap <silent> ZE :e<CR>
