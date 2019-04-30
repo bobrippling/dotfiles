@@ -141,3 +141,5 @@ let g:ctrlp_custom_ignore = {
 let g:Blockwise_default_mapping = 0
 
 let g:grepper = { 'open': 0 }
+
+let g:Blockwise_default_mapping = 0
