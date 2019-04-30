@@ -5,14 +5,18 @@ function! s:trim_spaces()
 		return
 	endif
 
-	let orig = getreg('Z')
-	normal mZ
+	let where = getcurpos()
 	%s/\s\+$//e
-	if line("'Z") != line(".")
+	let jumped = getcurpos()
+
+	let lnum = 1
+	let col = 2
+	let off = 3
+
+	if where[lnum] != jumped[lnum] || where[col] != jumped[col]
 		echo "Stripped whitespace\n"
 	endif
-	normal 'Z
-	call setreg('Z', orig)
+	call cursor(where[lnum], where[col], where[off])
 endfunction
 
 autocmd BufWritePre * call s:trim_spaces()
