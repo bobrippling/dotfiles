@@ -52,6 +52,10 @@ if v:version >= 704
 	set formatoptions+=j
 endif
 
+if has("nvim")
+	set inccommand=split
+endif
+
 let g:netrw_banner = 0
 let g:netrw_dirhistmax = 0
 
