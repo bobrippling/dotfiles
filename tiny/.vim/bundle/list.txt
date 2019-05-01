@@ -3,5 +3,15 @@ http://github.com/b4winckler/vim-angry
 http://github.com/tpope/vim-fugitive
 http://github.com/tpope/vim-surround
 http://github.com/coderifous/textobj-word-column.vim
-http://github.com/mhinz/vim-grepper
+http://github.com/tpope/vim-obsession
 http://github.com/kana/vim-submode.git
+http://github.com/andymass/vim-tradewinds
+
+--- maybe ---
+http://github.com/stefandtw/quickfix-reflector.vim
+http://github.com/chrisbra/NrrwRgn
+
+http://github.com/RRethy/vim-illuminate [http://github.com:bobrippling/vim-illuminate]
+http://github.com/tpope/vim-abolish (:%s/dogs {and,or} chickens/cats {or,and} peas/)
+http://github.com/mhinz/vim-grepper
+http://github.com/bobrippling/agrep
