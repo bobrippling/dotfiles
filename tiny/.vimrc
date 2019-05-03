@@ -89,7 +89,7 @@ nnoremap ' `
 nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
 nnoremap Y y$
-nnoremap gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
+nnoremap <silent> gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
 nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 nmap <C-W>v <C-W>vgf
