@@ -20,6 +20,7 @@
 	rbi = rebase -i
 	t = status -sb
 	fe = fetch -p
+	smu = submodule update
 	logf = log --format=fuller --date=iso-strict
 
 [interactive]
