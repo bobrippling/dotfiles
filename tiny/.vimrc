@@ -94,6 +94,9 @@ nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 nmap <C-W>v <C-W>vgf
 
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
 function! IsLoneCmd(cmd)
 	return getcmdtype() == ':' && getcmdline() =~ ('\v(^|\|)\s*' . a:cmd)
 endfunction
