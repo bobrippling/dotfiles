@@ -1,0 +1,11 @@
+#!/bin/sh
+
+for d in *vim*/
+do
+	(
+		echo --- $d ---
+		cd $d
+		remote=$(git remote -v | sed /bobrip/d | sed /forks\\//d | grep fetch | cut -f1)
+		git fetch -p "$remote"
+	)
+done
