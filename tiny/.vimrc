@@ -114,13 +114,6 @@ endfunction
 nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
 set nojoinspaces
 
-if has("terminal")
-	tnoremap <C-W><C-W> <C-W>.
-	tnoremap <C-W>gT <C-W>:tabp<CR>
-	tnoremap <C-W>gt <C-W>:tabn<CR>
-	cabbrev vter vert term
-endif
-
 if has("gui")
 	set guicursor+=a:blinkon0
 	set guioptions+=gtcf
