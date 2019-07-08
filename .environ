@@ -68,6 +68,7 @@ export_if_exists VISUAL tim \
 
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin" prepend
+addtopath "$HOME/.cargo/bin"
 
 if test -z "$SSH_AUTH_SOCK" && loadagent ssh-agent "$HOME/.ssh/env_agent"
 then
