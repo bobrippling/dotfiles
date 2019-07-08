@@ -27,5 +27,6 @@ shopt -s histappend
 export HISTSIZE=2000
 export HISTFILESIZE=5000
 
-# disable ctrl-p
+# disable ctrl-n and ctrl-p
+bind '"": '
 bind '"": '
