@@ -93,7 +93,6 @@ nnoremap Y y$
 nnoremap <silent> gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
 nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
-nmap <C-W>v <C-W>vgf
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
