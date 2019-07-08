@@ -4,3 +4,4 @@ http://github.com/tpope/vim-fugitive
 http://github.com/tpope/vim-surround
 http://github.com/coderifous/textobj-word-column.vim
 http://github.com/mhinz/vim-grepper
+http://github.com/kana/vim-submode.git
