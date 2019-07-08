@@ -1,0 +1,48 @@
+#!/bin/sh
+
+# this script can be used should the host not support symlinking into the git repo
+
+usage(){
+    echo >&2 "Usage: $0 install|collect" >&2
+    exit 2
+}
+
+if test $# -ne 1
+then
+    usage
+elif test "$1" = install
+then direction=install
+elif test "$1" = collect
+then direction=collect
+else usage
+fi
+
+find . -type f \
+    | sed '/\.git\//d' \
+    | while read f
+    do
+        template=$(echo $f | sed 's;tiny/;;')
+
+        printf '\x1b[2Kchecking if %s exists...\r' $template
+
+        if ! test -e ~/$template
+        then continue
+        fi
+
+        printf '\x1b[2Kcomparing %s...\r' $template
+
+        if cmp ~/$template $f >/dev/null
+        then continue
+        fi
+
+        case $direction in
+            collect)
+                cp ~/$template $f
+                ;;
+            install)
+                cp $f ~/$template
+                ;;
+        esac
+    done
+
+printf '\x1b[2K\r'
