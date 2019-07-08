@@ -17,6 +17,8 @@ then direction=collect
 else usage
 fi
 
+clrtoeol='\x1b[2K'
+
 find . -type f \
     | sed '/\.git\//d' \
     | while read f
@@ -29,18 +31,20 @@ find . -type f \
         then continue
         fi
 
-        printf '\x1b[2Kcomparing %s...\r' $template
+        printf "$clrtoeol"'comparing %s...\r' $template
 
-        if cmp ~/$template $f >/dev/null
+        if cmp ~/$template $f >/dev/null 2>&1
         then continue
         fi
 
         case $direction in
             collect)
                 cp ~/$template $f
+                printf "$clrtoeol"'collected %s\n' "$f"
                 ;;
             install)
                 cp $f ~/$template
+                printf "$clrtoeol"'installed %s\n' "$f"
                 ;;
         esac
     done
