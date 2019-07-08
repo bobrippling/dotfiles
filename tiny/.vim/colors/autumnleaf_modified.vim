@@ -189,3 +189,8 @@ hi DiffAdd ctermfg=white
 hi Search ctermbg=cyan ctermfg=white
 hi QuickFixLine ctermbg=4
 hi SpellBad ctermfg=white
+
+hi link Terminal Normal
+hi Search ctermbg=green ctermfg=white
+hi Error ctermbg=red ctermfg=black cterm=none
+hi clear ErrorMsg | hi link ErrorMsg Error
