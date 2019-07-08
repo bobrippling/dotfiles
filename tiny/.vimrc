@@ -134,6 +134,10 @@ filetype indent plugin on
 
 colorscheme grb256
 
+if has("nvim")
+	highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
+endif
+
 if exepath("ag") != ""
 	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ node_modules\ --ignore\ \"\*.min.\*\"\ --ignore\ dist
 endif
