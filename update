@@ -3,19 +3,22 @@
 # this script can be used should the host not support symlinking into the git repo
 
 usage(){
-    echo >&2 "Usage: $0 install|collect" >&2
+    echo >&2 "Usage: $0 install|collect|diff" >&2
     exit 2
 }
 
 if test $# -ne 1
-then
-    usage
-elif test "$1" = install
-then direction=install
-elif test "$1" = collect
-then direction=collect
-else usage
+then usage
 fi
+
+case "$1" in
+    install|collect|diff)
+        direction="$1"
+        ;;
+    *)
+        usage
+        ;;
+esac
 
 clrtoeol='\x1b[2K'
 
@@ -45,6 +48,10 @@ find . -type f \
             install)
                 cp $f ~/$template
                 printf "$clrtoeol"'installed %s\n' "$f"
+                ;;
+            diff)
+                printf "$clrtoeol"
+                diff -u $f ~/$template
                 ;;
         esac
     done
