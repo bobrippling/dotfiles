@@ -31,7 +31,7 @@ while(<DATA>){
 
 __DATA__
 "Ansi 0 Color": { "Blue Component": 0.25882354378700256 "Green Component": 0.21176470816135406 "Red Component": 0.027450980618596077 }
-"Ansi 1 Color": { "Blue Component": 0.18431372940540314 "Green Component": 0.19607843458652496 "Red Component": 0.86274510622024536 }
+"Ansi 1 Color": { "Blue Component": 0.0 "Green Component": 0.0039215688593685627 "Red Component": 0.89803922176361084 }
 "Ansi 10 Color": { "Blue Component": 0.014780973084270954 "Green Component": 0.7780609130859375 "Red Component": 0.32919603586196899 }
 "Ansi 11 Color": { "Blue Component": 0.23348262906074524 "Green Component": 0.75838851928710938 "Red Component": 0.926971435546875 }
 "Ansi 12 Color": { "Blue Component": 0.923553466796875 "Green Component": 0.61130446195602417 "Red Component": 0.16711920499801636 }
@@ -40,9 +40,9 @@ __DATA__
 "Ansi 15 Color": { "Blue Component": 0.6380767822265625 "Green Component": 0.86889564990997314 "Red Component": 1 }
 "Ansi 2 Color": { "Blue Component": 0.0 "Green Component": 0.60000002384185791 "Red Component": 0.5215686559677124 }
 "Ansi 3 Color": { "Blue Component": 0.081758759915828705 "Green Component": 0.6745336651802063 "Red Component": 0.8649139404296875 }
-"Ansi 4 Color": { "Blue Component": 0.7423095703125 "Green Component": 0.49133825302124023 "Red Component": 0.13432268798351288 }
-"Ansi 5 Color": { "Blue Component": 0.50980395078659058 "Green Component": 0.21176470816135406 "Red Component": 0.82745099067687988 }
-"Ansi 6 Color": { "Blue Component": 0.55283749103546143 "Green Component": 0.5855712890625 "Red Component": 0.15275771915912628 }
+"Ansi 4 Color": { "Blue Component": 0.90196079015731812 "Green Component": 0.7607843279838562 "Red Component": 0.33725491166114807 }
+"Ansi 5 Color": { "Blue Component": 0.90196079015731812 "Green Component": 0.7607843279838562 "Red Component": 0.90196079015731812 }
+"Ansi 6 Color": { "Blue Component": 0.89803922176361084 "Green Component": 0.90196079015731812 "Red Component": 0.61960786581039429 }
 "Ansi 7 Color": { "Blue Component": 0.77772867679595947 "Green Component": 0.94955968856811523 "Red Component": 0.963592529296875 }
 "Ansi 8 Color": { "Blue Component": 0.21176470816135406 "Green Component": 0.16862745583057404 "Red Component": 0.0 }
 "Ansi 9 Color": { "Blue Component": 0.050668027251958847 "Green Component": 0.28547519445419312 "Red Component": 0.92779541015625 }
