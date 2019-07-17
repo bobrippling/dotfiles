@@ -64,7 +64,8 @@ nmap <silent> <leader>n :cn<CR>
 nmap <silent> <leader>N :w\|cn<CR>
 nmap <silent> <leader>j :n<CR>
 nmap <silent> <leader>J :w\|n<CR>
-nmap <silent> <leader>h :set hls!<CR>
+nmap <silent> <leader>h :noh<CR>
+nmap <silent> <leader>H :set hls!<CR>
 nmap <silent> <leader>g :grep <CR>
 nmap <silent> <leader>G :grep '\b\b'<CR>
 nmap <silent> <leader>* :match IncSearch /\<\>/<CR>
