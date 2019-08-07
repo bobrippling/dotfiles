@@ -106,6 +106,7 @@ function! CmdAlias(lhs, rhs)
 endfunction
 call CmdAlias('vsb', 'vert sb')
 call CmdAlias('tabcp', 'tabc\|tabp')
+call CmdAlias('tabb', 'tabnew\|b')
 
 function Joinoperator(submode)
 	normal $mj
