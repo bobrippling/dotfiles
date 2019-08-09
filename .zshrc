@@ -43,6 +43,16 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/rob/.zshrc'
 
+function zle-keymap-select {
+	if [[ $KEYMAP =~ vicmd ]]
+	then printf '\x1b[2 q'
+	elif [[ $KEYMAP =~ main ]]
+	then printf '\x1b[6 q'
+	fi
+}
+zle -N zle-keymap-select
+KEYMAP=main zle-keymap-select # init
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
