@@ -143,6 +143,11 @@ colorscheme grb256
 
 if has("nvim")
 	highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
+else
+	" change cursor shape on insert
+	let &t_SI = "\e[6 q"
+	let &t_SR = "\e[4 q"
+	let &t_EI = "\e[2 q"
 endif
 
 if exepath("ag") != ""
