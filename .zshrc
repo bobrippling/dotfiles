@@ -43,6 +43,28 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/rob/.zshrc'
 
+zshrc_cursor_block(){
+	printf '\x1b[2 q'
+}
+zshrc_cursor_bar(){
+	printf '\x1b[6 q'
+}
+zle-keymap-select(){
+	if [[ $KEYMAP = vicmd ]]
+	then zshrc_cursor_block
+	elif [[ $KEYMAP = main ]]
+	then zshrc_cursor_bar
+	fi
+}
+zle -N zle-keymap-select
+zle-line-init(){
+	zshrc_cursor_bar
+}
+zle -N zle-keymap-init
+preexec(){
+	zshrc_cursor_block
+}
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
