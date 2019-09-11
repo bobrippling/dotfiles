@@ -100,7 +100,12 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 function! IsLoneCmd(cmd)
-	return getcmdtype() == ':' && getcmdline() =~ ('\v(^|\|)\s*' . a:cmd)
+	if getcmdtype() != ':'
+		return 0
+	endif
+
+	let modifiers = '((vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright])\s+)*'
+	return getcmdline() =~ ('\v(^|\|)\s*' . modifiers . a:cmd)
 endfunction
 function! CmdAlias(lhs, rhs)
 	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
