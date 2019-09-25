@@ -20,7 +20,7 @@ function! s:SpecAlt()
 	endif
 endfunction
 
-function! AFileToggle(command)
+function! AFileToggle(command, mods)
 	if &ft == "c" || &ft == "cpp"
 		let alt = s:CAltFile()
 	elseif &ft == "javascript" || &ft == "python" || &ft == "ruby"
@@ -31,10 +31,10 @@ function! AFileToggle(command)
 		return
 	endif
 
-	execute a:command . " " . alt
+	execute a:mods . " " . a:command . " " . alt
 endfunction
 
-command! A  call AFileToggle("edit")
-command! AS call AFileToggle("split")
-command! AV call AFileToggle("vsplit")
-command! AT call AFileToggle("tabe")
+command! A  call AFileToggle("edit", <q-mods>)
+command! AS call AFileToggle("split", <q-mods>)
+command! AV call AFileToggle("vsplit", <q-mods>)
+command! AT call AFileToggle("tabe", <q-mods>)
