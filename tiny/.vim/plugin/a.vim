@@ -12,7 +12,7 @@ function! s:CAltFile()
 	endif
 endfunction
 
-function! s:JsSpecAlt()
+function! s:SpecAlt()
 	if expand("%:e:e:r") == "spec"
 		return expand("%:r:r") . "." . expand("%:e")
 	else
@@ -23,8 +23,8 @@ endfunction
 function! AFileToggle(command)
 	if &ft == "c" || &ft == "cpp"
 		let alt = s:CAltFile()
-	elseif &ft == "javascript"
-		let alt = s:JsSpecAlt()
+	elseif &ft == "javascript" || &ft == "python" || &ft == "ruby"
+		let alt = s:SpecAlt()
 	else
 		echohl Error
 		echo "Can't handle filetype \"" . &ft . "\""
