@@ -2,7 +2,12 @@ function! s:contains_only_iskeyword_chars(str)
     return match(a:str, "^\\k\\+$") == 0
 endfunction
 
-function! GotoJsTag()
+function! GotoJsTag(preview_window)
+    if a:preview_window
+        pedit +call\ GotoJsTag(0)
+        return
+    endif
+
     let savesearch = @/
     let cursor_list = getcurpos() " buffer,line,col,off,curswant
     let line = getline(".")
@@ -52,8 +57,11 @@ endfunction
 
 augroup JavaScript
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <C-]> :<C-U>call GotoJsTag()<CR>
-    autocmd FileType javascript nnoremap <buffer> <C-W><C-]> :sp<CR>:<C-U>call GotoJsTag()<CR>
+    autocmd FileType javascript nnoremap <buffer> <C-]> :<C-U>call GotoJsTag(0)<CR>
+    autocmd FileType javascript nnoremap <buffer> <C-W><C-]> :sp<CR>:<C-U>call GotoJsTag(0)<CR>
+
+    autocmd FileType javascript nnoremap <buffer> <C-W>} :<C-U>call GotoJsTag(1)<CR>
+
     autocmd FileType javascript set suffixesadd+=.js,.jsx
     autocmd FileType javascript set omnifunc=Dotcomplete
 augroup END
