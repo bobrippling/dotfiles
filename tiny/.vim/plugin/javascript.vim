@@ -2,13 +2,7 @@ function! s:contains_only_iskeyword_chars(str)
     return match(a:str, "^\\k\\+$") == 0
 endfunction
 
-function! GotoJsTag(preview_window)
-    if a:preview_window
-        pedit +call\ GotoJsTag(0)
-        return
-    endif
-
-    let savesearch = @/
+function! s:extended_tag_from_cursor()
     let cursor_list = getcurpos() " buffer,line,col,off,curswant
     let line = getline(".")
     let dot = strridx(line, '.', cursor_list[2]-1)
@@ -33,35 +27,66 @@ function! GotoJsTag(preview_window)
         let ident = tag
     endif
 
-    " set jumplist just once, here, and don't affect it below
-    mark `
+    return [tag, ident]
+endfunction
 
-    let curbuf = bufnr("%")
-    let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
-    " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
-    execute "keepjumps normal G?" . import_search . "/['\"]lgf"
-
-    if bufnr("%") != curbuf
-        " import 'gf' was successful, find ident
-        if searchdecl(ident, 1) != 0
-            " not found via searchdecl
-            execute "silent! keepjumps ijump " . ident
-        endif
-    else
-        keepjumps normal ''
+function! JsTagInCurFile(ident) abort
+    keepjumps if searchdecl(a:ident, 1) == 0
+        return
     endif
 
-    call histdel("/", -1)
-    let @/ = savesearch
+    " not found via searchdecl
+
+    " - can't do ijump in a sandbox, emulate below instead
+    "execute "ijump " . a:ident
+
+    " c: accept match at cursor
+    " W: no wrap around
+    " z: start at cursor
+    call search("\\C\\v<" . a:ident . ">", "cW")
+endfunction
+
+function! JsTag(pattern, flags, info) abort
+    let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
+    let for_completion =  stridx(a:flags, "i") >= 0
+
+    if for_completion
+        return []
+    elseif based_on_normalmode_cursor
+        let [tag, ident] = s:extended_tag_from_cursor()
+    else
+        " :tag, etc
+        let tag = a:pattern
+        let ident = a:pattern
+    endif
+
+    let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
+    let found_line = search(import_search, "wc") " w: wrap around, c: accept match at cursor
+    if found_line == 0
+        " not found
+        return []
+    endif
+
+    " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
+    let line = getline(found_line)
+    let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
+    if nextfile == line
+        " failed to extract filename
+        return []
+    endif
+
+    let nextfile = findfile(nextfile)
+
+    return [{
+    \    "name": ident,
+    \    "filename": nextfile,
+    \    "cmd": tag == ident ? ":" : "call JsTagInCurFile('" . ident . "')",
+    \ }]
 endfunction
 
 augroup JavaScript
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <C-]> :<C-U>call GotoJsTag(0)<CR>
-    autocmd FileType javascript nnoremap <buffer> <C-W><C-]> :sp<CR>:<C-U>call GotoJsTag(0)<CR>
-
-    autocmd FileType javascript nnoremap <buffer> <C-W>} :<C-U>call GotoJsTag(1)<CR>
-
+    autocmd FileType javascript set tagfunc=JsTag
     autocmd FileType javascript set suffixesadd+=.js,.jsx
     autocmd FileType javascript set omnifunc=Dotcomplete
 augroup END
