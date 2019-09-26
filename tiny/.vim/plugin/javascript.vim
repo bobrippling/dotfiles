@@ -51,7 +51,7 @@ function! JsTag(pattern, flags, info) abort
     let for_completion =  stridx(a:flags, "i") >= 0
 
     if for_completion
-        return []
+        return JsFileTags(based_on_normalmode_cursor ? a:pattern : "")
     elseif based_on_normalmode_cursor
         let [tag, ident] = s:extended_tag_from_cursor()
     else
@@ -82,6 +82,45 @@ function! JsTag(pattern, flags, info) abort
     \    "filename": nextfile,
     \    "cmd": tag == ident ? ":" : "call JsTagInCurFile('" . ident . "')",
     \ }]
+endfunction
+
+function! JsFileTags(pattern) abort
+    let import_search = "\\v\\C^import[^'\"]+"
+    let [buf; save_cursor] = getcurpos()
+
+    let allents = []
+    let flags = "cWz"
+    let lnum = 0
+    while 1
+        call cursor(lnum + 1, 0)
+        let lnum = search(import_search, flags)
+        if lnum <= 0
+            break
+        endif
+
+        let line = getline(lnum)
+        let filename = substitute(line, "\\v\\C.*from (['\"])([^'\"]+)\\1.*", "\\2", "")
+        let ent_str = substitute(line, "\\v\\C^import (.*) from.*", "\\1", "")
+        let ents = filter(split(ent_str, "\\s*[{},]\\s*", 0), "strlen(v:val) > 0")
+
+        for ent in ents
+            let ent = substitute(ent, "\\C\\v.* as (.*)", "\\1", "")
+
+            if match(ent, a:pattern) < 0
+                continue
+            endif
+
+            let allents += [{
+            \    "name": ent,
+            \    "filename": filename,
+            \    "cmd": "call JsTagInCurFile('" . ent . "')",
+            \ }]
+        endfor
+    endwhile
+
+    call cursor(save_cursor)
+
+    return allents
 endfunction
 
 augroup JavaScript
