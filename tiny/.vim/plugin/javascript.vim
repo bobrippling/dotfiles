@@ -101,7 +101,7 @@ function! JsFileTags(pattern) abort
         let line = getline(lnum)
         let filename = substitute(line, "\\v\\C.*from (['\"])([^'\"]+)\\1.*", "\\2", "")
         let ent_str = substitute(line, "\\v\\C^import (.*) from.*", "\\1", "")
-        let ents = filter(split(ent_str, "\\s*[{},]\\s*", 0), "strlen(v:val) > 0")
+        let ents = filter(split(ent_str, "\\s*[{},]\\s*", 0), "!empty(v:val)")
 
         for ent in ents
             let ent = substitute(ent, "\\C\\v.* as (.*)", "\\1", "")
