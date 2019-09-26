@@ -9,6 +9,7 @@ set tildeop
 set ignorecase smartcase
 set nowrapscan
 set incsearch
+set tagcase=match
 
 " line wrapping
 set nowrap
