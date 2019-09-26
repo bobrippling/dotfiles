@@ -162,6 +162,10 @@ else
 	let &t_SI = "\e[6 q"
 	let &t_SR = "\e[4 q"
 	let &t_EI = "\e[2 q"
+
+	" don't let vim change cursor color:
+	set t_SC=
+	set t_EC=
 endif
 
 if exepath("ag") != ""
