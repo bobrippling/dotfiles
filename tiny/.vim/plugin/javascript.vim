@@ -1,3 +1,9 @@
+function s:debug(s)
+    if 0
+        echom "jstag: " . a:s
+    endif
+endfunction
+
 function! s:contains_only_iskeyword_chars(str)
     return match(a:str, "^\\k\\+$") == 0
 endfunction
@@ -50,9 +56,13 @@ function! s:try_js_index(nextfile) abort
     let nextfile = a:nextfile
     let found = finddir(nextfile)
     if !empty(found)
+        call s:debug("found dir " . found . ", trying index...")
         let index = findfile(found . '/index')
         if !empty(index)
+            call s:debug("index found")
             let nextfile = index
+        else
+            call s:debug("index not found")
         endif
     endif
     return nextfile
@@ -80,10 +90,13 @@ function! s:file_from_import(nextfile) abort
         endwhile
     endif
 
+    call s:debug("main findfile('" . nextfile . "', path) with path = '%" . pathexpand . "'")
     let found = findfile(nextfile, &path . "," . expand("%" . pathexpand))
     if empty(found)
+        call s:debug("nothing found, trying js-index...")
         let nextfile = s:try_js_index(nextfile)
     else
+        call s:debug("found " . nextfile)
         let nextfile = found
     endif
 
@@ -108,6 +121,7 @@ function! JsTag(pattern, flags, info) abort
     let found_line = search(import_search, "wc") " w: wrap around, c: accept match at cursor
     if found_line == 0
         " not found
+        call s:debug("import line not found")
         return []
     endif
 
@@ -116,6 +130,7 @@ function! JsTag(pattern, flags, info) abort
     let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
     if nextfile == line
         " failed to extract filename
+        call s:debug("couldn't extract filename from import line")
         return []
     endif
 
