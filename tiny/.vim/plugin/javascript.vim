@@ -46,6 +46,50 @@ function! JsTagInCurFile(ident) abort
     call search("\\C\\v<" . a:ident . ">", "cW")
 endfunction
 
+function! s:try_js_index(nextfile) abort
+    let nextfile = a:nextfile
+    let found = finddir(nextfile)
+    if !empty(found)
+        let index = findfile(found . '/index')
+        if !empty(index)
+            let nextfile = index
+        endif
+    endif
+    return nextfile
+endfunction
+
+function! s:file_from_import(nextfile) abort
+    " this function needs to do the equivalent of 'gf', which isn't the same as findfile()
+    let nextfile = a:nextfile
+
+    " findfile() doens't work on paths like "./abc" - remove prefix
+    let nextfile = substitute(nextfile, "^\\./", "", "")
+
+    " findfile() doesn't work on paths like "../abc" - remove prefix and expand path
+    let updirs = 0
+    while match(nextfile, "^\\.\\./") >= 0
+        let nextfile = substitute(nextfile, "^\\.\\./", "", "")
+        let updirs += 1
+    endwhile
+    let pathexpand = ""
+    if updirs > 0
+        let updirs += 1 " if we're doing a relative fix, chop off the filename first
+        while updirs > 0
+            let pathexpand .= ":h"
+            let updirs -= 1
+        endwhile
+    endif
+
+    let found = findfile(nextfile, &path . "," . expand("%" . pathexpand))
+    if empty(found)
+        let nextfile = s:try_js_index(nextfile)
+    else
+        let nextfile = found
+    endif
+
+    return nextfile
+endfunction
+
 function! JsTag(pattern, flags, info) abort
     let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
     let for_completion =  stridx(a:flags, "i") >= 0
@@ -75,19 +119,7 @@ function! JsTag(pattern, flags, info) abort
         return []
     endif
 
-    let nextfile = substitute(nextfile, "^\\./", "", "") " findfile() doens't work on paths like "./abc"
-    let found = findfile(nextfile)
-    if empty(found)
-        let found = finddir(nextfile)
-        if !empty(found)
-            let index = findfile(found . '/index')
-            if !empty(index)
-                let nextfile = index
-            endif
-        endif
-    else
-        let nextfile = found
-    endif
+    let nextfile = s:file_from_import(nextfile)
 
     return [{
     \    "name": ident,
