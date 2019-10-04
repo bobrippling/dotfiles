@@ -45,7 +45,7 @@ set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
 set tabstop=2 shiftwidth=0 noexpandtab
-set history=400
+set history=2000
 set lazyredraw
 set foldopen-=block
 set completeopt+=menuone,noselect
