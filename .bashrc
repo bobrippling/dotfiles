@@ -30,3 +30,17 @@ export HISTFILESIZE=5000
 # disable ctrl-n and ctrl-p
 bind '"": '
 bind '"": '
+
+set vi-cmd-mode-string \1\e[2 q\2
+set vi-ins-mode-string \1\e[5 q\2
+#set vi-cmd-mode-string '[2 q'
+#set vi-ins-mode-string '[6 q'
+
+#set show-mode-in-prompt on
+
+#bashrc_cursor_block(){
+#	printf '\x1b[2 q'
+#}
+#bashrc_cursor_bar(){
+#	printf '\x1b[6 q'
+#}
