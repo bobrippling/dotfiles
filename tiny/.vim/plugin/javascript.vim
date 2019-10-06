@@ -92,7 +92,7 @@ function! JsTag(pattern, flags, info) abort
     return [{
     \    "name": ident,
     \    "filename": nextfile,
-    \    "cmd": tag == ident ? ":" : "call JsTagInCurFile('" . ident . "')",
+    \    "cmd": "call JsTagInCurFile('" . ident . "')",
     \ }]
 endfunction
 
