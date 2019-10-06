@@ -77,9 +77,16 @@ function! JsTag(pattern, flags, info) abort
 
     let nextfile = substitute(nextfile, "^\\./", "", "") " findfile() doens't work on paths like "./abc"
     let found = findfile(nextfile)
-    if !empty(found)
+    if empty(found)
+        let found = finddir(nextfile)
+        if !empty(found)
+            let index = findfile(found . '/index')
+            if !empty(index)
+                let nextfile = index
+            endif
+        endif
+    else
         let nextfile = found
-        " otherwise, stick with the original
     endif
 
     return [{
