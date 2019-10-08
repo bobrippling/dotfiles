@@ -36,6 +36,10 @@
 [diff]
 	renames = copies
 	mnemonicprefix = true
+	# Color moved blocks as moves instead of additions + deletions
+	colormoved = default
+	# Ignore indentation changes when detecting moved blocks
+	colormovedws = allow-indentation-change
 
 [merge]
 	defaultToUpstream = true
