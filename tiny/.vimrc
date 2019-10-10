@@ -10,6 +10,7 @@ set ignorecase smartcase
 set nowrapscan
 set incsearch
 set tagcase=match
+set hlsearch
 
 " line wrapping
 set nowrap
