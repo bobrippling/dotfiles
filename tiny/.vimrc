@@ -201,3 +201,9 @@ let g:Blockwise_default_mapping = 0
 
 let g:Illuminate_delay = 0
 let g:Illuminate_ftblacklist = []
+
+" -: leap, r: remote, p: place, u: remote-outer, o: place-outer
+let g:seek_noignorecase = 1
+let g:seek_enable_jumps = 1
+let g:SeekKey = '-'
+let g:SeekBackKey = '_'
