@@ -54,6 +54,8 @@ function! Lst()
 endfunction
 
 function! TrimOldBuffers(count, bang)
+    " bang = true: keep `count` many buffers
+    " bang = false: remove `count` many buffers
     let recents = filter(s:recentbuffers(), { idx, buf -> !bufloaded(buf) })
 
     if len(a:bang)
