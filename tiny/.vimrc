@@ -154,7 +154,7 @@ syntax on
 filetype on
 filetype indent plugin on
 
-colorscheme grb256
+colorscheme ir_black
 
 if has("nvim")
 	highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
@@ -197,5 +197,3 @@ let g:Blockwise_default_mapping = 0
 
 let g:Illuminate_delay = 0
 let g:Illuminate_ftblacklist = []
-
-colorscheme ir_black
