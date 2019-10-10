@@ -1,14 +1,9 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-source ~/.aliases
-source ~/.environ
-
 export PS1='
 \[[1;$(__e=$?; if test $__e -eq 0; then printf 32m; else printf 31m; fi; exit $__e)\]$? \j \[[32m\]$\[[0m\] '
 
-complete -d cd rmdir
-bind 'set match-hidden-files off'
 bind -m vi '"j": history-search-forward'
 bind -m vi '"k": history-search-backward'
 bind -m emacs-standard '"\e[B": history-search-forward'
