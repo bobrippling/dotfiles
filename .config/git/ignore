@@ -1,0 +1,4 @@
+# global ignore file --> ~/.config/git/ignore
+
+*.sw?
+node_modules
