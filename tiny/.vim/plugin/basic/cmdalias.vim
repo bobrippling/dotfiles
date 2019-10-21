@@ -18,7 +18,9 @@ call CmdAlias('tabb', 'tabnew\|b')
 if has("nvim")
 	call CmdAlias('ster', 'new\|ter')
 	call CmdAlias('vter', 'vnew\|ter')
+	" no alias for :ter - already expected behaviour
 else
 	call CmdAlias('ster', 'ter')
 	call CmdAlias('vter', 'vert ter')
+	call CmdAlias("ter", "ter ++curwin")
 endif
