@@ -182,9 +182,11 @@ function! JsFileTags(pattern) abort
     return allents
 endfunction
 
-augroup JavaScript
-    autocmd!
-    autocmd FileType javascript set tagfunc=JsTag
-    autocmd FileType javascript set suffixesadd+=.js,.jsx
-    autocmd FileType javascript set omnifunc=Dotcomplete
-augroup END
+set tagfunc=JsTag
+let b:undo_ftplugin .= '|setlocal tagfunc<'
+
+set suffixesadd+=.js,.jsx
+let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
+
+set omnifunc=Dotcomplete
+let b:undo_ftplugin .= '|setlocal omnifunc<'

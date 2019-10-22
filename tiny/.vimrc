@@ -102,55 +102,6 @@ nmap <C-W>gD <C-W>sgD
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-function! IsLoneCmd(cmd)
-	if getcmdtype() != ':'
-		return 0
-	endif
-
-	let modifiers = '((vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright])\s+)*'
-	return getcmdline() =~ ('\v(^|\|)\s*' . modifiers . a:cmd)
-endfunction
-function! CmdAlias(lhs, rhs)
-	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
-endfunction
-call CmdAlias('vsb', 'vert sb')
-call CmdAlias('tabcp', 'tabc\|tabp')
-call CmdAlias('tabb', 'tabnew\|b')
-if has("nvim")
-	call CmdAlias('ster', 'new\|ter')
-	call CmdAlias('vter', 'vnew\|ter')
-else
-	call CmdAlias('ster', 'ter')
-	call CmdAlias('vter', 'vert ter')
-endif
-
-function Joinoperator(submode)
-	normal $mj
-	'[,']join
-	normal 'jl
-endfunction
-function JoinoperatorNoSpace(submode)
-	normal $mj
-	'[,']join!
-	normal 'jl
-endfunction
-nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
-nnoremap gJ :silent set operatorfunc=JoinoperatorNoSpace<CR>g@
-set nojoinspaces
-
-if has("gui")
-	set guicursor+=a:blinkon0
-	set guioptions+=gtcf
-	set guioptions-=mi!aPATrRlLB
-
-	set mouse=
-	set visualbell t_vb=
-
-	if has("gui_running")
-		colorscheme relaxed
-	endif
-endif
-
 syntax on
 filetype on
 filetype indent plugin on
@@ -169,15 +120,6 @@ else
 	set t_SC=
 	set t_EC=
 endif
-
-if exepath("ag") != ""
-	set grepprg=ag\ --depth\ 6\ --ignore\ \"_[^_]\*/\"\ --ignore\ \"\*.o\"\ --ignore\ \"\*.d\"\ --ignore\ node_modules\ --ignore\ \"\*.min.\*\"\ --ignore\ dist
-endif
-
-autocmd BufReadPost *
-\ if line("'\"") > 1 && line("'\"") <= line("$")
-\ | exe "normal! g`\""
-\ | endif
 
 execute pathogen#infect()
 
@@ -208,18 +150,3 @@ let g:seek_noignorecase = 1
 let g:seek_enable_jumps = 1
 let g:SeekKey = '-'
 let g:SeekBackKey = '_'
-
-if !empty(filter(split(&rtp, ','), 'stridx(v:val, "vim-submode") >= 0'))
-	call submode#enter_with('window', 'n', '', '<C-w>m')
-	call submode#leave_with('window', 'n', '', '<ESC>')
-	for key in ['a','b','c','d','e','f','g','h','i','j','k','l','m',
-	\           'n','o','p','q','r','s','t','u','v','w','x','y','z']
-		call submode#map('window', 'n', '', key, '<C-w>' . key)
-		call submode#map('window', 'n', '', toupper(key), '<C-w>' . toupper(key))
-		call submode#map('window', 'n', '', '<C-' . key . '>', '<C-w>' . '<C-'.key . '>')
-	endfor
-	for key in ['=','_','+','-','<','>']
-		call submode#map('window', 'n', '', key, '<C-w>' . key)
-	endfor
-	let g:submode_timeout = 0
-endif
