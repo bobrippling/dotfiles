@@ -20,5 +20,5 @@ nnoremap <buffer> <silent> ]} m':call Luajumpblock(1, 0)<CR>
 vnoremap <buffer> <silent> [{ m':call Luajumpblock(0, 1)<CR>
 vnoremap <buffer> <silent> ]} m':call Luajumpblock(1, 1)<CR>
 
-autocmd FileType lua nnoremap [[ ?^function\><CR>
-autocmd FileType lua nnoremap ]] /^function\><CR>
+nnoremap [[ ?^function\><CR>
+nnoremap ]] /^function\><CR>
