@@ -30,6 +30,7 @@ set wildignore=*.o,*.d
 set nomodeline
 
 " display
+" ('statusline' set in plugin/...)
 set noequalalways
 set novisualbell
 set scrolloff=1
@@ -38,7 +39,6 @@ set splitbelow splitright
 set wildmode=list:longest,full
 set wildmenu
 set wildignorecase
-set statusline=\ \%f%m%r%h%w\ %y[%{&ff}][%n]%{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}%=\ %{&winfixwidth?'W':''}%{&winfixheight?'H':''}[%l/%L]
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
