@@ -6,3 +6,10 @@ function! StatusLine()
 endfunction
 
 set statusline=%!StatusLine()
+
+augroup RedrawStatusLine
+	autocmd!
+
+	" we may need to redraw on new window creation, since the window numbers may change
+	autocmd WinNew * let &ro = &ro
+augroup END
