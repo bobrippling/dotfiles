@@ -28,6 +28,7 @@ set fileencodings+=utf-16le
 set sessionoptions-=options | set sessionoptions+=localoptions
 set wildignore=*.o,*.d
 set nomodeline
+set directory=.
 
 " display
 " ('statusline' set in plugin/...)
