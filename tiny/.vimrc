@@ -44,7 +44,7 @@ set laststatus=2
 set showcmd
 set shortmess=aoOTIt
 set diffopt+=vertical
-set tabstop=2 shiftwidth=2 noexpandtab
+set tabstop=2 shiftwidth=0 noexpandtab
 set history=400
 set lazyredraw
 set synmaxcol=120 " don't highlight long lines
