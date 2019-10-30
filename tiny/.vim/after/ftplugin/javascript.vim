@@ -90,8 +90,9 @@ function! s:file_from_import(nextfile) abort
         endwhile
     endif
 
-    call s:debug("main findfile('" . nextfile . "', path) with path = '%" . pathexpand . "'")
-    let found = findfile(nextfile, &path . "," . expand("%" . pathexpand))
+    let path = &path . "," . expand("%" . pathexpand)
+    call s:debug("main findfile('" . nextfile . "', path) with path = '%" . pathexpand . "' ('" . path . "')")
+    let found = findfile(nextfile, path)
     if empty(found)
         call s:debug("nothing found, trying js-index...")
         let nextfile = s:try_js_index(nextfile)
