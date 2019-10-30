@@ -97,7 +97,7 @@ function! s:file_from_import(nextfile) abort
         call s:debug("nothing found, trying js-index...")
         let nextfile = s:try_js_index(nextfile)
     else
-        call s:debug("found " . nextfile)
+        call s:debug("found '" . found . "'")
         let nextfile = found
     endif
 
