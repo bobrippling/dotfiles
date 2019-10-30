@@ -84,13 +84,15 @@ function! s:file_from_import(nextfile) abort
     let pathexpand = ""
     if updirs > 0
         let updirs += 1 " if we're doing a relative fix, chop off the filename first
+        call s:debug("updirs: " . updirs)
         while updirs > 0
             let pathexpand .= ":h"
             let updirs -= 1
         endwhile
     endif
 
-    let path = &path . "," . expand("%" . pathexpand)
+    " put current file's directory first, for priority
+    let path = expand("%" . pathexpand) . "," . &path
     call s:debug("main findfile('" . nextfile . "', path) with path = '%" . pathexpand . "' ('" . path . "')")
     let found = findfile(nextfile, path)
     if empty(found)
