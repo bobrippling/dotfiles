@@ -8,7 +8,7 @@ function! IsLoneCmd(cmd)
 endfunction
 
 function! CmdAlias(lhs, rhs)
-	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+	exec "cnoreabbrev <silent> <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
 endfunction
 
 call CmdAlias('vsb', 'vert sb')
