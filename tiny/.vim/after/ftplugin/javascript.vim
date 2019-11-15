@@ -46,10 +46,15 @@ function! JsTagInCurFile(ident) abort
     " - can't do ijump in a sandbox, emulate below instead
     "execute "ijump " . a:ident
 
+    call cursor(1, 1)
     " c: accept match at cursor
     " W: no wrap around
-    " z: start at cursor
-    call search("\\C\\v<" . a:ident . ">", "cW")
+    " z: start at cursor column
+    if search("\\C\\v<" . a:ident . ">", "cw") == 0
+      echohl ErrorMsg
+      echo "Couldn't find " . a:ident
+      echohl None
+    endif
 endfunction
 
 function! s:try_js_index(nextfile) abort
