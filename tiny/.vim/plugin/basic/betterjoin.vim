@@ -10,7 +10,7 @@ function! JoinoperatorNoSpace(submode)
 	normal 'jl
 endfunction
 
-nnoremap J :silent set operatorfunc=Joinoperator<CR>g@
-nnoremap gJ :silent set operatorfunc=JoinoperatorNoSpace<CR>g@
+nnoremap <silent> J :set operatorfunc=Joinoperator<CR>g@
+nnoremap <silent> gJ :set operatorfunc=JoinoperatorNoSpace<CR>g@
 
 set nojoinspaces
