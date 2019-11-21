@@ -111,6 +111,38 @@ function! s:file_from_import(nextfile) abort
     return nextfile
 endfunction
 
+function! s:scoped_tag_search(ident) abort
+    " b: backwards, n: no cursor move, W: nowrapscan
+    " r: keep going to the outer most (this is probably easier than trying to look for a function body
+    let start_line = searchpair("{", "", "}", 'bnWr')
+    if start_line <= 0
+        call s:debug("couldn't find block start for " . tag . "." . ident)
+        return []
+    endif
+
+    let end_line = searchpair("{", "", "}", 'nWr')
+    if end_line <= 0
+        call s:debug("couldn't find block end for " . tag . "." . ident)
+        return []
+    endif
+
+    call cursor(start_line, 0)
+    " c: cursor pos accept, n: no move cursor, W: no wrap
+    let found = search("^\\C\\v\\s*((async|\*) *)*<" . a:ident . ">", "cnW", end_line)
+    if found == 0
+        call s:debug("couldn't find " . a:ident . " in " . start_line . "," . end_line)
+        return []
+    endif
+
+    call s:debug("found local ident between " . start_line . "," . end_line . " on line " . found)
+
+    return [{
+    \    "name": a:ident,
+    \    "filename": expand("%"),
+    \    "cmd": string(found),
+    \ }]
+endfunction
+
 function! JsTag(pattern, flags, info) abort
     let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
     let for_completion =  stridx(a:flags, "i") >= 0
@@ -119,6 +151,10 @@ function! JsTag(pattern, flags, info) abort
         return JsFileTags(based_on_normalmode_cursor ? a:pattern : "")
     elseif based_on_normalmode_cursor
         let [tag, ident] = s:extended_tag_from_cursor()
+
+        if tag !=# ident && tag ==# "this"
+            return s:scoped_tag_search(ident)
+        endif
     else
         " :tag, etc
         let tag = a:pattern
