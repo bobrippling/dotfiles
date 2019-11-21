@@ -111,6 +111,14 @@ function! s:file_from_import(nextfile) abort
     return nextfile
 endfunction
 
+function! s:tag_in_this_file_on_line(tag, line) abort
+    return [{
+    \    "name": a:tag,
+    \    "filename": expand("%"),
+    \    "cmd": string(a:line),
+    \ }]
+endfunction
+
 function! s:scoped_tag_search(ident) abort
     " b: backwards, n: no cursor move, W: nowrapscan
     " r: keep going to the outer most (this is probably easier than trying to look for a function body
@@ -136,11 +144,7 @@ function! s:scoped_tag_search(ident) abort
 
     call s:debug("found local ident between " . start_line . "," . end_line . " on line " . found)
 
-    return [{
-    \    "name": a:ident,
-    \    "filename": expand("%"),
-    \    "cmd": string(found),
-    \ }]
+    return s:tag_in_this_file_on_line(a:ident, found)
 endfunction
 
 function! JsTag(pattern, flags, info) abort
