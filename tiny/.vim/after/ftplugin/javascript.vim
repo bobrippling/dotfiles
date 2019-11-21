@@ -147,6 +147,19 @@ function! s:scoped_tag_search(ident) abort
     return s:tag_in_this_file_on_line(a:ident, found)
 endfunction
 
+function! s:this_file_search(tag, ident) abort
+    " look for tag, ignore ident (for now)
+    call cursor(1, 1)
+    " c: cursor pos accept, n: no move cursor, W: no wrap
+    let found = search("\\C\\v^\\S.*<" . a:tag . ">", "cnW")
+    if found == 0
+        call s:debug("couldn't find global decl for " . a:tag)
+        return []
+    endif
+
+    return s:tag_in_this_file_on_line(a:tag, found)
+endfunction
+
 function! JsTag(pattern, flags, info) abort
     let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
     let for_completion =  stridx(a:flags, "i") >= 0
@@ -170,7 +183,7 @@ function! JsTag(pattern, flags, info) abort
     if found_line == 0
         " not found
         call s:debug("import line not found")
-        return []
+        return s:this_file_search(tag, ident)
     endif
 
     " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
