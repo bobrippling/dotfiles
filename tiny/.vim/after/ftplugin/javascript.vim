@@ -26,7 +26,7 @@ function! s:extended_tag_from_cursor() abort
     if dot >= 0
         let ident = expand("<cword>")
 
-        call cursor(cursor_list[1], dot - 1)
+        call cursor(cursor_list[1], dot) "dot: 0-based to 1-based
         let tag = expand("<cword>")
     else
         let tag = expand("<cword>")
