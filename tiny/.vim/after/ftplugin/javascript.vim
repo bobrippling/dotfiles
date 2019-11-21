@@ -1,14 +1,14 @@
-function s:debug(s)
+function s:debug(s) abort
     if 0
         echom "jstag: " . a:s
     endif
 endfunction
 
-function! s:contains_only_iskeyword_chars(str)
+function! s:contains_only_iskeyword_chars(str) abort
     return match(a:str, "^\\k\\+$") == 0
 endfunction
 
-function! s:extended_tag_from_cursor()
+function! s:extended_tag_from_cursor() abort
     let cursor_list = getcurpos() " buffer,line,col,off,curswant
     let line = getline(".")
     let dot = strridx(line, '.', cursor_list[2]-1)
