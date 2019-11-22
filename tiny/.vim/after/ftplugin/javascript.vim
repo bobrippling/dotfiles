@@ -160,6 +160,25 @@ function! s:this_file_search(tag, ident) abort
     return s:tag_in_this_file_on_line(a:tag, found)
 endfunction
 
+function! s:tag_from_import(found_line, ident)
+    " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
+    let line = getline(a:found_line)
+    let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
+    if nextfile == line
+        " failed to extract filename
+        call s:debug("couldn't extract filename from import line")
+        return []
+    endif
+
+    let nextfile = s:file_from_import(nextfile)
+
+    return [{
+    \    "name": a:ident,
+    \    "filename": nextfile,
+    \    "cmd": "call JsTagInCurFile('" . a:ident . "')",
+    \ }]
+endfunction
+
 function! JsTag(pattern, flags, info) abort
     let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
     let for_completion =  stridx(a:flags, "i") >= 0
@@ -179,29 +198,14 @@ function! JsTag(pattern, flags, info) abort
     endif
 
     let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
-    let found_line = search(import_search, "wc") " w: wrap around, c: accept match at cursor
-    if found_line == 0
-        " not found
-        call s:debug("import line not found")
-        return s:this_file_search(tag, ident)
+    " w: wrap around, c: accept match at cursor
+    let found_line = search(import_search, "wc")
+    if found_line > 0
+        return s:tag_from_import(found_line, ident)
     endif
 
-    " search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
-    let line = getline(found_line)
-    let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
-    if nextfile == line
-        " failed to extract filename
-        call s:debug("couldn't extract filename from import line")
-        return []
-    endif
-
-    let nextfile = s:file_from_import(nextfile)
-
-    return [{
-    \    "name": ident,
-    \    "filename": nextfile,
-    \    "cmd": "call JsTagInCurFile('" . ident . "')",
-    \ }]
+    call s:debug("import/require line not found")
+    return s:this_file_search(tag, ident)
 endfunction
 
 function! JsFileTags(pattern) abort
