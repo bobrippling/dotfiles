@@ -166,7 +166,7 @@ function! s:tag_from_import(found_line, ident)
     let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
     if nextfile == line
         " failed to extract filename
-        call s:debug("couldn't extract filename from import line")
+        call s:debug("couldn't extract filename from import/require line")
         return []
     endif
 
@@ -200,6 +200,12 @@ function! JsTag(pattern, flags, info) abort
     let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
     " w: wrap around, c: accept match at cursor
     let found_line = search(import_search, "wc")
+    if found_line > 0
+        return s:tag_from_import(found_line, ident)
+    endif
+
+    let require_search = "\\v\\C^(const|let|var)>[^'\"]*<" . tag . ">.*\\=.*<require>"
+    let found_line = search(require_search, "wc")
     if found_line > 0
         return s:tag_from_import(found_line, ident)
     endif
