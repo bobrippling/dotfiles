@@ -151,7 +151,7 @@ function! s:this_file_search(tag, ident) abort
     " look for tag, ignore ident (for now)
     call cursor(1, 1)
     " c: cursor pos accept, n: no move cursor, W: no wrap
-    let found = search("\\C\\v^\\S.*<" . a:tag . ">", "cnW")
+    let found = search("\\C\\v^\\S[^'\"]*<" . a:tag . ">", "cnW")
     if found == 0
         call s:debug("couldn't find global decl for " . a:tag)
         return []
