@@ -22,5 +22,5 @@ if has("nvim")
 else
 	call CmdAlias('ster', 'ter')
 	call CmdAlias('vter', 'vert ter')
-	call CmdAlias("ter", "ter ++curwin")
+	call CmdAlias('ter', 'ter ++curwin')
 endif
