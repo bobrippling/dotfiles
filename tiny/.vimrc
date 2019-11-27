@@ -47,7 +47,6 @@ set diffopt+=vertical
 set tabstop=2 shiftwidth=0 noexpandtab
 set history=400
 set lazyredraw
-set synmaxcol=120 " don't highlight long lines
 
 " editing
 set cindent
