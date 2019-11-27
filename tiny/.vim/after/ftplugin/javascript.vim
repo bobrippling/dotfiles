@@ -1,4 +1,3 @@
-let s:tag_clear_timeout = 10000
 function s:debug(s) abort
     if 0
         echom "jstag: " . a:s
@@ -37,42 +36,8 @@ function! s:extended_tag_from_cursor() abort
     return [tag, ident]
 endfunction
 
-function! s:unhighlight_tag(matchid, buf)
-    let curbuf = bufnr()
-    execute 'hide b ' . a:buf
-    try
-        echom "matchdelete(" . a:matchid . ") // in " . a:buf
-        call matchdelete(a:matchid)
-    finally
-        execute 'hide b ' . curbuf
-    endtry
-endfunction
-
-function! HighlightCurlineTag(tag)
-    echo "hi"
-    if !exists("*matchadd")
-        return
-    endif
-
-    let matchid = matchadd(
-    \   'JSTagLowLight',
-    \   '\\v<' . a:tag . '>'
-    \ )
-
-    echo "matchadd(..., " . a:tag . ")"
-
-    "let buf = bufnr()
-    "if exists('*timer_start') && has('lambda')
-    "    let clearhl = timer_start(
-    "    \   s:tag_clear_timeout,
-    "    \   { timerid -> s:unhighlight_tag(matchid, buf) }
-    "    \ )
-    "endif
-endfunction
-
 function! JsTagInCurFile(ident) abort
     keepjumps if searchdecl(a:ident, 1) == 0
-        call HighlightCurlineTag(a:ident)
         return
     endif
 
@@ -89,8 +54,6 @@ function! JsTagInCurFile(ident) abort
       echohl ErrorMsg
       echo "Couldn't find " . a:ident
       echohl None
-    else
-      call HighlightCurlineTag(a:ident)
     endif
 endfunction
 
