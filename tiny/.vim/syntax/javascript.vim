@@ -15,3 +15,5 @@ syn region javaScriptStringI
 
 hi link javaScriptStringI String
 hi link javaScriptInterpolationDelimiter Delimiter
+
+highlight JSTagLowLight ctermfg=black ctermbg=grey
