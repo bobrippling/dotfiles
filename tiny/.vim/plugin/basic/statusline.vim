@@ -1,8 +1,24 @@
 function! StatusLine()
-	return
-	\   " %f%m%r%h%w %y[%{&ff}][%n]%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
-	\ . "%= "
-	\ . "%{&winfixwidth ? 'W' : ''}%{&winfixheight ? 'H' : ''}[%{winnr()}][%l/%L]"
+	let s = " "
+	let s .= "%f" " filename
+	let s .= "%m" " 'modified'
+	let s .= "%r" " 'readonly'
+	let s .= "%h" " help buffer flag
+	let s .= "%w" " preview window flag
+	let s .= " "
+	let s .= "%y" " 'filetype'
+	let s .= "[%{&ff}]" " 'fileformat'
+	let s .= "[%n]" " buffer number
+	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
+
+	let s .= "%=" " left + right flex space
+
+	let s .= "%{&winfixwidth ? 'W' : ''}"
+	let s .= "%{&winfixheight ? 'H' : ''}"
+	let s .= "[%{winnr()}]"
+	let s .= "[%l/%L]" " line number / total
+
+	return s
 endfunction
 
 set statusline=%!StatusLine()
