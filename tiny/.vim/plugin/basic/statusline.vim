@@ -13,6 +13,12 @@ function! StatusLine()
 
 	let s .= "%=" " left + right flex space
 
+	"let alt = getwinvar(g:statusline_winid, "altfile", "")
+	"if !empty(alt)
+	"	let alt = substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
+	"	let s .= alt . " "
+	"endif
+
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
@@ -28,4 +34,5 @@ augroup RedrawStatusLine
 
 	" we may need to redraw on new window creation, since the window numbers may change
 	autocmd WinNew * let &ro = &ro
+	"autocmd BufReadPost,WinLeave * let w:altfile = @#
 augroup END
