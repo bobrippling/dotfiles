@@ -271,4 +271,5 @@ set suffixesadd+=.js,.jsx
 let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
 
 set omnifunc=Dotcomplete
-let b:undo_ftplugin .= '|setlocal omnifunc<'
+inoremap <buffer> . .<C-X><C-O>
+let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
