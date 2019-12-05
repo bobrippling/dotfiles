@@ -36,6 +36,12 @@ function! s:extended_tag_from_cursor() abort
 	return [tag, ident]
 endfunction
 
+function! s:emit_error(msg)
+	echohl ErrorMsg
+	echo a:msg
+	echohl None
+endfunction
+
 function! JsTagInCurFile(ident) abort
 	keepjumps if searchdecl(a:ident, 1) == 0
 		return
@@ -51,9 +57,7 @@ function! JsTagInCurFile(ident) abort
 	" W: no wrap around
 	" z: start at cursor column
 	if search("\\C\\v<" . a:ident . ">", "cw") == 0
-		echohl ErrorMsg
-		echo "Couldn't find " . a:ident
-		echohl None
+		call s:emit_error("Couldn't find " . a:ident)
 	endif
 endfunction
 
