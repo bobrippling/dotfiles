@@ -116,6 +116,13 @@ function! s:file_from_import(nextfile) abort
 endfunction
 
 function! s:tag_in_this_file_on_line(tag, line) abort
+	let thisfile = expand("%")
+
+	if empty(thisfile)
+		call s:emit_error("current buffer doesn't have a filename")
+		return []
+	endif
+
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
