@@ -61,9 +61,6 @@ if has("nvim")
 	set inccommand=split
 endif
 
-let g:netrw_banner = 0
-let g:netrw_dirhistmax = 0
-
 nmap <silent> <leader>n :cn<CR>
 nmap <silent> <leader>N :w\|cn<CR>
 nmap <silent> <leader>j :n<CR>
