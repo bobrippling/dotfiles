@@ -48,6 +48,7 @@ set tabstop=2 shiftwidth=0 noexpandtab
 set history=400
 set lazyredraw
 set foldopen-=block
+set completeopt+=menuone,noselect
 
 " editing
 set cindent
