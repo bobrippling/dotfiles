@@ -66,3 +66,6 @@
 
 [submodule]
 	recurse = true
+
+[blame]
+	ignoreRevsFile = .git-blame-ignore-revs
