@@ -46,10 +46,7 @@ function! Dotcomplete(findstart, base)
     let line = getline(".")
 
     if a:findstart
-        let col -= 1
-        while col > 0 && s:contains_only_iskeyword_chars(line[col - 1])
-            let col -= 1
-        endwhile
+        let col = s:rewind_keyword(line, col - 1)
 
         if s:debug
             let t = line[col : col(".")]
@@ -92,4 +89,3 @@ function! Dotcomplete(findstart, base)
 
     return { 'words': matches, 'refresh': 'always' }
 endfunction
-
