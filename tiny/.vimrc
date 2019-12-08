@@ -100,13 +100,6 @@ nmap <C-W>gD <C-W>sgD
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
-nnoremap <expr> n 'Nn'[v:searchforward]
-xnoremap <expr> n 'Nn'[v:searchforward]
-onoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
-xnoremap <expr> N 'nN'[v:searchforward]
-onoremap <expr> N 'nN'[v:searchforward]
-
 syntax on
 filetype on
 filetype indent plugin on
