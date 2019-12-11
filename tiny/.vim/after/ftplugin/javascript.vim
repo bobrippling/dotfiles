@@ -8,6 +8,20 @@ function! s:contains_only_iskeyword_chars(str) abort
 	return match(a:str, "^\\k\\+$") == 0
 endfunction
 
+function! s:maybe_split_tag_string(str) abort
+	let dot = stridx(a:str, '.')
+
+	if dot >= 0
+		let tag = a:str[:dot-1]
+		let ident = a:str[dot+1:]
+	else
+		let tag = a:str
+		let ident = a:str
+	endif
+
+	return [tag, ident]
+endfunction
+
 function! s:extended_tag_from_cursor() abort
 	let cursor_list = getcurpos() " buffer,line,col,off,curswant
 	let line = getline(".")
@@ -196,16 +210,18 @@ function! JsTag(pattern, flags, info) abort
 
 	if for_completion
 		return JsFileTags(based_on_normalmode_cursor ? a:pattern : "")
-	elseif based_on_normalmode_cursor
-		let [tag, ident] = s:extended_tag_from_cursor()
+	endif
 
-		if tag !=# ident && tag ==# "this"
-			return s:scoped_tag_search(ident)
-		endif
+	if based_on_normalmode_cursor
+		let [tag, ident] = s:extended_tag_from_cursor()
 	else
 		" :tag, etc
-		let tag = a:pattern
-		let ident = a:pattern
+		let [tag, ident] = s:maybe_split_tag_string(a:pattern)
+	endif
+
+	" check here, so we support `:tag this.func`, as well as normal-mode maps
+	if tag !=# ident && tag ==# "this"
+		return s:scoped_tag_search(ident)
 	endif
 
 	let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
