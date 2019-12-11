@@ -30,8 +30,26 @@ function! StatusLineAltFile()
 		return ""
 	endif
 
+	let cur = getreg("%")
+
+	" replace common prefix with '&'
+	let l = 0
+	for l in range(min([len(alt), len(cur)]))
+		if alt[l] !=# cur[l]
+			break
+		endif
+	endfor
+	let l -= 1
+	while l > 0 && alt[l] !=# "/"
+		let l -= 1
+	endwhile
+
+	if alt[l] ==# "/" && l > 3
+		let alt = "&" . strpart(alt, l)
+	endif
+
 	let alt = substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
-	return alt . " "
+	return " " . alt . " "
 endfunction
 
 set statusline=%!StatusLine()
