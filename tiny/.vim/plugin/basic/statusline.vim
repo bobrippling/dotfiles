@@ -42,6 +42,10 @@ function! StatusLineAltFile()
 
 	let cur = getreg("%")
 
+	if len(cur) >= winwidth(0) - 5 * 2 + 6 " approximation for length of rest of statusline
+		return ""
+	endif
+
 	" replace common prefix with '&'
 	let l = 0
 	for l in range(min([len(alt), len(cur)]))
