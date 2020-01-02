@@ -8,6 +8,7 @@ function! StatusLine()
 	let s .= " "
 	let s .= "%y" " 'filetype'
 	let s .= "[%{&ff}]" " 'fileformat'
+	let s .= "%{StatusLineEnc()}" " 'fileformat'
 	let s .= "[%n]" " buffer number
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
@@ -22,6 +23,15 @@ function! StatusLine()
 	let s .= "[%l/%L]" " line number / total
 
 	return s
+endfunction
+
+function! StatusLineEnc()
+	let ff = &fileencoding
+	if empty(ff) || ff == "utf-8"
+		return ""
+	endif
+
+	return "[" . ff . "]"
 endfunction
 
 function! StatusLineAltFile()
