@@ -68,4 +68,7 @@
 	recurse = true
 
 [blame]
-	ignoreRevsFile = .git-blame-ignore-revs
+	# Disabled by default - must exist, so should be repo-local setting
+	#ignoreRevsFile = .git-blame-ignore-revs
+	markIgnoredLines = true
+	markUnblamableLines = true
