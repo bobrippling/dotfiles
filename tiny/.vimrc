@@ -122,6 +122,10 @@ endif
 
 execute pathogen#infect()
 
+" vim runtime settings
+" disable python tab settings
+let g:python_recommended_style = 0
+
 let g:ctrlp_switch_buffer = ''
 let g:ctrlp_working_path_mode = ''
 " make this a dictionary with 'ignore' set, so ctrlp uses vim's 'wildignore' filtering
