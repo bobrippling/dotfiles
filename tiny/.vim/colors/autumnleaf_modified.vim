@@ -192,7 +192,7 @@ hi SpellBad ctermfg=white
 
 hi link Terminal Normal
 hi Search ctermbg=green ctermfg=white
-hi Error ctermbg=red ctermfg=black cterm=none
+hi Error ctermbg=red ctermfg=white cterm=none
 hi clear ErrorMsg | hi link ErrorMsg Error
 
 hi Identifier ctermfg=red
