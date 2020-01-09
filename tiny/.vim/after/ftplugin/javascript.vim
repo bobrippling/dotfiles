@@ -1,4 +1,4 @@
-function s:debug(s) abort
+function! s:debug(s) abort
 	if 0
 		echom "jstag: " . a:s
 	endif
