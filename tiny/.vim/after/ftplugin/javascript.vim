@@ -280,8 +280,10 @@ function! JsFileTags(pattern) abort
 	return allents
 endfunction
 
-set tagfunc=JsTag
-let b:undo_ftplugin .= '|setlocal tagfunc<'
+if exists("+tagfunc")
+	set tagfunc=JsTag
+	let b:undo_ftplugin .= '|setlocal tagfunc<'
+endif
 
 set suffixesadd+=.js,.jsx
 let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
