@@ -77,6 +77,11 @@ endfunction
 
 function! s:try_js_index(nextfile) abort
 	let nextfile = a:nextfile
+
+	if empty(nextfile)
+		let nextfile = expand("%:h")
+	endif
+
 	let found = finddir(nextfile)
 	if !empty(found)
 		call s:debug("found dir " . found . ", trying index...")
