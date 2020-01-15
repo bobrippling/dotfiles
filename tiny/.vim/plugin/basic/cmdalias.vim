@@ -8,7 +8,10 @@ function! IsLoneCmd(cmd)
 endfunction
 
 function! CmdAlias(lhs, rhs)
-	exec "cnoreabbrev <silent> <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+	" Can't have a <silent> abbrev here, since as well as suppressing the
+	" eventual command output, it also suppresses the expansion until the
+	" next key press.
+	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
 endfunction
 
 call CmdAlias('vsb', 'vert sb')
