@@ -1,0 +1,20 @@
+{
+    "download-dir": REDACTED,
+    "download-queue-enabled": false,
+
+    "peer-port": REDACTED,
+
+    "rpc-authentication-required": true,
+    "rpc-enabled": true,
+    "rpc-password": REDACTED,
+    "rpc-port": REDACTED,
+    "rpc-url": "/transmission/",
+    "rpc-username": REDACTED,
+    "rpc-whitelist": REDACTED,
+    "rpc-whitelist-enabled": true,
+
+    "speed-limit-down": 150,
+    "speed-limit-down-enabled": true,
+    "speed-limit-up": 100,
+    "speed-limit-up-enabled": true
+}
