@@ -190,7 +190,7 @@ function! s:this_file_search(tag, ident) abort
 	return s:tag_in_this_file_on_line(a:tag, found)
 endfunction
 
-function! s:tag_from_import(found_line, ident)
+function! s:tag_from_stringpath(found_line, ident)
 	" search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
 	let line = getline(a:found_line)
 	let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
@@ -207,6 +207,59 @@ function! s:tag_from_import(found_line, ident)
 	\		 "filename": nextfile,
 	\		 "cmd": "call JsTagInCurFile('" . a:ident . "')",
 	\ }]
+endfunction
+
+function! s:lone_ident_comma_re(ident) abort
+	" don't anchor to EOL, we want to allow comments, etc
+	return "\\v\\C^\\s*<" . a:ident . ">\\s*,?"
+endfunction
+
+function! s:import_require_search(tag) abort
+	" find the line that contains the string path import
+	let tag = a:tag
+
+	call s:debug("looking for import + " . tag)
+	let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
+	" w: wrap around, c: accept match at cursor
+	let found_line = search(import_search, "wc")
+	if found_line > 0
+		return found_line
+	endif
+
+	call s:debug("looking for require + " . tag)
+	let require_search = "\\v\\C^(const|let|var)>[^'\"]*<" . tag . ">.*\\=.*<require>"
+	let found_line = search(require_search, "wc")
+	if found_line > 0
+		return found_line
+	endif
+
+	" look for import { \n <...> \n } from '<path>'
+	let tag_search = s:lone_ident_comma_re(tag)
+	call cursor(1, 1)
+	let found_line = search(tag_search, "Wc")
+
+	call s:debug("looking for " . tag . " inside {...} (with " . tag_search . ") - line = " . found_line)
+
+	if found_line > 0
+		let skip_search = s:lone_ident_comma_re("[a-zA-Z0-9]+")
+		call s:debug("skip_search: " . skip_search)
+		while 1
+			let line = getline(found_line)
+			if match(line, skip_search) < 0
+				break
+			endif
+			let found_line += 1
+		endwhile
+
+		let line = getline(found_line)
+		if match(line, "\\v\\C}\\s*from\\s*['\"]") >= 0
+			call s:debug("finished at line " . found_line . ", 'from' found")
+			return found_line
+		endif
+		call s:debug("finished at line " . found_line . ", 'from' NOT found")
+	endif
+
+	return 0
 endfunction
 
 function! JsTag(pattern, flags, info) abort
@@ -229,17 +282,9 @@ function! JsTag(pattern, flags, info) abort
 		return s:scoped_tag_search(ident)
 	endif
 
-	let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
-	" w: wrap around, c: accept match at cursor
-	let found_line = search(import_search, "wc")
+	let found_line = s:import_require_search(tag)
 	if found_line > 0
-		return s:tag_from_import(found_line, ident)
-	endif
-
-	let require_search = "\\v\\C^(const|let|var)>[^'\"]*<" . tag . ">.*\\=.*<require>"
-	let found_line = search(require_search, "wc")
-	if found_line > 0
-		return s:tag_from_import(found_line, ident)
+		return s:tag_from_stringpath(found_line, ident)
 	endif
 
 	call s:debug("import/require line not found")
