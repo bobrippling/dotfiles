@@ -98,6 +98,10 @@ nnoremap <silent> <C-W>2T <C-W>T:tabm-1<CR>
 nmap g<CR> gjg^
 nmap <C-W>gD <C-W>sgD
 
+" available <C-W> mappings: aeuy (g is taken by tradewinds plugin)
+nnoremap <silent> <C-W>y :set winfixheight!<CR>
+nnoremap <silent> <C-W>u :set winfixwidth!<CR>
+
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
