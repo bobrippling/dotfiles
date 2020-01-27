@@ -209,11 +209,6 @@ function! s:tag_from_stringpath(found_line, ident)
 	\ }]
 endfunction
 
-function! s:lone_ident_comma_re(ident) abort
-	" don't anchor to EOL, we want to allow comments, etc
-	return "\\v\\C^\\s*<" . a:ident . ">\\s*,?"
-endfunction
-
 function! s:import_require_search(tag) abort
 	" find the line that contains the string path import
 	let tag = a:tag
@@ -234,15 +229,15 @@ function! s:import_require_search(tag) abort
 	endif
 
 	" look for import { \n <...> \n } from '<path>'
-	let tag_search = s:lone_ident_comma_re(tag)
+	" (don't anchor to EOL, we want to allow comments, etc)
+	let tag_search = "\\v\\C^(\\s*type )?\\s*<" . tag . ">\\s*,?"
 	call cursor(1, 1)
 	let found_line = search(tag_search, "Wc")
 
 	call s:debug("looking for " . tag . " inside {...} (with " . tag_search . ") - line = " . found_line)
 
 	if found_line > 0
-		let skip_search = s:lone_ident_comma_re("[a-zA-Z0-9]+")
-		call s:debug("skip_search: " . skip_search)
+		let skip_search = "\\v\\C^(\\s*type )?\\s*<[a-zA-Z0-9]+>\\s*,?"
 		while 1
 			let line = getline(found_line)
 			if match(line, skip_search) < 0
@@ -251,13 +246,30 @@ function! s:import_require_search(tag) abort
 			let found_line += 1
 		endwhile
 
-		let line = getline(found_line)
-		if match(line, "\\v\\C}\\s*from\\s*['\"]") >= 0
-			call s:debug("finished at line " . found_line . ", 'from' found")
-			return found_line
-		endif
-		call s:debug("finished at line " . found_line . ", 'from' NOT found")
+		" we've found the line of the import, leave it to the caller
+		" to find the `from '...'` line
+		call s:debug("finished at line " . found_line)
+		return found_line
 	endif
+
+	return 0
+endfunction
+
+function! s:from_line_after_import_line(import_line) abort
+	let i = a:import_line
+	let end = line("$")
+
+	while i <= end
+		let line = getline(i)
+		if match(line, "\\v\\C<from>\\s+['\"]") >= 0
+			return i
+		elseif match(line, "\\C<import>") >= 0
+			" found a new import, 'from' for the previous doesn't exist
+			break
+		endif
+
+		let i += 1
+	endwhile
 
 	return 0
 endfunction
@@ -284,7 +296,12 @@ function! JsTag(pattern, flags, info) abort
 
 	let found_line = s:import_require_search(tag)
 	if found_line > 0
-		return s:tag_from_stringpath(found_line, ident)
+		let from_line = s:from_line_after_import_line(found_line)
+
+		if from_line > 0
+			return s:tag_from_stringpath(from_line, ident)
+		endif
+		call s:debug("'from' line not found after import line")
 	endif
 
 	call s:debug("import/require line not found")
