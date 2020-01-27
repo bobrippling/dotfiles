@@ -64,6 +64,11 @@
 [color]
 	ui = true
 
+[color "diff"]
+	# for a light tty:
+	oldmoved = yellow
+	newmoved = blue
+
 [submodule]
 	recurse = true
 
