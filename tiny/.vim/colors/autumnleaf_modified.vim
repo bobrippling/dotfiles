@@ -179,7 +179,6 @@ hi Todo		ctermbg=bg  ctermfg=15
 hi Normal	ctermbg=none  ctermfg=none " - unset Normal - don't interfere with :terminal (but use above for <fg/bg>
 
 " additions
-hi StatusLineNC ctermfg=white ctermbg=cyan cterm=none
 hi QuickFixLine cterm=none ctermbg=green ctermfg=white
 hi Ignore ctermfg=darkcyan
 hi LineNr ctermfg=brown
@@ -188,7 +187,8 @@ hi clear Repeat | hi link Repeat Keyword
 hi DiffAdd ctermfg=white
 hi Search ctermbg=cyan ctermfg=white
 hi QuickFixLine ctermbg=4
-hi SpellBad ctermfg=white
+"hi SpellBad ctermfg=white
+hi SpellBad ctermfg=red ctermbg=none
 
 hi link Terminal Normal
 hi Search ctermbg=green ctermfg=white
@@ -196,4 +196,12 @@ hi Error ctermbg=red ctermfg=white cterm=none
 hi clear ErrorMsg | hi link ErrorMsg Error
 
 hi Identifier ctermfg=red
-hi StatusLineNC ctermfg=black
+"hi Search ctermbg=yellow
+hi DiffText ctermfg=white
+hi PreProc ctermfg=blue cterm=none
+
+hi StatusLine   ctermfg=black ctermbg=cyan cterm=none
+hi StatusLineNC ctermfg=black ctermbg=cyan cterm=reverse
+
+hi link StatusLineTerm StatusLine
+hi StatusLineTermNC ctermbg=black ctermfg=green cterm=none
