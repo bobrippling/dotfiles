@@ -1,4 +1,3 @@
-let s:lastpath = ""
 let s:use_term = 1
 let s:ctx = v:null
 
@@ -56,19 +55,23 @@ function! s:tfind_term(command, tmpfile, editcmd, mods) abort
   return
 endfunction
 
-function! s:tfind(editcmd, mods, path) abort
+function! s:tfind(editcmd, mods, path, buffers) abort
 	let path = a:path
-	if strlen(path) == 0
-		let path = s:lastpath
-		if strlen(path) == 0
-			echoerr "No path specified - :Tfind <path>"
-			return
-		endif
-	endif
-	let s:lastpath = path
-
 	let tmpfile = "/tmp/.tfind"
-	let command = "find '" . path . "' -type f | tmenu >" . tmpfile
+
+	if a:buffers
+		let tmpfile_in = "/tmp/.tfind_in"
+		let bufs = getbufinfo({ 'buflisted': 1 })
+		call filter(bufs, { i, dict -> getbufvar(dict.bufnr, '&buftype') != 'terminal' })
+		call map(bufs, { i, dict -> dict.name })
+		call writefile(bufs, tmpfile_in)
+		let command = "tmenu >" . tmpfile . " <" .tmpfile_in
+	else
+		if empty(path)
+			let path = "."
+		endif
+		let command = "find '" . path . "' -type f | tmenu >" . tmpfile
+	endif
 
 	if has("terminal")
 		call s:tfind_term(command, tmpfile, a:editcmd, a:mods)
@@ -79,6 +82,10 @@ function! s:tfind(editcmd, mods, path) abort
 	endif
 endfunction
 
-command! -nargs=? -complete=dir Tedit call s:tfind("e", "<mods>", "<args>")
-command! -nargs=? -complete=dir Tsplit call s:tfind("sp", "<mods>", "<args>")
-command! -nargs=? -complete=dir Tvsplit call s:tfind("vs", "<mods>", "<args>")
+command! -nargs=? -complete=dir Tedit call s:tfind("e", "<mods>", "<args>", 0)
+command! -nargs=? -complete=dir Tsplit call s:tfind("sp", "<mods>", "<args>", 0)
+command! -nargs=? -complete=dir Tvsplit call s:tfind("vs", "<mods>", "<args>", 0)
+
+command! -nargs=? -complete=dir Tbuffer call s:tfind("e", "<mods>", "<args>", 1)
+command! -nargs=? -complete=dir Tsbuffer call s:tfind("sp", "<mods>", "<args>", 1)
+command! -nargs=? -complete=dir Tbvsbuffer call s:tfind("vs", "<mods>", "<args>", 1)
