@@ -15,7 +15,7 @@ endfunction
 
 function! s:tfind_term_complete(id, code, ...)
 	if a:code != 0
-		echo "tfind failed"
+		echo "tfind subcommand exited with " . a:code
 		return
 	endif
 
