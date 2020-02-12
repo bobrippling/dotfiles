@@ -64,6 +64,9 @@ function! s:tfind(editcmd, mods, path, buffers) abort
 		let tmpfile_in = "/tmp/.tfind_in"
 		let bufs = getbufinfo({ 'buflisted': 1 })
 		call filter(bufs, { i, dict -> getbufvar(dict.bufnr, '&buftype') != 'terminal' })
+		if !empty(path)
+			call filter(bufs, { i, dict -> stridx(dict.name, path) >= 0 })
+		endif
 		call map(bufs, { i, dict -> dict.name })
 		call writefile(bufs, tmpfile_in)
 		let command = "tmenu >" . tmpfile . " <" .tmpfile_in
