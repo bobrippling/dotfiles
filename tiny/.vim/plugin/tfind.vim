@@ -1,5 +1,6 @@
 let s:use_term = 1
 let s:ctx = v:null
+let s:lastpath = ""
 
 function! s:tfind_complete(tmpfile) abort
 	let tmpfile = a:tmpfile
@@ -68,7 +69,14 @@ function! s:tfind(editcmd, mods, path, buffers) abort
 		let command = "tmenu >" . tmpfile . " <" .tmpfile_in
 	else
 		if empty(path)
-			let path = "."
+			let path = s:lastpath
+			if empty(path)
+				let path = "."
+			else
+				echo "Using previous path: " . path
+			endif
+		else
+			let s:lastpath = path
 		endif
 		let command = "find '" . path . "' -type f | tmenu >" . tmpfile
 	endif
