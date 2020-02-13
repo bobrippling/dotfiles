@@ -27,8 +27,11 @@ function! s:extended_tag_from_cursor() abort
 	let line = getline(".")
 	let dot = strridx(line, '.', cursor_list[2]-1)
 
+	call s:debug("finding dot in '" . line . "', starting at " . dot)
+
 	if dot >= 0
 		let dot_to_tag = strpart(line, dot+1, cursor_list[2] - (dot+1))
+		call s:debug("dot_to_tag: '" . dot_to_tag . "'")
 		if !s:contains_only_iskeyword_chars(dot_to_tag)
 			" we're somewhere like "abc.xyz = hello"
 			"																		^
@@ -42,6 +45,8 @@ function! s:extended_tag_from_cursor() abort
 
 		call cursor(cursor_list[1], dot) "dot: 0-based to 1-based
 		let tag = expand("<cword>")
+
+		call s:debug("dot: " . dot . ", ident: '" . ident . "', tag: '" . tag . "'")
 	else
 		let tag = expand("<cword>")
 		let ident = tag
