@@ -5,7 +5,7 @@ function! s:debug(s) abort
 endfunction
 
 function! s:contains_only_iskeyword_chars(str) abort
-	return match(a:str, "^\\k\\+$") == 0
+	return empty(a:str) || match(a:str, "^\\k\\+$") == 0
 endfunction
 
 function! s:maybe_split_tag_string(str) abort
