@@ -1,5 +1,10 @@
 ctrlp.vim
-textobj-word-column.vim
 vim-angry
 vim-fugitive
 vim-surround
+textobj-word-column.vim
+vim-obsession
+vim-submode
+vim-tradewinds
+vim-bg
+SkyBison
