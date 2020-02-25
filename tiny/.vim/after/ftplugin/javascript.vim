@@ -216,6 +216,7 @@ endfunction
 
 function! s:import_require_search(tag) abort
 	" find the line that contains the string path import
+	" returns [lineno, is_require]
 	let tag = a:tag
 
 	call s:debug("looking for import + " . tag)
@@ -223,14 +224,14 @@ function! s:import_require_search(tag) abort
 	" w: wrap around, c: accept match at cursor
 	let found_line = search(import_search, "wc")
 	if found_line > 0
-		return found_line
+		return [found_line, v:false]
 	endif
 
 	call s:debug("looking for require + " . tag)
 	let require_search = "\\v\\C^(const|let|var)>[^'\"]*<" . tag . ">.*\\=.*<require>"
 	let found_line = search(require_search, "wc")
 	if found_line > 0
-		return found_line
+		return [found_line, v:true]
 	endif
 
 	" look for import { \n <...> \n } from '<path>'
@@ -254,21 +255,29 @@ function! s:import_require_search(tag) abort
 		" we've found the line of the import, leave it to the caller
 		" to find the `from '...'` line
 		call s:debug("finished at line " . found_line)
-		return found_line
+		return [found_line, v:false]
 	endif
 
-	return 0
+	return [0, v:false]
 endfunction
 
-function! s:from_line_after_import_line(import_line) abort
+function! s:from_line_after_import_line(import_line, is_require) abort
 	let i = a:import_line
 	let end = line("$")
 
+	if a:is_require
+		" just look for a string
+		let re = "\\v(['\"]).*\\1"
+	else
+		let re = "\\v\\C<from>\\s+['\"]"
+	endif
+
 	while i <= end
 		let line = getline(i)
-		if match(line, "\\v\\C<from>\\s+['\"]") >= 0
+
+		if match(line, re) >= 0
 			return i
-		elseif match(line, "\\C<import>") >= 0
+		elseif match(line, "\\C<(import|require)>") >= 0
 			" found a new import, 'from' for the previous doesn't exist
 			break
 		endif
@@ -299,9 +308,9 @@ function! JsTag(pattern, flags, info) abort
 		return s:scoped_tag_search(ident)
 	endif
 
-	let found_line = s:import_require_search(tag)
+	let [found_line, is_require] = s:import_require_search(tag)
 	if found_line > 0
-		let from_line = s:from_line_after_import_line(found_line)
+		let from_line = s:from_line_after_import_line(found_line, is_require)
 
 		if from_line > 0
 			return s:tag_from_stringpath(from_line, ident)
