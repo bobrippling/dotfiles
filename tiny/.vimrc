@@ -62,32 +62,32 @@ if has("nvim")
 	set inccommand=split
 endif
 
-nmap <silent> <leader>n :cn<CR>
-nmap <silent> <leader>N :w\|cn<CR>
-nmap <silent> <leader>j :n<CR>
-nmap <silent> <leader>J :w\|n<CR>
-nmap <silent> <leader>h :noh<CR>
-nmap <silent> <leader>H :set hls!<CR>
-nmap <silent> <leader>g :grep <CR>
-nmap <silent> <leader>G :grep '\b\b'<CR>
-nmap <silent> <leader>* :match IncSearch /\<\>/<CR>
-nmap <silent> <leader>l :set list!<CR>
-nmap <silent> <leader>w :set wrap!<CR>
-nmap <silent> <leader>S :set spell!<CR>
-nmap <silent> <leader>f :let @" = bufname("%")<CR>
-nmap <silent> <leader>F :let @" = expand("%:p")<CR>
-nmap <silent> <leader>M :set modifiable!<CR>
-nmap <silent> <leader>m :update\|make<CR>
-nmap <silent> <leader>a :vertical ball<CR>
-nmap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
+nnoremap <silent> <leader>n :cn<CR>
+nnoremap <silent> <leader>N :w\|cn<CR>
+nnoremap <silent> <leader>j :n<CR>
+nnoremap <silent> <leader>J :w\|n<CR>
+nnoremap <silent> <leader>h :noh<CR>
+nnoremap <silent> <leader>H :set hls!<CR>
+nnoremap <silent> <leader>g :grep <CR>
+nnoremap <silent> <leader>G :grep '\b\b'<CR>
+nnoremap <silent> <leader>* :match IncSearch /\<\>/<CR>
+nnoremap <silent> <leader>l :set list!<CR>
+nnoremap <silent> <leader>w :set wrap!<CR>
+nnoremap <silent> <leader>S :set spell!<CR>
+nnoremap <silent> <leader>f :let @" = bufname("%")<CR>
+nnoremap <silent> <leader>F :let @" = expand("%:p")<CR>
+nnoremap <silent> <leader>M :set modifiable!<CR>
+nnoremap <silent> <leader>m :update\|make<CR>
+nnoremap <silent> <leader>a :vertical ball<CR>
+nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
 
-nmap <silent> ZW :w<CR>
-nmap <silent> ZE :e<CR>
+nnoremap <silent> ZW :w<CR>
+nnoremap <silent> ZE :e<CR>
 
-nmap <silent> [% :call searchpair('\[', '', '\]', 'Wb')<CR>
-nmap <silent> ]% :call searchpair('\[', '', '\]', 'W')<CR>
-nmap <silent> [< :call searchpair('<', '', '>', 'Wb')<CR>
-nmap <silent> ]> :call searchpair('<', '', '>', 'W')<CR>
+nnoremap <silent> [% :call searchpair('\[', '', '\]', 'Wb')<CR>
+nnoremap <silent> ]% :call searchpair('\[', '', '\]', 'W')<CR>
+nnoremap <silent> [< :call searchpair('<', '', '>', 'Wb')<CR>
+nnoremap <silent> ]> :call searchpair('<', '', '>', 'W')<CR>
 
 nnoremap ' `
 nnoremap <C-Y> 3<C-Y>
