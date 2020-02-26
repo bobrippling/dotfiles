@@ -21,7 +21,7 @@ function! s:is_terminal(buf)
     return getbufvar(a:buf, "&buftype") == "terminal"
 endfunction
 
-function! s:recentbuffers()
+function! s:buffers()
     let buffers = []
 
     for i in range(1, bufnr('$'))
@@ -34,7 +34,11 @@ function! s:recentbuffers()
         call add(buffers, i)
     endfor
 
-    return sort(buffers, 's:buftimecmp')
+    return buffers
+endfunction
+
+function! s:recentbuffers()
+    return sort(s:buffers(), 's:buftimecmp')
 endfunction
 
 function! Lst()
@@ -72,5 +76,27 @@ function! TrimOldBuffers(count, bang)
     echo "Deleted " . len(delete) . " buffers"
 endfunction
 
+function! s:fileexists(path)
+    return !empty(glob(a:path, v:true))
+endfunction
+
+function! TrimUnlinkedBuffers()
+    let delete = []
+    for buf in s:buffers()
+        let name = bufname(buf)
+        if empty(name)
+            continue
+        endif
+        if s:fileexists(name)
+            continue
+        endif
+
+        call add(delete, buf)
+    endfor
+
+    execute "bdelete " . join(delete)
+endfunction
+
 command! Ls call Lst()
 command! -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, '<bang>')
+command! TrimUnlinkedBuffers call TrimUnlinkedBuffers()
