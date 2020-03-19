@@ -139,6 +139,10 @@ function! s:file_from_import(nextfile) abort
 	return nextfile
 endfunction
 
+function! s:generate_cmd(cmd) abort
+	return a:cmd . " | normal! zz"
+endfunction
+
 function! s:tag_in_this_file_on_line(tag, line) abort
 	let thisfile = expand("%")
 
@@ -150,7 +154,7 @@ function! s:tag_in_this_file_on_line(tag, line) abort
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
-	\   "cmd": string(a:line),
+	\   "cmd": s:generate_cmd(string(a:line)),
 	\ }]
 endfunction
 
@@ -210,7 +214,7 @@ function! s:tag_from_stringpath(found_line, ident)
 	return [{
 	\		 "name": a:ident,
 	\		 "filename": nextfile,
-	\		 "cmd": "call JsTagInCurFile('" . a:ident . "')",
+	\		 "cmd": s:generate_cmd("call JsTagInCurFile('" . a:ident . "')"),
 	\ }]
 endfunction
 
@@ -351,7 +355,7 @@ function! JsFileTags(pattern) abort
 			let allents += [{
 			\		 "name": ent,
 			\		 "filename": filename,
-			\		 "cmd": "call JsTagInCurFile('" . ent . "')",
+			\		 "cmd": s:generate_cmd("call JsTagInCurFile('" . ent . "')"),
 			\ }]
 		endfor
 	endwhile
