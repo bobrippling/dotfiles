@@ -261,7 +261,9 @@ function! s:import_require_search(tag) abort
 		" to find the `from '...'` line
 		call s:debug("import-end found at line " . found_line)
 
-		return [found_line, v:false]
+		" v:true - could be either require or import
+		" pretend it's require and just look for a string
+		return [found_line, v:true]
 	endif
 
 	return [0, v:false]
