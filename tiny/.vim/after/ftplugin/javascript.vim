@@ -247,6 +247,7 @@ function! s:import_require_search(tag) abort
 	call s:debug("looking for " . tag . " inside {...} (with " . tag_search . ") - line = " . found_line)
 
 	if found_line > 0
+		call s:debug("found on line " . found_line . ", searching for end of imports...")
 		let skip_search = "\\v\\C^(\\s*type )?\\s*<[a-zA-Z0-9]+>\\s*,?"
 		while 1
 			let line = getline(found_line)
@@ -258,7 +259,8 @@ function! s:import_require_search(tag) abort
 
 		" we've found the line of the import, leave it to the caller
 		" to find the `from '...'` line
-		call s:debug("finished at line " . found_line)
+		call s:debug("import-end found at line " . found_line)
+
 		return [found_line, v:false]
 	endif
 
