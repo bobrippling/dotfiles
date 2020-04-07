@@ -62,10 +62,10 @@ if has("nvim")
 	set inccommand=split
 endif
 
-nnoremap <silent> <leader>n :cn<CR>
-nnoremap <silent> <leader>N :w\|cn<CR>
-nnoremap <silent> <leader>j :n<CR>
-nnoremap <silent> <leader>J :w\|n<CR>
+nnoremap <expr> <silent> <leader>n ":<C-U>" . v:count1 . "cn<CR>"
+nnoremap <expr> <silent> <leader>N ":<C-U>w\\|" . v:count1 . "cn<CR>"
+nnoremap <expr> <silent> <leader>j ":<C-U>" . v:count1 . "n<CR>"
+nnoremap <expr> <silent> <leader>J ":<C-U>" . v:count1 . "w\\|n<CR>"
 nnoremap <silent> <leader>h :noh<CR>
 nnoremap <silent> <leader>H :set hls!<CR>
 nnoremap <silent> <leader>g :grep <CR>
