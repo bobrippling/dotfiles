@@ -4,7 +4,7 @@ function! IsLoneCmd(cmd)
 	endif
 
 	let modifiers = '((vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright])\s+)*'
-	return getcmdline() =~ ('\v(^|\|)\s*' . modifiers . a:cmd)
+	return getcmdline() =~ ('\v(^|\|)[: \t]*' . modifiers . a:cmd)
 endfunction
 
 function! CmdAlias(lhs, rhs)
