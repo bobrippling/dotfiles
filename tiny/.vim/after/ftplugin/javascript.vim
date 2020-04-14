@@ -296,7 +296,7 @@ function! s:from_line_after_import_line(import_line, is_require) abort
 
 		if match(line, re) >= 0
 			return i
-		elseif match(line, "\\C<(import|require)>") >= 0
+		elseif match(line, "\\C\\v<(import|require)>") >= 0
 			" found a new import, 'from' for the previous doesn't exist
 			break
 		endif
