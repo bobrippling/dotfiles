@@ -68,7 +68,9 @@ function! Dotcomplete(findstart, base)
     let save_cursor = getcurpos()
     call cursor(1, 0)
     while 1
-        let s = "\\C\\<" . obj . "\\>\\."
+        let obj_nobackslash = substitute(obj, '\\', '\\\\', 'g')
+        let s = "\\C\\<\\V" . obj_nobackslash . "\\m\\>\\."
+        "              ^~~ very nomagic          ^~~ restore magic/normal re
         if search(s, "W") == 0
             break
         endif
