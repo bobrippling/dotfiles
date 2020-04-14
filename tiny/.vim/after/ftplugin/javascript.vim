@@ -80,6 +80,16 @@ function! JsTagInCurFile(ident) abort
 	endif
 endfunction
 
+function! JSTagOnLine(line, tag)
+	let line = getline(a:line)
+	let escaped_tag = substitute(a:tag, '\\', '\\\\', 'g')
+	let x = "\\C\\<\\V" . escaped_tag . "\\m\\>"
+	let col = match(line, x)
+	"                            ^~~ very nomagic      ^~~ restore magic/normal re
+
+	call cursor(a:line, 1 + (col >= 0 ? col : 0))
+endfunction
+
 function! s:try_js_index(nextfile) abort
 	let nextfile = a:nextfile
 
@@ -155,7 +165,7 @@ function! s:tag_in_this_file_on_line(tag, line) abort
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
-	\   "cmd": s:generate_cmd(string(a:line)),
+	\   "cmd": s:generate_cmd("call JSTagOnLine(" . a:line . ", '" . a:tag . "')"),
 	\ }]
 endfunction
 
