@@ -286,7 +286,7 @@ endfunction
 
 function! s:from_line_after_import_line(import_line, import_kind) abort
 	let i = a:import_line
-	let end = line("$")
+	let end = i + 10 " search up to this many lines after, for the require/from '...' part
 
 	if a:import_kind == s:is_require
 		let re = "\\v\\C<require>.*(['\"]).*\\1"
