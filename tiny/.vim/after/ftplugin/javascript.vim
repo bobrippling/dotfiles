@@ -1,3 +1,7 @@
+let s:unknown = '?'
+let s:is_require = 'require'
+let s:is_import = 'from'
+
 function! s:debug(s) abort
 	if 0
 		echom "jstag: " . a:s
@@ -231,7 +235,7 @@ endfunction
 
 function! s:import_require_search(tag) abort
 	" find the line that contains the string path import
-	" returns [lineno, is_require]
+	" returns [lineno, s:{is_require|is_import|unknown}]
 	let tag = a:tag
 
 	call s:debug("looking for import + " . tag)
@@ -239,14 +243,14 @@ function! s:import_require_search(tag) abort
 	" w: wrap around, c: accept match at cursor
 	let found_line = search(import_search, "wc")
 	if found_line > 0
-		return [found_line, v:false]
+		return [found_line, s:is_import]
 	endif
 
 	call s:debug("looking for require + " . tag)
 	let require_search = "\\v\\C^(const|let|var)>[^'\"]*<" . tag . ">.*\\=.*<require>"
 	let found_line = search(require_search, "wc")
 	if found_line > 0
-		return [found_line, v:true]
+		return [found_line, s:is_require]
 	endif
 
 	" look for import { \n <...> \n } from '<path>'
@@ -274,21 +278,24 @@ function! s:import_require_search(tag) abort
 
 		" v:true - could be either require or import
 		" pretend it's require and just look for a string
-		return [found_line, v:true]
+		return [found_line, s:unknown]
 	endif
 
-	return [0, v:false]
+	return [0, s:unknown]
 endfunction
 
-function! s:from_line_after_import_line(import_line, is_require) abort
+function! s:from_line_after_import_line(import_line, import_kind) abort
 	let i = a:import_line
 	let end = line("$")
 
-	if a:is_require
-		" just look for a string
-		let re = "\\v(['\"]).*\\1"
-	else
+	if a:import_kind == s:is_require
+		let re = "\\v\\C<require>.*(['\"]).*\\1"
+	elseif a:import_kind == s:is_import
 		let re = "\\v\\C<from>\\s+['\"]"
+	elseif a:import_kind == s:unknown
+		let re = "\\v\\C<(require|from)>\\s+['\"]"
+	else
+		throw "unknown enum"
 	endif
 
 	while i <= end
@@ -327,14 +334,14 @@ function! JsTag(pattern, flags, info) abort
 		return s:scoped_tag_search(ident)
 	endif
 
-	let [found_line, is_require] = s:import_require_search(tag)
+	let [found_line, import_kind] = s:import_require_search(tag)
 	if found_line > 0
-		let from_line = s:from_line_after_import_line(found_line, is_require)
+		let from_line = s:from_line_after_import_line(found_line, import_kind)
 
 		if from_line > 0
 			return s:tag_from_stringpath(from_line, ident)
 		endif
-		call s:debug("'from' line not found after import line")
+		call s:debug("'" . import_kind . "' line not found after tag")
 	endif
 
 	call s:debug("import/require line not found")
