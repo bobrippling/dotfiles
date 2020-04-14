@@ -140,7 +140,8 @@ function! s:file_from_import(nextfile) abort
 endfunction
 
 function! s:generate_cmd(cmd) abort
-	return a:cmd . " | normal! zz"
+	" must :keepjumps inside a:cmd
+	return "keepjumps " . a:cmd . " | normal! zz"
 endfunction
 
 function! s:tag_in_this_file_on_line(tag, line) abort
