@@ -236,6 +236,8 @@ endfunction
 function! s:import_require_search(tag) abort
 	" find the line that contains the string path import
 	" returns [lineno, s:{is_require|is_import|unknown}]
+	"
+	" we could return [..., tag] for tags that are renamed, i.e. '{ x as y }'
 	let tag = a:tag
 
 	call s:debug("looking for import + " . tag)
@@ -255,7 +257,7 @@ function! s:import_require_search(tag) abort
 
 	" look for import { \n <...> \n } from '<path>'
 	" (don't anchor to EOL, we want to allow comments, etc)
-	let tag_search = "\\v\\C^(\\s*type )?\\s*<" . tag . ">\\s*,?"
+	let tag_search = "\\v\\C^(\\s*type )?\\s*([a-zA-Z0-9_$]+\\s+as\\s+)?<" . tag . ">\\s*,?"
 	call cursor(1, 1)
 	let found_line = search(tag_search, "Wc")
 
@@ -263,7 +265,7 @@ function! s:import_require_search(tag) abort
 
 	if found_line > 0
 		call s:debug("found on line " . found_line . ", searching for end of imports...")
-		let skip_search = "\\v\\C^(\\s*type )?\\s*<[a-zA-Z0-9]+>\\s*,?"
+		let skip_search = "\\v\\C^(\\s*type )?\\s*([a-zA-Z0-9_$]+\\s+as\\s+)?<[a-zA-Z0-9]+>\\s*,?"
 		while 1
 			let line = getline(found_line)
 			if match(line, skip_search) < 0
