@@ -126,34 +126,22 @@ bindkey -M vicmd 'v' edit-command-line
 
 # -------------------------------------------------------------------------------------
 # Prompt
-col_failure='[1;31m'
 
-if test $UID -eq 0
-then col_prompt=
-else
-	case "$(hostname)" in
-		egbert)
-			col_prompt='[34m'
-			;;
-		jeffraw)
-			col_prompt='[38m'
-			;;
-		rip)
-			col_prompt='[32m'
-			;;
-		*)
-			col_prompt='[33m'
-			;;
-	esac
-fi
+# ? - last exit
+# <n>j - at least N jobs
+# ! - privileges
+# # - uid 0
+# %B/b - bold
+# %F/f - colour
+# %{...%} - exclude '...' from width calculation
+# double quote - \<eol> is stripped
+# prompt_subst - expand $SSH_CONNECTION
 
-# %(test.success.failure)
-#  e.g. %(?.EXIT_SUCCESS.EXIT_FAILURE)
-# colours should be inside a %{ %} pair
+PS1="
+%B%m%b\
+%(?.. %F{red}%??%f)\
+%(1j. %F{yellow}%j&%f.)\
+ \
+%(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
 
-col_reset='%{[m%}'
-col_bracket="%{$col_prompt%}"
-col_red="%{$col_red%}"
-
-export PS1="
-%{%(?.$col_prompt.$col_red)%}%? %{$col_prompt%}%j$col_reset %# "
+setopt prompt_subst
