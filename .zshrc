@@ -69,7 +69,14 @@ preexec(){
 }
 
 # End of lines added by compinstall
+
+# -------------------------------------------------------------------------------------
+# Enable colours
+
 autoload colors && colors
+
+# -------------------------------------------------------------------------------------
+# Options
 
 # _:s are optional
 setopt append_history
@@ -93,6 +100,9 @@ unsetopt beep
 unsetopt correct_all
 unsetopt nomatch # no-matches aren't errors
 
+# -------------------------------------------------------------------------------------
+# Environment
+
 HISTIGNORE="ls:exit:clear:logout"
 HISTTIMEFORMAT="[%Y-%m-%d - %H:%M:%S] "
 HISTFILE=~/.zsh_history
@@ -102,46 +112,12 @@ SAVEHIST=50000
 #WORDCHARS='*?_-.[]~\!#$%^(){}<>|`@#$%^*()+:?'
 WORDCHARS='*?~\!#$%^()[]{}<>|`@:'
 
-bindkey -v # viper!
+# -------------------------------------------------------------------------------------
+# Bindings
 
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
-bindkey "\e[5~" beginning-of-history
-bindkey "\e[6~" end-of-history
-bindkey "\e[3~" delete-char
-bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word
-bindkey "\e\e[C" forward-word
-bindkey "\e\e[D" backward-word
-bindkey "^H" backward-delete-char
-# for rxvt
-bindkey "\e[8~" end-of-line
-bindkey "\e[7~" beginning-of-line
-# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
-bindkey "\eOH" beginning-of-line
-bindkey "\eOF" end-of-line
-# for freebsd console
-bindkey "\e[H" beginning-of-line
-bindkey "\e[F" end-of-line
-# completion in the middle of a line
-bindkey '^i' expand-or-complete-prefix
-# Numpad enter
-bindkey '\eOM' accept-line
-# Bash style ctrl+u and ctrl+k
-bindkey "^U" backward-kill-line
-bindkey "^K" vi-kill-eol
-# When pressing [Up] after typing ls, only previous commands beginning with ls (the current input) will be shown
-# built in:
-bindkey "\e[A" history-beginning-search-backward
-bindkey "\e[B" history-beginning-search-forward
-# other mode is viins
+bindkey -v
 bindkey -M vicmd 'k' history-beginning-search-backward
 bindkey -M vicmd 'j' history-beginning-search-forward
-# Custom
-bindkey "^G" history-beginning-search-backward
 
 autoload edit-command-line
 zle -N edit-command-line
