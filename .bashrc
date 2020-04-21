@@ -1,8 +1,41 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-export PS1='
-\[[1;$(__e=$?; if test $__e -eq 0; then printf 32m; else printf 31m; fi; exit $__e)\]$? \j \[[32m\]$\[[0m\] '
+__prompt_command(){
+	__e=$?
+	PS1=
+
+	PS1+='\[\e[1m\]'
+	PS1+='\h '
+	PS1+='\[\e[0m\]'
+
+	if [[ $__e -ne 0 ]]
+	then
+		PS1+='\[\e[0;31m\]'
+		PS1+="${__e}?"
+		PS1+='\[\e[0;0m\] '
+	fi
+
+	if type jobs >/dev/null 2>&1 \
+		&& __n=$(jobs 2>/dev/null | grep -c '^') \
+		&& [[ $__n -gt 0 ]]
+	then
+		PS1+='\[\e[0;33m\]'
+		PS1+="$__n&"
+		PS1+='\[\e[0;0m\] '
+	fi
+
+	PS1+='\[\e[1;32m\]'
+	PS1+='\$'
+	PS1+='\[\e[0;0m\] '
+}
+
+export PROMPT_COMMAND="__prompt_command; $PROMPT_COMMAND"
+
+# simpler prompt:
+#export PS1='
+#\[\e[1;$(__e=$?; if test $__e -eq 0; then printf 32m; else printf 31m; fi; exit $__e)\]$? \j \[\e[32m\]$\[\e[0m\] '
+
 
 bind -m vi '"j": history-search-forward'
 bind -m vi '"k": history-search-backward'
