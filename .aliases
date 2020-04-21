@@ -22,6 +22,9 @@ mkcd(){
 	mkdir -p "$1"
 	cd "$1"
 }
+if [[ "$SHELL" =~ zsh ]]
+then compdef mkcd=mkdir
+fi
 
 nh(){
 	if [ $# -eq 0 ]

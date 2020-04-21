@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit # for compdef in aliases
+
 source ~/.aliases
 source ~/.environ
 
@@ -65,8 +68,6 @@ preexec(){
 	zshrc_cursor_block
 }
 
-autoload -Uz compinit
-compinit
 # End of lines added by compinstall
 autoload colors && colors
 
