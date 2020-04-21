@@ -85,6 +85,7 @@ function! s:tfind(editcmd, mods, buffers, ...) abort
 				let paths = ["."]
 			else
 				echo "Using previous paths: " . join(paths)
+				let paths = copy(paths)
 			endif
 		else
 			let s:lastpaths = copy(paths)
