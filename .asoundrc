@@ -32,10 +32,6 @@
 
 
 
-
-
-
-
 ## ----------------------- file capture
 #
 #pcm.!default {
@@ -74,4 +70,49 @@
 #ctl.card0 {
 #	type hw
 #	card 0
+#}
+
+
+## ----------------------- per-env outputs
+# http://leahneukirchen.org/dotfiles/.asoundrc
+
+# define three additional softvol channels, to be selected
+# via "ALSA_OUTPUT=firefox firefox"
+
+#pcm.firefox {
+#    type            softvol
+#    slave.pcm       "asymed"
+#    control.name    "Firefox"
+#    control.card    0
+#}
+#
+#pcm.chromium {
+#    type            softvol
+#    slave.pcm       "asymed"
+#    control.name    "Chromium"
+#    control.card    0
+#}
+#
+#pcm.!default {
+#    type            plug
+#    slave.pcm { @func getenv vars [ ALSA_OUTPUT ] default "asymed" }
+#}
+#
+#pcm.asymed {
+#    type asym
+#    playback.pcm "dmix"
+#    capture.pcm "hw:0,0"
+#}
+#
+#pcm.sndio {
+#  type file
+#  slave.pcm "null"
+#  file "|aucat -i -"
+#  format "raw"
+#}
+#
+#defaults.bluealsa {
+#  interface "hci0"
+#  #device "<mac>"
+#  profile "a2dp"
 #}
