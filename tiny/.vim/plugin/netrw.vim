@@ -5,5 +5,7 @@ function! s:update_netrw_hide()
 	let g:netrw_list_hide = netrw_gitignore#Hide()
 endfunction
 
-autocmd DirChanged * call s:update_netrw_hide()
+if exists("#DirChanged")
+	autocmd DirChanged * call s:update_netrw_hide()
+endif
 call s:update_netrw_hide()
