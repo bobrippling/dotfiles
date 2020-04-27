@@ -14,10 +14,6 @@ let s:matches = []
 
 function! MatchBook(clear, nth, keyword)
 	if a:clear
-		if !empty(keyword)
-			throw "Can't clear with a keyword"
-		endif
-
 		if a:nth == 0
 			for id in s:matches
 				try
@@ -31,7 +27,7 @@ function! MatchBook(clear, nth, keyword)
 		endif
 	else
 		if a:nth != 0
-			throw "Can't prescribe an id to match"
+			throw "Prescribed id not currently handled"
 		endif
 
 		let keyword = a:keyword
