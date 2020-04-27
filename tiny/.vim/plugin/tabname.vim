@@ -47,10 +47,16 @@ function! TabLine()
 		" select the highlighting
 		if i == tabpagenr()
 			let hl_lbl = "%#TabLineSel#"
-			let hl_pre = hlexists("TabLineSelItalic") ? "%#TabLineSelItalic#" : ""
+			let hl_pre = "TabLineSelItalic"
 		else
 			let hl_lbl = "%#TabLine#"
-			let hl_pre = hlexists("TabLineItalic") ? "%#TabLineItalic#" : ""
+			let hl_pre = "TabLineItalic"
+		endif
+
+		if hlexists(hl_pre)
+			let hl_pre = "%#" . hl_pre . "#"
+		else
+			let hl_pre = hl_lbl
 		endif
 
 		" tab page number for mouse clicks
