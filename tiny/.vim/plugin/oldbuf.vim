@@ -1,14 +1,32 @@
-augroup ChangedTime
-  autocmd!
-  autocmd BufAdd,BufNewFile,BufNew,BufLeave * let b:changedtime = localtime()
-augroup END
+function! s:detect_lastused()
+    let bi = getbufinfo()
+    for b in bi
+        if has_key(b, 'lastused')
+            return 1
+        endif
+    endfor
+    return 0
+endfunction
+
+let s:has_lastused = s:detect_lastused()
+
+if !s:has_lastused
+    augroup ChangedTime
+        autocmd!
+        autocmd BufAdd,BufNewFile,BufNew,BufLeave * let b:changedtime = localtime()
+    augroup END
+endif
 
 function! s:when(buf)
-    try
-        return getbufvar(a:buf, 'changedtime')
-    catch
-        return "?"
-    endtry
+    if s:has_lastused
+        return getbufinfo(a:buf)[0].lastused
+    else
+        try
+            return getbufvar(a:buf, 'changedtime')
+        catch
+            return "?"
+        endtry
+    endif
 endfunction
 
 function! s:buftimecmp(a, b)
