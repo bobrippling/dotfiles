@@ -5,21 +5,20 @@
 __ps1_exitcode(){
 	__e=$?
 	if [[ $__e -ne 0 ]]
-	then printf '\e[0;31m%s?\e[0;0m ' $__e
+	then printf '%s? ' $__e
 	fi
-	exit $__e
 }
 __ps1_jobs(){
 	__n=$(jobs 2>/dev/null | grep -c '^')
 	if [[ $__n -gt 0 ]]
-	then printf '\e[0;33m%s&\e[0;0m ' $__n
+	then printf '%s& ' $__n
 	fi
 }
-__ps1_hostname=$(printf '\e[1m'; hostname | tr '[A-Z]' '[a-z]' | tr -d '\n'; printf '\e[0m')
+__ps1_hostname=$(hostname | tr '[A-Z]' '[a-z]' | tr -d '\n')
 
 # simpler prompt:
 export PS1='
-${__ps1_hostname} $(__ps1_exitcode)$(__ps1_jobs)\[\e[1;32m\]$\[\e[0;0m\] '
+\[\e[1m\]${__ps1_hostname}\[\e[0m\] \[\e[0;31m\]$(__ps1_exitcode)\[\e[0;33m\]$(__ps1_jobs)\[\e[1;32m\]$\[\e[0;0m\] '
 
 
 bind -m vi '"j": history-search-forward'
