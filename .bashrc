@@ -20,6 +20,7 @@ __ps1_hostname=$(hostname | tr '[A-Z]' '[a-z]' | tr -d '\n')
 export PS1='
 \[\e[1m\]${__ps1_hostname}\[\e[0m\] \[\e[0;31m\]$(__ps1_exitcode)\[\e[0;33m\]$(__ps1_jobs)\[\e[1;32m\]$\[\e[0;0m\] '
 
+bind -m vi-insert '"\C-L": clear-screen'
 
 bind -m vi '"j": history-search-forward'
 bind -m vi '"k": history-search-backward'
