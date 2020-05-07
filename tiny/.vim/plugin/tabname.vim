@@ -36,7 +36,7 @@ function! TabPre(n)
 		endif
 	endfor
 
-	let pre = len(bufs) . (tty ? "T" : "") . (modified ? "+" : "")
+	let pre = a:n . " " . len(bufs) . (tty ? "T" : "") . (modified ? "+" : "")
 	return pre . (empty(pre) ? "" : " ")
 endfunction
 
