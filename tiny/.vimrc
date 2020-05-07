@@ -106,6 +106,8 @@ nnoremap <silent> <C-W>u :set winfixwidth!<CR>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+vnoremap g/ <Esc>'</\%V
+
 syntax on
 filetype on
 filetype indent plugin on
