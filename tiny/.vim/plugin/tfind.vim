@@ -75,7 +75,9 @@ function! s:tfind(editcmd, mods, buffers, ...) abort
 			endfunction
 			call filter(bufs, function('InPaths'))
 		endif
-		call map(bufs, { i, dict -> dict.name })
+		" use absolute paths otherwise buffers can be pwd-relative,
+		" but from the wrong buffer
+		call map(bufs, { i, dict -> fnamemodify(dict.name, ":p") })
 		call writefile(bufs, tmpfile_in)
 		let command = "tmenu >" . tmpfile . " <" .tmpfile_in
 	else
