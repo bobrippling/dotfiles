@@ -4,12 +4,12 @@ endif
 
 function! s:esc_term() abort
 	if &buftype ==# "terminal"
-		call feedkeys("\<C-\>\<C-N>", "n")
+		call feedkeys("\<C-\>\<C-N>", "nx")
 	endif
 endfunction
 
 augroup TermLeave
 	autocmd!
 
-	autocmd WinLeave * call s:esc_term()
+	autocmd WinEnter * call s:esc_term()
 augroup END
