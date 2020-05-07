@@ -209,3 +209,5 @@ hi StatusLineTermNC ctermbg=black ctermfg=green cterm=none
 " these closely mirror the TabLine and TabLineSel groups
 hi TabLineItalic term=underline cterm=underline ctermbg=grey ctermfg=green
 hi TabLineSelItalic term=bold cterm=bold,italic ctermfg=green
+
+hi Folded ctermbg=none
