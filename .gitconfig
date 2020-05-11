@@ -23,6 +23,7 @@
 	fe = fetch -p
 	smu = submodule update
 	logf = log --format=fuller --date=iso-strict
+	b = branch --format='%(if)%(HEAD)%(then)%(color:cyan)%(end)%(refname:short)'
 
 [interactive]
 	singlekey = true
