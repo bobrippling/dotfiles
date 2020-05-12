@@ -12,5 +12,6 @@ set confirm off
 # history
 set history save
 set history size 1000
+set history filename ~/.gdb_history
 
 #source ~/src/peda/peda.py
