@@ -191,7 +191,6 @@ hi QuickFixLine ctermbg=4
 hi SpellBad ctermfg=red ctermbg=none
 
 hi link Terminal Normal
-hi Search ctermbg=green ctermfg=white
 hi Error ctermbg=red ctermfg=white cterm=none
 hi clear ErrorMsg | hi link ErrorMsg Error
 
