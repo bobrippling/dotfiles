@@ -7,6 +7,9 @@ if has("gui")
 	set visualbell t_vb=
 
 	if has("gui_running")
-		colorscheme relaxed
+		try
+			colorscheme relaxed
+		catch /E185/
+		endtry
 	endif
 endif
