@@ -67,6 +67,9 @@ if v:version >= 704
 	set formatoptions+=j
 endif
 
+" terminal
+set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
+
 if has("nvim")
 	set inccommand=split
 endif
