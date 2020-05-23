@@ -65,8 +65,20 @@ function! s:emit_error(msg)
 	echohl None
 endfunction
 
+function! JsTagCentre(top, bot) abort
+	let cur = line(".")
+	if a:top <= cur && cur <= a:bot
+		return
+	endif
+
+	normal zz
+endfunction
+
 function! JsTagInCurFile(ident) abort
+	let [top, bot] = [line("w0"), line("w$")]
+
 	keepjumps if searchdecl(a:ident, 1) == 0
+		call JsTagCentre(top, bot)
 		return
 	endif
 
@@ -79,12 +91,16 @@ function! JsTagInCurFile(ident) abort
 	" c: accept match at cursor
 	" W: no wrap around
 	" z: start at cursor column
-	if search("\\C\\v<" . a:ident . ">", "cw") == 0
+	if search("\\C\\v<" . a:ident . ">", "cw") > 0
+		call JsTagCentre(top, bot)
+	else
 		call s:emit_error("Couldn't find " . a:ident)
 	endif
 endfunction
 
-function! JSTagOnLine(line, tag)
+function! JsTagOnLine(line, tag)
+	let [top, bot] = [line("w0"), line("w$")]
+
 	let line = getline(a:line)
 	let escaped_tag = substitute(a:tag, '\\', '\\\\', 'g')
 	let x = "\\C\\<\\V" . escaped_tag . "\\m\\>"
@@ -92,6 +108,8 @@ function! JSTagOnLine(line, tag)
 	"                            ^~~ very nomagic      ^~~ restore magic/normal re
 
 	call cursor(a:line, 1 + (col >= 0 ? col : 0))
+
+	call JsTagCentre(top, bot)
 endfunction
 
 function! s:try_js_index(nextfile) abort
@@ -169,7 +187,7 @@ function! s:tag_in_this_file_on_line(tag, line) abort
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
-	\   "cmd": s:generate_cmd("call JSTagOnLine(" . a:line . ", '" . a:tag . "')"),
+	\   "cmd": s:generate_cmd("call JsTagOnLine(" . a:line . ", '" . a:tag . "')"),
 	\ }]
 endfunction
 
