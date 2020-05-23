@@ -11,5 +11,5 @@ endfunction
 augroup TermLeave
 	autocmd!
 
-	autocmd WinEnter * call s:esc_term()
+	autocmd WinEnter,BufWinEnter * call s:esc_term()
 augroup END
