@@ -50,6 +50,15 @@ set lazyredraw
 set foldopen-=block
 set completeopt+=menuone,noselect
 
+" display (gui)
+" m: menu bar
+" M: don't source menu.vim
+" T: toolbar
+" r: right hand scrollbar
+" L: left hand scrollbar when split
+set go-=m go+=M go-=T go-=r go-=L
+
+
 " editing
 set cindent
 set cinoptions+=j1,J1,l1,N-s,t0
