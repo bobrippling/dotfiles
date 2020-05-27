@@ -125,9 +125,44 @@ function! s:trim_dotdots(path) abort
 	return [updirs, path]
 endfunction
 
+function! s:file_from_import_virtual(nextfile) abort
+	let nextfile = a:nextfile
+
+	if match(nextfile, "^\\.") >= 0
+		" relative to current path
+		call s:debug("file_from_import_virtual, relative nextfile (" . nextfile . ")")
+
+		let [updirs, nextfile] = s:trim_dotdots(nextfile)
+
+		return expand("%:h" . repeat(":h", updirs))
+					\ . "/"
+					\ . substitute(nextfile, "^\\./", "", "")
+					\ . "."
+					\ . expand("%:e")
+	else
+		call s:debug("file_from_import_virtual, absolute nextfile (" . nextfile . ")")
+
+		" fugitive://<path-to-repo>/.git//<hash>/<path-to-file>/<file>
+		"                                        ^~~~~~~~~~~~~~~~~~~~~ discard
+		let components = split(expand("%"), "/")
+		let git_pos = index(components, ".git")
+
+		if git_pos == -1
+			throw "couldn't figure out target import for '" . nextfile . "'"
+		endif
+		let target_dir = join(components[:git_pos + 2], "/")
+		return target_dir . "/" . nextfile . "." . expand("%:e")
+	endif
+endfunction
+
 function! s:file_from_import(nextfile) abort
 	" this function needs to do the equivalent of 'gf', which isn't the same as findfile()
 	let nextfile = a:nextfile
+
+	if match(expand("%"), "^fugitive://") >= 0
+		" not an actual file, just try to interpolate ourselves
+		return s:file_from_import_virtual(nextfile)
+	endif
 
 	" findfile() doens't work on paths like "./abc" - remove prefix
 	let nextfile = substitute(nextfile, "^\\./", "", "")
