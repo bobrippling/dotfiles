@@ -278,7 +278,10 @@ function! s:import_require_search(tag) abort
 	let tag = a:tag
 
 	call s:debug("looking for import + " . tag)
-	let import_search = "^import[^'\"]*\\<" . tag . "\\>\\C"
+	let import_search = "\\C^import[^'\"]*\\<" . tag . "\\>"
+				\ . "\\|"
+				\ . "^export[^'\"]*\\<" . tag . "\\>.*\\<from\\>"
+
 	" w: wrap around, c: accept match at cursor
 	let found_line = search(import_search, "wc")
 	if found_line > 0
@@ -342,7 +345,7 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 
 		if match(line, re) >= 0
 			return i
-		elseif match(line, "\\C\\v<(import|require)>") >= 0
+		elseif match(line, "\\C\\v<(import|require|export)>") >= 0
 			" found a new import, 'from' for the previous doesn't exist
 			break
 		endif
