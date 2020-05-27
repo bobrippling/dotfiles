@@ -115,6 +115,16 @@ function! s:try_js_index(nextfile) abort
 	return nextfile
 endfunction
 
+function! s:trim_dotdots(path) abort
+	let path = a:path
+	let updirs = 0
+	while match(path, "^\\.\\./") >= 0
+		let path = substitute(path, "^\\.\\./", "", "")
+		let updirs += 1
+	endwhile
+	return [updirs, path]
+endfunction
+
 function! s:file_from_import(nextfile) abort
 	" this function needs to do the equivalent of 'gf', which isn't the same as findfile()
 	let nextfile = a:nextfile
@@ -123,19 +133,11 @@ function! s:file_from_import(nextfile) abort
 	let nextfile = substitute(nextfile, "^\\./", "", "")
 
 	" findfile() doesn't work on paths like "../abc" - remove prefix and expand path
-	let updirs = 0
-	while match(nextfile, "^\\.\\./") >= 0
-		let nextfile = substitute(nextfile, "^\\.\\./", "", "")
-		let updirs += 1
-	endwhile
+	let [updirs, nextfile] = s:trim_dotdots(nextfile)
 	let pathexpand = ""
 	if updirs > 0
 		let updirs += 1 " if we're doing a relative fix, chop off the filename first
-		call s:debug("updirs: " . updirs)
-		while updirs > 0
-			let pathexpand .= ":h"
-			let updirs -= 1
-		endwhile
+		let pathexpand = repeat(":h", updirs)
 	endif
 
 	" put current file's directory first, for priority
