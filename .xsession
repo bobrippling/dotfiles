@@ -4,7 +4,7 @@ export LANG=en_GB.UTF8
 
 old_umask=$(umask)
 umask 066
-exec > /tmp/xsesh.$USER.$$ 2>&1 < /dev/null
+exec > /tmp/xsession.$USER.$$ 2>&1 < /dev/null
 umask $old_umask
 
 cd
