@@ -1,10 +1,6 @@
 autoload -Uz compinit
 compinit # for compdef in aliases
 
-source ~/.aliases
-source ~/.environ
-
-
 # Run `zsh-newuser-install [-f]` to reset settings
 
 # -------------------------------------------------------------------------------------
@@ -69,6 +65,13 @@ preexec(){
 }
 
 # End of lines added by compinstall
+
+# -------------------------------------------------------------------------------------
+# Completion (manual)
+
+if type mkcd >/dev/null
+then compdef mkcd=mkdir
+fi
 
 # -------------------------------------------------------------------------------------
 # Enable colours
