@@ -10,4 +10,6 @@ syn keyword cOperator
 	\ __typeof
 	\ __typeof__
 
-syn keyword cStorageClass __attribute
+let g:c_gnu = 1
+let g:c_comment_strings = 1
+let g:c_no_curly_error = 1
