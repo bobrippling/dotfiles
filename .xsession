@@ -21,13 +21,16 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/sh"
 
-# two monitor setup
-#xrandr --output DP-0 --left-of DVI-I-0
+__xsession_monitors(){
+	# two monitor setup
+	#xrandr --output DP-0 --left-of DVI-I-0
 
-# three monitor setup
-xrandr --output DVI-I-0 --right-of HDMI-0 --output DP-0 --left-of HDMI-0
+	# three monitor setup
+	xrandr --output DVI-I-0 --right-of HDMI-0 --output DP-0 --left-of HDMI-0
 
-sleep 1 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
+	sleep 1 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
+}
+__xsession_monitors
 
 ~/src/Suckless/wmname/wmname LG3D &
 
