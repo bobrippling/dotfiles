@@ -3,7 +3,7 @@
 
 source ~/.environ_script
 
-if test -n "$PS1"
+if [[ -n "$PS1" ]] && [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]]
 then
 	source ~/.environ_interactive
 	source ~/.aliases
