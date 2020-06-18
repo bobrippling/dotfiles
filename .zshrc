@@ -159,3 +159,19 @@ PS1="
 %(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
 
 setopt prompt_subst
+
+source_if_exists(){
+	if test -e "$1"
+	then source "$1"
+	fi
+}
+
+source_if_exists \
+	~/.config/dotfiles/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+	# git://github.com/zsh-users/zsh-syntax-highlighting
+
+source_if_exists \
+	~/.config/dotfiles/zsh-autosuggestions/zsh-autosuggestions.zsh \
+	# git://github.com/zsh-users/zsh-autosuggestions
+
+unset -f source_if_exists
