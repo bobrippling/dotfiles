@@ -63,7 +63,7 @@ nohup ~/src/Suckless/dwm/extra/dwm_bar.pc >/dev/null 2>&1 &
 #xbindkeys
 
 # sync clipboards
-autocutsel -s PRIMARY &
-autocutsel &
+autocutsel -f -s PRIMARY
+autocutsel -f
 
 exec $dwm/dwm_run.sh
