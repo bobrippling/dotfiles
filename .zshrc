@@ -48,6 +48,12 @@ zshrc_cursor_block(){
 zshrc_cursor_bar(){
 	printf '\x1b[6 q'
 }
+zshrc_disable_cursorshaping(){
+	zshrc_cursor_block(){
+	}
+	zshrc_cursor_bar(){
+	}
+}
 zle-keymap-select(){
 	if [[ $KEYMAP = vicmd ]]
 	then zshrc_cursor_block
