@@ -21,7 +21,11 @@ fi
 
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/sh"
+
+if test -d "$HOME/sh"
+then export PATH="$PATH:$HOME/sh"
+fi
+
 
 __xsession_monitors(){
 	# two monitor setup
@@ -42,7 +46,8 @@ __xsession_monitors
 DISPLAY= pulseaudio &
 
 #xsetroot -d :0 -cursor_name left_ptr
-~/code/bin/sh/xsetup.sh &
+xset r rate 200 25
+setxkbmap gb
 
 #yeahconsole &
 #unclutter &
@@ -52,8 +57,7 @@ dwm="$HOME/src/Suckless/dwm/extra"
 . $dwm/env
 
 # must be after ". env"
-#nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
-nohup ~/src/Suckless/dwm/extra/dwm_bar.pc >/dev/null 2>&1 &
+nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
 
 #nohup redshift -l 54.984497:-1.659193 -t 5500K:4200K >/dev/null 2>&1 &
 
