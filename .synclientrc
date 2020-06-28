@@ -1,0 +1,99 @@
+#!/usr/bin/perl
+use warnings;
+
+sub usage
+{
+	die "Usage: $0 [-n]\n"
+}
+
+usage() if @ARGV > 1;
+
+$n = 0;
+
+if(@ARGV){
+	if($ARGV[0] eq '-n'){
+		$n = 1;
+	}else{
+		usage();
+	}
+}
+
+while(<DATA>){
+	s/ //g;
+	next if /^#/;
+	if($n){
+		print;
+	}else{
+		chomp;
+		system("synclient $_") and warn "setting $_ failed\n";
+	}
+}
+
+__DATA__
+LeftEdge                = 32
+RightEdge               = 787
+TopEdge                 = 21
+BottomEdge              = 384
+FingerLow               = 1
+FingerHigh              = 30
+FingerPress             = 256
+MaxTapTime              = 259
+MaxTapMove              = 40
+MaxDoubleTapTime        = 180
+SingleTapTimeout        = 180
+ClickTime               = 100
+FastTaps                = 0
+EmulateMidButtonTime    = 100
+EmulateTwoFingerMinZ    = 282
+EmulateTwoFingerMinW    = 7
+VertScrollDelta         = 18
+HorizScrollDelta        = 18
+VertEdgeScroll          = 1
+HorizEdgeScroll         = 1
+CornerCoasting          = 1
+VertTwoFingerScroll     = 0
+HorizTwoFingerScroll    = 0
+#MinSpeed                = 1
+#MaxSpeed                = 1.75
+#AccelFactor             = 0.219058
+TrackstickSpeed         = 40
+EdgeMotionMinZ          = 30
+EdgeMotionMaxZ          = 160
+EdgeMotionMinSpeed      = 10
+EdgeMotionMaxSpeed      = 73
+EdgeMotionUseAlways     = 0
+TouchpadOff             = 0
+LockedDrags             = 0
+LockedDragTimeout       = 5000
+RTCornerButton          = 0
+RBCornerButton          = 0
+LTCornerButton          = 0
+LBCornerButton          = 0
+TapButton1              = 1
+TapButton2              = 2
+TapButton3              = 3
+ClickFinger1            = 1
+ClickFinger2            = 0
+ClickFinger3            = 0
+CircularScrolling       = 1
+CircScrollDelta         = 0.1
+CircScrollTrigger       = 7
+CircularPad             = 0
+PalmDetect              = 0
+PalmMinWidth            = 10
+PalmMinZ                = 200
+CoastingSpeed           = 20
+CoastingFriction        = 50
+PressureMotionMinZ      = 30
+PressureMotionMaxZ      = 160
+PressureMotionMinFactor = 1
+PressureMotionMaxFactor = 1
+GrabEventDevice         = 1
+TapAndDragGesture       = 1
+AreaLeftEdge            = 0
+AreaRightEdge           = 0
+AreaTopEdge             = 0
+AreaBottomEdge          = 0
+HorizHysteresis         = 4
+VertHysteresis          = 4
+ClickPad                = 0
