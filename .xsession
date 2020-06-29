@@ -46,8 +46,21 @@ __xsession_monitors
 DISPLAY= pulseaudio &
 
 #xsetroot -d :0 -cursor_name left_ptr
-xset r rate 200 25
-setxkbmap gb
+__xsession_xsetup(){
+	xset b off # bell
+
+	xset r rate 200 25 # keyboard rate
+
+	xset m 3 1 # mouse speed
+
+	xset s off # screensaver
+
+	setxkbmap gb
+	#setxkbmap dvorak/dvorak
+
+	xmodmap ~/.Xmodmap
+}
+__xsession_xsetup &
 
 #yeahconsole &
 #unclutter &
