@@ -3,8 +3,13 @@ function! IsLoneCmd(cmd)
 		return 0
 	endif
 
-	let modifiers = '((vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright])\s+)*'
-	return getcmdline() =~ ('\v(^|\|)[: \t]*' . modifiers . a:cmd)
+	let range1 = "%(%([0-9%$]+|'.) *)?"
+	let range = range1 . "%(," . range1 . ")?"
+
+	let modifiers = '%(%(vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright]|' . range . ')\s+)*'
+
+	let re = ('\v%(^|\|)[: \t]*' . modifiers . range . a:cmd)
+	return getcmdline() =~ re
 endfunction
 
 function! CmdAlias(lhs, rhs)
