@@ -57,6 +57,7 @@ __xsession_xsetup(){
 
 	setxkbmap gb
 	#setxkbmap dvorak/dvorak
+	#setxkbmap -option caps:escape
 
 	xmodmap ~/.Xmodmap
 }
