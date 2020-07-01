@@ -24,6 +24,7 @@
 	smu = submodule update
 	logf = log --format=fuller --date=iso-strict
 	b = branch --format='%(if)%(HEAD)%(then)%(color:cyan)%(end)%(refname:short)'
+	apply-strip = "!f(){ git di -- \"$@\" | git apply --cached --whitespace=strip; }; f"
 
 [interactive]
 	singlekey = true
