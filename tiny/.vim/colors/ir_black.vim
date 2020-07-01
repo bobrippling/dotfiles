@@ -221,3 +221,6 @@ hi Comment ctermfg=6
 hi Search cterm=none ctermbg=white ctermfg=black
 hi Pmenu ctermbg=gray ctermfg=white
 hi PmenuSel ctermbg=gray ctermfg=black
+
+hi SpellBad ctermbg=none ctermfg=red
+hi SpellCap ctermbg=none ctermfg=blue
