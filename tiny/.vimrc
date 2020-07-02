@@ -97,11 +97,6 @@ nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR
 nnoremap <silent> ZW :w<CR>
 nnoremap <silent> ZE :e<CR>
 
-nnoremap <silent> [% :call searchpair('\[', '', '\]', 'Wb')<CR>
-nnoremap <silent> ]% :call searchpair('\[', '', '\]', 'W')<CR>
-nnoremap <silent> [< :call searchpair('<', '', '>', 'Wb')<CR>
-nnoremap <silent> ]> :call searchpair('<', '', '>', 'W')<CR>
-
 nnoremap ' `
 nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
