@@ -6,7 +6,7 @@ function! s:trim_spaces()
 	endif
 
 	let where = getcurpos()
-	%s/\s\+$//e
+	keeppatterns %s/\s\+$//e
 	let jumped = getcurpos()
 
 	let lnum = 1
