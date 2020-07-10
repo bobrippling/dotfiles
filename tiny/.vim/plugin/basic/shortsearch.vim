@@ -4,7 +4,9 @@
 " highlighting all instances of 'e' or 'i' will chew up bandwidth for a
 " second, only to remove the highlights when the next character is entered.
 
-let g:shortsearch_enabled = 0
+if !exists("g:shortsearch_enabled")
+	let g:shortsearch_enabled = 0
+endif
 let s:save_hls = 0
 
 function! s:cmdline_changed() abort
