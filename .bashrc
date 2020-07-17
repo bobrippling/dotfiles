@@ -34,7 +34,7 @@ shopt -s checkjobs # don't exit 1st time if jobs running
 shopt -u direxpand # don't expand ~/ (etc) when tabbing
 shopt -u hostcomplete # don't treat @<...> as hostname expansion
 shopt -s huponexit # sighup children on exit
-#shopt -s nocaseglob # case insensitive filename expansion
+shopt -s nocaseglob # case insensitive filename expansion
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
