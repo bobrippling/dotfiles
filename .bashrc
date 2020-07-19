@@ -30,12 +30,20 @@ set -o vi
 
 complete -d cd rmdir
 
+shopt -s checkjobs # don't exit 1st time if jobs running
+shopt -u direxpand # don't expand ~/ (etc) when tabbing
+shopt -u hostcomplete # don't treat @<...> as hostname expansion
+shopt -s huponexit # sighup children on exit
+#shopt -s nocaseglob # case insensitive filename expansion
+
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT="%s (%F %T)"
-shopt -s histappend
+shopt -s histappend # append to HISTFILE on exit, instead of overwrite
+#shopt -s histverify # on enter, load the history entry but don't execute
+shopt -s histreedit # if history substitution fails, allow re-editing
 
 export HISTSIZE=2000
 export HISTFILESIZE=5000
