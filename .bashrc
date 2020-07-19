@@ -30,8 +30,8 @@ set -o vi
 
 complete -d cd rmdir
 
-alias ls='ls --color'
-alias grep='grep --color'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 
 export HISTCONTROL=erasedups:ignorespace:ignoredups
 export HISTTIMEFORMAT="%s (%F %T)"
