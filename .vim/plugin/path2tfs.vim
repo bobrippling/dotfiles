@@ -19,11 +19,41 @@ function! s:getcmd(start, end) abort
 	return cmd
 endfunction
 
-function! Path2tfs() abort
+function! Path2tfs(switches) abort
 	let cmd = s:getcmd(getpos("'<"), getpos("'>"))
+	let mode = "open"
 
-	call system(cmd . " | xargs open")
+	let i = 0
+	while i < len(a:switches)
+		let sw = a:switches[i]
+		if sw ==# "-s" || sw ==# "--show"
+			let mode = "show"
+		elseif sw ==# "-r" || sw ==# "--reg"
+			let i += 1
+			if i == len(a:switches)
+				echoerr "Need register for -r/--reg"
+				return
+			endif
+			let mode = "reg"
+			let reg = a:switches[i]
+		else
+			echoerr "Invalid switch " sw
+			return
+		endif
+		let i += 1
+	endwhile
+
+	let url = substitute(system(cmd), "\n$", "", "")
+
+	if mode ==# "open"
+		call system("xargs open", url)
+	elseif mode ==# "show"
+		echo url
+	elseif mode ==# "reg"
+		let charwise = "c"
+		call setreg(reg, url, charwise)
+	endif
 endfunction
 
-command -range Path2tfs call Path2tfs()
+command -range -nargs=* Path2tfs call Path2tfs([<f-args>])
 "vnoremap <silent> <leader>t :<C-U>call Path2tfs(getpos("'<"), getpos("'>"))<CR>gv
