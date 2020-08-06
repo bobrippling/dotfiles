@@ -5,11 +5,23 @@ function! s:getcmd(start, end) abort
 		throw "No filename for path2tfs"
 	endif
 
+	let version_arg = ""
+	if fname =~? '^fugitive://'
+		let components = split(fname, "/", 1)
+		let git_index = index(components, ".git")
+
+		let ver = components[git_index + 2]
+		let fname = join(components[git_index + 3:], "/")
+
+		let version_arg = " -c " . ver
+	endif
+
 	let [bufnum1, lnum1, col1, off1] = a:start
 	let [bufnum2, lnum2, col2, off2] = a:end
 
 	let cmd =
 	\ "path2tfs"
+	\ . version_arg
 	\ . " " . fname
 	\ . " " . lnum1
 	\ . " " . col1
