@@ -5,6 +5,9 @@
 	email = robpilling@gmail.com
 	useConfigOnly = true
 
+[core]
+	commitGraph = true
+
 [alias]
 	adp = add -p
 	adu = add -u
