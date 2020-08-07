@@ -28,30 +28,30 @@ find . -type f \
     do
         template=$(echo $f | sed 's;tiny/;;')
 
-        printf '\x1b[2Kchecking if %s exists...\r' $template >&2
+        printf '\x1b[2Kchecking if %s exists...\r' "$template" >&2
 
-        if ! test -e ~/$template
+        if ! test -e ~/"$template"
         then continue
         fi
 
-        printf "$clrtoeol"'comparing %s...\r' $template >&2
+        printf "$clrtoeol"'comparing %s...\r' "$template" >&2
 
-        if cmp ~/$template $f >/dev/null 2>&1
+        if cmp ~/"$template" $f >/dev/null 2>&1
         then continue
         fi
 
         case $direction in
             collect)
-                cp ~/$template $f
+                cp ~/"$template" $f
                 printf "$clrtoeol"'collected %s\n' "$f" >&2
                 ;;
             install)
-                cp $f ~/$template
+                cp $f ~/"$template"
                 printf "$clrtoeol"'installed %s\n' "$f" >&2
                 ;;
             diff)
                 printf "$clrtoeol" >&2
-                diff -u $f ~/$template
+                diff -u $f ~/"$template"
                 ;;
         esac
     done
