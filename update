@@ -23,7 +23,7 @@ esac
 clrtoeol='\x1b[2K'
 
 find . -type f \
-    | sed '/\.git\//d' \
+    | sed '/\.git\//d; /.vim\/undo\//d' \
     | while read f
     do
         template=$(echo $f | sed 's;tiny/;;')
