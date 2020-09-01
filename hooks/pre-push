@@ -1,0 +1,28 @@
+#!/bin/sh
+
+remote_name="$1"
+remote_dest="$2" # maybe == $1
+
+ec=0
+
+# refs/heads/local-br 1234... refs/heads/master (9982...|000000...)
+# (delete)            0000... refs/heads/master (9982...|000000...)
+# HEAD~3^2...         1234... refs/heads/master (9982...|000000...)
+while read local_ref local_sha remote_ref remote_sha
+do
+	if test "$local_ref" = "(delete)"
+	then continue
+	fi
+
+	b="$(echo "$remote_ref" | sed 's;^refs/heads/;;')"
+
+	# check we've no local-only commits:
+	if git log -i -E --grep '\b(wip|squash|fixup|local|no.*push)\b' --oneline origin/master.."$local_ref" \
+		| grep --color=never .
+	then
+		echo >&2 "branch \"$b\" contains wip/fixup/squash commits (listed above)"
+		ec=1
+	fi
+done
+
+exit $ec
