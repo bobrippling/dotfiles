@@ -74,8 +74,6 @@ if has("nvim")
 	set inccommand=split
 endif
 
-nnoremap <expr> <silent> <leader>n ":<C-U>" . v:count1 . "cn<CR>"
-nnoremap <expr> <silent> <leader>N ":<C-U>w\\|" . v:count1 . "cn<CR>"
 nnoremap <expr> <silent> <leader>j ":<C-U>" . v:count1 . "n<CR>"
 nnoremap <expr> <silent> <leader>J ":<C-U>" . v:count1 . "w\\|n<CR>"
 nnoremap <expr> <silent> <leader>t ":<C-U>" . v:count1 . "tabn<CR>"
