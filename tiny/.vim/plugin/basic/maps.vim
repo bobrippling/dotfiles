@@ -1,14 +1,6 @@
 function s:LeaderNext(presave) abort
-	let curwin = win_getid()
-
-	let have_open_loclist = 0
-	for w in range(1, winnr('$'))
-		let locs = getloclist(w, {'filewinid':0})
-		if locs.filewinid == curwin
-			let have_open_loclist = 1
-			break
-		endif
-	endfor
+	let loclist_winid = get(getloclist(0, { 'winid': 0 }), 'winid', 0)
+	let have_open_loclist = loclist_winid != 0
 
 	let cmd =  ":" . v:count1 . (have_open_loclist ? "lnext" : "cnext") . "\n"
 	if a:presave
