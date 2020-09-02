@@ -94,6 +94,7 @@ nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR
 
 nnoremap <silent> ZW :w<CR>
 nnoremap <silent> ZE :e<CR>
+nnoremap <silent> <C-W>N :vnew<CR>
 
 nnoremap ' `
 nnoremap <C-Y> 3<C-Y>
