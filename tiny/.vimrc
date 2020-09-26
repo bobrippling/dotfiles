@@ -49,6 +49,7 @@ set history=2000
 set lazyredraw
 set foldopen-=block
 set completeopt+=menuone,noselect
+set cmdwinheight=20
 
 " display (gui)
 " m: menu bar
