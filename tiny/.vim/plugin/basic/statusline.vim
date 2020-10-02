@@ -9,7 +9,7 @@ function! StatusLine()
 	let s .= "%y" " 'filetype'
 	let s .= "[%{&ff}]" " 'fileformat'
 	let s .= "%{StatusLineEnc()}" " 'fileformat'
-	let s .= "[%n]" " buffer number
+	let s .= "[%n%{StatusLineBufCount()}]" " buffer number
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
 	let s .= "%=" " left + right flex space
@@ -20,9 +20,20 @@ function! StatusLine()
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
-	let s .= "[%l/%L]" " line number / total
+	if &ruler
+		if empty(&rulerformat)
+			let s .= "[%l/%L]" " line number / total
+		else
+			let s .= "[" . &rulerformat . "]"
+		endif
+	endif
 
 	return s
+endfunction
+
+function! StatusLineBufCount()
+	let nwin = len(win_findbuf(bufnr()))
+	return nwin > 1 ? '(' . nwin . ')' : ''
 endfunction
 
 function! StatusLineEnc()
