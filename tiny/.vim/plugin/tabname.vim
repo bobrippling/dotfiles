@@ -74,13 +74,17 @@ function! TabLine()
 	let line .= "%#TabLineFill#%T"
 
 	" ObsessionStatus() guarded safely by g:this_obsession
-	if exists("g:this_obsession") && ObsessionStatus("y", "n") ==# "y"
-		" there"s also v:this_session, but g:this_obsession is more appropriate
-		let relative = fnamemodify(g:this_obsession, ":~:.")
-		let baseonly = fnamemodify(relative, ":t")
-		let trunc = baseonly ==# relative ? "" : ".../"
+	if exists("*ObsessionStatus")
+		if exists("g:this_obsession") && ObsessionStatus("y", "n") ==# "y"
+			" there"s also v:this_session, but g:this_obsession is more appropriate
+			let relative = fnamemodify(g:this_obsession, ":~:.")
+			let baseonly = fnamemodify(relative, ":t")
+			let trunc = baseonly ==# relative ? "" : ".../"
 
-		let line .= " [" . trunc . baseonly . "]"
+			let line .= " [" . trunc . baseonly . "]"
+		else
+			let line .= " [<no session>]"
+		endif
 	endif
 
 	return line
