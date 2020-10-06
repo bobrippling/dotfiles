@@ -1,22 +1,58 @@
-let g:autosave_enabled = 0
+if !exists("g:autosave_enabled")
+	let g:autosave_enabled = 0
+endif
 
-function! s:autosave()
+function! s:save() abort
+	silent update
+endfunction
+
+function! Autosave() abort
 	if !g:autosave_enabled
 		return
 	endif
 
-	if empty(expand("%"))
+	let modified = getbufinfo({ "bufmodified": 1 })
+	call filter(modified, { _, ent -> !empty(ent.name) })
+
+	if empty(modified)
 		return
 	endif
 
-	update
+	let focus = win_getid()
+
+	for ent in modified
+		let buf = ent.bufnr
+		if getbufvar(buf, "&buftype") == "terminal"
+			continue
+		endif
+
+		if bufnr() is buf
+			call s:save()
+			continue
+		endif
+
+		let found = win_findbuf(buf)
+		if !empty(found) && win_gotoid(found[0])
+			call s:save()
+			continue
+		endif
+
+		execute "sbuffer" buf
+		call s:save()
+		close!
+	endfor
+
+	call win_gotoid(focus)
+
+	call map(modified, { _, ent -> fnamemodify(ent.name, ":~:.") })
+	echo "[" . strftime("%Y-%m-%d %H:%M:%S") . "] autosaved:" join(modified, ", ")
 endfunction
 
 augroup autosave
 	autocmd!
 
-	autocmd CursorHold * call <SID>autosave()
+	autocmd CursorHold * call Autosave()
 	"autocmd CursorHoldI * update|startinsert
 
-	autocmd FocusLost * call <SID>autosave()
+	autocmd FocusLost * call Autosave()
 augroup END
