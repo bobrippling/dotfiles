@@ -48,6 +48,9 @@
 	defaultToUpstream = true
 	tool = vimdiff
 
+[fetch]
+	writeCommitGraph = true
+
 [advice]
 	pushUpdateRejected = false
 	pushNonFFCurrent = false
@@ -80,3 +83,6 @@
 	#ignoreRevsFile = .git-blame-ignore-revs
 	markIgnoredLines = true
 	markUnblamableLines = true
+
+[gui]
+	displayUntracked = false
