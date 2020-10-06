@@ -1,6 +1,8 @@
 function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 	let pattern = a:pattern
 	if a:range_count > 0
+		let title = printf("%d,%dQF%s", a:range_start, a:range_end, (a:reject ? "Drop" : "Keep"))
+
 		if !empty(pattern)
 			throw "Can't filter to a range and pattern"
 		endif
@@ -13,6 +15,8 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 
 		let Iter = function('s:FilterRange')
 	else
+		let title = printf("QF%s %s", (a:reject ? "Drop" : "Keep"), pattern)
+
 		let without_re = substitute(pattern, "-re ", "", "")
 		let is_re = without_re !=# pattern
 		let pattern = without_re
@@ -49,9 +53,19 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 	" 'r': replace, ' ': push
 	let flags = " "
 	if have_open_loclist
-		call setloclist(0, filter(getloclist(0), Iter), flags)
+		let idx = getloclist(0, {'idx': 0}).idx
+		call setloclist(0, [], flags, {
+		\   'items': filter(getloclist(0), Iter),
+		\   'idx': idx,
+		\   'title': title,
+		\ })
 	else
-		call setqflist(filter(getqflist(), Iter), flags)
+		let idx = getqflist({'idx': 0}).idx
+		call setqflist([], flags, {
+		\   'items': filter(getqflist(), Iter),
+		\   'idx': idx,
+		\   'title': title,
+		\ })
 	endif
 endfunction
 
