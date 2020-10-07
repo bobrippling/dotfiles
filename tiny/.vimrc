@@ -98,6 +98,8 @@ nnoremap <silent> <C-W>N :vnew<CR>
 noremap ' `
 nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
+vnoremap <C-Y> 3<C-Y>
+vnoremap <C-E> 3<C-E>
 nnoremap Y y$
 nnoremap <silent> gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
 nnoremap <silent> <C-W>2T <C-W>T:tabm-1<CR>
