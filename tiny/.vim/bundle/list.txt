@@ -6,5 +6,7 @@ http://github.com/coderifous/textobj-word-column.vim
 http://github.com/tpope/vim-obsession
 http://github.com/kana/vim-submode.git
 http://github.com/andymass/vim-tradewinds
+https://github.com/FooSoft/vim-argwrap
+
 http://github.com/bobrippling/vim-bg
 http://github.com/bobrippling/SkyBison
