@@ -54,3 +54,8 @@ endfunction
 
 command! -range -nargs=* QFKeep call s:Filter(<q-args>, 0, <range>, <line1>, <line2>)
 command! -range -nargs=* QFDrop call s:Filter(<q-args>, 1, <range>, <line1>, <line2>)
+
+" alternative dist package:
+if 0 && exists(":packadd")
+	packadd cfilter
+endif
