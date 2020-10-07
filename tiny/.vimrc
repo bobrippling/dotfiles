@@ -87,7 +87,6 @@ nnoremap <silent> <leader>f :let @" = bufname("%")<CR>
 nnoremap <silent> <leader>F :let @" = expand("%:p")<CR>
 nnoremap <silent> <leader>M :set modifiable!<CR>
 nnoremap <silent> <leader>m :update\|make<CR>
-nnoremap <silent> <leader>a :vertical ball<CR>
 nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
 
 nnoremap <silent> ZW :w<CR>
