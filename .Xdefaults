@@ -49,6 +49,10 @@ urxvt.url-select.underline: true
 
 urxvt*perl-ext-common:  matcher,url-select
 urxvt*urlLauncher:      /home/rob/bin/open
+
+! disable default mappings:
+urxvt.keysym.M-s: builtin-string:
+
 urxvt*matcher.button:   1
 
 ! xterm settings -----------------------------------------------------------
