@@ -82,6 +82,7 @@ nnoremap <silent> <leader>h :noh<CR>
 nnoremap <silent> <leader>H :set hls!<CR>
 nnoremap <silent> <leader>* :match IncSearch /\<\>/<CR>
 nnoremap <silent> <leader>l :set list!<CR>
+nnoremap <silent> <leader>i :setl nu!<CR>
 nnoremap <silent> <leader>w :set wrap!<CR>
 nnoremap <silent> <leader>S :set spell!<CR>
 nnoremap <silent> <leader>f :let @" = bufname("%")<CR>
