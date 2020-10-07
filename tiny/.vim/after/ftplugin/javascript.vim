@@ -440,3 +440,8 @@ let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
 set omnifunc=Dotcomplete
 inoremap <buffer> . .<C-X><C-O>
 let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
+
+if exists(":packadd")
+	" html matching
+	packadd matchit
+endif
