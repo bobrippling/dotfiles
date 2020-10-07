@@ -8,3 +8,5 @@ vim-submode
 vim-tradewinds
 vim-bg
 SkyBison
+vim-textobj-entire
+vim-textobj-user
