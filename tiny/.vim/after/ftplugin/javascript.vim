@@ -444,4 +444,7 @@ let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
 if exists(":packadd")
 	" html matching
 	packadd matchit
+
+	" stolen from html.vim:
+	let b:match_words = '<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
