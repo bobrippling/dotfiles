@@ -1,6 +1,7 @@
 function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
+	let pattern = a:pattern
 	if a:range_count > 0
-		if !empty(a:pattern)
+		if !empty(pattern)
 			throw "Can't filter to a range and pattern"
 		endif
 
@@ -12,17 +13,22 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 
 		let Iter = function('s:FilterRange')
 	else
-		let file = substitute(a:pattern, "\\v^-f%[ile] ", "", "")
-		if file !=# a:pattern
+		let without_re = substitute(pattern, "-re ", "", "")
+		let is_re = without_re !=# pattern
+		let pattern = without_re
+		let Matcher = is_re ? function('match') : function('stridx')
+
+		let file = substitute(pattern, "\\v-f%[ile] ", "", "")
+		if file !=# pattern
 			function! s:FilterFile(i, dict) abort closure
-				return stridx(bufname(a:dict.bufnr), file) >= 0
+				return Matcher(bufname(a:dict.bufnr), file) >= 0
 			endfunction
 
 			let Iter = function('s:FilterFile')
 		else
-			let text = substitute(a:pattern, "\\v^(-t%[ext] )?", "", "")
+			let text = substitute(pattern, "\\v(-t%[ext] )?", "", "")
 			function! s:FilterText(i, dict) abort closure
-				return stridx(a:dict.text, text) >= 0
+				return Matcher(a:dict.text, text) >= 0
 			endfunction
 
 			let Iter = function('s:FilterText')
@@ -48,9 +54,9 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 	endif
 endfunction
 
-" QFKeep -f[ile] <file-re>       - keep (or drop) entries where the file matches file-re
-" QFKeep [-t[ext]] <text-re>     - keep (or drop) entries where the text matches text-re
-" a,b QFKeep                     - keep (or drop) entries in range a...b
+" QFKeep [-re] -f[ile] <file>       - keep (or drop) entries where the file matches file-re
+" QFKeep [-re] [-t[ext]] <text>     - keep (or drop) entries where the text matches text-re
+" a,b QFKeep                  - keep (or drop) entries in range a...b
 
 command! -range -nargs=* QFKeep call s:Filter(<q-args>, 0, <range>, <line1>, <line2>)
 command! -range -nargs=* QFDrop call s:Filter(<q-args>, 1, <range>, <line1>, <line2>)
