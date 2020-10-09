@@ -242,10 +242,10 @@ function! s:BufEditPreviewClose() abort
 	redraw
 endfunction
 
-command! -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-mods>)
-command! -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-mods>)
-command! -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-mods>)
-command! -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-mods>)
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-mods>)
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-mods>)
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-mods>)
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-mods>)
 
 augroup BufEdit
 	autocmd!
