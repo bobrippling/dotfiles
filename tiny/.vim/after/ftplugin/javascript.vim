@@ -94,23 +94,20 @@ function! JSTagOnLine(line, tag)
 	call cursor(a:line, 1 + (col >= 0 ? col : 0))
 endfunction
 
-function! s:try_js_index(nextfile) abort
+function! s:try_js_index(nextfile, path) abort
 	let nextfile = a:nextfile
 
 	if empty(nextfile)
 		let nextfile = expand("%:h")
 	endif
 
-	let found = finddir(nextfile)
+	let found = findfile(nextfile . "/index", a:path)
+
+	call s:debug("js-index, findfile(" . nextfile . " + '/index', <path>): " . found
+				\ . " (with path = " . a:path . ")")
+
 	if !empty(found)
-		call s:debug("found dir " . found . ", trying index...")
-		let index = findfile(found . '/index')
-		if !empty(index)
-			call s:debug("index found")
-			let nextfile = index
-		else
-			call s:debug("index not found")
-		endif
+		return found
 	endif
 	return nextfile
 endfunction
@@ -181,7 +178,7 @@ function! s:file_from_import(nextfile) abort
 	let found = findfile(nextfile, path)
 	if empty(found)
 		call s:debug("nothing found, trying js-index...")
-		let nextfile = s:try_js_index(nextfile)
+		let nextfile = s:try_js_index(nextfile, path)
 	else
 		call s:debug("found '" . found . "'")
 		let nextfile = found
