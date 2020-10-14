@@ -46,7 +46,8 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 	let loclist_winid = get(getloclist(0, { 'winid': 0 }), 'winid', 0)
 	let have_open_loclist = loclist_winid != 0
 
-	let flags = "r" " or ' ' to push onto :chist
+	" 'r': replace, ' ': push
+	let flags = " "
 	if have_open_loclist
 		call setloclist(0, filter(getloclist(0), Iter), flags)
 	else
