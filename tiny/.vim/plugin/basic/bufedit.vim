@@ -1,6 +1,7 @@
 let s:preview_winid = 0
 let s:saved_laststatus = &laststatus
 let s:timer = -1
+let s:showre = 0
 
 if !exists('g:cmdline_preview_delay')
 	let g:cmdline_preview_delay = 0
@@ -160,7 +161,7 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 	let matches = s:MatchingBufs(arg)
 
 	let buf = winbufnr(s:preview_winid)
-	call setbufline(buf, 1, "preview for '" . arg . "'")
+	call setbufline(buf, 1, "preview for '" . arg . "'" . (s:showre ? " /" . s:GetRe(arg) . "/" : ""))
 
 	let saved_win_id = win_getid()
 	" goto the preview window for matchaddpos()
