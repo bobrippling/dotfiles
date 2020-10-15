@@ -20,8 +20,8 @@ function! s:GetRe(pat) abort
 	"let pat = substitute(pat, '[.*]', '\\&', 'g')
 	"let pat = substitute(pat, '[^\].', '&.\\{-}', 'g')
 
-	" escape '.' and '*'
-	let parts = split(pat, '\ze[.*]')
+	" escape: . * [ ] \ &
+	let parts = split(pat, '\ze[][.*\\]')
 	let result = []
 	for i in range(len(parts))
 		let part = parts[i]
