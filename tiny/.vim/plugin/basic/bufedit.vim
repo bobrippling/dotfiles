@@ -1,5 +1,7 @@
 let s:preview_winid = 0
 let s:saved_laststatus = &laststatus
+let s:current_list = []
+let s:current_ent = ""
 let s:timer = -1
 let s:showre = 0
 
@@ -36,10 +38,10 @@ function! s:GetRe(pat) abort
 	return tolower(join(result, ''))
 endfunction
 
-function! s:MatchingBufs(pat) abort
+function! s:MatchingBufs(pat, list) abort
 	let pat = s:GetRe(a:pat)
 
-	let bufs = getbufinfo({ 'buflisted': 1 })
+	let bufs = empty(a:list) ? getbufinfo({ 'buflisted': 1 }) : a:list
 
 	call filter(bufs, function('s:MatchAndTag', [pat]))
 	call sort(bufs, 's:Cmp')
@@ -104,7 +106,7 @@ function! s:Cmp(a, b) abort
 endfunction
 
 function! s:CompleteBufs(ArgLead, CmdLine, CursorPos) abort
-	let bufs = s:MatchingBufs(a:ArgLead)
+	let bufs = s:MatchingBufs(a:ArgLead, [])
 
 	call map(bufs, { i, ent -> ent.name })
 
@@ -114,7 +116,7 @@ endfunction
 function! s:BufEdit(glob, editcmd, mods) abort
 	let glob = a:glob
 
-	let ents = s:MatchingBufs(glob)
+	let ents = s:MatchingBufs(glob, [])
 	if len(ents) < 1
 		echoerr "No matches for" glob
 		return
@@ -177,10 +179,15 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 		call s:BufEditPreviewOpen()
 	endif
 
-	" Potential optimisation: since we're not regex, we could detect when the
-	" search pattern has just been added to, and keep narrowing down an existing
-	" list, instead of starting from getbufinfo() each time
-	let matches = s:MatchingBufs(arg)
+	" Optimisation: since we're not regex, we can detect when the search pattern
+	" has just been added to, and keep narrowing down an existing list, instead
+	" of starting from getbufinfo() each time
+	if len(arg) < len(s:current_ent) || arg[:len(s:current_ent) - 1] !=# s:current_ent
+		let s:current_list = []
+	endif
+	let matches = s:MatchingBufs(arg, s:current_list)
+	let s:current_ent = arg
+	let s:current_list = matches
 
 	let buf = winbufnr(s:preview_winid)
 	call setbufline(buf, 1, "preview for '" . arg . "'" . (s:showre ? " /" . s:GetRe(arg) . "/" : ""))
