@@ -52,11 +52,33 @@ function! s:MatchAndTag(pat, i, ent) abort
 	if empty(name)
 		return 0
 	endif
+	if a:ent.bufnr is winbufnr(s:preview_winid)
+		return 0
+	endif
+
 	let name = fnamemodify(name, ":~:.")
 	let a:ent.name = name
-	let [str, start, end] = matchstrpos(tolower(name), a:pat)
+	let lowername = tolower(name)
 
-	if start is -1 || a:ent.bufnr is winbufnr(s:preview_winid)
+	" vim's re isn't the same as perl, and we won't get the shortest match on a
+	" line, despite using /.\{-}/
+	" e.g.
+	" Desktop/abc/package
+	"       ^~^~^~~~~^^^^ package
+	" instead of
+	"             ^^^^^^^ package
+	"
+	" so, look for shortest:
+	let start = -1
+	for i in range(strlen(lowername))
+		let [str2, start2, end2] = matchstrpos(lowername, a:pat, i)
+		if start2 is -1
+			break
+		endif
+		let [str, start, end] = [str2, start2, end2]
+	endfor
+
+	if start is -1
 		return 0
 	endif
 
