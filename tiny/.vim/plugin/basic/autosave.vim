@@ -12,7 +12,7 @@ function! Autosave() abort
 	endif
 
 	let modified = getbufinfo({ "bufmodified": 1 })
-	call filter(modified, { _, ent -> !empty(ent.name) })
+	call filter(modified, { _, ent -> !empty(ent.name) && getbufvar(ent.bufnr, "&buftype") !=? "terminal"})
 
 	if empty(modified)
 		return
@@ -22,9 +22,6 @@ function! Autosave() abort
 
 	for ent in modified
 		let buf = ent.bufnr
-		if getbufvar(buf, "&buftype") == "terminal"
-			continue
-		endif
 
 		if bufnr() is buf
 			call s:save()
