@@ -199,7 +199,7 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 	endif
 
 	call clearmatches()
-	for i in range(3)
+	for i in range(s:preview_height() - 1)
 		let details = ""
 
 		if i >= len(matches)
@@ -244,11 +244,15 @@ function! s:BufEditPreviewOpen() abort
 	let s:saved_laststatus = &laststatus
 	set laststatus=0
 
-	execute 'botright' ((g:cmdline_preview_colour ? 3 : 6) + 1) 'new'
+	execute 'botright' s:preview_height() 'new'
 	let s:preview_winid = win_getid()
 	set winfixheight buftype=nofile bufhidden=wipe
 
 	wincmd p
+endfunction
+
+function! s:preview_height() abort
+	return &cmdwinheight
 endfunction
 
 function! s:BufEditPreviewClose() abort
