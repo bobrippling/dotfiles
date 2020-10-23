@@ -32,8 +32,19 @@ function! StatusLine()
 endfunction
 
 function! StatusLineBufCount()
-	let nwin = len(win_findbuf(bufnr()))
-	return nwin > 1 ? '(' . nwin . ')' : ''
+	let bufnr = bufnr()
+
+	let nwin_tab = 0
+	for b in tabpagebuflist()
+		if b is# bufnr
+			let nwin_tab += 1
+		endif
+	endfor
+
+	let nwin = len(win_findbuf(bufnr))
+	return nwin > 1
+	\ ? '(' . nwin_tab . (nwin > nwin_tab ? '/' . nwin : '') . ')'
+	\ : ''
 endfunction
 
 function! StatusLineEnc()
