@@ -270,6 +270,8 @@ function! s:BufEditPreviewClose() abort
 		let s:timer = -1
 	endif
 
+	let s:current_list = []
+
 	if !s:preview_winid
 		return
 	endif
