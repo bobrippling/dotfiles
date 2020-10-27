@@ -35,7 +35,17 @@ function! s:GetRe(pat) abort
 		call add(result, substitute(part, '.', '&.\\{-}', 'g'))
 	endfor
 
-	return tolower(join(result, ''))
+	let re = join(result, '')
+	if &ignorecase && (!&smartcase || !s:ismixedcase(re))
+		let re = '\c' . re
+	else
+		let re = '\C' . re
+	endif
+	return re
+endfunction
+
+function! s:ismixedcase(str) abort
+	return tolower(a:str) !=# a:str
 endfunction
 
 function! s:MatchingBufs(pat, list) abort
@@ -60,7 +70,6 @@ function! s:MatchAndTag(pat, i, ent) abort
 
 	let name = fnamemodify(name, ":~:.")
 	let a:ent.name = name
-	let lowername = tolower(name)
 
 	" vim's re isn't the same as perl, and we won't get the shortest match on a
 	" line, despite using /.\{-}/
@@ -72,8 +81,8 @@ function! s:MatchAndTag(pat, i, ent) abort
 	"
 	" so, look for shortest:
 	let start = -1
-	for i in range(strlen(lowername))
-		let [str2, start2, end2] = matchstrpos(lowername, a:pat, i)
+	for i in range(strlen(name))
+		let [str2, start2, end2] = matchstrpos(name, a:pat, i)
 		if start2 is -1
 			break
 		endif
