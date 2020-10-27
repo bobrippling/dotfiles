@@ -228,7 +228,7 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 		if g:cmdline_preview_colour
 			let linenr = i + 2
 			call setbufline(buf, linenr, line)
-			if type(m) isnot v:t_number
+			if type(m) isnot v:t_number && m.matchlen > 0
 				call matchaddpos('BufEditMatch', [
 				\   [linenr, m.matchstart + 1, m.matchend - m.matchstart]
 				\ ])
