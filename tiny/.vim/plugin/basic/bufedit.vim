@@ -2,6 +2,7 @@ let s:preview_winid = 0
 let s:saved_laststatus = &laststatus
 let s:current_list = []
 let s:current_ent = ""
+let s:current_ent_slashcount = 0
 let s:timer = -1
 let s:showre = 0
 
@@ -48,23 +49,46 @@ function! s:ismixedcase(str) abort
 	return tolower(a:str) !=# a:str
 endfunction
 
-function! s:MatchingBufs(pat, list) abort
-	let pat = s:GetRe(a:pat)
+function! s:slashcount(s) abort
+	return len(substitute(a:s, '[^/]', '', 'g'))
+endfunction
 
-	let bufs = empty(a:list) ? getbufinfo({ 'buflisted': 1 }) : a:list
+function! s:MatchingBufs(pat, list, mode) abort
+	let re = s:GetRe(a:pat)
 
-	call filter(bufs, function('s:MatchAndTag', [pat]))
+	if empty(a:list)
+		if a:mode ==# "b"
+			let bufs = getbufinfo({ 'buflisted': 1 })
+		else
+			let pats = matchlist(a:pat, '\v(\~[^/]*)?(.*)')
+			if len(pats) && pats[1][0] ==# "~"
+				let pat = expand(pats[1]) . pats[2]
+			else
+				let pat = a:pat
+			endif
+
+			let globpath = (pat[0] ==# "/" ? "" : "*") . substitute(pat, ".", "&*", "g")
+
+			let bufs = glob(globpath, 0, 1)
+			call map(bufs, { i, name -> { "name": name } })
+		endif
+	else
+		let bufs = a:list
+	endif
+
+	call filter(bufs, function('s:MatchAndTag', [re, a:mode]))
 	call sort(bufs, 's:Cmp')
 
 	return bufs
 endfunction
 
-function! s:MatchAndTag(pat, i, ent) abort
+function! s:MatchAndTag(pat, mode, i, ent) abort
 	let name = a:ent.name
 	if empty(name)
 		return 0
 	endif
-	if a:ent.bufnr is winbufnr(s:preview_winid)
+
+	if a:mode ==# "b" && a:ent.bufnr is winbufnr(s:preview_winid)
 		return 0
 	endif
 
@@ -115,24 +139,32 @@ function! s:Cmp(a, b) abort
 endfunction
 
 function! s:CompleteBufs(ArgLead, CmdLine, CursorPos) abort
-	let bufs = s:MatchingBufs(a:ArgLead, [])
-
+	let bufs = s:MatchingBufs(a:ArgLead, [], "b")
 	call map(bufs, { i, ent -> ent.name })
-
 	return bufs
 endfunction
 
-function! s:BufEdit(glob, editcmd, mods) abort
+function! s:CompleteFiles(ArgLead, CmdLine, CursorPos) abort
+	let bufs = s:MatchingBufs(a:ArgLead, [], "f")
+	call map(bufs, { i, ent -> ent.name })
+	return bufs
+endfunction
+
+function! s:BufEdit(glob, editcmd, mods, mode) abort
 	let glob = a:glob
 
-	let ents = s:MatchingBufs(glob, [])
+	let ents = s:MatchingBufs(glob, [], a:mode)
 	if len(ents) < 1
 		echoerr "No matches for" glob
 		return
 	endif
 
 	" just pick the first to match the preview
-	let path = ents[0].bufnr
+	if a:mode ==# "b"
+		let path = ents[0].bufnr
+	else
+		let path = ents[0].name
+	endif
 
 	execute a:mods a:editcmd path
 endfunction
@@ -142,27 +174,30 @@ function! s:BufEditPreview() abort
 		return
 	endif
 
-	let arg = s:CmdlineMatchArg()
-	if empty(arg)
+	let matches = s:CmdlineMatchArg()
+	if empty(matches)
 		call s:BufEditPreviewClose()
 	else
-		call s:BufEditPreviewQueue(arg)
+		call s:BufEditPreviewQueue(matches)
 	endif
 endfunction
 
 function! s:CmdlineMatchArg() abort
 	let cmd = getcmdline()
 	" TODO: getcmdlinepos for better matching
-	let arg = substitute(cmd, '\v\C%(^|.*\|)[: \t]*Buf%(%[edit]|%[vsplit]|%[split]|%[tabedit])\s+([^|]*)$', '\1', '')
-	if arg ==# cmd
+	let matches = matchlist(cmd, '\v\C%(^|.*\|)[: \t]*' . s:Cmds . '\s+([^|]*)$')
+
+	if empty(matches)
 		return ''
 	endif
-	return arg
+
+	" cmd, arg
+	return matches[1:2]
 endfunction
 
-function! s:BufEditPreviewQueue(arg) abort
+function! s:BufEditPreviewQueue(cmd_and_arg) abort
 	if g:cmdline_preview_delay is 0
-		call s:BufEditPreviewShow(a:arg)
+		call s:BufEditPreviewShow(a:cmd_and_arg)
 	else
 		" queue up to display after editing
 		if s:timer isnot -1
@@ -173,16 +208,22 @@ function! s:BufEditPreviewQueue(arg) abort
 endfunction
 
 function! s:BufEditPreviewShow(arg_or_timerid) abort
-	let arg = a:arg_or_timerid
-	if type(arg) is v:t_number
+	let cmd_and_arg = a:arg_or_timerid
+	if type(cmd_and_arg) is v:t_number
 		" called from timer
 		let s:timer = -1
-		let arg = s:CmdlineMatchArg()
-		if empty(arg)
+		let cmd_and_arg = s:CmdlineMatchArg()
+		if empty(cmd_and_arg)
 			call s:BufEditPreviewClose()
 			return
 		endif
 	endif
+
+	if len(cmd_and_arg) != 2
+		return
+	endif
+	let [cmd, arg] = cmd_and_arg
+	let mode = cmd[0] ==# "B" ? "b" : "f"
 
 	if !win_id2win(s:preview_winid)
 		call s:BufEditPreviewOpen()
@@ -191,10 +232,13 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 	" Optimisation: since we're not regex, we can detect when the search pattern
 	" has just been added to, and keep narrowing down an existing list, instead
 	" of starting from getbufinfo() each time
-	if len(arg) < len(s:current_ent) || arg[:len(s:current_ent) - 1] !=# s:current_ent
+	if len(arg) < len(s:current_ent)
+	\ || arg[:len(s:current_ent) - 1] !=# s:current_ent
+	\ || (mode ==# "f" && s:current_ent_slashcount isnot s:slashcount(arg))
 		let s:current_list = []
+		let s:current_ent_slashcount = s:slashcount(arg)
 	endif
-	let matches = s:MatchingBufs(arg, s:current_list)
+	let matches = s:MatchingBufs(arg, s:current_list, mode)
 	let s:current_ent = arg
 	let s:current_list = matches
 
@@ -216,7 +260,8 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 			let m = 0
 		else
 			let m = matches[i]
-			let line = m.name
+			let line = m.name . (isdirectory(m.name) ? '/' : '')
+
 			if !g:cmdline_preview_colour
 				let details =
 							\ repeat(" ", m.matchstart) .
@@ -271,6 +316,7 @@ function! s:BufEditPreviewClose() abort
 	endif
 
 	let s:current_list = []
+	let s:current_ent_slashcount = -1
 
 	if !s:preview_winid
 		return
@@ -288,10 +334,19 @@ function! s:BufEditPreviewClose() abort
 	redraw
 endfunction
 
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-mods>)
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-mods>)
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-mods>)
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-mods>)
+let s:Cmds = '(Buf|F)%(%[edit]|%[vsplit]|%[split]|%[tabedit])'
+"             ^~~~~~~ capture used
+
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-mods>, "b")
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-mods>, "b")
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-mods>, "b")
+command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-mods>, "b")
+
+command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fedit    call s:BufEdit(<q-args>, "edit", <q-mods>, "f")
+command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fsplit   call s:BufEdit(<q-args>, "split", <q-mods>, "f")
+command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fvsplit  call s:BufEdit(<q-args>, "vsplit", <q-mods>, "f")
+command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Ftabedit call s:BufEdit(<q-args>, "tabedit", <q-mods>, "f")
+
 
 augroup BufEdit
 	autocmd!
