@@ -324,8 +324,9 @@ function! s:import_require_search(tag) abort
 endfunction
 
 function! s:from_line_after_import_line(import_line, import_kind) abort
-	let i = a:import_line
-	let end = i + 10 " search up to this many lines after, for the require/from '...' part
+	let start = a:import_line
+	let i = start
+	let end = start + 10 " search up to this many lines after, for the require/from '...' part
 
 	if a:import_kind == s:is_require
 		let re = "\\v\\C<require>.*(['\"]).*\\1"
@@ -342,7 +343,7 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 
 		if match(line, re) >= 0
 			return i
-		elseif match(line, "\\C\\v<(import|require|export)>") >= 0
+		elseif i > start && match(line, "\\C\\v<(import|require|export)>") >= 0
 			" found a new import, 'from' for the previous doesn't exist
 			break
 		endif
