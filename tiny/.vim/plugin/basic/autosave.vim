@@ -19,6 +19,7 @@ function! Autosave() abort
 	endif
 
 	let focus = win_getid()
+	let restore_wins = ''
 
 	for ent in modified
 		let buf = ent.bufnr
@@ -34,12 +35,19 @@ function! Autosave() abort
 			continue
 		endif
 
+		if empty(restore_wins)
+			let restore_wins = winrestcmd()
+		endif
+
 		execute "sbuffer" buf
 		call s:save()
 		close!
 	endfor
 
 	call win_gotoid(focus)
+	if !empty(restore_wins)
+		execute restore_wins
+	endif
 
 	call map(modified, { _, ent -> fnamemodify(ent.name, ":~:.") })
 	echo "[" . strftime("%Y-%m-%d %H:%M:%S") . "] autosaved:" join(modified, ", ")
