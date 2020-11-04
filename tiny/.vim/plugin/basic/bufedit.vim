@@ -88,11 +88,13 @@ function! s:MatchAndTag(pat, mode, i, ent) abort
 		return 0
 	endif
 
-	if a:mode ==# "b" && a:ent.bufnr is winbufnr(s:preview_winid)
-		return 0
+	if a:mode ==# "b"
+		if a:ent.bufnr is winbufnr(s:preview_winid)
+			return 0
+		endif
+		let name = fnamemodify(name, ":~:.")
 	endif
 
-	let name = fnamemodify(name, ":~:.")
 	let a:ent.name = name
 
 	" vim's re isn't the same as perl, and we won't get the shortest match on a
