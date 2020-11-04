@@ -60,14 +60,19 @@ function! s:MatchingBufs(pat, list, mode) abort
 		if a:mode ==# "b"
 			let bufs = getbufinfo({ 'buflisted': 1 })
 		else
-			let pats = matchlist(a:pat, '\v(\~[^/]*)?(.*)')
-			if len(pats) && pats[1][0] ==# "~"
-				let pat = expand(pats[1]) . pats[2]
-			else
-				let pat = a:pat
+			" handle ~, ~luser, %:h/...
+			let pat = expand(a:pat)
+
+			let no_glob_start = stridx("/.", pat[0]) >= 0
+
+			let globpath = substitute(pat, ".", "&*", "g")
+
+			if no_glob_start
+				let globpath = substitute(globpath, '^\*\+', '', '')
 			endif
 
-			let globpath = (pat[0] ==# "/" ? "" : "*") . substitute(pat, ".", "&*", "g")
+			" handle dotfiles
+			let globpath = substitute(globpath, '/\*\.', '/.', 'g')
 
 			let bufs = glob(globpath, 0, 1)
 			call map(bufs, { i, name -> { "name": name } })
