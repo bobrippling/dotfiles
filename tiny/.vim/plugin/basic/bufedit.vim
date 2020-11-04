@@ -224,6 +224,10 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 	endif
 	let [cmd, arg] = cmd_and_arg
 	let mode = cmd[0] ==# "B" ? "b" : "f"
+	if empty(arg)
+		call s:BufEditPreviewClose()
+		return
+	endif
 
 	if !win_id2win(s:preview_winid)
 		call s:BufEditPreviewOpen()
