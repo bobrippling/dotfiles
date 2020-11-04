@@ -10,9 +10,12 @@ function! TabLabel(n)
 		else
 			" could use simplify():
 			let bufname = fnamemodify(bufname, ":~:.")
-			let parts = split(bufname, "/", 1)
-			call map(parts, {i, v -> i == len(parts)-1 ? v : v[0] ==# '.' ? v[0:1] : v[0]})
-			let title = join(parts, "/")
+
+			"let parts = split(bufname, "/", 1)
+			"call map(parts, {i, v -> i == len(parts)-1 ? v : v[0] ==# '.' ? v[0:1] : v[0]})
+			"let title = join(parts, "/")
+
+			let title = pathshorten(bufname)
 		endif
 	endif
 
