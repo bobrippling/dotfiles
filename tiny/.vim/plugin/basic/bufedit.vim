@@ -12,6 +12,9 @@ endif
 if !exists('g:cmdline_preview_colour')
 	let g:cmdline_preview_colour = 1
 endif
+if !exists('g:cmdline_preview_fullwords')
+	let g:cmdline_preview_fullwords = 0
+endif
 
 
 function! s:GetRe(pat) abort
@@ -65,7 +68,14 @@ function! s:MatchingBufs(pat, list, mode) abort
 
 			let no_glob_start = stridx("/.", pat[0]) >= 0
 
-			let globpath = substitute(pat, ".", "&*", "g")
+			if g:cmdline_preview_fullwords
+				" instead of s/fron/abc --> *s*/*f*r*o*n*/*a*b*c*
+				" do:                   --> *s*/*fron*/*abc*
+				let globpath = substitute(pat, '/', '*/*', 'g') . '*'
+				let globpath = substitute(globpath, '\*\*\+', '*', 'g')
+			else
+				let globpath = substitute(pat, ".", "&*", "g")
+			endif
 
 			if no_glob_start
 				let globpath = substitute(globpath, '^\*\+', '', '')
@@ -245,7 +255,12 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 	" of starting from getbufinfo() each time
 	if len(arg) < len(s:current_ent)
 	\ || arg[:len(s:current_ent) - 1] !=# s:current_ent
-	\ || (mode ==# "f" && s:current_ent_slashcount isnot s:slashcount(arg))
+	\ || (mode ==# "f" && (
+	\     s:current_ent_slashcount isnot s:slashcount(arg)
+	\     || g:cmdline_preview_fullwords
+	\ ))
+		" g:cmdline_preview_fullwords is checked above to save trying to modify
+		" the match logic to also handle fullwords
 		let s:current_list = []
 		let s:current_ent_slashcount = s:slashcount(arg)
 	endif
