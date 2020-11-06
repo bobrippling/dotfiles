@@ -31,5 +31,6 @@ augroup ShortSearch
 	autocmd!
 	autocmd CmdlineEnter * call s:cmdline_enter()
 	autocmd CmdlineChanged * call s:cmdline_changed()
+	autocmd CmdwinEnter * call s:cmdline_leave()
 	autocmd CmdlineLeave * call s:cmdline_leave()
 augroup END
