@@ -7,7 +7,7 @@ function! s:save() abort
 endfunction
 
 function! Autosave() abort
-	if !g:autosave_enabled
+	if !g:autosave_enabled || !empty(getcmdwintype())
 		return
 	endif
 
