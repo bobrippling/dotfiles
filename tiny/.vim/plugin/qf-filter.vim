@@ -1,10 +1,31 @@
-function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
-	let pattern = a:pattern
+function! s:Filter(args, reject, range_count, range_start, range_end) abort
+	let is_re = 0
+	let match_mode = ''
+
+	let i = 0
+	while i < len(a:args)
+		let arg = a:args[i]
+		if arg ==# "-re"
+			let is_re = 1
+		elseif arg =~# '\v-t%[ext]'
+			let match_mode = 't'
+		elseif arg =~# '\v-f%[ile]'
+			let match_mode = 'f'
+		else
+			break
+		endif
+		let i += 1
+	endwhile
+
+	let pattern = join(a:args[i:], ' ')
+
 	if a:range_count > 0
 		let title = printf("%d,%dQF%s", a:range_start, a:range_end, (a:reject ? "Drop" : "Keep"))
 
 		if !empty(pattern)
 			throw "Can't filter to a range and pattern"
+		elseif is_re || !empty(match_mode)
+			throw "Can't filter to a range with match arguments"
 		endif
 
 		let [range_start, range_end] = [a:range_start, a:range_end]
@@ -15,24 +36,22 @@ function! s:Filter(pattern, reject, range_count, range_start, range_end) abort
 
 		let Iter = function('s:FilterRange')
 	else
-		let title = printf("QF%s %s", (a:reject ? "Drop" : "Keep"), pattern)
+		if empty(pattern)
+			throw "Need pattern to drop/keep"
+		endif
 
-		let without_re = substitute(pattern, "-re ", "", "")
-		let is_re = without_re !=# pattern
-		let pattern = without_re
+		let title = printf("QF%s %s", (a:reject ? "Drop" : "Keep"), join(a:args))
 		let Matcher = is_re ? function('match') : function('stridx')
 
-		let file = substitute(pattern, "\\v-f%[ile] ", "", "")
-		if file !=# pattern
+		if match_mode ==# 'f'
 			function! s:FilterFile(i, dict) abort closure
-				return Matcher(bufname(a:dict.bufnr), file) >= 0
+				return Matcher(bufname(a:dict.bufnr), pattern) >= 0
 			endfunction
 
 			let Iter = function('s:FilterFile')
 		else
-			let text = substitute(pattern, "\\v(-t%[ext] )?", "", "")
 			function! s:FilterText(i, dict) abort closure
-				return Matcher(a:dict.text, text) >= 0
+				return Matcher(a:dict.text, pattern) >= 0
 			endfunction
 
 			let Iter = function('s:FilterText')
@@ -73,8 +92,8 @@ endfunction
 " QFKeep [-re] [-t[ext]] <text>     - keep (or drop) entries where the text matches text-re
 " a,b QFKeep                  - keep (or drop) entries in range a...b
 
-command! -range -nargs=* QFKeep call s:Filter(<q-args>, 0, <range>, <line1>, <line2>)
-command! -range -nargs=* QFDrop call s:Filter(<q-args>, 1, <range>, <line1>, <line2>)
+command! -bar -range -nargs=* QFKeep call s:Filter([<f-args>], 0, <range>, <line1>, <line2>)
+command! -bar -range -nargs=* QFDrop call s:Filter([<f-args>], 1, <range>, <line1>, <line2>)
 
 " alternative dist package:
 if 0 && exists(":packadd")
