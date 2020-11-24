@@ -130,6 +130,9 @@ bindkey -v
 bindkey -M vicmd 'k' history-beginning-search-backward
 bindkey -M vicmd 'j' history-beginning-search-forward
 
+# bindkey -M vicmd -s Y 'y$'
+bindkey -M vicmd Y vi-yank-eol
+
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
