@@ -1,4 +1,4 @@
-let s:unknown = '?'
+let s:unknown = 'require and/or from'
 let s:is_require = 'require'
 let s:is_import = 'from'
 
@@ -333,18 +333,22 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 	elseif a:import_kind == s:is_import
 		let re = "\\v\\C<from>\\s+['\"]"
 	elseif a:import_kind == s:unknown
-		let re = "\\v\\C<(require|from)>\\s+['\"]"
+		let re = "\\v\\C<(require\\s*\\(|from\\s)\\s*['\"]"
 	else
 		throw "unknown enum"
 	endif
+
+	call s:debug("looking for require/from (" . a:import_kind . "), lines " . i . "-" . end)
 
 	while i <= end
 		let line = getline(i)
 
 		if match(line, re) >= 0
+			call s:debug("found, line " . i)
 			return i
 		elseif i > start && match(line, "\\C\\v<(import|require|export)>") >= 0
 			" found a new import, 'from' for the previous doesn't exist
+			call s:debug("new import found, line " . i . ", aborting search")
 			break
 		endif
 
