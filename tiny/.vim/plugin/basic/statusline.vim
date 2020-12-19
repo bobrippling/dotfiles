@@ -43,7 +43,7 @@ function! StatusLineBufCount()
 
 	let nwin = len(win_findbuf(bufnr))
 	return nwin > 1
-	\ ? '(' . nwin_tab . (nwin > nwin_tab ? '/' . nwin : '') . ')'
+	\ ? '(' . nwin_tab . (nwin > nwin_tab ? 'w/' . nwin . 'a' : '') . ')'
 	\ : ''
 endfunction
 
