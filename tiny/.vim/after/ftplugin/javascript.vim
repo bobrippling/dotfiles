@@ -131,11 +131,9 @@ function! s:file_from_import_virtual(nextfile) abort
 
 		let [updirs, nextfile] = s:trim_dotdots(nextfile)
 
-		return expand("%:h" . repeat(":h", updirs))
+		let base = expand("%:h" . repeat(":h", updirs))
 					\ . "/"
 					\ . substitute(nextfile, "^\\./", "", "")
-					\ . "."
-					\ . expand("%:e")
 	else
 		call s:debug("file_from_import_virtual, absolute nextfile (" . nextfile . ")")
 
@@ -148,8 +146,14 @@ function! s:file_from_import_virtual(nextfile) abort
 			throw "couldn't figure out target import for '" . nextfile . "'"
 		endif
 		let target_dir = join(components[:git_pos + 2], "/")
-		return target_dir . "/" . nextfile . "." . expand("%:e")
+
+		let base = target_dir . "/" . nextfile
 	endif
+
+	return base . "." . expand("%:e")
+	"                   ^~~~~~~~~~~~~
+	" Currently this defaults to the same as the current file,
+	" but it could be .ts/.js/.[tj]sx, etc
 endfunction
 
 function! s:file_from_import(nextfile) abort
