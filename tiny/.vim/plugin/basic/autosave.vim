@@ -24,7 +24,7 @@ function! Autosave() abort
 	for ent in modified
 		let buf = ent.bufnr
 
-		if bufnr() is buf
+		if bufnr("") is buf
 			call s:save()
 			continue
 		endif

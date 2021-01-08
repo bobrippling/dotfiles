@@ -18,11 +18,11 @@ endfunction
 
 function! s:enable(args) abort
 	botright vnew
-	let s:buf_test = bufnr()
+	let s:buf_test = bufnr("")
 	execute "terminal find src/ -iname '*.rs' | entr -cr cargo test" a:args
 
 	rightbelow new
-	let s:buf_run = bufnr()
+	let s:buf_run = bufnr("")
 	execute "terminal find src/ -iname '*.rs' | entr -cr cargo run" a:args
 endfunction
 

@@ -32,7 +32,7 @@ function! StatusLine()
 endfunction
 
 function! StatusLineBufCount()
-	let bufnr = bufnr()
+	let bufnr = bufnr("")
 
 	let nwin_tab = 0
 	for b in tabpagebuflist()
