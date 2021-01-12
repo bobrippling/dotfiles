@@ -68,6 +68,11 @@ xterm*scrollTtyKeypress:   true
 xterm*loginShell:          true
 xterm*toolBar:             false
 xterm*bellIsUrgent:        true
+xterm.vt100.scrollTtyOutput: false
+xterm.vt100.scrollKey:       true
+xterm.vt100.bellIsUrgent:    true
+xterm.vt100.metaSendsEscape: true
+xterm.vt100.locale:          false
 
 ! xmessage settings:
 xmessage*background:                     gray85
