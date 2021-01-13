@@ -49,3 +49,5 @@ export_if_exists VISUAL tim \
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin" prepend
 addtopath "$HOME/.cargo/bin"
+
+ulimit -c unlimited
