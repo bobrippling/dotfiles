@@ -39,8 +39,8 @@ function! TabPre(n)
 		endif
 	endfor
 
-	let pre = a:n . " " . len(bufs) . (tty ? "T" : "") . (modified ? "+" : "")
-	return pre . (empty(pre) ? "" : " ")
+	let pre = "[" . a:n . "] " . len(bufs) . "w" . (tty ? "T" : "") . (modified ? "+" : "")
+	return pre . " "
 endfunction
 
 function! TabLine()
@@ -93,4 +93,18 @@ function! TabLine()
 	return line
 endfunction
 
+function! GuiTabLabel()
+	let i = v:lnum
+
+	return ""
+		\ . "%{TabPre(" . i . ")}"
+		\ . "%{TabLabel(" . i . ")}"
+endfunction
+
 set tabline=%!TabLine()
+if has("gui")
+	set guitablabel=%!GuiTabLabel()
+endif
+
+hi TabLineSelItalic cterm=bold           ctermfg=green
+hi TabLineItalic    cterm=bold,underline ctermfg=white ctermbg=darkgrey
