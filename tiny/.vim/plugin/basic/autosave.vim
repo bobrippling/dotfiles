@@ -50,7 +50,16 @@ function! Autosave() abort
 	endif
 
 	call map(modified, { _, ent -> fnamemodify(ent.name, ":~:.") })
-	echo "[" . strftime("%Y-%m-%d %H:%M:%S") . "] autosaved:" join(modified, ", ")
+
+	" truncate if too short
+	let pre = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] autosaved"
+	let full = pre . ": " . join(modified, ", ")
+	" -3, since vim seems to show the enter prompt even if we don't hit the end
+	if len(full) < &columns - 3
+		echo full
+	else
+		echo pre "[...]"
+	endif
 endfunction
 
 augroup autosave
