@@ -152,6 +152,8 @@ function! s:Cmp(a, b) abort
 	let diff = len(a.matchstr) - len(b.matchstr)
 	if diff | return diff | endif
 
+	" could use &wildignore here to compare
+
 	return len(a.name) - len(b.name)
 endfunction
 
