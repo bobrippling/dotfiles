@@ -37,7 +37,7 @@ endfunction
 function! s:Alt()
 	if &ft ==# "c" || &ft ==# "cpp" || &ft ==# "objc" || &ft ==# "objcpp"
 		return s:CAltFile()
-	elseif &ft ==# "javascript" || &ft ==# "python" || &ft ==# "ruby"
+	elseif &ft ==# "javascript" || &ft ==# "python" || &ft ==# "ruby" || &ft ==# "typescript"
 		return s:SpecAlt()
 	endif
 
