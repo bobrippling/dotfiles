@@ -40,7 +40,12 @@ __xsession_monitors
 ~/code/keynav/keynav.sh -f &
 #nohup ~/src/Suckless/xbanish/xbanish >/dev/null 2>&1 &
 
-DISPLAY= pulseaudio &
+while :
+do
+	DISPLAY= pulseaudio
+	echo >&2 "$(date +%Y-%m-%dT%H:%M) [xsession] restarting pulseaudio..."
+	sleep 1
+done &
 
 #xsetroot -d :0 -cursor_name left_ptr
 __xsession_xsetup(){
