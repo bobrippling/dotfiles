@@ -29,6 +29,9 @@ set sessionoptions-=options | set sessionoptions+=localoptions
 set wildignore=*.o,*.d
 set nomodeline
 set directory=.
+" must remove old ones, vim takes the first flag it finds:
+let &viminfo = substitute(&viminfo, "'\\d\\+,", "", "g") . ",'300"
+
 
 " display
 " ('statusline' set in plugin/...)
