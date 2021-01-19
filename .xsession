@@ -26,15 +26,12 @@ if test -d "$HOME/sh"
 then export PATH="$PATH:$HOME/sh"
 fi
 
-
 __xsession_monitors(){
 	# two monitor setup
 	#xrandr --output DP-0 --left-of DVI-I-0
 
 	# two monitor setup
 	xrandr --output DP-0 --left-of HDMI-0
-
-	sleep 2 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
 }
 __xsession_monitors
 
@@ -83,5 +80,9 @@ nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
 # sync clipboards
 autocutsel -f -s PRIMARY
 autocutsel -f
+
+# attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
+# moved to just below invoking dwm, Fri 15 Jan 09:54:22 GMT 2021
+sleep 2
 
 exec $dwm/dwm_run.sh
