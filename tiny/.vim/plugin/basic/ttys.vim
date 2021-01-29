@@ -5,7 +5,7 @@ function! s:Ttys()
 	return bufs
 endfunction
 
-function! s:TtyShow()
+function! s:TtyDisplay()
 	let ttys = s:Ttys()
 	call sort(ttys, { a, b -> a.windowcount - b.windowcount })
 
@@ -28,7 +28,8 @@ function! s:TtySpare(cmd) abort
 	echoerr "No spare ttys"
 endfunction
 
-command! TtyShow call s:TtyShow()
+" avoid Tty/./ overlap
+command! Ttydisplay call s:TtyDisplay()
 command! Ttyedit call s:TtySpare("b")
 command! Ttyvsplit call s:TtySpare("vert sb")
 command! Ttysplit call s:TtySpare("sb")
