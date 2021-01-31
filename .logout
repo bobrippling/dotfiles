@@ -12,4 +12,13 @@ then
 	then
 		clear
 	fi
+
+	if test -z "$DISPLAY"
+	then
+		echo "$0: clearing gpg-agent" >&2
+		echo "reloadagent" | gpg-connect-agent >/dev/null
+	elif pgrep -x gpg-agent >/dev/null
+	then
+		echo "$0: not clearing gpg-agent: \$DISPLAY set" >&2
+	fi
 fi
