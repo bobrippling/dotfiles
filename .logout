@@ -6,7 +6,10 @@
 
 #sudo -k # revoke
 
-if tty | grep -q 'tty'
+if test "$SHLVL" -le 1
 then
-    clear
+	if tty | grep -q 'tty'
+	then
+			clear
+	fi
 fi
