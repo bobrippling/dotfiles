@@ -15,6 +15,7 @@
 	c-p = cherry-pick
 	ci = commit
 	co = checkout
+	sw = switch
 	di = diff --ws-error-highlight=all
 	dic = diff --cached
 	ff = merge --ff-only
