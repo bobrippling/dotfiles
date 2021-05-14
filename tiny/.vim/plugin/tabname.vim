@@ -46,20 +46,39 @@ endfunction
 function! TabLine()
 	let line = ""
 
+	let hl = {
+	\  "label": "%#TabLine#",
+	\  "label_pre": "TabLineItalic",
+	\  "label_sel": "%#TabLineSel#",
+	\  "label_sel_pre": "TabLineSelItalic",
+	\}
+
+	let have_extra_hl = 0
+	if hlexists(hl.label_pre) && hlexists(hl.label_sel_pre)
+		let pre_output = execute("hi " . hl.label_pre)
+		let sel_output = execute("hi " . hl.label_sel_pre)
+
+		let have_extra_hl =
+		\ match(pre_output, "\\v(cterm|gui)[fb]g") >= 0 &&
+		\ match(sel_output, "\\v(cterm|gui)[fb]g") >= 0
+	endif
+
+	if have_extra_hl
+		let hl.label_pre = "%#" . hl.label_pre . "#"
+		let hl.label_sel_pre = "%#" . hl.label_sel_pre . "#"
+	else
+		let hl.label_pre = hl.label
+		let hl.label_sel_pre = hl.label_sel
+	endif
+
 	for i in range(1, tabpagenr("$"))
 		" select the highlighting
 		if i == tabpagenr()
-			let hl_lbl = "%#TabLineSel#"
-			let hl_pre = "TabLineSelItalic"
+			let hl_lbl = hl.label_sel
+			let hl_pre = hl.label_sel_pre
 		else
-			let hl_lbl = "%#TabLine#"
-			let hl_pre = "TabLineItalic"
-		endif
-
-		if hlexists(hl_pre)
-			let hl_pre = "%#" . hl_pre . "#"
-		else
-			let hl_pre = hl_lbl
+			let hl_lbl = hl.label
+			let hl_pre = hl.label_pre
 		endif
 
 		" tab page number for mouse clicks
