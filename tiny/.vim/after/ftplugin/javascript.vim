@@ -435,6 +435,19 @@ function! JsFileTags(pattern) abort
 	return allents
 endfunction
 
+function! s:test(enable) abort
+	let [buf; save_cursor] = getcurpos()
+    if a:enable
+        keepjumps silent %s;^\s*\zsxit\ze(;it;
+    else
+        keepjumps silent %s;^\s*\zsit\ze(;xit;
+    endif
+	call cursor(save_cursor)
+endfunction
+
+command SpecDisable call s:test(0)
+command SpecEnable  call s:test(1)
+
 if exists("+tagfunc")
 	set tagfunc=JsTag
 	let b:undo_ftplugin .= '|setlocal tagfunc<'
