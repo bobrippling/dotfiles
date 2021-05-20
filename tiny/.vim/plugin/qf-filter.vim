@@ -80,6 +80,7 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 		\ })
 	else
 		let idx = getqflist({'idx': 0}).idx
+		" ^ note: this won't preserve the current index if entries below it are deleted
 		call setqflist([], flags, {
 		\   'items': filter(getqflist(), Iter),
 		\   'idx': idx,
