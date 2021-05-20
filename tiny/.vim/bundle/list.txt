@@ -10,3 +10,4 @@ https://github.com/FooSoft/vim-argwrap
 
 http://github.com/bobrippling/vim-bg
 http://github.com/bobrippling/SkyBison
+http://github.com/bobrippling/vim-bogster

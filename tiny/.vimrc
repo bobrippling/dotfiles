@@ -123,9 +123,9 @@ syntax on
 filetype on
 filetype indent plugin on
 
-colorscheme ir_black
-
 execute pathogen#infect()
+
+colorscheme bogster
 
 " vim runtime settings
 " disable python tab settings
