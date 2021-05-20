@@ -176,7 +176,7 @@ hi Ignore	ctermbg=bg  ctermfg=7
 hi Error	ctermbg=12  ctermfg=15
 hi Todo		ctermbg=bg  ctermfg=15
 
-hi Normal	ctermbg=none  ctermfg=none " - unset Normal - don't interfere with :terminal (but use above for <fg/bg>
+hi Normal	ctermbg=none  ctermfg=none " - unset Normal - don't interfere with :terminal (but use above for <fg/bg>. See `:h :hi-normal-cterm`
 
 " additions
 hi QuickFixLine cterm=none ctermbg=green ctermfg=white
