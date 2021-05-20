@@ -30,7 +30,12 @@ set wildignore=*.o,*.d
 set nomodeline
 set directory=.
 " must remove old ones, vim takes the first flag it finds:
-let &viminfo = substitute(&viminfo, "'\\d\\+,", "", "g") . ",'300"
+function! s:viminfo(type, val)
+	let &viminfo = substitute(&viminfo, a:type . "[^,]*,", "", "g") . "," . a:type . a:val
+endfunction
+call s:viminfo("'", "150") " marks for last N files
+call s:viminfo("<", "100") " registers up to N lines
+call s:viminfo("s", "100") " items with contents up to 100kib
 
 
 " display
