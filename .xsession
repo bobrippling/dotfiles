@@ -72,6 +72,9 @@ randomwallpaper.sh &
 dwm="$HOME/src/Suckless/dwm/extra"
 . $dwm/env
 
+# load agents
+. ~/.environ_interactive
+
 # must be after ". env"
 nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
 
