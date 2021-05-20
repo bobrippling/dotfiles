@@ -2,6 +2,11 @@ let g:netrw_banner = 0
 let g:netrw_dirhistmax = 0
 
 function! s:update_netrw_hide()
+	if cwdprops#in_network_mount()
+		"echom "not updating netrw - in network filesystem"
+		return
+	endif
+
 	let g:netrw_list_hide = netrw_gitignore#Hide()
 endfunction
 
