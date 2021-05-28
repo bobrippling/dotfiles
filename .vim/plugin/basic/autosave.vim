@@ -2,8 +2,11 @@ if !exists("g:autosave_enabled")
 	let g:autosave_enabled = 0
 endif
 
-function! s:save() abort
-	silent update
+function! s:save(saved, ent) abort
+	if !empty(glob(expand("%")))
+		silent update
+		call add(a:saved, a:ent)
+	endif
 endfunction
 
 function! Autosave() abort
@@ -21,17 +24,18 @@ function! Autosave() abort
 	let focus = win_getid()
 	let restore_wins = ''
 
+	let saved = []
 	for ent in modified
 		let buf = ent.bufnr
 
 		if bufnr("") is buf
-			call s:save()
+			call s:save(saved, ent)
 			continue
 		endif
 
 		let found = win_findbuf(buf)
 		if !empty(found) && win_gotoid(found[0])
-			call s:save()
+			call s:save(saved, ent)
 			continue
 		endif
 
@@ -40,7 +44,7 @@ function! Autosave() abort
 		endif
 
 		execute "sbuffer" buf
-		call s:save()
+		call s:save(saved, ent)
 		close!
 	endfor
 
@@ -49,16 +53,28 @@ function! Autosave() abort
 		execute restore_wins
 	endif
 
-	call map(modified, { _, ent -> fnamemodify(ent.name, ":~:.") })
+	call map(saved, { _, ent -> fnamemodify(ent.name, ":~:.") })
 
-	" truncate if too short
-	let pre = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] autosaved"
-	let full = pre . ": " . join(modified, ", ")
+	let skipped = len(modified) - len(saved)
+	if len(saved)
+		" truncate if too short
+		let msg = "autosaved: " . join(saved, ", ")
+
+		if skipped > 0
+			let msg .= " (" . skipped . " skipped)"
+		endif
+	else
+		let msg = "autosave, skipped " . skipped
+	endif
+
+	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
+	let full = now . msg
+
 	" -3, since vim seems to show the enter prompt even if we don't hit the end
 	if len(full) < &columns - 3
 		echo full
 	else
-		echo pre "[...]"
+		echo now "[autosave...]"
 	endif
 endfunction
 
