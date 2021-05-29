@@ -7,15 +7,17 @@ function! SearchIgnSyn(dir, restore_visual) abort
 		normal! gv
 	endif
 
-	" FIXME: do this v:count[1] times?
+	let repeats = v:count1
 
+	let failed = v:true
+	let view = winsaveview()
 	while v:true
 		try
 			execute "normal!" a:dir
 		catch /^Vim.*E38[45]/
 			" not found, hit start/end
 			echohl ErrorMsg
-			echo v:exception
+			echo "[IgnoreComments]" v:exception
 			echohl None
 			break
 		endtry
@@ -23,6 +25,12 @@ function! SearchIgnSyn(dir, restore_visual) abort
 		let [buf, line, col, off, curswant] = getcurpos()
 		let syn = synIDattr(synID(line, col, 0), "name")
 		if syn !~? "comment"
+			" found a match
+			if repeats > 1
+				let repeats -= 1
+				continue
+			endif
+			let failed = v:false
 			break
 		endif
 
@@ -32,6 +40,10 @@ function! SearchIgnSyn(dir, restore_visual) abort
 			break
 		endif
 	endwhile
+
+	if failed
+		call winrestview(view)
+	endif
 endfunction
 
 function! s:cmdline_leave()
@@ -41,12 +53,20 @@ function! s:cmdline_leave()
 
 	let s:nsearches += 1
 	if s:nsearches >= 2
-		call s:maps(0)
+		call s:maps("0")
 	endif
 endfunction
 
-function! s:maps(enable)
-	if a:enable
+function! s:maps(onoff)
+	if empty(a:onoff) || a:onoff ==# "1"
+		let enable = 1
+	elseif a:onoff ==# "0"
+		let enable = 0
+	else
+		throw "Invalid use, need 0 or 1"
+	endif
+
+	if enable
 		" can't use s:... in mappings
 		nmap <silent> n :call SearchIgnSyn("n", 0)<CR>
 		nmap <silent> N :call SearchIgnSyn("N", 0)<CR>
@@ -61,11 +81,17 @@ function! s:maps(enable)
 
 	augroup SearchIgnoreSyn
 		autocmd!
-		if a:enable
+		if enable
 			autocmd CmdlineLeave * call s:cmdline_leave()
 			let s:nsearches = 0
 		endif
 	augroup END
+
+	if enable
+		echo "Activated comment-ignore during search"
+	else
+		echo "Restored original vim search"
+	endif
 endfunction
 
-command! SearchIgnoreComments call s:maps(1)
+command! -nargs=? SearchIgnoreComments call s:maps("<args>")
