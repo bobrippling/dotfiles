@@ -7,6 +7,9 @@ function! s:update_netrw_hide()
 		return
 	endif
 
+	if !exists("*netrw_gitignore#Hide")
+		return
+	endif
 	let g:netrw_list_hide = netrw_gitignore#Hide()
 	echom "netrw hide list updated from gitignore"
 endfunction
