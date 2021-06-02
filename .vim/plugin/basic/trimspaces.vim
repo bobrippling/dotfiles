@@ -21,7 +21,7 @@ endfunction
 
 autocmd BufWritePre * call s:trim_spaces()
 command! -complete=command -nargs=+ NoTrim
-			\ let save = g:trim_spaces |
+			\ let s:save = g:trim_spaces |
 			\ let g:trim_spaces = 0 |
 			\ <args> |
-			\ let g:trim_spaces = save
+			\ let g:trim_spaces = s:save
