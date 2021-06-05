@@ -3,18 +3,24 @@ use strict;
 use warnings;
 
 my %xinput_props = (
-	"Synaptics Edge Scrolling" => ["10", "30", "10"],
+	# Synaptics is only provided by xinput when the driver is `xserver-xorg-input-synaptics`
+	# Changing it to the more modern `xserver-xorg-input-libinput` brings the /^libinput/ props
 
-	"Synaptics Two-Finger Scrolling" => ["10", "10"],  # vert, horiz
+	#"Synaptics Edge Scrolling" => ["10", "30", "10"],
+
+	#"Synaptics Two-Finger Scrolling" => ["10", "10"],  # vert, horiz
 
 	# tap-to-click:
 	# 1-finger => btn1
 	# 2-finger => btn3
 	# 3-finger => btn2 [middle click] [doesn't seem to do anything]
-	"Synaptics Tap Action" => ["0", "0", "0", "0", "1", "3", "2"],
+	#"Synaptics Tap Action" => ["0", "0", "0", "0", "1", "3", "2"],
 
-	"Synaptics Palm Detection" => ["1"],
-	"Synaptics Palm Dimensions" => ["80", "200"],
+	#"Synaptics Palm Detection" => ["1"],
+	#"Synaptics Palm Dimensions" => ["80", "200"],
+
+	"libinput Tapping Enabled" => ["1"],
+	"libinput Disable While Typing Enabled" => ["1"],
 );
 
 my %synclient_props = (
