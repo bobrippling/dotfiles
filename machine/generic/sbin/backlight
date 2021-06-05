@@ -1,0 +1,62 @@
+#!/usr/bin/perl
+use warnings;
+
+my $d = '/sys/class/backlight/intel_backlight';
+my $step = 10;
+
+sub usage
+{
+	print STDERR "Usage: $0 [up | down | percentage]\n";
+	exit(2);
+}
+
+sub readf
+{
+	my $f = shift;
+	open my $fh, '<', $f or die "open '$f': $!\n";
+	chomp(my $c = <$fh>);
+	close $fh;
+	return $c;
+}
+
+sub writef
+{
+	my($s, $f) = @_;
+	open my $fh, '>', $f or die "open '$f': $!\n";
+	print $fh $s;
+	close $fh;
+}
+
+sub get
+{
+	# chgrp video $d/brightness && usermod -aG video $USER
+	my $b = readf("$d/brightness");
+	my $m = readf("$d/max_brightness");
+	return 100 * $b / $m;
+}
+
+sub set
+{
+	my $b = shift;
+	$b = 100 if $b > 100;
+	$b = 0 if $b < 0;
+	my $m = readf("$d/max_brightness");
+	my $w = int($b / 100 * $m);
+	writef($w, "$d/brightness");
+}
+
+if(@ARGV == 0){
+	printf("%d\n", get());
+}elsif(@ARGV == 1){
+	if($ARGV[0] eq 'up'){
+		set(get() + $step);
+	}elsif($ARGV[0] eq 'down'){
+		set(get() - $step);
+	}elsif($ARGV[0] =~ /^[0-9]+$/){
+		set($ARGV[0]);
+	}else{
+		usage();
+	}
+}else{
+	usage();
+}
