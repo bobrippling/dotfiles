@@ -1,8 +1,12 @@
+! keycode <code> = <nomod> <shift> <mode_switch> <mode_switch+shift> <unused> <unused> <unused> <unused>
+
+! ------------ XF68 --------------
 keycode 171 = XF86AudioNext
 keycode 172 = XF86AudioPlay
 keycode 173 = XF86AudioPrev
 keycode 174 = XF86AudioStop
 
+! ------------ Capslock --> Esc --------------
 ! Swap esc and capslock:
 !
 !remove Lock = Caps_Lock
@@ -15,3 +19,28 @@ keycode 174 = XF86AudioStop
 !keysym Caps_Lock = Escape
 !
 !^ done via setxkbmap
+
+! ------------ Remap backslash --------------
+! https://www.dedoimedo.com/computers/linux-keyboard-custom-remap.html
+! remap alt+´ to ´
+!keysym 0x5c Alt_L = grave asciitilde
+!keysym 0xac Alt_L = grave asciitilde
+!keysym 0x60 Alt_L = grave asciitilde
+
+! THEN remap ´ to backslash/pipe
+!keycode 0x31 = backslash bar grave grave
+
+! ignore the above. now with a hint from [1]:
+! 1: https://jeremysmyth.com/2012/06/30/remapping-and-on-us-keyboards-in-uk-layout/
+
+!keycode 49 = 1 2 3 4 5 6 7 8
+!                          ^ ?
+!                        ^ ?
+!                      ^ altgr+shift
+!                    ^ altgr
+!                  ^ ?
+!                ^ ?
+!              ^ shift
+!            ^ normal
+! ... therefore, we can use the ` key to give backslash, bar, grave and notsign
+!keycode 49 = grave notsign x x backslash bar
