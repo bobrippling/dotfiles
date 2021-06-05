@@ -100,8 +100,8 @@ sub run {
 		print(join(" ", @_), "\n");
 	}else{
 		if(system(@_)){
-			warn "`$_[0]` failed\n";
-			warn " $_\n" for @_;
+			#warn "$0: `@_` failed\n";
+			#warn " $_\n" for @_;
 			$ec = 1;
 		}
 	}
