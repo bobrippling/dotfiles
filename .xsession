@@ -16,7 +16,7 @@ then DISPLAY= gpg-agent --daemon > ~/.ssh/gpg_env_agent &
 fi
 
 if ! pidof ssh-agent > /dev/null
-then "$HOME/.ssh/ssh-agent-auto.sh" &
+then "$HOME/.ssh/agent-init" &
 fi
 
 export PATH="$PATH:/usr/local/bin"
