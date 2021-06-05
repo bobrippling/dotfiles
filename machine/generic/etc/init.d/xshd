@@ -1,0 +1,71 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          xshd
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: xshd
+# Description:       xshd autologin daemon
+### END INIT INFO
+# old: `Default-Start: 2 3 4 5`
+
+. /lib/lsb/init-functions
+
+X_OPTS=
+u=rob
+pidfile=/var/run/xshd.pid
+if test -f /etc/default/xshd; then
+	. /etc/default/xshd
+fi
+
+case "$1" in
+	start)
+		log_daemon_msg "Starting xshd" "xshd" || true
+		if ! start-stop-daemon --start \
+			--quiet \
+			--exec /usr/bin/X \
+			--pidfile "$pidfile" \
+			--make-pidfile \
+			--chuid 0:0 \
+			--background \
+			-- \
+			$X_OPTS
+		then
+			log_end_msg 1 || true
+			exit $?
+		fi
+
+		export DISPLAY=:0
+		while ! xset q >/dev/null 2>&1; do sleep 1; done
+
+		#nohup su - $u -c 'exec env DISPLAY=:0 ~/.xsession' >/dev/null 2>&1 &
+
+		# or:
+		setsid \
+			su - $u -c \
+			"env DISPLAY=:0 sh ~$u/.xsession &"
+
+		log_end_msg 0 || true
+		;;
+	stop)
+		log_daemon_msg "Stopping xshd" "xshd" || true
+		if start-stop-daemon --stop \
+			--quiet \
+			--exec /usr/lib/xorg/Xorg \
+			--pidfile "$pidfile" \
+			--remove-pidfile
+		then
+			log_end_msg 0 || true
+		else
+			log_end_msg 1 || true
+		fi
+		;;
+	status)
+		status_of_proc -p "$pidfile" /usr/bin/X xshd
+		;;
+	*)
+		log_action_msg "Usage: /etc/init.d/xshd {start|stop|status}" || true
+		exit 1
+esac
