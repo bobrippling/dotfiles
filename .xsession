@@ -61,7 +61,7 @@ __xsession_xsetup(){
 	#setxkbmap dvorak/dvorak
 	setxkbmap -option caps:escape
 
-	xmodmap ~/.Xmodmap
+	test -e ~/.Xmodmap && xmodmap ~/.Xmodmap
 }
 __xsession_xsetup &
 
