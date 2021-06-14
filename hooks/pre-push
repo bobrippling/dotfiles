@@ -14,13 +14,15 @@ do
 	then continue
 	fi
 
-	b="$(echo "$remote_ref" | sed 's;^refs/heads/;;')"
+	upstream="$remote_name/$(echo "$remote_ref" | sed 's;refs/heads/;;')"
+	range="$upstream..$local_ref"
+	#echo >&2 "$0: scanning $range ($(git rev-list --count $range) commits)"
 
 	# check we've no local-only commits:
-	if git log -i -E --grep '\b(wip|squash|fixup|local|no.*push)\b' --oneline origin/master.."$local_ref" \
+	if git log -i -E --grep '\b(wip|squash|fixup|local|no.*push)\b' --oneline "$range" -- \
 		| grep --color=never .
 	then
-		echo >&2 "branch \"$b\" contains wip/fixup/squash commits (listed above)"
+		echo >&2 "commit range \"$range\" contains wip/fixup/squash commits (listed above)"
 		ec=1
 	fi
 done
