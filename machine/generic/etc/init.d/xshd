@@ -66,6 +66,6 @@ case "$1" in
 		status_of_proc -p "$pidfile" /usr/bin/X xshd
 		;;
 	*)
-		log_action_msg "Usage: /etc/init.d/xshd {start|stop|status}" || true
+		log_action_msg "Usage: $0 {start|stop|status}" || true
 		exit 1
 esac
