@@ -56,6 +56,7 @@ set tabstop=2 shiftwidth=0 noexpandtab
 set history=2000
 set lazyredraw
 set foldopen-=block
+set foldcolumn=auto
 set completeopt+=menuone,noselect
 set cmdwinheight=20
 
