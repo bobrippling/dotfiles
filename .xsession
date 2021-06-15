@@ -91,6 +91,7 @@ autocutsel -f
 
 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
 # moved to just below invoking dwm, Fri 15 Jan 09:54:22 GMT 2021
-sleep 2
+# bumped to 3s, Tue 15 Jun 07:44:15 BST 2021
+sleep 3
 
 exec $dwm/dwm_run.sh
