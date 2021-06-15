@@ -44,7 +44,7 @@ while :
 do
 	DISPLAY= pulseaudio
 	echo >&2 "$(date +%Y-%m-%dT%H:%M) [xsession] restarting pulseaudio..."
-	sleep 1
+	sleep 2
 done &
 
 #xsetroot -d :0 -cursor_name left_ptr
