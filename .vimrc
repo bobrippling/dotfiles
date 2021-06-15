@@ -75,7 +75,7 @@ set cinoptions+=j1,J1,l1,N-s,t0
 set cinoptions-=#0
 set cinkeys-=0#
 "               ^~ these will be undone by ftplugin/c.vim
-set cinkeys+=!<Tab>
+"set cinkeys+=!<Tab> - disables tab in insert mode which is a nuisance
 
 set formatoptions+=clnoqrt
 if v:version >= 704
