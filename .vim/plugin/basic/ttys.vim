@@ -15,12 +15,12 @@ function! s:TtyDisplay()
 	endfor
 endfunction
 
-function! s:TtySpare(cmd) abort
+function! s:TtySpare(cmd, mods) abort
 	let ttys = s:Ttys()
 
 	for tty in ttys
 		if tty.windowcount is# 0
-			execute a:cmd tty.bufnr
+			execute a:mods a:cmd tty.bufnr
 			return
 		endif
 	endfor
@@ -30,6 +30,6 @@ endfunction
 
 " avoid Tty/./ overlap
 command! Ttydisplay call s:TtyDisplay()
-command! Ttyedit call s:TtySpare("b")
-command! Ttyvsplit call s:TtySpare("vert sb")
-command! Ttysplit call s:TtySpare("sb")
+command! Ttyedit call s:TtySpare("b", <q-mods>)
+command! Ttyvsplit call s:TtySpare("vert sb", <q-mods>)
+command! Ttysplit call s:TtySpare("sb", <q-mods>)
