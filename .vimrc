@@ -56,7 +56,7 @@ set tabstop=2 shiftwidth=0 noexpandtab
 set history=2000
 set lazyredraw
 set foldopen-=block
-set foldcolumn=auto
+try | set foldcolumn=auto | catch /E521/ | endtry " introduced in nvim, #13571
 set completeopt+=menuone,noselect
 set cmdwinheight=20
 
