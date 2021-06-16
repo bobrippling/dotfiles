@@ -185,6 +185,11 @@ do_stop() {
     devno_rootfs="$(get_mnt_devno /)" || devno_rootfs=""
     devno_usr="$(get_mnt_devno /usr)" || devno_usr=""
 
+    if [ -x /sbin/lvm ]; then
+        # https://dev1galaxy.org/viewtopic.php?id=2690&p=2
+        vgs --noheadings -o vg_name | xargs -n1 vgchange -a n
+    fi
+
     crypttab_foreach_entry _do_stop_callback
     log_action_end_msg 0
 }
