@@ -1,5 +1,7 @@
-augroup TermEnter
-	autocmd!
+if exists("#TermOpen")
+	augroup TermEnter
+		autocmd!
 
-	autocmd TermOpen * setlocal nospell
-augroup END
+		autocmd TermOpen * setlocal nospell
+	augroup END
+endif
