@@ -51,7 +51,7 @@
 [merge]
 	defaultToUpstream = true
 	tool = vimdiff
-	conflictstyle = diff3
+	#conflictstyle = diff3
 
 [fetch]
 	writeCommitGraph = true
