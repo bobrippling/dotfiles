@@ -61,10 +61,10 @@ function! Autosave() abort
 		let msg = "autosaved: " . join(saved, ", ")
 
 		if skipped > 0
-			let msg .= " (" . skipped . " skipped)"
+			let msg .= " (" . skipped . " skipped - enoent)"
 		endif
 	else
-		let msg = "autosave, skipped " . skipped
+		let msg = "autosave, skipped " . skipped . " - enoent"
 	endif
 
 	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
