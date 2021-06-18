@@ -13,6 +13,10 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
+"=====[ Custom settings ]===================
+let g:Blockwise_default_mapping = 0
+
+
 "=====[ Interface ]===================
 
 if !exists('g:Blockwise_selector')
