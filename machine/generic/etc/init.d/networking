@@ -135,11 +135,17 @@ start)
 			/bin/udevadm settle || true
 		fi
 	fi
+	if test "$WAIT_ONLINE_METHOD" = none
+	then
+		(ifup -a $exclusions $verbose && ifup_hotplug $exclusions $verbose) &
+		log_action_end_msg $?
+	else
 	if ifup -a $exclusions $verbose && ifup_hotplug $exclusions $verbose
 	then
 	    log_action_end_msg $?
 	else
 	    log_action_end_msg $?
+	fi
 	fi
 	;;
 
