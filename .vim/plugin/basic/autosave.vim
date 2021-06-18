@@ -81,8 +81,8 @@ endfunction
 augroup autosave
 	autocmd!
 
-	autocmd CursorHold * call Autosave()
+	autocmd CursorHold * ++nested call Autosave()
 	"autocmd CursorHoldI * update|startinsert
 
-	autocmd FocusLost * call Autosave()
+	autocmd FocusLost * ++nested call Autosave()
 augroup END
