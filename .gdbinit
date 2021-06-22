@@ -15,6 +15,7 @@ set history size 1000
 set history filename ~/.gdb_history
 
 #source ~/src/peda/peda.py
+alias enhance = source ~/src/peda/peda.py
 
 # show values
 # find A, B, <bytes>
