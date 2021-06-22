@@ -13,7 +13,7 @@ command! -range=0 -bar -nargs=1 GitShow
 			\ let s:w = expand("<cWORD>")
 			\ | execute <mods> "new"
 			\ | set filetype=git buftype=nofile
-			\ | execute "r!git show" s:w
+			\ | execute "r!git show --format=fuller" s:w
 			\ | 1d
 
 setlocal keywordprg=:GitShow
