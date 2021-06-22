@@ -3,7 +3,7 @@ if !exists("g:autosave_enabled")
 endif
 
 function! s:save(saved, ent) abort
-	if !empty(glob(expand("%")))
+	if empty(&buftype) && &modified && !empty(glob(expand("%")))
 		silent update
 		call add(a:saved, a:ent)
 	endif
@@ -61,10 +61,10 @@ function! Autosave() abort
 		let msg = "autosaved: " . join(saved, ", ")
 
 		if skipped > 0
-			let msg .= " (" . skipped . " skipped - enoent)"
+			let msg .= " (" . skipped . " skipped)"
 		endif
 	else
-		let msg = "autosave, skipped " . skipped . " - enoent"
+		let msg = "autosave, skipped " . skipped
 	endif
 
 	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
