@@ -3,10 +3,18 @@ if !exists("g:autosave_enabled")
 endif
 
 function! s:save(saved, ent) abort
-	if empty(&buftype) && &modified && !empty(glob(expand("%")))
-		silent update
-		call add(a:saved, a:ent)
+	if !empty(&buftype) || !&modified
+		return
 	endif
+	if exists('b:autosave') && b:autosave == 0
+		return
+	endif
+	if empty(glob(expand("%")))
+		return
+	endif
+
+	silent update
+	call add(a:saved, a:ent)
 endfunction
 
 function! Autosave() abort
