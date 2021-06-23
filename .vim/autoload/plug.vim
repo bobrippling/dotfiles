@@ -106,7 +106,7 @@ if s:is_win && &shellslash
 else
   let s:me = resolve(expand('<sfile>:p'))
 endif
-let s:base_spec = { 'branch': '', 'frozen': 0 }
+let s:base_spec = { 'branch': '', 'frozen': 0, 'remote': 'origin' }
 let s:TYPE = {
 \   'string':  type(''),
 \   'list':    type([]),
@@ -139,13 +139,13 @@ function! s:git_dir(dir) abort
   return isdirectory(gitdir) ? gitdir : ''
 endfunction
 
-function! s:git_origin_url(dir) abort
+function! s:git_origin_url(dir, remote) abort
   let gitdir = s:git_dir(a:dir)
   let config = gitdir . '/config'
   if empty(gitdir) || !filereadable(config)
     return ''
   endif
-  return matchstr(join(readfile(config)), '\[remote "origin"\].\{-}url\s*=\s*\zs\S*\ze')
+  return matchstr(join(readfile(config)), '\[remote "' . a:remote . '"\].\{-}url\s*=\s*\zs\S*\ze')
 endfunction
 
 function! s:git_revision(dir) abort
@@ -193,10 +193,10 @@ function! s:git_origin_branch(spec)
 
   " The file may not be present if this is a local repository
   let gitdir = s:git_dir(a:spec.dir)
-  let origin_head = gitdir.'/refs/remotes/origin/HEAD'
+  let origin_head = gitdir.'/refs/remotes/'.a:spec.remote.'/HEAD'
   if len(gitdir) && filereadable(origin_head)
     return matchstr(get(readfile(origin_head), 0, ''),
-                  \ '^ref: refs/remotes/origin/\zs.*')
+                  \ '^ref: refs/remotes/'.a:spec.remote.'/\zs.*')
   endif
 
   " The command may not return the name of a branch in detached HEAD state
@@ -734,7 +734,7 @@ function! s:parse_options(arg)
     endif
     let opts.tag = a:arg
   elseif type == s:TYPE.dict
-    for opt in ['branch', 'tag', 'commit', 'rtp', 'dir', 'as']
+    for opt in ['branch', 'tag', 'commit', 'rtp', 'dir', 'as', 'remote']
       if has_key(a:arg, opt)
       \ && (type(a:arg[opt]) != s:TYPE.string || empty(a:arg[opt]))
         throw printf(opt_errfmt, opt, 'string')
@@ -1306,9 +1306,9 @@ function! s:update_finish()
         let out = s:system('git checkout -q '.plug#shellescape(tag).' -- 2>&1', spec.dir)
       else
         let branch = s:git_origin_branch(spec)
-        call s:log4(name, 'Merging origin/'.s:esc(branch))
+        call s:log4(name, 'Merging '.spec.remote.'/'.s:esc(branch))
         let out = s:system('git checkout -q '.plug#shellescape(branch).' -- 2>&1'
-              \. (has_key(s:update.new, name) ? '' : ('&& git merge --ff-only '.plug#shellescape('origin/'.branch).' 2>&1')), spec.dir)
+              \. (has_key(s:update.new, name) ? '' : ('&& git merge --ff-only '.plug#shellescape(spec.remote.'/'.branch).' 2>&1')), spec.dir)
       endif
       if !v:shell_error && filereadable(spec.dir.'/.gitmodules') &&
             \ (s:update.force || has_key(s:update.new, name) || s:is_updated(spec.dir))
@@ -1839,7 +1839,7 @@ class Plugin(object):
     self.write(Action.DONE, self.name, result[-1:])
 
   def repo_uri(self):
-    cmd = 'git rev-parse --abbrev-ref HEAD 2>&1 && git config -f .git/config remote.origin.url'
+    cmd = 'git rev-parse --abbrev-ref HEAD 2>&1 && git config -f .git/config remote.'.self.args['remote'].'.url'
     command = Command(cmd, self.args['dir'], G_TIMEOUT,)
     result = command.execute(G_RETRIES)
     return result[-1]
@@ -2148,12 +2148,12 @@ function! s:update_ruby()
       threads << Thread.new {
         while pair = take1.call
           name = pair.first
-          dir, uri, tag = pair.last.values_at *%w[dir uri tag]
+          dir, uri, tag, remote = pair.last.values_at *%w[dir uri tag remote]
           exists = File.directory? dir
           ok, result =
             if exists
               chdir = "#{cd} #{iswin ? dir : esc(dir)}"
-              ret, data = bt.call "#{chdir} && git rev-parse --abbrev-ref HEAD 2>&1 && git config -f .git/config remote.origin.url", nil, nil, nil
+              ret, data = bt.call "#{chdir} && git rev-parse --abbrev-ref HEAD 2>&1 && git config -f .git/config remote." + remote + ".url", nil, nil, nil
               current_uri = data.lines.to_a.last
               if !ret
                 if data =~ /^Interrupted|^Timeout/
@@ -2310,7 +2310,7 @@ endfunction
 function! s:git_validate(spec, check_branch)
   let err = ''
   if isdirectory(a:spec.dir)
-    let result = [s:git_local_branch(a:spec.dir), s:git_origin_url(a:spec.dir)]
+    let result = [s:git_local_branch(a:spec.dir), s:git_origin_url(a:spec.dir, a:spec.remote)]
     let remote = result[-1]
     if empty(remote)
       let err = join([remote, 'PlugClean required.'], "\n")
@@ -2345,17 +2345,17 @@ function! s:git_validate(spec, check_branch)
       if empty(err)
         let [ahead, behind] = split(s:lastline(s:system([
         \ 'git', 'rev-list', '--count', '--left-right',
-        \ printf('HEAD...origin/%s', origin_branch)
+        \ printf('HEAD...'.a:spec.remote.'/%s', origin_branch)
         \ ], a:spec.dir)), '\t')
         if !v:shell_error && ahead
           if behind
             " Only mention PlugClean if diverged, otherwise it's likely to be
             " pushable (and probably not that messed up).
             let err = printf(
-                  \ "Diverged from origin/%s (%d commit(s) ahead and %d commit(s) behind!\n"
+                  \ "Diverged from ".a:spec.remote."/%s (%d commit(s) ahead and %d commit(s) behind!\n"
                   \ .'Backup local changes and run PlugClean and PlugUpdate to reinstall it.', origin_branch, ahead, behind)
           else
-            let err = printf("Ahead of origin/%s by %d commit(s).\n"
+            let err = printf("Ahead of ".a:spec.remote."/%s by %d commit(s).\n"
                   \ .'Cannot update until local changes are pushed.',
                   \ origin_branch, ahead)
           endif
