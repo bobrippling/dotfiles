@@ -57,6 +57,8 @@ __xsession_xsetup(){
 
 	xset s off # screensaver
 
+	xset -b # disable pcspkr
+
 	setxkbmap gb
 	#setxkbmap dvorak/dvorak
 	setxkbmap -option caps:escape
