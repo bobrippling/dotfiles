@@ -147,7 +147,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
 Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'bobrippling/vim-bg', { 'remote': 'github-me' }
-Plug 'bobrippling/vim-obsession', { 'on': 'Obsession', 'remote': 'github-me' } " tpope/vim-obsession
+Plug 'bobrippling/vim-obsession', { 'remote': 'github-me' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
 
 " Motions, etc
