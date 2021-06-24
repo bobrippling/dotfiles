@@ -1,0 +1,9 @@
+.vim/bundle/*/
+
+.ssh/known_hosts
+.ssh/id_*
+
+.vnc/passwd
+
+.ssh/env_agent
+.ssh/gpg_env_agent
