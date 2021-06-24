@@ -31,7 +31,10 @@ set nomodeline
 set directory=.
 " must remove old ones, vim takes the first flag it finds:
 function! s:viminfo(type, val)
-	let &viminfo = substitute(&viminfo, a:type . "[^,]*,", "", "g") . "," . a:type . a:val
+	let parts = split(&viminfo, ",")
+	call filter(parts, { i, v -> v[:len(a:type) - 1] !=? a:type })
+	call add(parts, a:type . a:val)
+	let &viminfo = join(parts, ",")
 endfunction
 call s:viminfo("'", "150") " marks for last N files
 call s:viminfo("<", "100") " registers up to N lines
