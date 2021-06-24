@@ -9,6 +9,10 @@ set unwindonsignal on
 set confirm off
 #set disassemble-next-line on
 
+# threads
+## resume all threads on `continue`, `next`, etc
+set schedule-multiple on
+
 # history
 set history save
 set history size 1000
