@@ -91,3 +91,13 @@
 
 [gui]
 	displayUntracked = false
+
+[url "https://github.com/"]
+	insteadOf	= http://github.com/
+	insteadOf	= git://github.com/
+[url "https://bitbucket.com/"]
+	insteadOf	= http://bitbucket.com/
+	insteadOf	= git://bitbucket.com/
+[url "https://git.suckless.org/"]
+	insteadOf	= http://git.suckless.org/
+	insteadOf	= git://git.suckless.org/
