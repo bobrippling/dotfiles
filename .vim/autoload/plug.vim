@@ -1521,6 +1521,11 @@ function! s:update_vim()
   call s:tick()
 endfunction
 
+function! s:get_remote(spec)
+	let remote = a:spec.remote
+	return empty(remote) ? 'origin' : remote
+endfunction
+
 function! s:tick()
   let pull = s:update.pull
   let prog = s:progress_opt(s:nvim || s:vim8)
@@ -1567,7 +1572,7 @@ while 1 " Without TCO, Vim stack is bound to explode
     if !empty(prog)
       call add(cmd, prog)
     endif
-    call s:spawn(name, extend(cmd, [spec.uri, s:trim(spec.dir)]), { 'new': 1 })
+    call s:spawn(name, extend(cmd, [spec.uri, s:trim(spec.dir), '--origin', s:get_remote(spec)]), { 'new': 1 })
   endif
 
   if !s:jobs[name].running
@@ -1818,6 +1823,7 @@ class Plugin(object):
 
   def install(self):
     target = self.args['dir']
+    remote = self.args['remote']
     if target[-1] == '\\':
       target = target[0:-1]
 
@@ -1831,9 +1837,9 @@ class Plugin(object):
 
     self.write(Action.INSTALL, self.name, ['Installing ...'])
     callback = functools.partial(self.write, Action.INSTALL, self.name)
-    cmd = 'git clone {0} {1} {2} {3} 2>&1'.format(
+    cmd = 'git clone {0} {1} {2} {3} {4} 2>&1'.format(
           '' if self.tag else G_CLONE_OPT, G_PROGRESS, self.args['uri'],
-          esc(target))
+          esc(target), esc(remote))
     com = Command(cmd, None, G_TIMEOUT, callback, clean(target))
     result = com.execute(G_RETRIES)
     self.write(Action.DONE, self.name, result[-1:])
@@ -2177,7 +2183,8 @@ function! s:update_ruby()
             else
               d = esc dir.sub(%r{[\\/]+$}, '')
               log.call name, 'Installing ...', :install
-              bt.call "git clone #{clone_opt unless tag} #{progress} #{uri} #{d} 2>&1", name, :install, proc {
+							# FIXME: implement, and spec.remote === '' ??
+              bt.call "git clone #{clone_opt unless tag} #{progress} #{uri} #{d} --origin {remote} 2>&1", name, :install, proc {
                 FileUtils.rm_rf dir
               }
             end
