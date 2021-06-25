@@ -27,3 +27,6 @@ then
 fi
 
 loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
+
+_Z_NO_RESOLVE_SYMLINKS=1
+. ~/src/z/z.sh
