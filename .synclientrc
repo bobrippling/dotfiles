@@ -1,59 +1,143 @@
-AccelFactor             = 0.0361533
-AreaBottomEdge          = 0
-AreaLeftEdge            = 0
-AreaRightEdge           = 0
-AreaTopEdge             = 0
-BottomEdge              = 4658
-CircScrollDelta         = 0.1
-CircScrollTrigger       = 0
-CircularPad             = 0
-CircularScrolling       = 0
-ClickFinger1            = 1
-ClickFinger2            = 1
-ClickFinger3            = 1
-ClickPad                = 0
-ClickTime               = 100
-CoastingFriction        = 50
-CoastingSpeed           = 20
-CornerCoasting          = 0
-EmulateMidButtonTime    = 75
-EmulateTwoFingerMinW    = 7
-EmulateTwoFingerMinZ    = 282
-FingerHigh              = 30
-FingerLow               = 25
-GrabEventDevice         = 0
-HorizEdgeScroll         = 0
-HorizHysteresis         = 27
-HorizScrollDelta        = 110
-HorizTwoFingerScroll    = 0
-LBCornerButton          = 0
-LTCornerButton          = 0
-LeftEdge                = 1772
-LockedDragTimeout       = 5000
-LockedDrags             = 0
-MaxDoubleTapTime        = 180
-MaxSpeed                = 1.75
-MaxTapMove              = 243
-MaxTapTime              = 180
-MinSpeed                = 1
-PalmDetect              = 0
-PalmMinWidth            = 10
-PalmMinZ                = 200
-PressureMotionMaxFactor = 1
-PressureMotionMaxZ      = 160
-PressureMotionMinFactor = 1
-PressureMotionMinZ      = 30
-RBCornerButton          = 0
-RTCornerButton          = 0
-RightEdge               = 5462
-SingleTapTimeout        = 180
-TapAndDragGesture       = 1
-TapButton1              = 0
-TapButton2              = 0
-TapButton3              = 0
-TopEdge                 = 1652
-TouchpadOff             = 0
-VertEdgeScroll          = 0
-VertHysteresis          = 27
-VertScrollDelta         = 110
-VertTwoFingerScroll     = 1
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my %xinput_props = (
+	# Synaptics is only provided by xinput when the driver is `xserver-xorg-input-synaptics`
+	# Changing it to the more modern `xserver-xorg-input-libinput` brings the /^libinput/ props
+
+	#"Synaptics Edge Scrolling" => ["10", "30", "10"],
+
+	#"Synaptics Two-Finger Scrolling" => ["10", "10"],  # vert, horiz
+
+	# tap-to-click:
+	# 1-finger => btn1
+	# 2-finger => btn3
+	# 3-finger => btn2 [middle click] [doesn't seem to do anything]
+	#"Synaptics Tap Action" => ["0", "0", "0", "0", "1", "3", "2"],
+
+	#"Synaptics Palm Detection" => ["1"],
+	#"Synaptics Palm Dimensions" => ["80", "200"],
+
+	"libinput Tapping Enabled" => ["1"],
+	"libinput Disable While Typing Enabled" => ["1"],
+);
+
+my %synclient_props = (
+	LeftEdge                => 32,
+	RightEdge               => 787,
+	TopEdge                 => 21,
+	BottomEdge              => 4658,
+	FingerLow               => 1,
+	FingerHigh              => 30,
+	FingerPress             => 256,
+	MaxTapTime              => 259,
+	MaxTapMove              => 40,
+	MaxDoubleTapTime        => 180,
+	SingleTapTimeout        => 180,
+	ClickTime               => 100,
+	FastTaps                => 0,
+	EmulateMidButtonTime    => 100,
+	EmulateTwoFingerMinZ    => 282,
+	EmulateTwoFingerMinW    => 7,
+	VertScrollDelta         => 1,
+	HorizScrollDelta        => 1,
+	VertEdgeScroll          => 1,
+	HorizEdgeScroll         => 1,
+	CornerCoasting          => 1,
+	VertTwoFingerScroll     => 0,
+	HorizTwoFingerScroll    => 0,
+	#MinSpeed                => 1,
+	#MaxSpeed                => 1.75,
+	#AccelFactor             => 0.219058,
+	TrackstickSpeed         => 40,
+	#EdgeMotionMinZ          => 30,
+	#EdgeMotionMaxZ          => 160,
+	#EdgeMotionMinSpeed      => 10,
+	#EdgeMotionMaxSpeed      => 73,
+	#EdgeMotionUseAlways     => 0,
+	TouchpadOff             => 0,
+	LockedDrags             => 0,
+	LockedDragTimeout       => 5000,
+	RTCornerButton          => 0,
+	RBCornerButton          => 0,
+	LTCornerButton          => 0,
+	LBCornerButton          => 0,
+	TapButton1              => 1,
+	TapButton2              => 2,
+	TapButton3              => 3,
+	ClickFinger1            => 1,
+	ClickFinger2            => 0,
+	ClickFinger3            => 0,
+	CircularScrolling       => 0,
+	CircScrollDelta         => 0.1,
+	CircScrollTrigger       => 0,
+	CircularPad             => 0,
+	PalmDetect              => 0,
+	PalmMinWidth            => 10,
+	PalmMinZ                => 200,
+	CoastingSpeed           => 20,
+	CoastingFriction        => 50,
+	PressureMotionMinZ      => 30,
+	PressureMotionMaxZ      => 160,
+	PressureMotionMinFactor => 1,
+	PressureMotionMaxFactor => 1,
+	GrabEventDevice         => 1,
+	TapAndDragGesture       => 1,
+	AreaLeftEdge            => 0,
+	AreaRightEdge           => 0,
+	AreaTopEdge             => 0,
+	AreaBottomEdge          => 0,
+	HorizHysteresis         => 4,
+	VertHysteresis          => 4,
+	ClickPad                => 0,
+);
+
+my $n = 0;
+my $synclient = 0;
+my $ec = 0;
+
+sub usage {
+	die "Usage: $0 [-n] [--legacy]\n"
+}
+
+sub run {
+	if($n){
+		print(join(" ", @_), "\n");
+	}else{
+		if(system(@_)){
+			#warn "$0: `@_` failed\n";
+			#warn " $_\n" for @_;
+			$ec = 1;
+		}
+	}
+}
+
+for(@ARGV){
+	if($_ eq '-n'){
+		$n = 1;
+	}elsif($_ eq '--legacy'){
+		$synclient = 1;
+	}else{
+		usage();
+	}
+}
+
+if($synclient){
+	for my $k (keys %synclient_props){
+		run("synclient", "$k=$synclient_props{$k}");
+	}
+}else{
+	my @devices = map { chomp; $_ } `xinput list --name-only`;
+	my @syn = grep /synaptics/i, @devices;
+	if(@syn != 1){
+		die "need exactly one synaptics device";
+	}
+
+	my $dev = shift @syn;
+	for my $k (keys %xinput_props){
+		run("xinput", "set-prop", $dev, $k, @{$xinput_props{$k}});
+	}
+}
+
+exit($ec);
