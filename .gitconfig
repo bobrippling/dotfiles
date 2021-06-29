@@ -101,3 +101,6 @@
 [url "https://git.suckless.org/"]
 	insteadOf	= http://git.suckless.org/
 	insteadOf	= git://git.suckless.org/
+
+[remotes]
+	cloud = github-me bitbucket
