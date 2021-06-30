@@ -1,4 +1,4 @@
-if exists("#TermOpen")
+if exists("##TermOpen")
 	augroup TermEnter
 		autocmd!
 
