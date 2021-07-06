@@ -79,7 +79,7 @@ function! Autosave() abort
 	let full = now . msg
 
 	" -3, since vim seems to show the enter prompt even if we don't hit the end
-	if len(full) < &columns - 3
+	if len(full) < (&columns * &cmdheight) - 3
 		echo full
 	else
 		echo now "[autosave...]"
