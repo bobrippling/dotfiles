@@ -47,27 +47,6 @@ do
 	sleep 2
 done &
 
-#xsetroot -d :0 -cursor_name left_ptr
-__xsession_xsetup(){
-	xset b off # bell
-
-	xset r rate 200 25 # keyboard rate
-
-	xset m 3 1 # mouse speed
-
-	xset s off # screensaver
-
-	xset -b # disable pcspkr
-
-	setxkbmap gb
-	#setxkbmap dvorak/dvorak
-	#setxkbmap gb -variant colemak
-	setxkbmap -option caps:escape
-
-	test -e ~/.Xmodmap && xmodmap ~/.Xmodmap
-}
-__xsession_xsetup &
-
 #yeahconsole &
 #unclutter &
 randomwallpaper.sh &
@@ -96,5 +75,28 @@ autocutsel -f
 # moved to just below invoking dwm, Fri 15 Jan 09:54:22 GMT 2021
 # bumped to 3s, Tue 15 Jun 07:44:15 BST 2021
 sleep 3
+
+# run this last, so these settings aren't overwritten
+__xsession_xsetup(){
+	xset b off # bell
+
+	xset r rate 200 25 # keyboard rate
+
+	xset m 3 1 # mouse speed
+
+	xset s off # screensaver
+
+	xset -b # disable pcspkr
+
+	setxkbmap gb
+	#setxkbmap dvorak/dvorak
+	#setxkbmap gb -variant colemak
+	setxkbmap -option caps:escape
+
+	#xsetroot -d :0 -cursor_name left_ptr
+
+	test -e ~/.Xmodmap && xmodmap ~/.Xmodmap
+}
+__xsession_xsetup &
 
 exec $dwm/dwm_run.sh
