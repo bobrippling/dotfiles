@@ -9,6 +9,9 @@ function! StatusLine()
 	let s .= "%y" " 'filetype'
 	let s .= "[%{&ff}]" " 'fileformat'
 	let s .= "%{StatusLineEnc()}" " 'fileformat'
+	if exists("*SleuthIndicator")
+		let s .= "[%{SleuthIndicator()}]"
+	endif
 	let s .= "[%n%{StatusLineBufCount()}]" " buffer number
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
