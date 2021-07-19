@@ -125,5 +125,8 @@ if has("gui")
 	set guitablabel=%!GuiTabLabel()
 endif
 
-hi TabLineSelItalic cterm=bold           ctermfg=green
-hi TabLineItalic    cterm=bold,underline ctermfg=white ctermbg=darkgrey
+if !hlexists("TabLineItalic") && get(g:, "tabname_set_hl", 0)
+	" defaults
+	hi TabLineSelItalic cterm=bold           ctermfg=green
+	hi TabLineItalic    cterm=bold,underline ctermfg=white ctermbg=darkgrey
+endif
