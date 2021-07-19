@@ -9,11 +9,11 @@ loadagent(){
 			. "$agent_file"
 			return 0
 		else
-			echo >&2 "environ: no such file \"$agent_file\""
+			echo >&2 "$0: environ: no such file \"$agent_file\""
 			return 1
 		fi
 	else
-		echo >&2 "environ: \"$proc_name\" not running"
+		echo >&2 "$0: environ: \"$proc_name\" not running"
 		return 1
 	fi
 }
@@ -22,7 +22,7 @@ if test -z "$SSH_AUTH_SOCK" && loadagent ssh-agent "$HOME/.ssh/env_agent"
 then
 	nssh=$(ssh-add -l | grep '^[0-9]' | wc -l)
 	if test $nssh -eq 0
-	then echo >&2 "environ: no ssh identities"
+	then echo >&2 "$0: environ: no ssh identities"
 	fi
 fi
 
