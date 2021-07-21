@@ -1,4 +1,5 @@
 cnoremap <expr> <C-K> <SID>clrtoeol_cmd()
+cnoremap <expr> <C-R><C-B> <SID>curbuf()
 
 function! s:clrtoeol_cmd() abort
     let cmd = getcmdline()
@@ -7,4 +8,8 @@ function! s:clrtoeol_cmd() abort
     let n = len(cmd) - pos
 
     return repeat("\<Del>", n)
+endfunction
+
+function! s:curbuf() abort
+	return bufnr("")
 endfunction
