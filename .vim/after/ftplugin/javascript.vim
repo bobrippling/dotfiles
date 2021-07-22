@@ -450,15 +450,21 @@ command SpecEnable  call s:test(1)
 
 if exists("+tagfunc")
 	set tagfunc=JsTag
-	let b:undo_ftplugin .= '|setlocal tagfunc<'
+	if exists('b:undo_ftplugin')
+		let b:undo_ftplugin .= '|setlocal tagfunc<'
+	endif
 endif
 
 set suffixesadd+=.js,.jsx
-let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
+if exists('b:undo_ftplugin')
+	let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
+endif
 
 set omnifunc=Dotcomplete
 inoremap <buffer> . .<C-X><C-O>
-let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
+if exists('b:undo_ftplugin')
+	let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
+endif
 
 if exists(":packadd")
 	" html matching
