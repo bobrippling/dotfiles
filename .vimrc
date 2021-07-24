@@ -75,6 +75,7 @@ set go-=m go+=M go-=T go-=r go-=L
 
 " editing
 set comments-=mb:* | set comments+=mbn:*
+set comments-=fb:- | set comments+=n:-
 set cindent
 set cinoptions+=j1,J1,l1,N-s,t0
 set cinoptions-=#0
