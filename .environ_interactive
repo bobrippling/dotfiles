@@ -30,6 +30,7 @@ loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
 
 if test -t 0
 then
+	# bobrippling/z
 	if test -e ~/src/z/z.sh
 	then
 		_Z_NO_RESOLVE_SYMLINKS=1
