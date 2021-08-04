@@ -28,4 +28,6 @@ augroup ArgWraps
 				\ let b:argwrap_tail_comma = 1 |
 				\ let b:argwrap_tail_comma_braces = ""
 
+	autocmd FileType c
+				\ let b:argwrap_wrap_closing_brace = 0
 augroup END
