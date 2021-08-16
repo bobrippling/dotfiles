@@ -67,5 +67,5 @@ function! Path2tfs(switches) abort
 	endif
 endfunction
 
-command -range -nargs=* Path2tfs call Path2tfs([<f-args>])
+command! -range -nargs=* Path2tfs call Path2tfs([<f-args>])
 "vnoremap <silent> <leader>t :<C-U>call Path2tfs(getpos("'<"), getpos("'>"))<CR>gv
