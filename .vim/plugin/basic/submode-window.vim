@@ -1,4 +1,4 @@
-function s:enable_mappings() abort
+function! s:enable_mappings() abort
 	call submode#enter_with('window', 'n', '', '<C-w>m')
 	call submode#leave_with('window', 'n', '', '<ESC>')
 	for key in ['a','b','c','d','e','f','g','h','i','j','k','l','m',
@@ -13,7 +13,7 @@ function s:enable_mappings() abort
 	let g:submode_timeout = 0
 endfunction
 
-function SubmodeWindowInit()
+function! SubmodeWindowInit()
 	nunmap <C-W>m
 	call s:enable_mappings()
 endfunction

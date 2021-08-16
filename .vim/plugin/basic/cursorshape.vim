@@ -1,4 +1,4 @@
-function s:setup()
+function! s:setup()
 	if has("nvim")
 		highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
 	else
@@ -13,7 +13,7 @@ function s:setup()
 	endif
 endfunction
 
-function VimrcDisableCursorShaping()
+function! VimrcDisableCursorShaping()
 	if has("nvim")
 		set guicursor=
 	else

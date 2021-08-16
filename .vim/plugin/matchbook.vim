@@ -46,5 +46,5 @@ function! MatchBook(clear, nth, keyword)
 	endif
 endfunction
 
-command -nargs=? -complete=tag -count -bang -bar MatchBook
+command! -nargs=? -complete=tag -count -bang -bar MatchBook
 \ call MatchBook(<bang>0, <count>, <q-args>)
