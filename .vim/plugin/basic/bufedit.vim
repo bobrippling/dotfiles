@@ -169,7 +169,8 @@ function! s:CompleteFiles(ArgLead, CmdLine, CursorPos) abort
 	return bufs
 endfunction
 
-function! s:BufEdit(glob, editcmd, mods, mode) abort
+" the command given to s:BufEdit must accept "!" appendin to it
+function! s:BufEdit(glob, editcmd, bangstr, mods, mode) abort
 	let glob = a:glob
 
 	let ents = s:MatchingBufs(glob, [], a:mode)
@@ -185,7 +186,7 @@ function! s:BufEdit(glob, editcmd, mods, mode) abort
 		let path = ents[0].name
 	endif
 
-	execute a:mods a:editcmd path
+	execute a:mods a:editcmd a:bangstr path
 endfunction
 
 function! s:BufEditPreview() abort
@@ -368,15 +369,15 @@ endfunction
 let s:Cmds = '(Buf|F)%(%[edit]|%[vsplit]|%[split]|%[tabedit])'
 "             ^~~~~~~ capture used
 
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-mods>, "b")
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-mods>, "b")
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-mods>, "b")
-command! -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-mods>, "b")
+command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call s:BufEdit(<q-args>, "buffer", <q-bang>, <q-mods>, "b")
+command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-bang>, <q-mods>, "b")
+command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-bang>, <q-mods>, "b")
+command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-bang>, <q-mods>, "b")
 
-command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fedit    call s:BufEdit(<q-args>, "edit", <q-mods>, "f")
-command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fsplit   call s:BufEdit(<q-args>, "split", <q-mods>, "f")
-command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Fvsplit  call s:BufEdit(<q-args>, "vsplit", <q-mods>, "f")
-command! -bar -complete=customlist,s:CompleteFiles -nargs=1 Ftabedit call s:BufEdit(<q-args>, "tabedit", <q-mods>, "f")
+command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Fedit    call s:BufEdit(<q-args>, "edit", <q-bang>, <q-mods>, "f")
+command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Fsplit   call s:BufEdit(<q-args>, "split", <q-bang>, <q-mods>, "f")
+command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Fvsplit  call s:BufEdit(<q-args>, "vsplit", <q-bang>, <q-mods>, "f")
+command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Ftabedit call s:BufEdit(<q-args>, "tabedit", <q-bang>, <q-mods>, "f")
 
 
 augroup BufEdit
