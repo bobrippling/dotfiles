@@ -7,3 +7,4 @@
 
 .ssh/env_agent
 .ssh/gpg_env_agent
+.local/share
