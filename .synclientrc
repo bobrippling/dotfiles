@@ -21,6 +21,7 @@ my %xinput_props = (
 
 	"libinput Tapping Enabled" => ["1"],
 	"libinput Disable While Typing Enabled" => ["1"],
+	"libinput Natural Scrolling Enabled" => ["1"],
 );
 
 my %synclient_props = (
