@@ -98,7 +98,7 @@ function! s:fileexists(path)
     return !empty(glob(a:path, v:true))
 endfunction
 
-function! TrimUnlinkedBuffers()
+function! TrimUnlinkedBuffers(bang)
     let curbuf = bufnr("")
     let newwin = 0
     let delete = []
@@ -123,7 +123,15 @@ function! TrimUnlinkedBuffers()
             botright new
         endif
 
+        let names = a:bang ? map(copy(delete), { _, x -> bufname(x) }) : []
+
         execute "bdelete " . join(delete)
+
+        if !empty(names)
+            echom "Removed unlinked buffers:" join(names)
+        endif
+    elseif a:bang
+        echom "No unlinked buffers"
     endif
 endfunction
 
