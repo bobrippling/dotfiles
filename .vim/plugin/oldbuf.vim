@@ -99,6 +99,8 @@ function! s:fileexists(path)
 endfunction
 
 function! TrimUnlinkedBuffers()
+    let curbuf = bufnr("")
+    let newwin = 0
     let delete = []
     for buf in s:buffers()
         let name = bufname(buf)
@@ -110,7 +112,16 @@ function! TrimUnlinkedBuffers()
         endif
 
         call add(delete, buf)
+
+        if buf ==# curbuf
+            let newwin = 1
+        endif
     endfor
+
+    if newwin
+        botright new
+    endif
+
 
     execute "bdelete " . join(delete)
 endfunction
