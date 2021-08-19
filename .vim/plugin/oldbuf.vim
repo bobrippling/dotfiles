@@ -118,14 +118,15 @@ function! TrimUnlinkedBuffers()
         endif
     endfor
 
-    if newwin
-        botright new
+    if !empty(delete)
+        if newwin
+            botright new
+        endif
+
+        execute "bdelete " . join(delete)
     endif
-
-
-    execute "bdelete " . join(delete)
 endfunction
 
 command! Ls call Lst()
 command! -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, <bang>0)
-command! TrimUnlinkedBuffers call TrimUnlinkedBuffers()
+command! -bang TrimUnlinkedBuffers call TrimUnlinkedBuffers(<bang>0)
