@@ -80,7 +80,7 @@ function! TrimOldBuffers(count, bang)
     " bang = false: remove `count` many buffers
     let recents = filter(s:recentbuffers(), { idx, buf -> !bufloaded(buf) })
 
-    if len(a:bang)
+    if a:bang
         let remaining = min([len(recents) - 1, a:count])
         let delete = recents[:-remaining]
     else
@@ -116,5 +116,5 @@ function! TrimUnlinkedBuffers()
 endfunction
 
 command! Ls call Lst()
-command! -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, '<bang>')
+command! -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, <bang>0)
 command! TrimUnlinkedBuffers call TrimUnlinkedBuffers()
