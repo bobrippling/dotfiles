@@ -438,9 +438,9 @@ endfunction
 function! s:test(enable) abort
 	let [buf; save_cursor] = getcurpos()
 	if a:enable
-		keepjumps silent %s;^\s*\zsxit\ze(;it;
+		keeppatterns keepjumps silent %s;^\s*\zsxit\ze(;it;
 	else
-		keepjumps silent %s;^\s*\zsit\ze(;xit;
+		keeppatterns keepjumps silent %s;^\s*\zsit\ze(;xit;
 	endif
 	call cursor(save_cursor)
 endfunction
