@@ -228,7 +228,7 @@ function! s:scoped_tag_search(ident) abort
 
 	call cursor(start_line, 0)
 	" c: cursor pos accept, n: no move cursor, W: no wrap
-	let found = search("^\\C\\v\\s*((async|\*) *)*<" . a:ident . ">", "cnW", end_line)
+	let found = search("^\\C\\v\\s*((async|\*|public|private) *)*<" . a:ident . ">", "cnW", end_line)
 	if found == 0
 		call s:debug("couldn't find " . a:ident . " in " . start_line . "," . end_line)
 		return []
