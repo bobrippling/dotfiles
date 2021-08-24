@@ -203,9 +203,7 @@ function! s:BufEditPreview() abort
 endfunction
 
 function! s:CmdlineMatchArg() abort
-	let cmd = getcmdline()
-	" TODO: getcmdlinepos for better matching
-	let matches = matchlist(cmd, '\v\C%(^|.*\|)[: \t]*' . s:Cmds . '\s+([^|]*)$')
+	let matches = cmdline#matching(s:Cmds . '\s+([^|]*)$')
 
 	if empty(matches)
 		return ''

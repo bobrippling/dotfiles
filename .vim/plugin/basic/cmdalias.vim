@@ -1,22 +1,8 @@
-function! IsLoneCmd(cmd)
-	if getcmdtype() != ':'
-		return 0
-	endif
-
-	let range1 = "%(%([0-9%$]+|'.) *)?"
-	let range = range1 . "%(," . range1 . ")?"
-
-	let modifiers = '%(%(vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright]|' . range . ')\s+)*'
-
-	let re = ('\v%(^|\|)[: \t]*' . modifiers . range . a:cmd)
-	return getcmdline() =~ re
-endfunction
-
 function! CmdAlias(lhs, rhs)
 	" Can't have a <silent> abbrev here, since as well as suppressing the
 	" eventual command output, it also suppresses the expansion until the
 	" next key press.
-	exec "cnoreabbrev <expr> " . a:lhs . " IsLoneCmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+	exec "cnoreabbrev <expr> " . a:lhs . " cmdline#matches_cmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
 endfunction
 
 call CmdAlias('vsb', 'vert sb')
