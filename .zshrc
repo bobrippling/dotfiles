@@ -133,10 +133,12 @@ bindkey -M vicmd 'j' history-beginning-search-forward
 # bindkey -M vicmd -s Y 'y$'
 bindkey -M vicmd Y vi-yank-eol
 
+bindkey '^R' history-incremental-pattern-search-backward
+# history-incremental-search-backward
+
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
-
 
 # -------------------------------------------------------------------------------------
 # Prompt
