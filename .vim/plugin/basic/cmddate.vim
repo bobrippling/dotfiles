@@ -1,8 +1,8 @@
 let s:ignore_next = 0
 
-function! s:get_date()
+function! s:get_date(is_cmdline)
 	let s:ignore_next = 1
-	return strftime("%Y-%m-%d-")
+	return strftime("%Y-%m-%d") . (a:is_cmdline ? "-" : "")
 endfunction
 
 function! s:check_date_typed()
@@ -25,7 +25,8 @@ function! s:check_date_typed()
 	endif
 endfunction
 
-cnoremap <expr> <C-R><C-D> <SID>get_date()
+cnoremap <expr> <C-R><C-D> <SID>get_date(1)
+inoremap <expr> <C-R><C-D> <SID>get_date(0)
 
 augroup CmdDate
 	autocmd!
