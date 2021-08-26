@@ -63,15 +63,14 @@ function! Lst()
     for i in s:recentbuffers()
         let when = s:when(i)
         if strlen(when)
-            let when = " (" . strftime("%c", when) . ")"
+            let when = strftime("%Y-%d-%m %H:%M", when)
         endif
         echon "[" . i . "]\t"
         if bufloaded(i)
             echohl Pmenu
         endif
-        echon bufname(i)
+				echon when . "\t" . bufname(i) . "\n"
         echohl NONE
-        echon when . "\n"
     endfor
 endfunction
 
