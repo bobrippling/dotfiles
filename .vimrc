@@ -99,15 +99,15 @@ nnoremap <expr> <silent> <leader>j ":<C-U>" . v:count1 . "n<CR>"
 nnoremap <expr> <silent> <leader>J ":<C-U>" . v:count1 . "w\\|n<CR>"
 nnoremap <expr> <silent> <leader>t ":<C-U>" . v:count1 . "tabn<CR>"
 nnoremap <silent> <leader>h :noh<CR>
-nnoremap <silent> <leader>H :set hls!<CR>
+nnoremap <silent> <leader>H :setl hls!<CR>
 nnoremap <silent> <leader>* :match IncSearch /\<\>/<CR>
-nnoremap <silent> <leader>l :set list!<CR>
+nnoremap <silent> <leader>l :setl list!<CR>
 nnoremap <silent> <leader>i :setl nu!<CR>
-nnoremap <silent> <leader>w :set wrap!<CR>
-nnoremap <silent> <leader>S :set spell!<CR>
+nnoremap <silent> <leader>w :setl wrap!<CR>
+nnoremap <silent> <leader>S :setl spell!<CR>
 nnoremap <silent> <leader>f :let @" = bufname("%")<CR>
 nnoremap <silent> <leader>F :let @" = expand("%:p")<CR>
-nnoremap <silent> <leader>M :set modifiable!<CR>
+nnoremap <silent> <leader>M :setl modifiable!<CR>
 nnoremap <silent> <leader>m :update\|make<CR>
 nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
 
