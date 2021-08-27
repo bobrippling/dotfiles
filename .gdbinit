@@ -6,7 +6,7 @@ set style enabled
 
 # behaviour
 set unwindonsignal on
-set confirm off
+set confirm on
 #set disassemble-next-line on
 
 # threads
