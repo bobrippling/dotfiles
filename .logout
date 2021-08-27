@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# This works only when in the same shell as the terminal jobby
+# This works only when in the same shell as the terminal
 # aka
 # % . $0
 
@@ -8,9 +8,8 @@
 
 if test "$SHLVL" -le 1
 then
-	if tty | grep -q 'tty'
-	then
-		clear
+	if tty | grep 'tty' >/dev/null
+	then clear
 	fi
 
 	if pgrep -x gpg-agent >/dev/null
