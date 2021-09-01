@@ -36,7 +36,7 @@ function! s:viminfo(type, val)
 	call add(parts, a:type . a:val)
 	let &viminfo = join(parts, ",")
 endfunction
-call s:viminfo("'", "150") " marks for last N files
+call s:viminfo("'", "150") " marks for last N files, +oldfiles
 call s:viminfo("<", "100") " registers up to N lines
 call s:viminfo("s", "100") " items with contents up to 100kib
 set viminfo+=r~/mnt/
