@@ -6,7 +6,7 @@ function! s:get_re(cmd)
 	let range1 = "%(%([0-9%$]+|'.) *)?"
 	let range = range1 . "%(," . range1 . ")?"
 
-	let modifiers = '%(%(vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright]|' . range . ')\s+)*'
+	let modifiers = '%(%(hid%[e]|keepa%[lt]|tab|vert%[ical]|lefta%[bove]|abo%[veleft]|rightb%[elow]|bel%[owright]|to%[pleft]|bo%[tright]|' . range . ')\s+)*'
 
 	" TODO: getcmdpos for better matching
 	return '\v%(^|\|)[: \t]*' . modifiers . range . '%(' . a:cmd . ')'
