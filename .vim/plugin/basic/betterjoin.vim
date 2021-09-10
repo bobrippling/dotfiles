@@ -1,13 +1,17 @@
 function! Joinoperator(submode)
-	normal $mj
+	let save = @j
+	normal! $mj
 	'[,']join
-	normal 'jl
+	normal! `jl
+	let @j = save
 endfunction
 
 function! JoinoperatorNoSpace(submode)
-	normal $mj
+	let save = @j
+	normal! $mj
 	'[,']join!
-	normal 'jl
+	normal! `jl
+	let @j = save
 endfunction
 
 nnoremap <silent> J :set operatorfunc=Joinoperator<CR>g@
