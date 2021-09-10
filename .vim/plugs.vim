@@ -30,7 +30,6 @@ Plug 'axvr/org.vim', { 'for': 'org' }
 
 " Code
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-sleuth'
 
 " Colours
 Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
