@@ -1,4 +1,4 @@
-function! s:bufinit()
+function! CommentsSetList()
 	if !empty(&ft)
 		return
 	endif
@@ -10,5 +10,5 @@ endfunction
 augroup Comments
 	autocmd!
 
-	autocmd BufNew,BufNewFile * call s:bufinit()
+	autocmd BufNew,BufNewFile * call CommentsSetList()
 augroup END
