@@ -70,7 +70,7 @@ nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
 # sync clipboards
 autocutsel -f -s PRIMARY
 autocutsel -f
-nohup clipmenud >/dev/null 2>&1 &
+nohup env CM_MAX_CLIPS=10 clipmenud >/dev/null 2>&1 &
 
 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
 # moved to just below invoking dwm, Fri 15 Jan 09:54:22 GMT 2021
