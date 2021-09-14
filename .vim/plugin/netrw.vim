@@ -15,6 +15,11 @@ function! s:update_netrw_hide()
 endfunction
 
 if exists("#DirChanged")
-	autocmd DirChanged * call s:update_netrw_hide()
+	augroup NetRwGit
+		autocmd!
+		autocmd DirChanged * call s:update_netrw_hide()
+
+		" queue for post-startup, to avoid lag
+		autocmd VimEnter * call s:update_netrw_hide()
+	augroup END
 endif
-call s:update_netrw_hide()
