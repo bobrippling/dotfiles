@@ -56,6 +56,33 @@ function! s:slashcount(s) abort
 	return len(substitute(a:s, '[^/]', '', 'g'))
 endfunction
 
+function! s:globpath_for_pattern(pat) abort
+	let pat = a:pat
+
+	let no_glob_start = stridx("/.", pat[0]) >= 0
+
+	if g:cmdline_preview_fullwords
+		" instead of s/fron/abc --> *s*/*f*r*o*n*/*a*b*c*
+		" do:                   --> *s*/*fron*/*abc*
+		let globpath = substitute(pat, '/', '*/*', 'g') . '*'
+		let globpath = substitute(globpath, '\*\*\+', '*', 'g')
+	else
+		let globpath = substitute(pat, ".", "&*", "g")
+	endif
+
+	if no_glob_start
+		let globpath = substitute(globpath, '^\*\+', '', '')
+	endif
+
+	" handle dotfiles
+	let globpath = substitute(globpath, '/\*\.', '/.', 'g')
+
+	" handle ~
+	let globpath = substitute(globpath, '\~\*/', '~/', 'g')
+
+	return globpath
+endfunction
+
 function! s:MatchingBufs(pat, list, mode) abort
 	let re = s:GetRe(a:pat)
 
@@ -63,28 +90,22 @@ function! s:MatchingBufs(pat, list, mode) abort
 		if a:mode ==# "b"
 			let bufs = getbufinfo({ 'buflisted': 1 })
 		else
-			" handle ~, ~luser, %:h/...
-			let pat = expand(a:pat)
+			" expand() - handle ~, ~luser, %:h/...
+			let expanded_pat = expand(a:pat)
+			let bufs = glob(s:globpath_for_pattern(expanded_pat), 0, 1)
 
-			let no_glob_start = stridx("/.", pat[0]) >= 0
-
-			if g:cmdline_preview_fullwords
-				" instead of s/fron/abc --> *s*/*f*r*o*n*/*a*b*c*
-				" do:                   --> *s*/*fron*/*abc*
-				let globpath = substitute(pat, '/', '*/*', 'g') . '*'
-				let globpath = substitute(globpath, '\*\*\+', '*', 'g')
-			else
-				let globpath = substitute(pat, ".", "&*", "g")
+			let make_uniq = 0
+			if expanded_pat !=# a:pat
+				" include buffers stored without '~' expansion
+				call extend(bufs, glob(s:globpath_for_pattern(a:pat), 0, 1))
+				let make_uniq = 1
 			endif
 
-			if no_glob_start
-				let globpath = substitute(globpath, '^\*\+', '', '')
+			call sort(bufs)
+			if make_uniq
+				call uniq(bufs)
 			endif
 
-			" handle dotfiles
-			let globpath = substitute(globpath, '/\*\.', '/.', 'g')
-
-			let bufs = glob(globpath, 0, 1)
 			call map(bufs, { i, name -> { "name": name } })
 		endif
 	else
