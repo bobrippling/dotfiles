@@ -55,7 +55,11 @@ dwm="$HOME/src/Suckless/dwm/extra"
 . ~/.environ_interactive
 
 # must be after ". env"
-nohup ~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1 &
+while __xtest
+do
+	~/src/Suckless/dwm/extra/dwm_bar.ln >/dev/null 2>&1
+	sleep 2
+done &
 
 #nohup redshift -l 54.984497:-1.659193 -t 5500K:4200K >/dev/null 2>&1 &
 
