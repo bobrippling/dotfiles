@@ -26,14 +26,7 @@ if test -d "$HOME/sh"
 then export PATH="$PATH:$HOME/sh"
 fi
 
-__xsession_monitors(){
-	# two monitor setup
-	#xrandr --output DP-0 --left-of DVI-I-0
-
-	# two monitor setup
-	xrandr --output DP-0 --left-of HDMI-0
-}
-__xsession_monitors
+.screenlayout/triple-desk.sh
 
 ~/src/Suckless/wmname/wmname LG3D &
 
