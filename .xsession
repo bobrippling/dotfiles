@@ -28,12 +28,16 @@ fi
 
 .screenlayout/triple-desk.sh
 
+__xtest(){
+	xset q >/dev/null
+}
+
 ~/src/Suckless/wmname/wmname LG3D &
 
 ~/code/keynav/keynav.sh -f &
 #nohup ~/src/Suckless/xbanish/xbanish >/dev/null 2>&1 &
 
-while :
+while __xtest
 do
 	DISPLAY= pulseaudio
 	echo >&2 "$(date +%Y-%m-%dT%H:%M) [xsession] restarting pulseaudio..."
