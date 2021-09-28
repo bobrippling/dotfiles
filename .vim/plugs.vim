@@ -3,6 +3,7 @@ call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 " Interface
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " Boost native functionality
