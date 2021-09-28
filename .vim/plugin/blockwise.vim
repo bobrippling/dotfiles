@@ -15,7 +15,7 @@ set cpo&vim
 
 "=====[ Custom settings ]===================
 let g:Blockwise_default_mapping = 0
-
+let g:Blockwise_autoselect = 1
 
 "=====[ Interface ]===================
 
