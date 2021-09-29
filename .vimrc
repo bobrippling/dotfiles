@@ -55,7 +55,10 @@ set wildignorecase
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
-set diffopt+=vertical
+try
+	set diffopt+=vertical
+catch /E474/
+endtry
 set tabstop=2 shiftwidth=0 noexpandtab
 set history=2000
 set lazyredraw
