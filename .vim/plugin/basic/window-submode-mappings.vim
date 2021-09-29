@@ -1,4 +1,4 @@
-if empty(filter(split(&rtp, ','), 'stridx(v:val, "vim-submode") >= 0'))
+if !rtp#exists("vim-submode")
 	finish
 endif
 

@@ -1,14 +1,4 @@
-function! s:have_argwrap()
-	let rtps = split(&runtimepath, ",")
-	for rtp in rtps
-		if stridx(rtp, "vim-argwrap") >= 0
-			return 1
-		endif
-	endfor
-	return 0
-endfunction
-
-if !s:have_argwrap()
+if !rtp#exists("vim-argwrap")
 	finish
 endif
 
