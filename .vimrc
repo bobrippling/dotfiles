@@ -75,8 +75,11 @@ set cmdwinheight=20
 " L: left hand scrollbar when split
 set go-=m go+=M go-=T go-=r go-=L
 
+" buffers
+set nohidden " defaults to true for neovim
 
 " editing
+set nojoinspaces
 set cindent
 set cinoptions+=j1,J1,l1,N-s,t0
 set cinoptions-=#0
