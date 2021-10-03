@@ -46,3 +46,5 @@ augroup redact_pass
           \ call s:CheckArgsRedact()
   endif
 augroup END
+
+command! PassRedact call s:CheckArgsRedact()
