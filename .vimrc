@@ -142,6 +142,8 @@ nnoremap <silent> <C-W>u :set winfixwidth!<CR>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
+cnoremap <expr> <C-R>L '\%' .. getcurpos()[1] .. 'l'
+cnoremap <expr> <C-R>C '\%' .. getcurpos()[2] .. 'c'
 
 vnoremap g/ <Esc>'</\%V
 
