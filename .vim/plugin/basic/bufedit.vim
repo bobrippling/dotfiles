@@ -1,5 +1,6 @@
 let s:preview_winid = 0
 let s:saved_laststatus = &laststatus
+let s:restore_win_layout = ''
 let s:current_list = []
 let s:current_ent = ""
 let s:current_ent_slashcount = 0
@@ -347,6 +348,7 @@ endfunction
 function! s:BufEditPreviewOpen() abort
 	" affect the 7new below - we don't want an empty NonText line
 	let s:saved_laststatus = &laststatus
+	let s:restore_win_layout = winrestcmd()
 	set laststatus=0
 
 	execute 'botright' s:preview_height() 'new'
@@ -382,6 +384,7 @@ function! s:BufEditPreviewClose() abort
 
 	execute win "q"
 	let &laststatus = s:saved_laststatus
+	execute s:restore_win_layout
 	redraw
 endfunction
 
