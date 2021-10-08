@@ -7,6 +7,7 @@ function! StatusLine()
 	let s .= "%w" " preview window flag
 	let s .= " "
 	let s .= "%y" " 'filetype'
+	let s .= "%{StatusLineBuftype()}" " 'fileformat'
 	let s .= "[%{&ff}]" " 'fileformat'
 	let s .= "%{StatusLineEnc()}" " 'fileformat'
 	if exists("*SleuthIndicator")
@@ -57,6 +58,15 @@ function! StatusLineEnc()
 	endif
 
 	return "[" . ff . "]"
+endfunction
+
+function! StatusLineBuftype()
+	let bt = &buftype
+	if empty(bt) || bt ==# "help" || bt ==# "terminal"
+		return ""
+	endif
+
+	return "[" . bt . "]"
 endfunction
 
 function! StatusLineAltFile()
