@@ -318,7 +318,7 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 				let details =
 							\ repeat(" ", m.matchstart) .
 							\ "^" .
-							\ repeat("~", m.matchend - m.matchstart - 1)
+							\ repeat("~", m.matchlen - 1)
 			endif
 		endif
 
@@ -327,7 +327,7 @@ function! s:BufEditPreviewShow(arg_or_timerid) abort
 			call setbufline(buf, linenr, line)
 			if type(m) isnot v:t_number && m.matchlen > 0
 				call matchaddpos('BufEditMatch', [
-				\   [linenr, m.matchstart + 1, m.matchend - m.matchstart]
+				\   [linenr, m.matchstart + 1, m.matchlen]
 				\ ])
 				" , v:null, -1, { 'window': s:preview_winid })
 				" ^ this seems to expose a window redrawing bug in vim
