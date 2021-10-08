@@ -5,19 +5,17 @@ augroup QfSettings
 augroup END
 
 function! s:toggle() abort
-    let loclist_winid = get(getloclist(0, { 'winid': 0 }), 'winid', 0)
-    if loclist_winid != 0
-        lclose
-        return
-    endif
+	if qf#loc_list_open()
+		lclose
+		return
+	endif
 
-    let qflist_winid = get(getqflist({ 'winid': 0 }), 'winid', 0)
-    if qflist_winid != 0
-        cclose
-        return
-    endif
+	if qf#qf_list_open()
+		cclose
+		return
+	endif
 
-    rightbelow copen
+	rightbelow copen
 endfunction
 
 nnoremap <silent> <leader>c :call <SID>toggle()<CR>
