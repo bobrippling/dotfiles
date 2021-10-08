@@ -66,6 +66,7 @@ set foldopen-=block
 try | set foldcolumn=auto | catch /E521/ | endtry " introduced in nvim, #13571
 set completeopt+=menuone,noselect
 set cmdwinheight=20
+set fillchars=fold:\ |
 
 " display (gui)
 " m: menu bar
