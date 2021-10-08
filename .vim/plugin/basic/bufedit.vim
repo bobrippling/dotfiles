@@ -350,7 +350,6 @@ function! s:BufEditPreviewOpen() abort
 	let s:saved_laststatus = &laststatus
 	let s:restore_win_layout = winrestcmd()
 	set laststatus=0
-
 	execute 'botright' s:preview_height() 'new'
 	let s:preview_winid = win_getid()
 	set winfixheight buftype=nofile bufhidden=wipe
