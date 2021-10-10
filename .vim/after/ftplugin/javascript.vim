@@ -449,21 +449,24 @@ command! SpecDisable call s:test(0)
 command! SpecEnable  call s:test(1)
 
 if exists("+tagfunc")
-	set tagfunc=JsTag
+	setlocal tagfunc=JsTag
+endif
+
+setlocal suffixesadd+=.js,.jsx
+setlocal spelloptions+=camel
+
+setlocal omnifunc=Dotcomplete
+inoremap <buffer> . .<C-X><C-O>
+
+if exists('b:undo_ftplugin')
 	if exists('b:undo_ftplugin')
 		let b:undo_ftplugin .= '|setlocal tagfunc<'
 	endif
-endif
 
-set suffixesadd+=.js,.jsx
-if exists('b:undo_ftplugin')
 	let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
-endif
+	let b:undo_ftplugin .= '|setlocal spelloptions<'
 
-set omnifunc=Dotcomplete
-inoremap <buffer> . .<C-X><C-O>
-if exists('b:undo_ftplugin')
-	let b:undo_ftplugin .= '|setlocal omnifunc<|iunmap <buffer> .'
+	let b:undo_ftplugin .= '|setlocal omnifunc< | iunmap <buffer> .'
 endif
 
 if exists(":packadd")
