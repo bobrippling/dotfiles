@@ -456,7 +456,8 @@ setlocal suffixesadd+=.js,.jsx
 setlocal spelloptions+=camel
 
 setlocal omnifunc=Dotcomplete
-inoremap <buffer> . .<C-X><C-O>
+" if we're not noselect/noinsert, then step back to avoid auto-inserting on `.`
+inoremap <expr> <buffer> . '.<C-X><C-O>' .. (&completeopt =~? '\vno(select\|insert)' ? '' : '<C-P>')
 
 if exists('b:undo_ftplugin')
 	if exists('b:undo_ftplugin')
