@@ -150,10 +150,29 @@ function! s:file_from_import_virtual(nextfile) abort
 		let base = target_dir . "/" . nextfile
 	endif
 
-	return base . "." . expand("%:e")
-	"                   ^~~~~~~~~~~~~
-	" Currently this defaults to the same as the current file,
-	" but it could be .ts/.js/.[tj]sx, etc
+	" candidate extensions, can't tell/use suffixesadd directly because it's in git
+	let exts = split(&suffixesadd , ",")
+	call uniq(sort(exts))
+
+	" add the most likely first, for speed:
+	let cur = expand("%:e")
+	let cur_without_x = substitute(cur, "x$", "", "") " tsx --> ts
+	if cur_without_x !=# cur
+		call insert(exts, "." . cur_without_x)
+	endif
+	call insert(exts, "." . cur)
+
+	call s:debug("file_from_import_virtual, trying with exts: " . join(exts, ", "))
+
+	for ext in exts
+		let candidate = base . ext
+		if !empty(fugitive#glob(candidate))
+			return candidate
+		endif
+	endfor
+
+	return base . "." . cur
+	"                   ^~~~~~~~~~~~~ just match the current file
 endfunction
 
 function! s:file_from_import(nextfile) abort
