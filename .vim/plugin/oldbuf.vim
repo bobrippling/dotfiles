@@ -103,7 +103,7 @@ function! TrimUnlinkedBuffers(bang)
     let delete = []
     for buf in s:buffers()
         let name = bufname(buf)
-        if empty(name)
+        if empty(name) || !empty(getbufvar(buf, "&buftype"))
             continue
         endif
         if s:fileexists(name)
