@@ -19,7 +19,11 @@ function! s:trim_spaces()
 	call cursor(where[lnum], where[col], where[off])
 endfunction
 
-autocmd BufWritePre * call s:trim_spaces()
+augroup TrimSpaces
+	autocmd!
+	autocmd BufWritePre * call s:trim_spaces()
+augroup END
+
 command! -complete=command -nargs=+ NoTrim
 			\ let s:save = g:trim_spaces |
 			\ let g:trim_spaces = 0 |
