@@ -22,6 +22,7 @@ endfunction
 augroup TrimSpaces
 	autocmd!
 	autocmd BufWritePre * call s:trim_spaces()
+	autocmd BufNewFile *.org let b:trim_spaces = 0
 augroup END
 
 command! -complete=command -nargs=+ NoTrim
