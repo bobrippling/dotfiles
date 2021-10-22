@@ -79,11 +79,19 @@ function! VBCexec(cmd) range
         let lines_middle[0]           = lines_middle[0][col_left-1 : ]
     endif
 
+    " Remember whether we were previously modified
+    let orig_modified = &modified
+
     " Remove the before and aft in visual block mode...
     call setline(line_left, lines_middle)
 
+    " See if the following command modifies...
+    set nomodified
+
     " Execute the commands...
     exec '''<,''>' . a:cmd
+
+    let modified_after_subcmd = &modified
 
     " Adjust the line count...
     let bufdiff = orig_buflen - line('$')
@@ -101,6 +109,15 @@ function! VBCexec(cmd) range
     for n in range(len(lines_left))
         call setline(line_left + n, lines_left[n] . getline(line_left + n) . lines_right[n])
     endfor
+
+    " Restore 'modified'
+    if orig_modified
+        " Should be 'modified' already from setline(), but for completeness
+        set modified
+    elseif !modified_after_subcmd
+        " Subcommand didn't modify, so don't let our setline() "modification" take effect
+        set nomodified
+    endif
 
     " Restore the selection...
     normal gv
