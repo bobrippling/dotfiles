@@ -5,7 +5,7 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 	let i = 0
 	while i < len(a:args)
 		let arg = a:args[i]
-		if arg ==# "^-re$"
+		if arg ==# '-re'
 			let is_re = 1
 		elseif arg =~# '^\v-t%[ext]$'
 			let match_mode = 't'
