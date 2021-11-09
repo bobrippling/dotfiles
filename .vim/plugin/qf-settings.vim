@@ -24,7 +24,7 @@ function s:nav(backwards, file) abort
 	let loclist_winid = get(getloclist(0, { 'winid': 0 }), 'winid', 0)
 	let have_open_loclist = loclist_winid != 0
 
-	let cmd =  ":" . v:count1 . (have_open_loclist ? "l" : "c") . (a:backwards ? "p" : "n") . (a:file ? "f" : "") . "\n"
+	let cmd =  ":\<C-U>" . v:count1 . (have_open_loclist ? "l" : "c") . (a:backwards ? "p" : "n") . (a:file ? "f" : "") . "\n"
 	return cmd
 endfunction
 
