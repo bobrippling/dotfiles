@@ -395,6 +395,7 @@ command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufedit    call
 command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufsplit   call s:BufEdit(<q-args>, "sbuffer", <q-bang>, <q-mods>, "b")
 command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Bufvsplit  call s:BufEdit(<q-args>, "vert sbuffer", <q-bang>, <q-mods>, "b")
 command! -bang -bar -complete=customlist,s:CompleteBufs -nargs=1 Buftabedit call s:BufEdit(<q-args>, "tabedit | buffer", <q-bang>, <q-mods>, "b")
+" -range -addr=tabs
 
 command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Fedit    call s:BufEdit(<q-args>, "edit", <q-bang>, <q-mods>, "f")
 command! -bang -bar -complete=customlist,s:CompleteFiles -nargs=1 Fsplit   call s:BufEdit(<q-args>, "split", <q-bang>, <q-mods>, "f")
@@ -410,3 +411,13 @@ augroup BufEdit
 augroup END
 
 highlight BufEditMatch ctermfg=blue
+
+" TODO ctrl-p behaviour:
+"  key      prompt/shortcut from <C-P>  desc
+" `<C-P>`                               file nav
+" `<C-R>`                               recent nav
+" `<C-S-P>`      >                      command palette, e.g. ???
+" `<C-S-O>`      #, @-for-file          goto symbol
+" `<C-G>`        :                      goto line
+" `<C-S-M>`                             goto problems/quickfix
+" `\``                                  toggle terminal
