@@ -28,8 +28,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let colors_name="AutumnLeaf-Modified"
-
+let colors_name = "autumnleaf-modified"
 
 " Colors for the User Interface.
 
