@@ -32,6 +32,13 @@ Plug 'axvr/org.vim', { 'for': 'org' }
 " Code
 Plug 'tpope/vim-commentary'
 
+" LSP
+if has('nvim')
+	Plug 'neovim/nvim-lspconfig'
+endif
+"Plug 'neoclide/coc.nvim'
+"Plug 'dense-analysis/ale'
+
 " Colours
 Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 Plug 'bobrippling/vim-illuminate' " https://github.com/RRethy/vim-illuminate
