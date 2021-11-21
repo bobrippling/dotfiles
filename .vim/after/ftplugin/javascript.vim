@@ -382,6 +382,7 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 endfunction
 
 function! JsTag(pattern, flags, info) abort
+	" TODO: handle "r" in flags, i.e. `pattern` is a regex (`:tag /abc`)
 	let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
 	let for_completion =	stridx(a:flags, "i") >= 0
 
