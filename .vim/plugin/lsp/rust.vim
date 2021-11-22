@@ -6,6 +6,10 @@ else
 	finish
 endif
 
+if !rtp#exists('nvim-lspconfig')
+	finish
+endif
+
 lua << EOF
 local nvim_lsp = require('lspconfig')
 local util = require('vim.lsp.util')
