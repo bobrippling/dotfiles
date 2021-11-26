@@ -84,13 +84,13 @@ function! VBCexec(cmd) range
 
     " Temporarily allow modifications for setline() changes
     let orig_modifiable = &modifiable
-    set modifiable
+    setlocal modifiable
 
     " Remove the before and aft in visual block mode...
     call setline(line_left, lines_middle)
 
     " See if the following command modifies...
-    set nomodified
+    setlocal nomodified
 
     " But keep 'modifiable' for the context of the following command
     let &modifiable = orig_modifiable
@@ -101,7 +101,7 @@ function! VBCexec(cmd) range
     let modified_after_subcmd = &modified
 
     " Allow us to change lines again
-    set modifiable
+    setlocal modifiable
 
     " Adjust the line count...
     let bufdiff = orig_buflen - line('$')
@@ -126,10 +126,10 @@ function! VBCexec(cmd) range
     " Restore 'modified'
     if orig_modified
         " Should be 'modified' already from setline(), but for completeness
-        set modified
+        setlocal modified
     elseif !modified_after_subcmd
         " Subcommand didn't modify, so don't let our setline() "modification" take effect
-        set nomodified
+        setlocal nomodified
     endif
 
     " Restore the selection...
