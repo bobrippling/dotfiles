@@ -30,6 +30,7 @@
 	b = branch --format='%(if)%(HEAD)%(then)%(color:cyan)%(end)%(refname:short)'
 	apply-strip = "!f(){ git di -- \"$@\" | git apply --cached --whitespace=strip; }; f"
 	where = rev-parse --show-prefix
+	rt = remote
 
 	# skip-worktree - don't touch a file ever (modulo conflicts) and don't let it affect `git status`
 	# assume-unchanged - don't stat a file. this is reset on index changes to said file
