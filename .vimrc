@@ -111,7 +111,7 @@ nnoremap <silent> <leader>w :setl wrap!<CR>
 nnoremap <silent> <leader>S :setl spell!<CR>
 nnoremap <silent> <leader>M :setl modifiable!<CR>
 nnoremap <silent> <leader>m :update\|make<CR>
-nnoremap <silent> <leader>T :<C-U>ccl\|wincmd T\|cope<CR>
+nnoremap <silent> <leader>T :<C-U>ccl\|wincmd T\|cope\|wincmd t<CR>
 nnoremap <expr> <leader>e ":<C-U>e %" .. repeat(":h", v:count1) .. "/"
 nnoremap <expr> <leader>s ":<C-U>sp %" .. repeat(":h", v:count1) .. "/"
 nnoremap <expr> <leader>v ":<C-U>vs %" .. repeat(":h", v:count1) .. "/"
