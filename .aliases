@@ -1,6 +1,6 @@
 # coreutils
 alias grep="grep --color=auto"
-alias ls="ls --color=auto --group-directories-first -F"
+alias ls="ls -GF"
 alias diff="diff --color=auto"
 alias ip="ip -c"
 
