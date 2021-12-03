@@ -22,7 +22,11 @@ endif
 " os/files
 set clipboard=
 set undofile
-set undodir=~/.vim/undo
+if has("nvim")
+	set undodir=~/.vim/undo-nvim
+else
+	set undodir=~/.vim/undo
+endif
 set cpoptions+=i
 set fileencodings+=utf-16le
 set sessionoptions-=options | set sessionoptions+=localoptions
