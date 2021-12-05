@@ -86,7 +86,10 @@ set nohidden " defaults to true for neovim
 " editing
 set nojoinspaces
 set cindent
-set cinoptions+=j1,J1,l1,N-s,t0
+set cinoptions+=j1,J1,l1,N-s,t0,k1,(1s,u0,k0,m1
+" (1s,u0 - indent 1shiftwidth inside unclosed parens, per-paren. u0: disable cumulative indents/per-paren
+" k0     - indents inside if()/while() conditions match normal function indenting
+" m1     - closing paren on its own line matches opening paren indent
 set cinoptions-=#0
 "               ^~ these will be undone by ftplugin/c.vim
 set cinkeys-=0#
