@@ -157,3 +157,15 @@ url:
     #program: xdg-open
     #args: []
   #modifiers: None
+
+mouse:
+  hide_when_typing: true
+
+selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+  # save on select
+  save_to_clipboard: false
+
+mouse_bindings:
+  - { mouse: Middle, action: None }
