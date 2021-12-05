@@ -45,6 +45,6 @@ Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/w
 Plug 'bobrippling/vim-illuminate' " https://github.com/RRethy/vim-illuminate
 
 " Testing
-"Plug 'junegunn/vader.vim'
+Plug 'junegunn/vader.vim', { 'for': 'vader', 'on': 'Vader' }
 
 call plug#end()
