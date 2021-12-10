@@ -21,6 +21,7 @@
 	ff = merge --ff-only
 	lg = log --oneline
 	lgg = log --oneline --graph
+	lggq = log --oneline --graph --no-decorate
 	rbc = rebase --con
 	rbi = rebase -i
 	t = status -sb
