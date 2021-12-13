@@ -1,4 +1,5 @@
 .vim/bundle/*/
+.vim/undo-nvim/
 
 .ssh/known_hosts
 .ssh/id_*
