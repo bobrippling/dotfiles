@@ -9,12 +9,35 @@
 "				\ | startinsert
 "endif
 
-command! -range=0 -bar -nargs=1 GitShow
-			\ let s:w = expand("<cWORD>")
-			\ | execute empty(<q-mods>) ? "vnew" : <q-mods> "new"
-			\ | set filetype=git buftype=nofile
-			\ | nnoremap <buffer> <silent> q :q<CR>
-			\ | execute "r!git show --format=fuller" s:w
-			\ | 1d
+if !exists('s:in')
+	let s:in = 0
+endif
+
+if !s:in
+	function! s:K(mods)
+		let line = getline('.')
+		let ci = substitute(line, '\v\S+ ([0-9a-f]+) .*', '\1', '')
+
+		execute empty(a:mods) ? "vnew" : a:mods .. "new"
+
+		let s:in = 1
+		try
+			set filetype=git buftype=nofile
+		finally
+			let s:in = 0
+		endtry
+		nnoremap <buffer> <silent> q :q<CR>
+
+		execute "r!git show --format=fuller" ci
+		1d
+	endfunction
+
+	command! -range=0 -bar -nargs=1 GitShow call s:K(<q-mods>)
+endif
+
+try
+	nunmap <buffer> K
+catch //
+endtry
 
 setlocal keywordprg=:GitShow
