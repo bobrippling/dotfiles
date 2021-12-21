@@ -164,11 +164,13 @@ function! s:file_from_import_virtual(nextfile) abort
 
 	call s:debug("file_from_import_virtual, trying with exts: " . join(exts, ", "))
 
-	for ext in exts
-		let candidate = base . ext
-		if !empty(fugitive#glob(candidate))
-			return candidate
-		endif
+	for index in ['', '/index']
+		for ext in exts
+			let candidate = base . index . ext
+			if !empty(fugitive#glob(candidate))
+				return candidate
+			endif
+		endfor
 	endfor
 
 	return base . "." . cur
