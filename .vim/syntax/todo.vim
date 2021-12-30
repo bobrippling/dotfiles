@@ -1,3 +1,11 @@
+syn match Comment /\/\/.*/
+syn match Separator /^--\+/
+
+"hi Comment
+hi Separator ctermfg=green
+
+" --------------
+
 syn match TodoBacklog /\[ \].*/
 syn match TodoInProgress /\[\.\].*/
 syn match TodoBlocked /\[-\].*/
