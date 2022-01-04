@@ -17,9 +17,10 @@ Plug 'tpope/vim-surround'
 Plug 'b4winckler/vim-angry'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'FooSoft/vim-argwrap'
+
+Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-line'
-Plug 'kana/vim-textobj-user'
 
 " Windows, tabs etc
 Plug 'kana/vim-submode'
