@@ -21,6 +21,9 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-line'
+Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
+Plug 'kana/vim-textobj-indent' " ii, aI
+Plug 'kana/vim-textobj-lastpat' " i/, a?
 
 " Windows, tabs etc
 Plug 'kana/vim-submode'
