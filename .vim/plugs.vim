@@ -29,7 +29,7 @@ Plug 'kana/vim-textobj-lastpat' " i/, a?
 Plug 'kana/vim-submode'
 Plug 'andymass/vim-tradewinds'
 Plug 'bobrippling/vim-pinpoint' "Plug 'ctrlpvim/ctrlp.vim'
-| Plug 'bobrippling/vim-cmdline-match'
+exe "" | Plug 'bobrippling/vim-cmdline-match'
 
 " Filetype specific
 Plug 'axvr/org.vim', { 'for': 'org' }
