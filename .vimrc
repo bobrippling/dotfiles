@@ -29,7 +29,7 @@ else
 endif
 set cpoptions+=i
 set fileencodings+=utf-16le
-set sessionoptions-=options | set sessionoptions+=localoptions
+set sessionoptions-=options " no localoptions - mapping will be reapplied by plugins
 set wildignore=*.o,*.d
 set nomodeline
 set directory=.
