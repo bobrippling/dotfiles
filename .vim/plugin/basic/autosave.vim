@@ -17,13 +17,29 @@ function! s:save(saved, ent) abort
 	call add(a:saved, a:ent)
 endfunction
 
+function! s:can_autosave(ent)
+	if empty(a:ent.name) || getbufvar(a:ent.bufnr, "&buftype") ==? "terminal"
+		return 0
+	endif
+
+	"let lines = getbufline(bufnr(a:ent.bufnr), 1, "$")
+	"for line in lines
+	"	if line =~# '^[<=>]\{7,}'
+	"		" conflict in progress
+	"		return 0
+	"	endif
+	"endfor
+
+	return 1
+endfunction
+
 function! Autosave() abort
 	if !g:autosave_enabled || !empty(getcmdwintype())
 		return
 	endif
 
 	let modified = getbufinfo({ "bufmodified": 1 })
-	call filter(modified, { _, ent -> !empty(ent.name) && getbufvar(ent.bufnr, "&buftype") !=? "terminal"})
+	call filter(modified, { _, ent -> s:can_autosave(ent) })
 
 	if empty(modified)
 		return
