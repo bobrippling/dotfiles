@@ -67,7 +67,7 @@ function! s:setup()
 			},
 		}
 	end
-	EOF
+EOF
 
 	setlocal signcolumn=yes
 endfunction
