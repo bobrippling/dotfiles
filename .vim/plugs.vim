@@ -1,7 +1,6 @@
 call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
@@ -25,6 +24,8 @@ Plug 'kana/vim-textobj-user'
 " Windows, tabs etc
 Plug 'kana/vim-submode'
 Plug 'andymass/vim-tradewinds'
+Plug 'bobrippling/vim-pinpoint' "Plug 'ctrlpvim/ctrlp.vim'
+| Plug 'bobrippling/vim-cmdline-match'
 
 " Filetype specific
 Plug 'axvr/org.vim', { 'for': 'org' }
