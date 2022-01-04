@@ -68,6 +68,8 @@ function! s:setup()
 		}
 	end
 	EOF
+
+	setlocal signcolumn=yes
 endfunction
 
 augroup LspRust
