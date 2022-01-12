@@ -2,7 +2,15 @@ function! CmdAlias(lhs, rhs)
 	" Can't have a <silent> abbrev here, since as well as suppressing the
 	" eventual command output, it also suppresses the expansion until the
 	" next key press.
-	exec "cnoreabbrev <expr> " . a:lhs . " cmdline#matches_cmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+	exec "cnoreabbrev <expr> " . a:lhs . " <SID>matches_cmd('" . a:lhs . "') ? '" . a:rhs . "' : '" . a:lhs . "'"
+endfunction
+
+function! s:matches_cmd(lhs)
+	try
+		return cmdline#matches_cmd(a:lhs)
+	catch /E117/ " Unknown function
+		return 0
+	endtry
 endfunction
 
 call CmdAlias('vsb', 'vert sb')
