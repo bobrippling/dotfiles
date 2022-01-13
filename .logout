@@ -14,13 +14,7 @@ then
 
 	if test -z "$DISPLAY"
 	then
-		if pgrep -x gpg-agent >/dev/null
-		then
-			echo "$0: clearing gpg-agent" >&2
-			echo "reloadagent" | gpg-connect-agent >/dev/null
-		fi
-		echo "$0: clearing ssh-agent" >&2
-		ssh-add -Dq
+		afk --agents-only
 	else
 		echo "$0: not clearing ssh/gpg-agent: \$DISPLAY set" >&2
 	fi
