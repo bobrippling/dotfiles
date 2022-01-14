@@ -37,6 +37,7 @@ Plug 'axvr/org.vim', { 'for': 'org' }
 " Code
 Plug 'tpope/vim-commentary'
 Plug 'bobrippling/vim-pear'
+Plug 'bobrippling/vim-supersleuth'
 
 " LSP
 if has('nvim')
