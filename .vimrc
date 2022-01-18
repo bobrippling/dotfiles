@@ -64,7 +64,7 @@ try
 	set diffopt+=vertical
 catch /E474/
 endtry
-set tabstop=2 shiftwidth=0 noexpandtab
+set tabstop=2 shiftwidth=0 noexpandtab smarttab
 set history=2000
 set lazyredraw
 set foldopen-=block
