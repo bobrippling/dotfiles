@@ -1,0 +1,3 @@
+#!/bin/sh
+
+awk '$5 >= 3071' /etc/ssh/moduli > /etc/ssh/moduli.tmp && mv /etc/ssh/moduli.tmp /etc/ssh/moduli`
