@@ -11,10 +11,6 @@ cd
 
 xrdb -override ~/.Xdefaults &
 
-if ! pidof gpg-agent >/dev/null
-then DISPLAY= gpg-agent --daemon > ~/.ssh/gpg_env_agent &
-fi
-
 if ! pidof ssh-agent > /dev/null
 then "$HOME/.ssh/agent-init" &
 fi

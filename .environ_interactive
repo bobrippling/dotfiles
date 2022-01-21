@@ -26,7 +26,8 @@ then
 	fi
 fi
 
-__loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
+# gpg-agent is autostart
+#__loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
 
 if test -t 0
 then
