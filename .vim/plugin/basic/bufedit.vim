@@ -225,7 +225,11 @@ function! s:BufEditPreview() abort
 endfunction
 
 function! s:CmdlineMatchArg() abort
-	let matches = cmdline#matching(s:Cmds . '\s+([^|]*)$')
+	try
+		let matches = cmdline#matching(s:Cmds . '\s+([^|]*)$')
+	catch /E117: Unknown function: /
+		return ''
+	endtry
 
 	if empty(matches)
 		return ''
