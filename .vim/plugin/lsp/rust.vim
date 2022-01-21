@@ -10,7 +10,13 @@ if !rtp#exists('nvim-lspconfig')
 	finish
 endif
 
+let g:lsp_enabled = 1
+
 function! s:setup()
+	if !get(g:, 'lsp_enabled', 1)
+		return
+	endif
+
 	lua <<EOF
 	local nvim_lsp = require('lspconfig')
 	local util = require('vim.lsp.util')
