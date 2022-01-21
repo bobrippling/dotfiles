@@ -14,10 +14,7 @@ if !exists('s:in')
 endif
 
 if !s:in
-	function! s:K(mods)
-		let line = getline('.')
-		let ci = substitute(line, '\v\S+ ([0-9a-f]+) .*', '\1', '')
-
+	function! s:Show(mods, args)
 		execute empty(a:mods) ? "vnew" : a:mods .. "new"
 
 		let s:in = 1
@@ -28,11 +25,19 @@ if !s:in
 		endtry
 		nnoremap <buffer> <silent> q :q<CR>
 
-		execute "r!git show --format=fuller" ci
+		execute "r!git show --format=fuller" a:args
 		1d_
 	endfunction
 
-	command! -range=0 -bar -nargs=1 GitShow call s:K(<q-mods>)
+	function! s:Keyword(mods)
+		let line = getline('.')
+		let ci = substitute(line, '\v\S+ ([0-9a-f]+) .*', '\1', '')
+
+		call s:Show(a:mods, ci)
+	endfunction
+
+	command! -range=0 -bar -nargs=1 GitKeyword call s:Keyword(<q-mods>)
+	command! -bar -nargs=+ GitShow call s:Show(<q-mods>, <q-args>)
 endif
 
 try
@@ -40,4 +45,4 @@ try
 catch //
 endtry
 
-setlocal keywordprg=:GitShow
+setlocal keywordprg=:GitKeyword
