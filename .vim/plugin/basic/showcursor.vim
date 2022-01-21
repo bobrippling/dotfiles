@@ -29,7 +29,7 @@ function! s:Toggle(timerid)
 	endif
 endfunction
 
-command ShowCursor call s:ShowCursor()
+command! ShowCursor call s:ShowCursor()
 
 augroup ShowCursor
 	autocmd!
