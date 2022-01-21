@@ -18,7 +18,7 @@ for [open, close] in [
 	" (can't use `ip(` because it conflicts with paragraph textobjs)
 
 	for in_around in ['i', 'a']
-		execute "onoremap " .. in_around .. "n" .. open .. " <Cmd>normal! f" .. open .. "v" .. in_around .. open .. "<CR>"
-		execute "onoremap " .. in_around .. "N" .. open .. " <Cmd>normal! F" .. close .. "v" .. in_around .. open .. "<CR>"
+		execute "onoremap " . in_around . "n" . open . " <Cmd>normal! f" . open . "v" . in_around . open . "<CR>"
+		execute "onoremap " . in_around . "N" . open . " <Cmd>normal! F" . close . "v" . in_around . open . "<CR>"
 	endfor
 endfor
