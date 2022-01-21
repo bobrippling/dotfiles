@@ -109,7 +109,7 @@ endif
 set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
 
 if has("nvim")
-	set inccommand=split
+	set inccommand=nosplit
 endif
 
 nnoremap <expr> <silent> <leader>j ":<C-U>" . v:count1 . "n<CR>"
