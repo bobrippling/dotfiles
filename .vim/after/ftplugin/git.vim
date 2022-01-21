@@ -29,7 +29,7 @@ if !s:in
 		nnoremap <buffer> <silent> q :q<CR>
 
 		execute "r!git show --format=fuller" ci
-		1d
+		1d_
 	endfunction
 
 	command! -range=0 -bar -nargs=1 GitShow call s:K(<q-mods>)
