@@ -25,6 +25,9 @@ Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
 Plug 'kana/vim-textobj-indent' " ii, aI
 Plug 'kana/vim-textobj-lastpat' " i/, a?
 
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-replace'
+
 " Windows, tabs etc
 Plug 'kana/vim-submode'
 Plug 'andymass/vim-tradewinds'
