@@ -10,7 +10,9 @@ if !rtp#exists('nvim-lspconfig')
 	finish
 endif
 
-let g:lsp_enabled = 1
+if !exists('g:lsp_enabled')
+	let g:lsp_enabled = 1
+endif
 
 function! s:setup()
 	if !get(g:, 'lsp_enabled', 1)
