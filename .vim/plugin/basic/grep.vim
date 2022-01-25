@@ -6,13 +6,17 @@ function! s:setgrep(scope) abort
 	let path = exepath("rg")
 	if !empty(path)
 		let rgcommon = "rg --vimgrep --max-depth 6 -g '!_*/**'"
+		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
 		if &filetype ==# 'javascript'
-			call s:set(rgcommon . " -g '!*.d' --ignore node_modules -g '!*.min.*' --ignore 'dist/**'", a:scope)
+			call s:set(
+			\   rgcommon . " -g '!*.d' --ignore node_modules -g '!*.min.*' --ignore 'dist/**'" . where,
+			\   a:scope
+			\ )
 		elseif index(["c", "cpp", "objc", "objcpp"], &filetype) >= 0
-			call s:set(rgcommon . " -g '!*.o'", a:scope)
+			call s:set(rgcommon . " -g '!*.o'" . where, a:scope)
 		else
-			call s:set(rgcommon, a:scope)
+			call s:set(rgcommon . where, a:scope)
 		endif
 
 		return
