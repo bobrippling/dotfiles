@@ -19,6 +19,10 @@ function! s:setup()
 		return
 	endif
 
+	if !s:has_cargo()
+		return
+	endif
+
 	lua <<EOF
 	local nvim_lsp = require('lspconfig')
 	local util = require('vim.lsp.util')
@@ -78,6 +82,25 @@ function! s:setup()
 EOF
 
 	setlocal signcolumn=yes
+endfunction
+
+function! s:has_cargo()
+	let parts = split(expand('%:h'), '/', 1)
+	if empty(parts)
+		return 0
+	endif
+
+	for i in range(len(parts) - 1, 0, -1)
+		let path = join(parts[0:i], '/') . '/Cargo.toml'
+
+		echom path
+
+		if filereadable(path)
+			return 1
+		endif
+	endfor
+
+	return 0
 endfunction
 
 augroup LspRust
