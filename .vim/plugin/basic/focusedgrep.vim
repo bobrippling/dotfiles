@@ -1,7 +1,16 @@
 let s:root = "."
 
 function! s:bggrep_cmd(word_boundary)
-	let boundary = a:word_boundary ? "\\b" : ""
+	let boundary = ""
+	if a:word_boundary
+		if stridx(&grepprg, '$*')
+			" need to double escape to get past shell expansion of 'grepprg'
+			let boundary = '\\b'
+		else
+			let boundary = '\b'
+		endif
+	endif
+
 	let type = qf#loc_list_open() ? "l" : ""
 
 	return ":\<C-U>Bg" . type . "grep '"
