@@ -1,4 +1,5 @@
-inoremap <C-X>l <C-O>:call <sid>linemap()<CR><C-X><C-L>
+inoremap <C-X>l <C-\><C-O>:call <sid>linemap()<CR><C-X><C-L>
+"               ^~~~~ don't move the cursor
 
 function! s:linemap()
 	let s:cpt_save = &complete
