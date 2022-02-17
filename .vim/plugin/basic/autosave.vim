@@ -22,13 +22,13 @@ function! s:can_autosave(ent)
 		return 0
 	endif
 
-	"let lines = getbufline(bufnr(a:ent.bufnr), 1, "$")
-	"for line in lines
-	"	if line =~# '^[<=>]\{7,}'
-	"		" conflict in progress
-	"		return 0
-	"	endif
-	"endfor
+	let lines = getbufline(a:ent.bufnr, 1, "$")
+	for line in lines
+		if line =~# '^[<=>]\{7,}'
+			" conflict in progress
+			return 0
+		endif
+	endfor
 
 	return 1
 endfunction
