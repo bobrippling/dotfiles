@@ -70,7 +70,7 @@ set lazyredraw
 set foldopen-=block
 try | set foldcolumn=auto | catch /E521/ | endtry " introduced in nvim, #13571
 set complete-=u " unloaded buffers are too slow, but we'll take a dictionary
-set completeopt+=menuone,longest,noinsert | set completeopt-=preview
+set completeopt+=menuone,longest | set completeopt-=preview
 set cmdwinheight=20
 set fillchars=fold:\ |
 
