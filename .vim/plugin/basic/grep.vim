@@ -5,7 +5,7 @@ endfunction
 function! s:setgrep(scope) abort
 	let path = exepath("rg")
 	if !empty(path)
-		let rgcommon = "rg --vimgrep --max-depth 6 -g '!_*/**'"
+		let rgcommon = "rg --vimgrep -g '!_*/**'"
 		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
 		if &filetype ==# 'javascript'
