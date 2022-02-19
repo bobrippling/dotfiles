@@ -4,6 +4,8 @@
 " Can't use `n(` - this stops `Jn` for example (collides with builtin `n`)
 " inspired from wellle/targets
 
+finish " slow
+
 for [open, close] in [
 	\ ['(', ')'],
 	\ ['{', '}'],

@@ -1,7 +1,7 @@
 call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'G', 'Gsplit', 'Gvsplit' ] }
 Plug 'junegunn/gv.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
@@ -21,9 +21,10 @@ Plug 'FooSoft/vim-argwrap'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-line'
-Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
-Plug 'kana/vim-textobj-indent' " ii, aI
-Plug 'kana/vim-textobj-lastpat' " i/, a?
+" too slow:
+"Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
+"Plug 'kana/vim-textobj-indent' " ii, aI
+"Plug 'kana/vim-textobj-lastpat' " i/, a?
 
 Plug 'vim-scripts/ReplaceWithRegister' " script 2703
 
@@ -43,7 +44,7 @@ Plug 'bobrippling/vim-supersleuth'
 
 " LSP
 if has('nvim')
-	Plug 'neovim/nvim-lspconfig'
+	Plug 'neovim/nvim-lspconfig', { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
 endif
 "Plug 'neoclide/coc.nvim'
 "Plug 'dense-analysis/ale'
@@ -54,5 +55,7 @@ Plug 'bobrippling/vim-illuminate' " https://github.com/RRethy/vim-illuminate
 
 " Testing
 Plug 'junegunn/vader.vim', { 'for': 'vader', 'on': 'Vader' }
+
+"Plug 'dstein64/vim-startuptime'
 
 call plug#end()
