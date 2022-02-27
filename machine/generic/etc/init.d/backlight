@@ -34,7 +34,7 @@ case "$1" in
 		;;
 
 	*)
-		log_action_msg "Usage: /etc/init.d/xshd {start|stop|status}" || true
+		log_action_msg "Usage: /etc/init.d/backlight {start|stop|status}" || true
 		exit 1
 		;;
 esac
