@@ -70,6 +70,8 @@
 # commands
 [rebase]
 	autosquash = true
+[pull]
+	ff = only
 [merge]
 	defaultToUpstream = true
 	tool = vimdiff
