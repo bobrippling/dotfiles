@@ -39,31 +39,9 @@
 	worktree-unignore = update-index --no-skip-worktree
 	worktree-ignore-show = "!git ls-files -v | grep '^S'"
 
+# i/o
 [interactive]
 	singlekey = true
-
-[rerere]
-	enabled = true
-
-[rebase]
-	autosquash = true
-
-[diff]
-	renames = copies
-	mnemonicprefix = true
-	# Color moved blocks as moves instead of additions + deletions
-	colormoved = default
-	# Ignore indentation changes when detecting moved blocks
-	colormovedws = allow-indentation-change
-
-[merge]
-	defaultToUpstream = true
-	tool = vimdiff
-	#conflictstyle = diff3
-
-[fetch]
-	writeCommitGraph = true
-
 [advice]
 	pushUpdateRejected = false
 	pushNonFFCurrent = false
@@ -76,30 +54,46 @@
 	commitBeforeMerge = false
 	resolveConflict = false
 	detachedHead = false
-
-[push]
-	default = nothing
-
 [color]
 	ui = true
-
 [color "diff"]
 	# for a light tty:
 	oldmoved = yellow
 	newmoved = blue
+[gui]
+	displayUntracked = false
 
+# behaviour
+[rerere]
+	enabled = true
+
+# commands
+[rebase]
+	autosquash = true
+[merge]
+	defaultToUpstream = true
+	tool = vimdiff
+	#conflictstyle = diff3
+[fetch]
+	writeCommitGraph = true
+[diff]
+	renames = copies
+	mnemonicprefix = true
+	# Color moved blocks as moves instead of additions + deletions
+	colormoved = default
+	# Ignore indentation changes when detecting moved blocks
+	colormovedws = allow-indentation-change
+[push]
+	default = nothing
 [submodule]
 	recurse = true
-
 [blame]
 	# Disabled by default - must exist, so should be repo-local setting
 	#ignoreRevsFile = .git-blame-ignore-revs
 	markIgnoredLines = true
 	markUnblamableLines = true
 
-[gui]
-	displayUntracked = false
-
+# replacements
 [url "https://github.com/"]
 	insteadOf	= http://github.com/
 	insteadOf	= git://github.com/
