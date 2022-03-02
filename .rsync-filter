@@ -1,0 +1,9 @@
+# run rsync with -F (alias for `--filter='dir-merge /.rsync-filter`)
+# dir-merge specifies a per-directory merge/filter file
+
+# `exclude` these files from the transfer
+# `,r` - but don't delete them if present on the Receiver
+# `,s` - don't Send the file (not really relevant with `exclude`)
+# `,p` - Perishable - don't keep a directory alive if it only contains these files
+
+exclude,rp *.sw?
