@@ -276,7 +276,7 @@ endfunction
 function! s:tag_from_stringpath(found_line, ident)
 	" search forward to handle cases like import ... from 'abc'; // 'avoid matching here'
 	let line = getline(a:found_line)
-	let nextfile = substitute(line, "\\v\\C.*(['\"])(.*)\\1.*", "\\2", "")
+	let nextfile = matchstr(line, "\\v\\C(['\"])\\zs(.*)\\ze\\1")
 	if nextfile == line
 		" failed to extract filename
 		call s:debug("couldn't extract filename from import/require line")
