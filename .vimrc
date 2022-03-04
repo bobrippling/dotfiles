@@ -163,6 +163,8 @@ filetype indent plugin on
 
 " execute pathogen#infect()
 
+let g:pinpoint_preview_delay = 150
+
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
 colorscheme bogster
