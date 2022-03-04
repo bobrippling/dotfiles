@@ -3,7 +3,7 @@
 
 # `exclude` these files from the transfer
 # `,r` - but don't delete them if present on the Receiver
-# `,s` - don't Send the file (not really relevant with `exclude`)
+# `,s` - don't Send the file (not really relevant with `exclude`, but applies if we're going backwards)
 # `,p` - Perishable - don't keep a directory alive if it only contains these files
 
-exclude,rp *.sw?
+exclude,srp *.sw?
