@@ -6,23 +6,9 @@ else
 	finish
 endif
 
-if !rtp#exists('nvim-lspconfig')
-	finish
-endif
-
-if !exists('g:lsp_enabled')
-	let g:lsp_enabled = 1
-endif
+let s:done_setup = 0
 
 function! s:setup()
-	if !get(g:, 'lsp_enabled', 1)
-		return
-	endif
-
-	if !s:has_cargo()
-		return
-	endif
-
 	lua <<EOF
 	local nvim_lsp = require('lspconfig')
 	local util = require('vim.lsp.util')
@@ -84,27 +70,18 @@ EOF
 	setlocal signcolumn=yes
 endfunction
 
-function! s:has_cargo()
-	let parts = split(expand('%:h'), '/', 1)
-	if empty(parts)
-		return 0
-	endif
-
-	for i in range(len(parts) - 1, 0, -1)
-		let path = join(parts[0:i], '/') . '/Cargo.toml'
-
-		echom path
-
-		if filereadable(path)
-			return 1
+function! s:enable(e)
+	if a:e
+		if !s:done_setup
+			call s:setup()
+			let s:done_setup = 1
 		endif
-	endfor
 
-	return 0
+		LspStart
+	else
+		LspStop
+	endif
 endfunction
 
-augroup LspRust
-	autocmd!
-
-	autocmd FileType rust call s:setup()
-augroup END
+command! LspRustDisable call s:enable(0)
+command! LspRustEnable  call s:enable(1)
