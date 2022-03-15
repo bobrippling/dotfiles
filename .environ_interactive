@@ -18,6 +18,31 @@ __loadagent(){
 	fi
 }
 
+# bsd
+export GREP_COLOR='1;32'
+export LSCOLORS='exfxcxdxbxegedabagacad'
+#                ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+#                | | | | | |       | dir,o+w
+#                | | | | | |       dir,o+ws
+#                | | | | | block, char, suid, guid
+#                | | | | exe
+#                | | | pipe
+#                | | socket
+#                | symlink
+#                dir
+#
+# gnu
+#   sl: selected line
+#   cx: context line
+#   rv: reverse for -v (e.g. rv:cx:...)
+#   mt: matching text (aka ms=... & mc=...)
+#   ms: matching substring
+#   mc: matching context
+#   fn: filename
+#   ln: line nuber
+#   bn: byte offset
+#   se: seperator element (':' etc)
+
 export GREP_COLORS="rv:mt=1;31:sl=1;30"
 export LS_COLORS="di=1;34:ln=1;36:pi=1;33:bd=44;37:cd=44;37:or=7;36:so=33:su=1;31:sg=31:tw=1;35:ow=0;34:ex=1;32:mi=31"
 
