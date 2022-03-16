@@ -67,17 +67,3 @@ fi
 
 # gpg-agent is autostart
 #__loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
-
-if test -t 0
-then
-	# bobrippling/z
-	if test -e ~/src/z/z.sh
-	then
-		_Z_NO_RESOLVE_SYMLINKS=1
-		. ~/src/z/z.sh
-	else
-		echo >&2 "$0: environ: no z.sh"
-	fi
-else
-	echo >&2 "$0: environ: skipping z.sh init"
-fi
