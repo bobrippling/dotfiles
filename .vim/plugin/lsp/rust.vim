@@ -71,3 +71,8 @@ endfunction
 
 " can't lazy load nvim-lspconfig, but we can delay the rust setup:
 command! -bar LspRustSetup call s:setup()
+
+hi DiagnosticUnderlineError cterm=none
+hi DiagnosticUnderlineWarn cterm=none
+hi DiagnosticUnderlineInfo cterm=none
+hi DiagnosticUnderlineHint cterm=none
