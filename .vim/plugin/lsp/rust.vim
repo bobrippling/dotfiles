@@ -6,8 +6,6 @@ else
 	finish
 endif
 
-let s:done_setup = 0
-
 function! s:setup()
 	lua <<EOF
 	local nvim_lsp = require('lspconfig')
@@ -63,6 +61,7 @@ function! s:setup()
 			flags = {
 				debounce_text_changes = 150,
 			},
+			autostart = false,
 		}
 	end
 EOF
@@ -70,18 +69,5 @@ EOF
 	setlocal signcolumn=yes
 endfunction
 
-function! s:enable(e)
-	if a:e
-		if !s:done_setup
-			call s:setup()
-			let s:done_setup = 1
-		endif
-
-		LspStart
-	else
-		LspStop
-	endif
-endfunction
-
-command! LspRustDisable call s:enable(0)
-command! LspRustEnable  call s:enable(1)
+" can't lazy load nvim-lspconfig, but we can delay the rust setup:
+command! -bar LspRustSetup call s:setup()
