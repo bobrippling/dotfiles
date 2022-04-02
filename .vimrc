@@ -157,6 +157,9 @@ cnoremap <expr> <C-R>c '\%' .. getcurpos()[2] .. 'c'
 
 vnoremap g/ <Esc>'</\%V
 
+inoremap <C-G>j <Esc>jA
+inoremap <C-G>k <Esc>kA
+
 syntax on
 filetype on
 filetype indent plugin on
