@@ -44,7 +44,7 @@ Plug 'bobrippling/vim-supersleuth'
 
 " LSP
 if has('nvim')
-	Plug 'neovim/nvim-lspconfig', { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
+	Plug 'neovim/nvim-lspconfig' ", { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
 endif
 "Plug 'neoclide/coc.nvim'
 "Plug 'dense-analysis/ale'
