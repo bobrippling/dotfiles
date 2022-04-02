@@ -8,6 +8,10 @@ function! s:setgrep(scope) abort
 		let rgcommon = "rg --vimgrep -g '!_*/**'"
 		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
+		if &smartcase || &ignorecase
+			let rgcommon .= " -i"
+		endif
+
 		if &filetype ==# 'javascript'
 			call s:set(
 			\   rgcommon . " -g '!*.d' --ignore node_modules -g '!*.min.*' --ignore 'dist/**'" . where,
