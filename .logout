@@ -8,7 +8,7 @@
 
 if test "$SHLVL" -le 1
 then
-	if tty | grep 'tty' >/dev/null
+	if tty | grep 'tty' >/dev/null && test "$(uname -s)" != "Darwin"
 	then clear
 	fi
 
