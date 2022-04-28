@@ -60,10 +60,12 @@ done &
 # firefox horizontal scrolling from shift+scroll:
 #xbindkeys
 
-# sync clipboards
-autocutsel -f -s PRIMARY
-autocutsel -f
-nohup env CM_MAX_CLIPS=10 clipmenud >/dev/null 2>&1 &
+# CM_OWN_CLIPBOARD instead of autocutsel to sync clipboards
+nohup env \
+	CM_MAX_CLIPS=512 \
+	CM_OWN_CLIPBOARD=1 \
+	CM_SYNC_PRIMARY_TO_CLIPBOARD=1 \
+	clipmenud >/dev/null 2>&1 &
 
 # attempted fix for xrandr not being picked up by dwm, Sun 14 May 10:42:55 BST 2017
 # moved to just below invoking dwm, Fri 15 Jan 09:54:22 GMT 2021
