@@ -481,7 +481,7 @@ setlocal indentexpr=
 
 setlocal omnifunc=Dotcomplete
 " if we're not noselect/noinsert, then step back to avoid auto-inserting on `.`
-inoremap <expr> <buffer> . '.<C-X><C-O>' .. (&completeopt =~? '\vno(select\|insert)' ? '' : '<C-P>')
+"inoremap <expr> <buffer> . '.<C-X><C-O>' .. (&completeopt =~? '\vno(select\|insert)' ? '' : '<C-E>')
 
 if exists('b:undo_ftplugin')
 	if exists('b:undo_ftplugin')
