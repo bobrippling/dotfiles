@@ -52,3 +52,5 @@ function! s:terminate(buf) abort
 	call feedkeys("i\<C-C>", "nx")
 	q!
 endfunction
+
+setlocal expandtab tabstop=4
