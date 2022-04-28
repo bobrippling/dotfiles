@@ -92,7 +92,7 @@ schemes:
 
     normal:
       black:  '#6d6d6d'
-      red:   '#bb0000'
+      red:   '#ff3333'
       green:  '#98f898'
       yellow:  '#f0e68c'
       blue:   '#96853f'
@@ -169,3 +169,5 @@ selection:
 
 mouse_bindings:
   - { mouse: Middle, action: None }
+#key_bindings: # needs newer alacritty version
+  #- { key: N, mods: Command, action: CreateNewWindow }
