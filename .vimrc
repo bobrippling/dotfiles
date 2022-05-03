@@ -44,8 +44,6 @@ call s:viminfo("'", "150") " marks for last N files, +oldfiles
 call s:viminfo("<", "100") " registers up to N lines
 call s:viminfo("s", "100") " items with contents up to 100kib
 set viminfo+=r~/mnt/
-let &grepprg = substitute(&grepprg, '-', '-r', '')
-
 
 " display
 " ('statusline' set in plugin/...)

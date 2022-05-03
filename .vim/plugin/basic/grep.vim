@@ -42,6 +42,7 @@ function! s:setgrep(scope) abort
 	endif
 
 	setlocal grepprg&vim
+	let &l:grepprg = substitute(&grepprg, '-', '-r', '')
 endfunction
 
 " set global grep, and then add autocmds for file-specific grep
