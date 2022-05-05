@@ -23,7 +23,7 @@ Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-line'
 " too slow:
 "Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
-"Plug 'kana/vim-textobj-indent' " ii, aI
+Plug 'kana/vim-textobj-indent' " ai, aI
 "Plug 'kana/vim-textobj-lastpat' " i/, a?
 
 Plug 'vim-scripts/ReplaceWithRegister' " script 2703
