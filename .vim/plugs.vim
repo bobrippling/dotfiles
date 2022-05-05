@@ -44,6 +44,7 @@ Plug 'bobrippling/vim-supersleuth'
 
 " LSP
 if has('nvim')
+	" can't lazy load - see notes in plugin/lsp/rust.vim
 	Plug 'neovim/nvim-lspconfig' ", { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
 endif
 "Plug 'neoclide/coc.nvim'
