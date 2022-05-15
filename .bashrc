@@ -1,6 +1,9 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
+# bash (i.e. not sh)
+#[ -z "$BASH_VERSION" ] && return
+
 # simpler prompt:
 __ps1_exitcode(){
 	__e=$?
