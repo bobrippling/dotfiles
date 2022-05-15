@@ -47,6 +47,7 @@ export HISTTIMEFORMAT="%s (%F %T)"
 shopt -s histappend # append to HISTFILE on exit, instead of overwrite
 #shopt -s histverify # on enter, load the history entry but don't execute
 shopt -s histreedit # if history substitution fails, allow re-editing
+shopt -s checkwinsize # update $LINES and $COLUMNS after each command
 
 export HISTSIZE=2000
 export HISTFILESIZE=5000
