@@ -52,6 +52,8 @@ shopt -s checkwinsize # update $LINES and $COLUMNS after each command
 export HISTSIZE=2000
 export HISTFILESIZE=5000
 
+#PROMPT_DIRTRIM=4
+
 # disable ctrl-n and ctrl-p
 bind '"": '
 bind '"": '
