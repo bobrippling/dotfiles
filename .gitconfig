@@ -72,6 +72,9 @@
 	autosquash = true
 [pull]
 	ff = only
+[push]
+	# push to @{u}, provided current branch name matches
+	default = simple
 [merge]
 	defaultToUpstream = true
 	tool = vimdiff
@@ -85,8 +88,6 @@
 	colormoved = default
 	# Ignore indentation changes when detecting moved blocks
 	colormovedws = allow-indentation-change
-[push]
-	default = nothing
 [submodule]
 	recurse = true
 [blame]
