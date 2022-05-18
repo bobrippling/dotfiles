@@ -168,7 +168,7 @@ let g:pinpoint_preview_delay = 150
 
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
-if $TERM ==? "alacritty"
+if $TERM ==? "alacritty" || $TMUX_OUTER_TERM ==? "alacritty"
 	set background=light
 	colorscheme solarized
 else
