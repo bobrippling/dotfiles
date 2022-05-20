@@ -155,11 +155,10 @@ bindkey -M vicmd 'v' edit-command-line
 # prompt_subst - expand $SSH_CONNECTION
 
 PS1="
-%B%m%b\
- %!!\
-%(?.. %F{red}%??%f)\
-%(1j. %F{yellow}%j&%f.)\
- \
+%B%m%b \
+%!! \
+%(?..%F{red}%??%f )\
+%(1j.%F{yellow}%j&%f .)\
 %(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
 
 setopt prompt_subst
