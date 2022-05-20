@@ -168,4 +168,9 @@ let g:pinpoint_preview_delay = 150
 
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
-colorscheme bogster
+if $TERM ==? "alacritty"
+	set background=light
+	colorscheme solarized
+else
+	colorscheme bogster
+endif
