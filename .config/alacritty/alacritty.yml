@@ -168,7 +168,7 @@ schemes:
       cyan: "#6ae3fa"
       white: "#ffffff"
 
-colors: *scheme_zenburn
+colors: *scheme_solarized_light
 
 cursor:
   #style: Block
