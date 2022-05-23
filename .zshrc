@@ -143,6 +143,7 @@ bindkey -M vicmd 'v' edit-command-line
 # -------------------------------------------------------------------------------------
 # Prompt
 
+# see zshmisc(1)
 # ? - last exit
 # <n>j - at least N jobs
 # ! - privileges
@@ -155,6 +156,7 @@ bindkey -M vicmd 'v' edit-command-line
 
 PS1="
 %B%m%b\
+ %!!\
 %(?.. %F{red}%??%f)\
 %(1j. %F{yellow}%j&%f.)\
  \
