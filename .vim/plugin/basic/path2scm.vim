@@ -37,21 +37,39 @@ function! s:url(begin, end)
 	let u = FugitiveRemoteUrl()
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
 
-	return s:suffix_gitlab(u, a:begin, a:end)
+	if u =~? 'gitlab.com/'
+		return s:suffix_gitlab(u, a:begin, a:end)
+	elseif u =~? 'github.com/'
+		return s:suffix_github(u, a:begin, a:end)
+	endif
+
+	throw "unrecognised remote (" . u . ")"
 endfunction
 
 function! s:suffix_gitlab(base, start, end)
 	let [ci, fname] = s:file_ver()
 
 	if empty(ci)
-		let b = FugitiveHead()
-		if empty(b)
-			let b = "main"
+		let ci = FugitiveHead()
+		if empty(ci)
+			let ci = "main"
 		endif
-		return a:base . "/-/blob/" . b . "/" . fname . "#L" . a:start
 	endif
 
 	return a:base . "/-/blob/" . ci . "/" . fname . "#L" . a:start
+endfunction
+
+function! s:suffix_github(base, start, end)
+	let [ci, fname] = s:file_ver()
+
+	if empty(ci)
+		let ci = FugitiveHead()
+		if empty(ci)
+			let ci = "master"
+		endif
+	endif
+
+	return a:base . "/blob/" . ci . "/" . fname . "#L" . a:start . "-L" . a:end . "="
 endfunction
 
 function! s:suffix_tfs()
