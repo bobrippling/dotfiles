@@ -488,10 +488,12 @@ if exists('b:undo_ftplugin')
 		let b:undo_ftplugin .= '|setlocal tagfunc<'
 	endif
 
-	let b:undo_ftplugin .= '|setlocal suffixesadd-=.js,.jsx'
+	let b:undo_ftplugin .= '|setlocal suffixesadd<'
 	let b:undo_ftplugin .= '|setlocal spelloptions<'
+	let b:undo_ftplugin .= '|setlocal indentexpr<'
 
-	let b:undo_ftplugin .= '|setlocal omnifunc< | iunmap <buffer> .'
+	let b:undo_ftplugin .= '|setlocal omnifunc<'
+	"let b:undo_ftplugin .= '|iunmap <buffer> .'
 endif
 
 if exists(":packadd")
