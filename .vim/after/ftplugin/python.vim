@@ -5,7 +5,7 @@ if exists("+tagfunc")
 	setlocal tagfunc=PyTag
 endif
 
-function! JsTag(pattern, flags, info) abort
+function! PyTag(pattern, flags, info) abort
 	" TODO: handle "r" in flags, i.e. `pattern` is a regex (`:tag /abc`)
 	let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
 	let for_completion =	stridx(a:flags, "i") >= 0
@@ -23,26 +23,128 @@ function! JsTag(pattern, flags, info) abort
 
 	let import_line = s:import_search(tag)
 	if import_line > 0
-		" TODO:
 		" - go up to `from`
 		" - grab the module
 		" - convert to path, handling `.` and `..` (`...`) prefixes
 		" - try %:h/path, %:h:h/path, ...
-		throw "todo"
+		let l = getline(import_line)
 
-		call s:debug("import line not found after tag")
+		if l[:3] ==# 'from'
+			let mod = substitute(l, '^\vfrom\s+(\S+)\s+import\s+.*', '\1', '')
+		else
+			let mod = substitute(l, '^\vimport\s+(\S+)', '\1', '')
+		endif
+
+		" a.b -> a/b
+		let mod = substitute(mod, '[^.]\zs\.\ze[^.]', '/', 'g')
+		" .a -> ./a
+		let mod = substitute(mod, '^\.\ze[^.]', './', 'g')
+
+		let ndots = len(substitute(mod, '[^.].*', '', ''))
+		if ndots > 0
+			" ..a -> ../a
+			" ...a -> ../../a
+			let mod = substitute(mod, '^\.\+', repeat('../', ndots - 1), '')
+		endif
+
+		let suff = expand("%:e")
+
+		let i = 1
+		while 1
+			let base = expand("%" . repeat(":h", i))
+			if base ==# '.' || empty(base)
+				break
+			endif
+
+			let candidate = base . '/' . mod . '.' . suff
+			let readable = filereadable(candidate)
+			call s:debug("i=" . i . " trying \"" . candidate . "\": " . readable)
+			if readable
+				return [{
+				\   "name": tag,
+				\   "filename": candidate,
+				\   "cmd": 'call PyTagInCurFile("' . ident . '")',
+				\ }]
+				" '/^\S.*\<' . ident . '\>/',
+				" ^ this gives E435
+			endif
+
+			let i += 1
+		endwhile
+
+		" findfile() doesn't seem to work with upward search
+		"call s:debug("looking for " . mod . " with " . &suffixesadd . " in folders above/incl. " . expand('%:h'))
+		"let f = findfile(mod, expand('%:h') . ';')
+		""                     ^~~~~~~~~~~~    ^~~
+		""                     search start    stop here
+		"if !empty(f)
+		"	return [{
+		"	\   "name": tag,
+		"	\   "filename": f,
+		"	\   "cmd": '/^\S.*\<' . ident . '\>',
+		"	\ }]
+		"endif
+
+		call s:debug("import path not found")
 	endif
 
 	call s:debug("import line not found")
 	return s:this_file_search(tag, ident)
 endfunction
 
+function! PyTagInCurFile(ident)
+	call cursor(1, 1)
+
+	" c: accept match at cursor
+	" W: no wrap around
+	if search('\C\v<' . a:ident . '>', 'cw') == 0
+		call s:emit_error("Couldn't find " . a:ident)
+	endif
+endfunction
+
+function! s:import_search(name)
+	let found = search("\\C\\v^(from|import)\s+.*<" . a:name . ">", "bcw")
+	if found > 0
+		return found
+	endif
+
+	call s:debug("oneline import not found, looking for multiple...")
+
+	let linenr = 0
+	let found = 0
+	for i in range(1, line("$"))
+		let line = getline(i)
+		if line =~? '^\v(import|from).*\(\s*$'
+			" started parens
+			let linenr = i
+		elseif linenr
+			if line =~ '^)'
+				let linenr = 0
+			else
+				if line =~# '\v<' . a:name . '>'
+					let found = 1
+					break
+				endif
+			endif
+		endif
+	endfor
+
+	return found ? linenr : 0
+endfunction
+
 " ----------------------- copied from javascript.vim
 
 function! s:debug(s) abort
-	if 1
-		echom "pytag: " . a:s " <--- changed from javascript.vim
+	if 0
+		echom "pytag: " . a:s
+		" ^--- changed from javascript.vim
 	endif
+endfunction
+
+function! s:emit_error(msg)
+	echohl ErrorMsg
+	echo a:msg
+	echohl None
 endfunction
 
 function! s:extended_tag_from_cursor() abort
@@ -113,9 +215,12 @@ function! s:tag_in_this_file_on_line(tag, line) abort
 		return []
 	endif
 
+	call s:debug("this_file: tag=" . a:tag . ", f: " . thisfile . ", line: " . a:line)
+
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
-	\   "cmd": a:line, " <--- changed from javascript.vim
+	\   "cmd": ':' . a:line,
 	\ }]
+	" ^--- `cmd`: changed from javascript.vim
 endfunction
