@@ -9,3 +9,5 @@
 .vnc/passwd
 
 .local/share
+
+.terminfo/
