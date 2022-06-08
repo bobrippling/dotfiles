@@ -3,9 +3,9 @@
 
 .ssh/known_hosts
 .ssh/id_*
+.ssh/env_agent
+.ssh/gpg_env_agent
 
 .vnc/passwd
 
-.ssh/env_agent
-.ssh/gpg_env_agent
 .local/share
