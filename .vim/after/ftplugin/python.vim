@@ -1,9 +1,27 @@
 set suffixesadd+=.py
 let b:undo_ftplugin .= '|setlocal suffixesadd-=.py'
 
+" indent for the next line
+let g:pyindent_continue = 'shiftwidth()'
+let g:pyindent_open_paren = 'shiftwidth()'
+
+" overwrite runtime/python.vim's indentexpr:
+function! s:set_indentexpr(...)
+	let &indentexpr = 'GetPythonIndent_2(v:lnum)'
+endfunction
+call timer_start(25, function('s:set_indentexpr'))
+
 if exists("+tagfunc")
 	setlocal tagfunc=PyTag
 endif
+
+function! GetPythonIndent_2(lno)
+	if getline(a:lno) =~ '^\s*[])]'
+		return indent(a:lno - 1) - shiftwidth()
+	endif
+
+	return GetPythonIndent(a:lno)
+endfunction
 
 function! PyTag(pattern, flags, info) abort
 	" TODO: handle "r" in flags, i.e. `pattern` is a regex (`:tag /abc`)
