@@ -2,6 +2,8 @@
 use strict;
 use warnings;
 
+my $scrollamt = 300;
+
 my %xinput_props = (
 	# Synaptics is only provided by xinput when the driver is `xserver-xorg-input-synaptics`
 	# Changing it to the more modern `xserver-xorg-input-libinput` brings the /^libinput/ props
@@ -22,7 +24,7 @@ my %xinput_props = (
 	"libinput Tapping Enabled" => ["1"],
 	"libinput Disable While Typing Enabled" => ["1"],
 	"libinput Natural Scrolling Enabled" => ["1"],
-	"Synaptics Scrolling Distance" => ["-99", "99"],  # vert, horiz
+	"Synaptics Scrolling Distance" => ["-$scrollamt", "$scrollamt"],  # vert, horiz
 );
 
 my %synclient_props = (
