@@ -198,6 +198,10 @@ function! s:extended_tag_from_cursor() abort
 	return [tag, ident]
 endfunction
 
+function! s:contains_only_iskeyword_chars(str) abort
+	return empty(a:str) || match(a:str, "^\\k\\+$") == 0
+endfunction
+
 function! s:maybe_split_tag_string(str) abort
 	let dot = stridx(a:str, '.')
 
