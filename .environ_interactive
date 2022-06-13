@@ -77,3 +77,21 @@ then
 	#_Z_NO_PROMPT_COMMAND=1
 	. ~/.config/dotfiles/contrib/z/z.sh
 fi
+
+if test -t 0
+then
+	replacement=
+	case "$TERM" in
+		rxvt-unicode-256color) replacement=xterm-256color  ;;
+		tmux-256color)         replacement=screen-256color ;;
+		#alacritty) [...]
+	esac
+
+	if test -n "$replacement"
+	then
+		printf >&2 '\x1b[31mbogus term %s, resetting to' "$TERM"
+		TERM=$replacement
+		printf >&2 ' \x1b[1;31m%s\x1b[0;0m\n' "$TERM"
+		unset replacement
+	fi
+fi
