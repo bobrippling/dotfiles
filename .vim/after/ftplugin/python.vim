@@ -121,7 +121,8 @@ function! PyTagInCurFile(ident)
 endfunction
 
 function! s:import_search(name)
-	let found = search("\\C\\v^(from|import)\s+.*<" . a:name . ">", "bcw")
+	call cursor(1, 1)
+	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "c")
 	if found > 0
 		return found
 	endif
