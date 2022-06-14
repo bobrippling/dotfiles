@@ -107,7 +107,7 @@ function! TrimUnlinkedBuffers(bang)
 
 	for buf in s:buffers()
 		let name = bufname(buf)
-		if empty(name) || !empty(getbufvar(buf, "&buftype"))
+		if empty(name) || !empty(getbufvar(buf, "&buftype")) || stridx(name, "://") >= 0
 			continue
 		endif
 		if s:fileexists(name)
