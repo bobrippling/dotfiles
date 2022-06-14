@@ -110,6 +110,13 @@ function! TrimUnlinkedBuffers(bang)
 		if empty(name) || !empty(getbufvar(buf, "&buftype")) || stridx(name, "://") >= 0
 			continue
 		endif
+
+		" if buffer open, ignore (unless -bang)
+		if !a:bang
+			let bufopen = bufwinid(buf) != -1
+			if bufopen | continue | endif
+		endif
+
 		if s:fileexists(name)
 			continue
 		endif
@@ -121,21 +128,23 @@ function! TrimUnlinkedBuffers(bang)
 		endif
 	endfor
 
-	if !empty(delete)
-		if newwin
-			botright new
-		endif
-
-		let names = a:bang ? map(copy(delete), { _, x -> bufname(x) }) : []
-
-		execute "bdelete " . join(delete)
-
-		if !empty(names)
-			echom "Removed unlinked buffers:" join(names)
-		endif
-	elseif a:bang
+	if empty(delete)
 		echom "No unlinked buffers"
+		return
 	endif
+
+	if newwin
+		botright new
+	endif
+
+	let names = map(copy(delete), { _, x -> bufname(x) })
+
+	execute "bdelete " . join(delete)
+
+	echom "Removed unlinked buffers:"
+	for name in names
+		echom "  " name
+	endfor
 endfunction
 
 command! Ls call Lst()
