@@ -90,10 +90,13 @@ function! TrimOldBuffers(count, bang)
 		let delete = recents[:count_to_trim - 1]
 	endif
 
-	for i in delete
-		execute "bdelete " . i
+	let names = map(copy(delete), { _, x -> bufname(x) })
+
+	execute "bdelete " . join(delete)
+	echo "Deleted old buffers"
+	for name in names
+		echom "  " name
 	endfor
-	echo "Deleted " . len(delete) . " buffers"
 endfunction
 
 function! s:fileexists(path)
