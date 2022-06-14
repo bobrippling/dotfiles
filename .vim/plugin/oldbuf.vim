@@ -24,15 +24,15 @@ function! s:when(buf)
 		try
 			return getbufvar(a:buf, 'changedtime')
 		catch
-			return "?"
+			return 0
 		endtry
 	endif
 endfunction
 
-function! s:buftimecmp(a, b)
+function! s:latest_modified_first(a, b)
 	let a_time = s:when(a:a)
 	let b_time = s:when(a:b)
-	return a_time - b_time
+	return b_time - a_time
 endfunction
 
 function! s:is_terminal(buf)
@@ -56,13 +56,16 @@ function! s:buffers()
 endfunction
 
 function! s:recentbuffers()
-	return sort(s:buffers(), 's:buftimecmp')
+	return sort(s:buffers(), 's:latest_modified_first')
 endfunction
 
 function! Lst()
 	for i in s:recentbuffers()
 		let when = s:when(i)
-		if strlen(when)
+
+		if when == 0
+			let when = "<unknown time>"
+		else
 			let when = strftime("%Y-%d-%m %H:%M", when)
 		endif
 		echon "[" . i . "]\t"
