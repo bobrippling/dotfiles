@@ -57,6 +57,10 @@ export PAGER="less -iRS" # no -F - causes instant exit bug
 
 export ESCDELAY=10 # ncurses escape wait time (ms)
 
+if test -z "$TMUX_OUTER_TERM"
+then export TMUX_OUTER_TERM="$TERM"
+fi
+
 if test -z "$SSH_AUTH_SOCK" && __loadagent ssh-agent "$HOME/.ssh/env_agent"
 then
 	nssh=$(ssh-add -l | grep '^[0-9]' | wc -l)
