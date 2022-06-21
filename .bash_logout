@@ -1,3 +1,3 @@
-echo > ~/.bash_history
+#echo > ~/.bash_history
 
 . ~/.logout
