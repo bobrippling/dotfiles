@@ -32,9 +32,9 @@
 
 	# skip-worktree - don't touch a file ever (modulo conflicts) and don't let it affect `git status`
 	# assume-unchanged - don't stat a file. this is reset on index changes to said file
-	worktree-ignore = update-index --skip-worktree
-	worktree-unignore = update-index --no-skip-worktree
-	worktree-ignore-show = "!git ls-files -v | grep '^S'"
+	wt-ignore = update-index --skip-worktree
+	wt-unignore = update-index --no-skip-worktree
+	wt-ignore-show = "!git ls-files -v | grep '^S'"
 
 # i/o
 [interactive]
