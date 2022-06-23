@@ -1,25 +1,25 @@
 function! TabLabel(n)
 	let title = gettabvar(a:n, "title")
-	if empty(title)
-		let winnr = tabpagewinnr(a:n)
-		let bufs = tabpagebuflist(a:n)
-		let bufname = bufname(bufs[winnr - 1])
-
-		if empty(bufname)
-			let title = "[No Name]"
-		else
-			" could use simplify():
-			let bufname = fnamemodify(bufname, ":~:.")
-
-			"let parts = split(bufname, "/", 1)
-			"call map(parts, {i, v -> i == len(parts)-1 ? v : v[0] ==# '.' ? v[0:1] : v[0]})
-			"let title = join(parts, "/")
-
-			let title = pathshorten(bufname)
-		endif
+	if !empty(title)
+		return title
 	endif
 
-	return title
+	let winnr = tabpagewinnr(a:n)
+	let bufs = tabpagebuflist(a:n)
+	let bufname = bufname(bufs[winnr - 1])
+
+	if empty(bufname)
+		return "[No Name]"
+	endif
+
+	" could use simplify():
+	let bufname = fnamemodify(bufname, ":~:.")
+
+	"let parts = split(bufname, "/", 1)
+	"call map(parts, {i, v -> i == len(parts)-1 ? v : v[0] ==# '.' ? v[0:1] : v[0]})
+	"let title = join(parts, "/")
+
+	return pathshorten(bufname)
 endfunction
 
 function! TabPre(n)
