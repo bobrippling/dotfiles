@@ -78,23 +78,28 @@ function! StatusLineAltFile()
 
 	let cur = getreg("%")
 
-	" replace common prefix with '&'
-	let l = 0
-	for l in range(min([len(alt), len(cur)]))
-		if alt[l] !=# cur[l]
-			break
-		endif
-	endfor
-	let l -= 1
-	while l > 0 && alt[l] !=# "/"
+	if alt[:6] == "term://"
+		let b = bufnr(alt)
+		let alt = "<#tty" . b . ">"
+	else
+		" replace common prefix with '&'
+		let l = 0
+		for l in range(min([len(alt), len(cur)]))
+			if alt[l] !=# cur[l]
+				break
+			endif
+		endfor
 		let l -= 1
-	endwhile
+		while l > 0 && alt[l] !=# "/"
+			let l -= 1
+		endwhile
 
-	if alt[l] ==# "/" && l > 3
-		let alt = "&" . strpart(alt, l)
+		if alt[l] ==# "/" && l > 3
+			let alt = "&" . strpart(alt, l)
+		endif
+
+		let alt = substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
 	endif
-
-	let alt = substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
 
 	" maybe don't show it
 	let approx_len_rest = 33
