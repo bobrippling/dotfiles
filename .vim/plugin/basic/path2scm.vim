@@ -1,5 +1,6 @@
 function! Path2scm(switches) abort
 	let mode = "open"
+	let ci = ""
 
 	let i = 0
 	while i < len(a:switches)
@@ -14,6 +15,13 @@ function! Path2scm(switches) abort
 			endif
 			let mode = "reg"
 			let reg = a:switches[i]
+		elseif sw ==# "-b" || sw ==# "--branch"
+			let i += 1
+			if i == len(a:switches)
+				echoerr "Need branch/commit for -b/--branch"
+				return
+			endif
+			let ci = a:switches[i]
 		else
 			echoerr "Invalid switch " sw
 			return
@@ -21,7 +29,7 @@ function! Path2scm(switches) abort
 		let i += 1
 	endwhile
 
-	let url = s:url(line("'<"), line("'>"))
+	let url = s:url(ci, line("'<"), line("'>"))
 
 	if mode ==# "open"
 		call system("xargs open", url)
@@ -33,23 +41,25 @@ function! Path2scm(switches) abort
 	endif
 endfunction
 
-function! s:url(begin, end)
+function! s:url(ci, begin, end)
 	let u = FugitiveRemoteUrl()
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
 
 	if u =~? 'gitlab.com/'
-		return s:suffix_gitlab(u, a:begin, a:end)
+		return s:suffix_gitlab(u, a:ci, a:begin, a:end)
 	elseif u =~? 'github.com/'
-		return s:suffix_github(u, a:begin, a:end)
+		return s:suffix_github(u, a:ci, a:begin, a:end)
 	endif
 
 	throw "unrecognised remote (" . u . ")"
 endfunction
 
-function! s:suffix_gitlab(base, start, end)
+function! s:suffix_gitlab(base, ci, start, end)
 	let [ci, fname] = s:file_ver()
 
-	if empty(ci)
+	if !empty(a:ci)
+		let ci = a:ci
+	elseif empty(ci)
 		let ci = FugitiveHead()
 		if empty(ci)
 			let ci = "main"
@@ -59,10 +69,12 @@ function! s:suffix_gitlab(base, start, end)
 	return a:base . "/-/blob/" . ci . "/" . fname . "#L" . a:start . "-" . a:end
 endfunction
 
-function! s:suffix_github(base, start, end)
+function! s:suffix_github(base, ci, start, end)
 	let [ci, fname] = s:file_ver()
 
-	if empty(ci)
+	if !empty(a:ci)
+		let ci = a:ci
+	elseif empty(ci)
 		let ci = FugitiveHead()
 		if empty(ci)
 			let ci = "master"
