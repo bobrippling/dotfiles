@@ -74,9 +74,10 @@ function! PyTag(pattern, flags, info) abort
 				break
 			endif
 
-			let candidate = base . '/' . mod . '.' . suff
+			let no_suff = base . '/' . mod
+			let candidate = no_suff . '.' . suff
 			let readable = filereadable(candidate)
-			call s:debug("i=" . i . " trying \"" . candidate . "\": " . readable)
+			call s:debug("i=" . i . " trying \"" . candidate . "\": readable=" . readable)
 			if readable
 				return [{
 				\   "name": tag,
@@ -85,6 +86,14 @@ function! PyTag(pattern, flags, info) abort
 				\ }]
 				" '/^\S.*\<' . ident . '\>/',
 				" ^ this gives E435
+			endif
+			if isdirectory(no_suff)
+				call s:debug("i=" . i . " isdirectory(\"" . no_suff . "\")=1, tag=\"" . tag . "\"")
+				return [{
+				\   "name": tag,
+				\   "filename": no_suff . "/" . tag . '.' . suff,
+				\   "cmd": 'call PyTagInCurFile("' . ident . '")',
+				\ }]
 			endif
 
 			let i += 1
