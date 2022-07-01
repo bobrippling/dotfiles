@@ -230,16 +230,17 @@ function! s:this_file_search(tag, ident) abort
 	" look for tag, ignore ident (for now)
 	call cursor(1, 1)
 	" c: cursor pos accept, n: no move cursor, W: no wrap
-	let found = search("\\C\\v^\\S[^'\"]*<" . a:tag . ">", "cnW")
-	if found == 0
+	let [line, col] = searchpos("\\C\\v^\\S[^'\"]*<\\zs" . a:tag . ">", "cnW")
+	if line == 0 && col == 0
 		call s:debug("couldn't find global decl for " . a:tag)
 		return []
 	endif
 
-	return s:tag_in_this_file_on_line(a:tag, found)
+	return s:tag_in_this_file_on_line_col(a:tag, line, col)
 endfunction
 
-function! s:tag_in_this_file_on_line(tag, line) abort
+function! s:tag_in_this_file_on_line_col(tag, line, col) abort
+	" ^--- signature changed from javascript.vim
 	let thisfile = expand("%")
 
 	if empty(thisfile)
@@ -252,7 +253,7 @@ function! s:tag_in_this_file_on_line(tag, line) abort
 	return [{
 	\   "name": a:tag,
 	\   "filename": thisfile,
-	\   "cmd": ':' . a:line,
+	\   "cmd": ":" . a:line . " | normal! " . a:col . "|",
 	\ }]
 	" ^--- `cmd`: changed from javascript.vim
 endfunction
