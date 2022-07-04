@@ -17,6 +17,7 @@ set nowrap
 set linebreak showbreak=>
 if exists("&breakindent")
 	set breakindent
+	set breakindentopt+=sbr
 endif
 
 " os/files
