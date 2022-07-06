@@ -13,7 +13,7 @@ set tagcase=match
 set hlsearch
 
 " line wrapping
-set nowrap
+set wrap
 set linebreak showbreak=>
 if exists("&breakindent")
 	set breakindent
