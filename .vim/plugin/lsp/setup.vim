@@ -54,7 +54,8 @@ function! s:setup()
 		buf_set_keymap('n', '<space>gq', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 	end
 
-	local servers = { 'rust_analyzer' } -- , 'pyright', 'tsserver' }
+	-- npm i -g pyright
+	local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
 			on_attach = on_attach,
@@ -69,8 +70,8 @@ EOF
 	setlocal signcolumn=yes
 endfunction
 
-" can't lazy load nvim-lspconfig, but we can delay the rust setup:
-command! -bar LspRustSetup call s:setup()
+" can't lazy load nvim-lspconfig, but we can delay this setup:
+command! -bar LspVimrcSetup call s:setup()
 
 hi DiagnosticUnderlineError cterm=none
 hi DiagnosticUnderlineWarn cterm=none
