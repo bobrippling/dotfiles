@@ -10,10 +10,11 @@ function! StatusLine()
 	let s .= "%{StatusLineBuftype()}" " 'fileformat'
 	let s .= "[%{&ff}]" " 'fileformat'
 	let s .= "%{StatusLineEnc()}" " 'fileformat'
-	if exists("*SleuthIndicator")
-		let s .= "[%{SleuthIndicator()}]"
-	endif
 	let s .= "[%n%{StatusLineBufCount()}]" " buffer number
+	if exists("*SuperSleuthIndicator")
+		let s .= "[%{SuperSleuthIndicator()}]"
+	endif
+	let s .= "%{&spell ? 'S' : ''}"
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
 	let s .= "%=" " left + right flex space
