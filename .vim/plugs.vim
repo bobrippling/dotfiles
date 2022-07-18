@@ -53,7 +53,7 @@ endif
 " Colours
 Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 Plug 'bobrippling/vim-illuminate' " https://github.com/RRethy/vim-illuminate
-Plug 'altercation/vim-colors-solarized'
+Plug 'bobrippling/vim-colors-solarized' " https://github.com/altercation/vim-colors-solarized
 
 " Testing
 Plug 'junegunn/vader.vim', { 'for': 'vader', 'on': 'Vader' }
