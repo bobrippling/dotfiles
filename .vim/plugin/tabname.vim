@@ -43,8 +43,6 @@ function! TabInfo(n)
 endfunction
 
 function! TabLine()
-	let line = ""
-
 	let hl = {
 	\  "label": "%#TabLine#",
 	\  "label_pre": "TabLineItalic",
@@ -70,6 +68,7 @@ function! TabLine()
 		let hl.label_sel_pre = "%#Keyword#"
 	endif
 
+	let tabs = []
 	for i in range(1, tabpagenr("$"))
 		" select the highlighting
 		if i == tabpagenr()
@@ -88,6 +87,7 @@ function! TabLine()
 		\ . "%{TabInfo(" . i . ")} "
 		\ . hl_lbl
 		\ . "%{TabLabel(" . i . ")}"
+		let tabs += [line]
 	endfor
 
 	let tail = "%#TabLineFill#%T"
@@ -95,7 +95,7 @@ function! TabLine()
 	" ObsessionStatus() guarded safely by g:this_obsession
 	if exists("*ObsessionStatus")
 		if exists("g:this_obsession") && ObsessionStatus("y", "n") ==# "y"
-			" there"s also v:this_session, but g:this_obsession is more appropriate
+			" there's also v:this_session, but g:this_obsession is more appropriate
 			let relative = fnamemodify(g:this_obsession, ":~:.")
 			let baseonly = fnamemodify(relative, ":t")
 			let trunc = baseonly ==# relative ? "" : ".../"
@@ -106,7 +106,16 @@ function! TabLine()
 		endif
 	endif
 
-	return line . tail
+	let tab_part = join(tabs, "")
+
+	" truncate at the end furthest from the current tab
+	if tabpagenr() > len(tabs) / 2
+		let tab_part = "%<" . tab_part
+	else
+		let tab_part = tab_part . "%<"
+	endif
+
+	return tab_part . tail
 endfunction
 
 function! GuiTabLabel()
