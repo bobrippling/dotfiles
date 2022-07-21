@@ -1,7 +1,7 @@
 augroup QfSettings
 	autocmd!
 
-	autocmd FileType qf setlocal number
+	autocmd FileType qf setlocal number nowrap
 augroup END
 
 function! s:toggle() abort
