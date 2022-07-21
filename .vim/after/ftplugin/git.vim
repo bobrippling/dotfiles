@@ -33,10 +33,12 @@ if !s:in
 		let line = getline('.')
 		let ci = substitute(line, '\v\S+ ([0-9a-f]+) .*', '\1', '')
 
-		call s:Show(a:mods, ci)
+		let args = v:count == 1 ? "-w " : ""
+
+		call s:Show(a:mods, args .. ci)
 	endfunction
 
-	command! -range=0 -bar -nargs=1 GitKeyword call s:Keyword(<q-mods>)
+	command! -bar -nargs=1 -count GitKeyword call s:Keyword(<q-mods>)
 	command! -bar -nargs=+ GitShow call s:Show(<q-mods>, <q-args>)
 endif
 
