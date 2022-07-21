@@ -22,7 +22,7 @@ function! TabLabel(n)
 	return pathshorten(bufname)
 endfunction
 
-function! TabPre(n)
+function! TabInfo(n)
 	let bufs = tabpagebuflist(a:n)
 
 	let modified = 0
@@ -87,7 +87,7 @@ function! TabLine()
 		let line .= ""
 		\ . hl_pre
 		\ . " "
-		\ . "%{TabPre(" . i . ")}"
+		\ . "%{TabInfo(" . i . ")}"
 		\ . hl_lbl
 		\ . "%{TabLabel(" . i . ")}"
 		\ . " "
@@ -116,7 +116,7 @@ function! GuiTabLabel()
 	let i = v:lnum
 
 	return ""
-		\ . "%{TabPre(" . i . ")}"
+		\ . "%{TabInfo(" . i . ")}"
 		\ . "%{TabLabel(" . i . ")}"
 endfunction
 
