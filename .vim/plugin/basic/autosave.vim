@@ -94,14 +94,12 @@ function! Autosave() abort
 	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
 	let full = now . msg
 
-	let save_shm = &shortmess
-	try
-		"let &shortmess += 'tT'
-		set shortmess+=tT
+	" -3, since vim seems to show the enter prompt even if we don't hit the end
+	if len(full) < (&columns * &cmdheight) - 3
 		echo full
-	finally
-		let &shortmess = save_shm
-	endtry
+	else
+		echo now "[autosave...]"
+	endif
 endfunction
 
 augroup autosave
