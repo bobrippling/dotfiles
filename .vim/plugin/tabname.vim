@@ -11,6 +11,10 @@ function! TabLabel(n)
 	if empty(bufname)
 		return "[No Name]"
 	endif
+	if bufname[:6] == "term://"
+		let b = bufnr(bufname)
+		return "<#tty" . b . ">"
+	endif
 
 	" could use simplify():
 	let bufname = fnamemodify(bufname, ":~:.")
