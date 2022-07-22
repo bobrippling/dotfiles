@@ -31,6 +31,8 @@ export_if_exists VISUAL tim \
 	|| export_if_exists VISUAL vim \
 	|| export VISUAL=vi
 
+export NVIM_LOG_FILE=/dev/null
+
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin" prepend
 addtopath "$HOME/.cargo/bin"
