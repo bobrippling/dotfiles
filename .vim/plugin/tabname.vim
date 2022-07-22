@@ -39,8 +39,7 @@ function! TabInfo(n)
 		endif
 	endfor
 
-	let pre = "[" . a:n . "] " . len(bufs) . "w" . (tty ? "T" : "") . (modified ? "+" : "")
-	return pre . " "
+	return len(bufs) . "w" . (tty ? "T" : "") . (modified ? "+" : "")
 endfunction
 
 function! TabLine()
@@ -67,8 +66,8 @@ function! TabLine()
 		let hl.label_pre = "%#" . hl.label_pre . "#"
 		let hl.label_sel_pre = "%#" . hl.label_sel_pre . "#"
 	else
-		let hl.label_pre = hl.label
-		let hl.label_sel_pre = hl.label_sel
+		let hl.label_pre = "%#Keyword#"
+		let hl.label_sel_pre = "%#Keyword#"
 	endif
 
 	for i in range(1, tabpagenr("$"))
@@ -82,18 +81,16 @@ function! TabLine()
 		endif
 
 		" tab page number for mouse clicks
-		let line .= "%" . i . "T"
-
-		let line .= ""
+		let line =
+		\ "%" . i . "T"
+		\ . "%#String#[" . i . "]"
 		\ . hl_pre
-		\ . " "
-		\ . "%{TabInfo(" . i . ")}"
+		\ . "%{TabInfo(" . i . ")} "
 		\ . hl_lbl
 		\ . "%{TabLabel(" . i . ")}"
-		\ . " "
 	endfor
 
-	let line .= "%#TabLineFill#%T"
+	let tail = "%#TabLineFill#%T"
 
 	" ObsessionStatus() guarded safely by g:this_obsession
 	if exists("*ObsessionStatus")
@@ -103,13 +100,13 @@ function! TabLine()
 			let baseonly = fnamemodify(relative, ":t")
 			let trunc = baseonly ==# relative ? "" : ".../"
 
-			let line .= " [" . trunc . baseonly . "]"
+			let tail .= " [" . trunc . baseonly . "]"
 		else
-			let line .= " [<no session>]"
+			let tail .= " [<no session>]"
 		endif
 	endif
 
-	return line
+	return line . tail
 endfunction
 
 function! GuiTabLabel()
@@ -123,10 +120,4 @@ endfunction
 set tabline=%!TabLine()
 if has("gui")
 	set guitablabel=%!GuiTabLabel()
-endif
-
-if !hlexists("TabLineItalic") && get(g:, "tabname_set_hl", 0)
-	" defaults
-	hi TabLineSelItalic cterm=bold           ctermfg=green
-	hi TabLineItalic    cterm=bold,underline ctermfg=white ctermbg=darkgrey
 endif
