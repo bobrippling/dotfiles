@@ -262,7 +262,7 @@ endfunction
 
 function! s:this_file_search(tag, ident) abort
 	" look for tag, ignore ident (for now)
-	call cursor(1, 1)
+	keepjumps normal! gg0
 	" c: cursor pos accept, n: no move cursor, W: no wrap
 	let found = search("\\C\\v^\\S[^'\"]*<" . a:tag . ">", "cnW")
 	if found == 0
