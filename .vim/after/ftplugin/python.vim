@@ -71,6 +71,8 @@ function! PyTag(pattern, flags, info) abort
 			let mod = substitute(mod, '^\.\+', repeat('../', ndots - 1), '')
 		endif
 
+		call s:debug("import, line: " . l . ", mod: " . mod . ", alias: " . alias)
+
 		let suff = expand("%:e")
 
 		let i = 1
@@ -118,10 +120,11 @@ function! PyTag(pattern, flags, info) abort
 		"	\ }]
 		"endif
 
-		call s:debug("import path not found")
+		call s:debug("couldn't find module \"" . mod . "\" above \"" . expand("%:h") . "\"")
+	else
+		call s:debug("import line for \"" . tag . "." . ident . "\"not found")
 	endif
 
-	call s:debug("import line not found")
 	return s:this_file_search(tag, ident)
 endfunction
 
