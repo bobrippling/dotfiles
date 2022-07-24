@@ -53,6 +53,12 @@ function! PyTag(pattern, flags, info) abort
 			let mod = substitute(l, '^\vimport\s+(\S+)', '\1', '')
 		endif
 
+		let parts = split(mod, '\s\+as\s\+')
+		if len(parts) == 2
+			let mod = parts[0]
+			"let alias = parts[1]
+		endif
+
 		" a.b -> a/b
 		let mod = substitute(mod, '[^.]\zs\.\ze[^.]', '/', 'g')
 		" .a -> ./a
