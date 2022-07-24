@@ -129,7 +129,7 @@ function! PyTag(pattern, flags, info) abort
 endfunction
 
 function! PyTagInCurFile(ident)
-	call cursor(1, 1)
+	keepjumps normal! gg0
 
 	" c: accept match at cursor
 	" W: no wrap around
@@ -139,8 +139,8 @@ function! PyTagInCurFile(ident)
 endfunction
 
 function! s:import_search(name)
-	call cursor(1, 1)
-	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "c")
+	" c: cursor pos accept, n: no move cursor, w: wrap, b: backwards
+	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "cnwb")
 	if found > 0
 		return found
 	endif
@@ -205,6 +205,7 @@ function! s:extended_tag_from_cursor() abort
 	if dot >= 0
 		let ident = expand("<cword>")
 
+		" keep jumps?
 		call cursor(cursor_list[1], dot) "dot: 0-based to 1-based
 		let tag = expand("<cword>")
 
@@ -237,7 +238,7 @@ endfunction
 
 function! s:this_file_search(tag, ident) abort
 	" look for tag, ignore ident (for now)
-	call cursor(1, 1)
+	keepjumps normal! gg0
 	" c: cursor pos accept, n: no move cursor, W: no wrap
 	let [line, col] = searchpos("\\C\\v^\\S[^'\"]*<\\zs" . a:tag . ">", "cnW")
 	if line == 0 && col == 0
