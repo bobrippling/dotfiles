@@ -1,6 +1,7 @@
 function! Path2scm(switches) abort
 	let mode = "open"
 	let ci = ""
+	let resolve_ci = 0
 
 	let i = 0
 	while i < len(a:switches)
@@ -22,6 +23,15 @@ function! Path2scm(switches) abort
 				return
 			endif
 			let ci = a:switches[i]
+			let resolve_ci = 0
+		elseif sw ==# "-c" || sw ==# "--commit"
+			let i += 1
+			if i == len(a:switches)
+				echoerr "Need branch/commit for -c/--commit"
+				return
+			endif
+			let ci = a:switches[i]
+			let resolve_ci = 1
 		else
 			echoerr "Invalid switch " sw
 			return
@@ -29,6 +39,16 @@ function! Path2scm(switches) abort
 		let i += 1
 	endwhile
 
+	if resolve_ci
+		try
+			let ci = fugitive#RevParse(ci)
+		catch /failed to parse revision/
+			let ci = fugitive#RevParse(FugitiveRemote().remote_name . "/" . ci)
+		endtry
+	endif
+
+	" currently all remotes don't distinguish between having a commit or branch in the url,
+	" so no need to pass through `resolve_ci`
 	let url = s:url(ci, line("'<"), line("'>"))
 
 	if mode ==# "open"
