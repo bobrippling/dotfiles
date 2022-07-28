@@ -68,8 +68,8 @@ function! TabLine()
 		let hl.label_pre = "%#" . hl.label_pre . "#"
 		let hl.label_sel_pre = "%#" . hl.label_sel_pre . "#"
 	else
-		let hl.label_pre = "%#Keyword#"
-		let hl.label_sel_pre = "%#Keyword#"
+		let hl.label_pre = "%#TabLineInfo#"
+		let hl.label_sel_pre = "%#TabLineInfo#"
 	endif
 
 	let tabs = []
@@ -86,7 +86,7 @@ function! TabLine()
 		" tab page number for mouse clicks
 		let line =
 		\ "%" . i . "T"
-		\ . "%#String#[" . i . "]"
+		\ . "%#TabLineIndex#[" . i . "]"
 		\ . hl_pre
 		\ . "%{TabInfo(" . i . ")} "
 		\ . hl_lbl
@@ -134,3 +134,6 @@ set tabline=%!TabLine()
 if has("gui")
 	set guitablabel=%!GuiTabLabel()
 endif
+
+highlight default link TabLineInfo StatusLineFlags
+highlight TabLineIndex ctermfg=blue ctermbg=7

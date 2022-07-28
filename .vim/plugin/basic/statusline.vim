@@ -1,11 +1,19 @@
 function! StatusLine()
-	let s = " "
+	let stl_file = "%{% '%#StatusLineFile' . (g:actual_curwin == win_getid() ? '' : 'NC') . '#' %}"
+
+	let s = ""
+
+	let s .= stl_file
+	let s .= " "
 	let s .= "%f" " filename
+
 	let s .= "%m" " 'modified'
 	let s .= "%r" " 'readonly'
 	let s .= "%h" " help buffer flag
 	let s .= "%w" " preview window flag
+
 	let s .= " "
+	let s .= "%#StatusLineFlags#"
 	let s .= "%y" " 'filetype'
 	let s .= "%{StatusLineBuftype()}" " 'fileformat'
 	let s .= "[%{&ff}]" " 'fileformat'
@@ -17,11 +25,16 @@ function! StatusLine()
 	let s .= "%{&spell ? 'S' : ''}"
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
+	let s .= "%#StatusLinePadding#"
 	let s .= "%=" " left + right flex space
 
+	let s .= "%#StatusLinePadding#"
+
+	let s .= stl_file
 	" must be called via %{...} to be in the context of the statusline's window
 	let s .= "%{StatusLineAltFile()}"
 
+	let s .= "%#StatusLineRuler#"
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
@@ -111,6 +124,12 @@ function! StatusLineAltFile()
 endfunction
 
 set statusline=%!StatusLine()
+
+highlight default link StatusLineFile StatusLine
+highlight default link StatusLineFileNC StatusLineNC
+highlight StatusLineFlags   cterm=underline ctermbg=7 ctermfg=green
+highlight StatusLinePadding cterm=underline ctermbg=7 ctermfg=12
+highlight StatusLineRuler   cterm=underline ctermbg=7 ctermfg=blue
 
 augroup RedrawStatusLine
 	autocmd!
