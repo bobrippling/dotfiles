@@ -81,6 +81,10 @@ set fillchars=fold:\ |
 " L: left hand scrollbar when split
 set go-=m go+=M go-=T go-=r go-=L
 
+" mouse
+" undo nvim's default:
+set mouse=
+
 " buffers
 set nohidden " defaults to true for neovim
 
