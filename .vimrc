@@ -87,6 +87,7 @@ set mouse=
 
 " buffers
 set nohidden " defaults to true for neovim
+set switchbuf=useopen
 
 " editing
 set nojoinspaces
