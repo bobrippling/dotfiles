@@ -24,13 +24,15 @@ function! GetPythonIndent_2(lno)
 endfunction
 
 function! PyTag(pattern, flags, info) abort
-	" TODO: handle "r" in flags, i.e. `pattern` is a regex (`:tag /abc`)
 	let based_on_normalmode_cursor = stridx(a:flags, "c") >= 0
-	let for_completion =	stridx(a:flags, "i") >= 0
+	let for_completion = stridx(a:flags, "i") >= 0
+	let is_re = stridx(a:flags, "r") >= 0
 
 	if for_completion
-		return []
+		return s:pytags(a:pattern, is_re)
 	endif
+
+	" TODO: handle "r" in flags, i.e. `pattern` is a regex (`:tag /abc`)
 
 	if based_on_normalmode_cursor
 		let [tag, ident] = s:extended_tag_from_cursor()
@@ -126,6 +128,32 @@ function! PyTag(pattern, flags, info) abort
 	endif
 
 	return s:this_file_search(tag, ident)
+endfunction
+
+function! s:pytags(pattern, is_re)
+	let tags = []
+	let curbuf = expand("%")
+
+	for i in range(1, line("$"))
+		let line = getline(i)
+		let matches = matchlist(line, '^\v\s*%(class|def)\s+([a-zA-Z_][a-zA-Z0-9_]*)')
+
+		if len(matches) && len(matches[1])
+			if a:is_re
+				if matches[1] !~# a:pattern
+					continue
+				endif
+			else
+				if !empty(a:pattern) && matches[1][:len(a:pattern)-1] !=# a:pattern
+					continue
+				endif
+			endif
+
+			call extend(tags, s:tag_in_this_file_on_line_col(matches[1], i, 1))
+		endif
+	endfor
+
+	return tags
 endfunction
 
 function! PyTagInCurFile(ident)
