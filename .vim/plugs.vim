@@ -2,7 +2,7 @@ call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
 Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'G', 'Gsplit', 'Gvsplit' ] }
-Plug 'junegunn/gv.vim'
+Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " Boost native functionality
