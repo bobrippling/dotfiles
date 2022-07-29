@@ -73,7 +73,7 @@ function! PyTag(pattern, flags, info) abort
 			let mod = substitute(mod, '^\.\+', repeat('../', ndots - 1), '')
 		endif
 
-		call s:debug("import, line: " . l . ", mod: " . mod . ", alias: " . alias)
+		call s:debug("import, line: " . l . ", mod: " . mod) " . ', alias: ' . alias)
 
 		let suff = expand("%:e")
 
