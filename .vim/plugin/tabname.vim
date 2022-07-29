@@ -135,5 +135,14 @@ if has("gui")
 	set guitablabel=%!GuiTabLabel()
 endif
 
-highlight default link TabLineInfo StatusLineFlags
-highlight TabLineIndex ctermfg=blue ctermbg=7
+function! s:highlight()
+	highlight default link TabLineInfo StatusLineFlags
+	highlight TabLineIndex ctermfg=blue ctermbg=7
+endfunction
+call s:highlight()
+
+augroup TabLine
+	autocmd!
+
+	autocmd ColorScheme * call s:highlight()
+augroup END

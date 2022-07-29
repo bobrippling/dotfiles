@@ -125,15 +125,20 @@ endfunction
 
 set statusline=%!StatusLine()
 
-highlight default link StatusLineFile StatusLine
-highlight default link StatusLineFileNC StatusLineNC
-highlight StatusLineFlags   cterm=underline ctermbg=7 ctermfg=green
-highlight StatusLinePadding cterm=underline ctermbg=7 ctermfg=12
-highlight StatusLineRuler   cterm=underline ctermbg=7 ctermfg=blue
+function! s:highlight()
+	highlight default link StatusLineFile StatusLine
+	highlight default link StatusLineFileNC StatusLineNC
+	highlight StatusLineFlags   cterm=underline ctermbg=7 ctermfg=green
+	highlight StatusLinePadding cterm=underline ctermbg=7 ctermfg=12
+	highlight StatusLineRuler   cterm=underline ctermbg=7 ctermfg=blue
+endfunction
+call s:highlight()
 
-augroup RedrawStatusLine
+augroup StatusLine
 	autocmd!
 
 	" we may need to redraw on new window creation, since the window numbers may change
 	autocmd WinNew * let &ro = &ro
+
+	autocmd ColorScheme * call s:highlight()
 augroup END
