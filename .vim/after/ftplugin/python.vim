@@ -1,3 +1,5 @@
+" 'define' and 'include[expr]' are set already by runtime/python.vim
+
 set suffixesadd+=.py
 let b:undo_ftplugin .= '|setlocal suffixesadd-=.py'
 

@@ -1,3 +1,5 @@
+" 'define' is set already by runtime/javascript.vim
+
 let s:unknown = 'require and/or from'
 let s:is_require = 'require'
 let s:is_import = 'from'
