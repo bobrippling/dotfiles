@@ -109,6 +109,7 @@ set formatoptions+=clnoqrt
 if v:version >= 704
 	set formatoptions+=j
 endif
+" set delcombine - delete combining character separately from base character
 
 " terminal
 set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
