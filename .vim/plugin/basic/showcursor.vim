@@ -24,8 +24,8 @@ function! s:Toggle(timerid)
 	if s:count > 0
 		call timer_start(250, function('s:Toggle'))
 	else
-		let &cursorline = s:orig_line
-		let &cursorcolumn = s:orig_col
+		let &l:cursorline = s:orig_line
+		let &l:cursorcolumn = s:orig_col
 	endif
 endfunction
 

@@ -80,10 +80,10 @@ function! VBCexec(cmd) range
     endif
 
     " Remember whether we were previously modified
-    let orig_modified = &modified
+    let orig_modified = &l:modified
 
     " Temporarily allow modifications for setline() changes
-    let orig_modifiable = &modifiable
+    let orig_modifiable = &l:modifiable
     setlocal modifiable
 
     " Remove the before and aft in visual block mode...
@@ -93,12 +93,12 @@ function! VBCexec(cmd) range
     setlocal nomodified
 
     " But keep 'modifiable' for the context of the following command
-    let &modifiable = orig_modifiable
+    let &l:modifiable = orig_modifiable
 
     " Execute the commands...
     exec '''<,''>' . a:cmd
 
-    let modified_after_subcmd = &modified
+    let modified_after_subcmd = &l:modified
 
     " Allow us to change lines again
     setlocal modifiable
@@ -121,7 +121,7 @@ function! VBCexec(cmd) range
     endfor
 
     " Restore 'modifiable'
-    let &modifiable = orig_modifiable
+    let &l:modifiable = orig_modifiable
 
     " Restore 'modified'
     if orig_modified

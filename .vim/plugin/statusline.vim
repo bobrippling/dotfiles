@@ -138,7 +138,7 @@ augroup StatusLine
 	autocmd!
 
 	" we may need to redraw on new window creation, since the window numbers may change
-	autocmd WinNew * let &ro = &ro
+	autocmd WinNew * let &l:ro = &l:ro
 
 	autocmd ColorScheme * call s:highlight()
 augroup END

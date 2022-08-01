@@ -3,7 +3,7 @@ inoremap <C-X>l <C-\><C-O>:call <sid>linemap()<CR><C-X><C-L>
 
 function! s:linemap()
 	let s:cpt_save = &complete
-	set complete=.
+	setlocal complete=.
 
 	if has("patch1113")
 		autocmd CompleteDone * ++once call s:linemap_finish()
@@ -16,7 +16,7 @@ function! s:linemap()
 endfunction
 
 function! s:linemap_finish()
-	let &complete = s:cpt_save
+	let &l:complete = s:cpt_save
 	if !has("patch1113")
 		augroup CompleteLinemap
 			autocmd!
