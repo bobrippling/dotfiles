@@ -79,6 +79,8 @@ function! PyTag(pattern, flags, info) abort
 
 		let suff = expand("%:e")
 
+		let is_fugitive = match(expand("%"), "^fugitive://") >= 0
+
 		let i = 1
 		while 1
 			let base = expand("%" . repeat(":h", i))
@@ -88,7 +90,13 @@ function! PyTag(pattern, flags, info) abort
 
 			let no_suff = base . '/' . mod
 			let candidate = no_suff . '.' . suff
-			let readable = filereadable(candidate)
+
+			if is_fugitive
+				let readable = !empty(fugitive#glob(candidate))
+			else
+				let readable = filereadable(candidate)
+			endif
+
 			call s:debug("i=" . i . " trying \"" . candidate . "\": readable=" . readable)
 			if readable
 				return [{
@@ -99,7 +107,13 @@ function! PyTag(pattern, flags, info) abort
 				" '/^\S.*\<' . ident . '\>/',
 				" ^ this gives E435
 			endif
-			if isdirectory(no_suff)
+
+			if is_fugitive
+				let readable_dir = !empty(fugitive#glob(no_suff))
+			else
+				let readable_dir = isdirectory(no_suff)
+			endif
+			if readable_dir
 				call s:debug("i=" . i . " isdirectory(\"" . no_suff . "\")=1, tag=\"" . tag . "\"")
 				return [{
 				\   "name": tag,
