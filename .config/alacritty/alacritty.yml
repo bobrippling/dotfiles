@@ -105,10 +105,10 @@ schemes:
       black:   '#002b36'
       red:     '#cb4b16'
       green:   '#189b25'
-      yellow:  '#657b83'
+      yellow:  '#c59900'
       blue:    '#469bf2'
       magenta: '#6c71c4'
-      cyan:    '#93a1a1'
+      cyan:    '#2aa1c8'
       white:   '#fdf6e3'
 
     #dim: [...] # If the dim colours are not set, they will be calculated automatically based on the `normal` colours.
