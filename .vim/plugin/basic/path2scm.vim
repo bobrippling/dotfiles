@@ -86,7 +86,7 @@ function! s:suffix_gitlab(base, ci, start, end)
 		endif
 	endif
 
-	return a:base . "/-/blob/" . ci . "/" . fname . "#L" . a:start . "-" . a:end
+	return a:base . "/-/blob/" . ci . "/" . fname . (a:start ? "#L" . a:start . "-" . a:end : "")
 endfunction
 
 function! s:suffix_github(base, ci, start, end)
@@ -101,7 +101,7 @@ function! s:suffix_github(base, ci, start, end)
 		endif
 	endif
 
-	return a:base . "/blob/" . ci . "/" . fname . "#L" . a:start . "-L" . a:end . "="
+	return a:base . "/blob/" . ci . "/" . fname . (a:start ? "#L" . a:start . "-L" . a:end . "=" : "")
 endfunction
 
 function! s:suffix_tfs()
