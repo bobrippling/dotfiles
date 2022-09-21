@@ -22,6 +22,11 @@ function! s:can_autosave(ent)
 		return 0
 	endif
 
+	let enabled = getbufvar(a:ent.bufnr, "autosave", 1)
+	if enabled == 0
+		return 0
+	endif
+
 	let lines = getbufline(a:ent.bufnr, 1, "$")
 	for line in lines
 		if line =~# '^[<=>]\{7,}'
