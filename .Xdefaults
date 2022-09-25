@@ -105,6 +105,8 @@ xmessage*Text.borderColor:               gray65
 *foreground:  #cccccc
 
 Xcursor.theme: redglass
+! grob 2022-09-25: changed from <missing> to 24 (the default, except for large resolutions?)
+Xcursor.size: 24
 
 ! Black     color0, color8:
 ! Red       color1, color9:
