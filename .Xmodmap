@@ -44,3 +44,7 @@ keycode 174 = XF86AudioStop
 !            ^ normal
 ! ... therefore, we can use the ` key to give backslash, bar, grave and notsign
 !keycode 49 = grave notsign x x backslash bar
+
+! ------------ Reverse scrolling --------------
+pointer = 1 2 3 5 4 7 6 8 9 10 11 12
+!               ^ ^
