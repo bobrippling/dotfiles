@@ -47,6 +47,12 @@ zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/rob/.zshrc'
 
 # End of lines added by compinstall
+
+# manual (https://thevaluable.dev/zsh-completion-guide-examples/)
+zstyle ':completion:*:messages' format '%F{blue}(%d)%f'
+zstyle ':completion:*:warnings' format '%F{red}! no matches%f'
+zstyle ':completion:*:descriptions' format '%F{green}# %d%f'
+
 # -------------------------------------------------------------------------------------
 # Cursor shaping
 
