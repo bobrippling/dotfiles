@@ -115,6 +115,24 @@ bindkey -M vicmd ds delete-surround
 bindkey -M vicmd ys add-surround
 bindkey -M visual S add-surround
 
+# -------------------------------------------------------------------------------------
+# Completion with status
+
+zle -C complete_with_status complete-word complete-with-status
+
+bindkey '\t' complete_with_status
+
+cmd=$(zle -l | grep '^expand-or-complete ' | cut -d' ' -f4)
+
+# -R: status removed when widget returns, -M: status kept
+eval "
+complete-with-status(){
+	zle -R '...'
+	$cmd
+}
+"
+
+unset cmd
 
 # -------------------------------------------------------------------------------------
 # Completion (manual)
