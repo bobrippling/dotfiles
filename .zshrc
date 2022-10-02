@@ -1,11 +1,13 @@
-autoload -Uz compinit
-compinit # for compdef in aliases
+# for compdef in aliases
+autoload -Uz compinit && compinit
 
 # Run `zsh-newuser-install [-f]` to reset settings
 
 # -------------------------------------------------------------------------------------
 # The following lines were added by compinstall
 
+# man zshmodules, /zstyle/
+# man zshcompsys, /standard (styles|tags)/
 zstyle ':completion:*' auto-description '%d'
 zstyle ':completion::complete:*' cache-path ~/.zshcache
 zstyle ':completion:*' completer _oldlist _complete _ignored _match _prefix
@@ -19,11 +21,13 @@ zstyle ':completion:*:scp:*' group-order files all-files hosts-domain hosts-host
 #zstyle ':completion:*' hosts off
 zstyle ':completion:*' ignore-parents parent pwd .. directory
 zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ''
+# man zshmodules, /Colored completion listings/
+#zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' list-suffixes true
-zstyle ':completion:*' matcher-list '' '' 'r:|[._-]=** r:|=**'
+# normal filter, then try partial word expansion - man zshcompwid, /COMPLETION MATCHING CONTROL/
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**'
 zstyle ':completion:*' match-original both
 zstyle ':completion:*' max-errors 0 not-numeric
 zstyle ':completion:*' menu select=1
@@ -42,6 +46,10 @@ zstyle ':completion::complete:*' use-cache on
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/rob/.zshrc'
 
+# End of lines added by compinstall
+# -------------------------------------------------------------------------------------
+# Cursor shaping
+
 zshrc_cursor_block(){
 	printf '\x1b[2 q'
 }
@@ -56,30 +64,34 @@ zshrc_disable_cursorshaping(){
 	#zshrc_cursor_bar(){
 	#}
 }
+
+# on keymap select, change shape
 zle-keymap-select(){
 	if [[ $KEYMAP = vicmd ]]
 	then zshrc_cursor_block
-	elif [[ $KEYMAP = main ]]
+	elif [[ $KEYMAP = main ]] || [[ $KEYMAP = viins ]] || [[ $KEYMAP = '' ]]
 	then zshrc_cursor_bar
 	fi
 }
-zle -N zle-keymap-select
+
+# on init, start as bar
 zle-line-init(){
 	zshrc_cursor_bar
 }
-zle -N zle-keymap-init
+
+# register widgets:
+zle -N zle-keymap-select
+zle -N zle-line-init
+
 preexec(){
 	zshrc_cursor_block
 }
 
-# End of lines added by compinstall
 
 # -------------------------------------------------------------------------------------
 # Completion (manual)
 
-if type mkcd >/dev/null
-then compdef mkcd=mkdir
-fi
+compdef mkcd=mkdir
 
 # -------------------------------------------------------------------------------------
 # Enable colours
@@ -87,7 +99,7 @@ fi
 autoload colors && colors
 
 # -------------------------------------------------------------------------------------
-# Options
+# Options (man zshoptions)
 
 # _:s are optional
 setopt append_history
@@ -143,7 +155,7 @@ bindkey -M vicmd 'v' edit-command-line
 # -------------------------------------------------------------------------------------
 # Prompt
 
-# see zshmisc(1)
+# man zshmisc(1)
 # ? - last exit
 # <n>j - at least N jobs
 # ! - privileges
