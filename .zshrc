@@ -26,8 +26,8 @@ zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' list-suffixes true
-# normal filter, then try partial word expansion - man zshcompwid, /COMPLETION MATCHING CONTROL/
-zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**'
+# normal filter, then try partial word expansion, then case change - man zshcompwid, /COMPLETION MATCHING CONTROL/
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=* r:|=*' 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' match-original both
 zstyle ':completion:*' max-errors 0 not-numeric
 zstyle ':completion:*' menu select=1
