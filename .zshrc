@@ -115,6 +115,7 @@ setopt hist_no_functions
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt inc_append_history
+setopt list_rows_first # completion menu is row-then-col
 
 unsetopt extended_glob # don't want ^ expanding
 unsetopt share_history
