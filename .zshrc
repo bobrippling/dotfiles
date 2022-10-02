@@ -1,6 +1,9 @@
 # for compdef in aliases
 autoload -Uz compinit && compinit
 
+# usually not loaded until first completion - brings in menuselect (man zshmodules)
+zmodload zsh/complist
+
 # Run `zsh-newuser-install [-f]` to reset settings
 
 # -------------------------------------------------------------------------------------
@@ -204,6 +207,16 @@ bindkey '^R' history-incremental-pattern-search-backward
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
+
+# \e[Z == <S-Tab>
+bindkey -M menuselect '\e[Z' up-line-or-history
+
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect '\e' accept-line
+bindkey -M menuselect 'm' accept-and-hold
 
 # -------------------------------------------------------------------------------------
 # Prompt
