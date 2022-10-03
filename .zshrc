@@ -219,6 +219,9 @@ bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '\e' accept-line
 bindkey -M menuselect 'm' accept-and-hold
 
+# for more widgets, see https://github.com/zsh-users/zsh/tree/master/Functions/Zle or <Esc>:where-is/:describe-key-briefly
+# for interactive state, <Esc>:_complete_help
+
 # -------------------------------------------------------------------------------------
 # Prompt
 
