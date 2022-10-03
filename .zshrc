@@ -206,7 +206,8 @@ bindkey '^R' history-incremental-pattern-search-backward
 
 autoload edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+bindkey -M vicmd V edit-command-line
+bindkey -M vicmd v visual-mode
 
 # \e[Z == <S-Tab>
 bindkey -M menuselect '\e[Z' up-line-or-history
