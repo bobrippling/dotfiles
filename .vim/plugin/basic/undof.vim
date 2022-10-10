@@ -11,4 +11,4 @@ function! s:rm_undo()
 	endif
 endfunction
 
-command! RmUndo call s:rm_undo()
+command! -bar RmUndo call s:rm_undo()

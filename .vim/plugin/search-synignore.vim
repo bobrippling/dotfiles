@@ -94,4 +94,4 @@ function! s:maps(onoff)
 	endif
 endfunction
 
-command! -nargs=? SearchIgnoreComments call s:maps("<args>")
+command! -bar -nargs=? SearchIgnoreComments call s:maps("<args>")

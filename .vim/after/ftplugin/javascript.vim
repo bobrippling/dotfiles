@@ -469,8 +469,8 @@ function! s:test(enable) abort
 	call cursor(save_cursor)
 endfunction
 
-command! SpecDisable call s:test(0)
-command! SpecEnable  call s:test(1)
+command! -bar SpecDisable call s:test(0)
+command! -bar SpecEnable  call s:test(1)
 
 if exists("+tagfunc")
 	setlocal tagfunc=JsTag

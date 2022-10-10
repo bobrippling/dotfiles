@@ -1,4 +1,4 @@
-command! -nargs=* RustMonitor call s:RustMonitor(<q-args>)
+command! -bar -nargs=* RustMonitor call s:RustMonitor(<q-args>)
 
 let s:buf_test = 0
 let s:buf_run = 0

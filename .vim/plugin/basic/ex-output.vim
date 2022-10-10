@@ -11,4 +11,4 @@ function! s:get(use_curbuf, cmd) abort
 	'[d_
 endf
 
-command! -nargs=+ -bang -complete=command R call s:get(<bang>0, <q-args>)
+command! -bar -nargs=+ -bang -complete=command R call s:get(<bang>0, <q-args>)

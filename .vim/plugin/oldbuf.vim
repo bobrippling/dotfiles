@@ -150,6 +150,6 @@ function! TrimUnlinkedBuffers(bang)
 	endfor
 endfunction
 
-command! Ls call Lst()
-command! -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, <bang>0)
-command! -bang TrimUnlinkedBuffers call TrimUnlinkedBuffers(<bang>0)
+command! -bar Ls call Lst()
+command! -bar -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, <bang>0)
+command! -bar -bang TrimUnlinkedBuffers call TrimUnlinkedBuffers(<bang>0)

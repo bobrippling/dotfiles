@@ -29,7 +29,7 @@ function! s:TtySpare(cmd, mods) abort
 endfunction
 
 " avoid Tty/./ overlap
-command! Ttydisplay call s:TtyDisplay()
-command! Ttyedit call s:TtySpare("b", <q-mods>)
-command! Ttyvsplit call s:TtySpare("vert sb", <q-mods>)
-command! Ttysplit call s:TtySpare("sb", <q-mods>)
+command! -bar Ttydisplay call s:TtyDisplay()
+command! -bar Ttyedit call s:TtySpare("b", <q-mods>)
+command! -bar Ttyvsplit call s:TtySpare("vert sb", <q-mods>)
+command! -bar Ttysplit call s:TtySpare("sb", <q-mods>)

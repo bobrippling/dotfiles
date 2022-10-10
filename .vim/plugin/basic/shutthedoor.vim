@@ -1,4 +1,4 @@
-command! ShutTheDoorOnYourWayOut call s:ShutTheDoorOnYourWayOut()
+command! -bar ShutTheDoorOnYourWayOut call s:ShutTheDoorOnYourWayOut()
 
 function! s:ShutTheDoorOnYourWayOut() abort
 	" BufWinLeave is still fired for :hide

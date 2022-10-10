@@ -105,10 +105,10 @@ function! s:tfind(editcmd, mods, buffers, ...) abort
 	endif
 endfunction
 
-command! -nargs=* -complete=dir Tedit call s:tfind("e", "<mods>", 0, <f-args>)
-command! -nargs=* -complete=dir Tsplit call s:tfind("sp", "<mods>", 0, <f-args>)
-command! -nargs=* -complete=dir Tvsplit call s:tfind("vs", "<mods>", 0, <f-args>)
+command! -bar -nargs=* -complete=dir Tedit call s:tfind("e", "<mods>", 0, <f-args>)
+command! -bar -nargs=* -complete=dir Tsplit call s:tfind("sp", "<mods>", 0, <f-args>)
+command! -bar -nargs=* -complete=dir Tvsplit call s:tfind("vs", "<mods>", 0, <f-args>)
 
-command! -nargs=* -complete=dir Tbuffer call s:tfind("e", "<mods>", 1, <f-args>)
-command! -nargs=* -complete=dir Tsbuffer call s:tfind("sp", "<mods>", 1, <f-args>)
-command! -nargs=* -complete=dir Tbvsbuffer call s:tfind("vs", "<mods>", 1, <f-args>)
+command! -bar -nargs=* -complete=dir Tbuffer call s:tfind("e", "<mods>", 1, <f-args>)
+command! -bar -nargs=* -complete=dir Tsbuffer call s:tfind("sp", "<mods>", 1, <f-args>)
+command! -bar -nargs=* -complete=dir Tbvsbuffer call s:tfind("vs", "<mods>", 1, <f-args>)

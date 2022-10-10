@@ -56,10 +56,10 @@ function! s:AFileToggle(command, mods)
 	execute a:mods . " " . a:command . " " . alt
 endfunction
 
-command! A  call s:AFileToggle("edit", <q-mods>)
-command! AS call s:AFileToggle("split", <q-mods>)
-command! AV call s:AFileToggle("vsplit", <q-mods>)
-command! AT call s:AFileToggle("tabe", <q-mods>)
+command! -bar A  call s:AFileToggle("edit", <q-mods>)
+command! -bar AS call s:AFileToggle("split", <q-mods>)
+command! -bar AV call s:AFileToggle("vsplit", <q-mods>)
+command! -bar AT call s:AFileToggle("tabe", <q-mods>)
 
 let s:test = 0
 if s:test

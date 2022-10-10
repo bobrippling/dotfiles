@@ -32,8 +32,8 @@ if exists('g:Blockwise_autoselect')
     endif
 endif
 
-command! -range -nargs=+ -com=command   Blockwise    silent call VBCexec(<q-args>)
-command! -range -nargs=* -bang          SortByBlock  silent call VBCsort('<bang>', <q-args>)
+command! -bar -range -nargs=+ -com=command   Blockwise    silent call VBCexec(<q-args>)
+command! -bar -range -nargs=* -bang          SortByBlock  silent call VBCsort('<bang>', <q-args>)
 
 
 "=====[ Implementation ]===================

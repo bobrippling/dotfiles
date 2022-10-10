@@ -25,7 +25,7 @@ augroup TrimSpaces
 	autocmd BufNewFile *.org let b:trim_spaces = 0
 augroup END
 
-command! -complete=command -nargs=+ NoTrim
+command! -bar -complete=command -nargs=+ NoTrim
 			\ let s:save = g:trim_spaces |
 			\ let g:trim_spaces = 0 |
 			\ <args> |
