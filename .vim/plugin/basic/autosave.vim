@@ -84,16 +84,16 @@ function! Autosave() abort
 
 	call map(saved, { _, ent -> fnamemodify(ent.name, ":~:.") })
 
-	let skipped = len(modified) - len(saved)
+	let nskipped = len(modified) - len(saved)
 	if len(saved)
 		" truncate if too short
 		let msg = "autosaved: " . join(saved, ", ")
 
-		if skipped > 0
-			let msg .= " (" . skipped . " skipped)"
+		if nskipped > 0
+			let msg .= " (" . nskipped . " skipped)"
 		endif
 	else
-		let msg = "autosave, skipped " . skipped
+		let msg = "autosave, skipped " . nskipped
 	endif
 
 	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
@@ -103,7 +103,7 @@ function! Autosave() abort
 	if len(full) < (&columns * &cmdheight) - 3
 		echo full
 	else
-		echo now "[autosave...]"
+		echo now . "[" . len(saved) . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
 	endif
 endfunction
 
