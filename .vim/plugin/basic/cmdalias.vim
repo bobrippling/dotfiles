@@ -15,6 +15,7 @@ endfunction
 
 call CmdAlias('vsb', 'vert sb')
 call CmdAlias('tabcp', 'tabc|tabp')
+call CmdAlias('tabxp', 'x|tabp')
 call CmdAlias('tabb', 'tabnew|b')
 
 if has("nvim")
