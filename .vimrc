@@ -164,6 +164,8 @@ vnoremap g/ <Esc>'</\%V
 inoremap <C-G>j <Esc>jA
 inoremap <C-G>k <Esc>kA
 
+tnoremap `<C-N> <C-\><C-N>
+
 syntax on
 filetype on
 filetype indent plugin on
