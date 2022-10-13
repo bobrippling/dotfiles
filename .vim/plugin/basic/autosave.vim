@@ -110,20 +110,8 @@ endfunction
 augroup autosave
 	autocmd!
 
-	if has("patch-8.1.113")
-		autocmd CursorHold * ++nested call Autosave()
-		"autocmd CursorHoldI * update|startinsert
+	autocmd CursorHold * call Autosave()
+	"autocmd CursorHoldI * update|startinsert
 
-		autocmd FocusLost * ++nested call Autosave()
-	elseif has('7.0001')
-		autocmd CursorHold * nested call Autosave()
-		"autocmd CursorHoldI * update|startinsert
-
-		autocmd FocusLost * nested call Autosave()
-	else
-		autocmd CursorHold * call Autosave()
-		"autocmd CursorHoldI * update|startinsert
-
-		autocmd FocusLost * call Autosave()
-	endif
+	autocmd FocusLost * call Autosave()
 augroup END
