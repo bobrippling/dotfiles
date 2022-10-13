@@ -38,3 +38,5 @@ addtopath "$HOME/bin" prepend
 addtopath "$HOME/.cargo/bin"
 
 ulimit -c unlimited
+
+export RIPGREP_CONFIG_PATH="$HOME/.config/rg/config"

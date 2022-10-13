@@ -1,0 +1,7 @@
+# see https://github.com/BurntSushi/ripgrep/issues/623
+
+# match non-hidden files
+-.
+
+# ...except git
+-g!.git/
