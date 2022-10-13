@@ -1,9 +1,13 @@
 function! StatusLine()
-	let stl_file = "%{% '%#StatusLineFile' . (g:actual_curwin == win_getid() ? '' : 'NC') . '#' %}"
+	if has("nvim") || has("patch2854")
+		let file_highlight = "%{% '%#StatusLineFile' . (g:actual_curwin == win_getid() ? '' : 'NC') . '#' %}"
+	else
+		let file_highlight = "%#StatusLineFile#"
+	endif
 
 	let s = ""
 
-	let s .= stl_file
+	let s .= file_highlight
 	let s .= " "
 	let s .= "%f" " filename
 
@@ -30,7 +34,7 @@ function! StatusLine()
 
 	let s .= "%#StatusLinePadding#"
 
-	let s .= stl_file
+	let s .= file_highlight
 	" must be called via %{...} to be in the context of the statusline's window
 	let s .= "%{StatusLineAltFile()}"
 
