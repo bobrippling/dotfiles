@@ -27,6 +27,7 @@ Plug 'bobrippling/vim-textobj-indent' " ai, aI
 "Plug 'kana/vim-textobj-lastpat' " i/, a?
 
 Plug 'vim-scripts/ReplaceWithRegister' " script 2703
+Plug 'arthurxavierx/vim-caser'
 
 " Windows, tabs etc
 Plug 'kana/vim-submode'
