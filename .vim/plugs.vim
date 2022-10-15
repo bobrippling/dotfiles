@@ -2,12 +2,12 @@ call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
 Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'G', 'Gsplit', 'Gvsplit' ] }
-Plug 'junegunn/gv.vim', { 'on': 'GV' }
+"Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
 " Boost native functionality
-Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
-Plug 'stefandtw/quickfix-reflector.vim'
+"Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
+"Plug 'stefandtw/quickfix-reflector.vim'
 Plug 'bobrippling/vim-bg', { 'remote': 'github-me' }
 Plug 'bobrippling/vim-obsession', { 'remote': 'github-me' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
