@@ -6,4 +6,7 @@ function! s:jump_to_last()
 	endif
 endfunction
 
-autocmd BufReadPost * call s:jump_to_last()
+augroup CursorRestore
+	autocmd!
+	autocmd BufReadPost * call s:jump_to_last()
+augroup END
