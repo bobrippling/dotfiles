@@ -56,7 +56,8 @@ function! s:setup()
 		buf_set_keymap('n', '<space>gq', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
 	end
 
-	-- npm i -g pyright
+	-- rustup component add rust-analyzer
+	-- npm i -g [--prefix ~/src/npm/] pyright tsserver
 	local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
