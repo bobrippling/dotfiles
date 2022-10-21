@@ -1,7 +1,7 @@
 call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
-Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'G', 'Gsplit', 'Gvsplit' ] }
+Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit' ] }
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 
