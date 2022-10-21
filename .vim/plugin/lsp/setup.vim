@@ -19,7 +19,7 @@ function! s:setup()
 		local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 		local opts = { noremap = true, silent = true }
 
-		buf_set_option('signcolumn', 'yes')
+		--buf_set_option('signcolumn', 'yes')
 
 		-- Enable completion triggered by <c-x><c-o>
 		buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
