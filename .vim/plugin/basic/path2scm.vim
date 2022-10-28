@@ -86,7 +86,11 @@ function! s:suffix_gitlab(base, ci, start, end)
 		endif
 	endif
 
-	return a:base . "/-/blob/" . ci . "/" . fname . (a:start ? "#L" . a:start . "-" . a:end : "")
+	let url = a:base . "/-/blob/" . ci . "/" . fname
+	if a:start
+		let url .= "#L" . a:start . (a:end == a:start ? "" : "-" . a:end)
+	endif
+	return url
 endfunction
 
 function! s:suffix_github(base, ci, start, end)
