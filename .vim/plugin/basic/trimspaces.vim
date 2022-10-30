@@ -1,6 +1,6 @@
 let g:trim_spaces = 1
 
-function! s:trim_spaces()
+function! TrimSpaces()
 	if g:trim_spaces == 0 || (exists('b:trim_spaces') && b:trim_spaces == 0)
 		return
 	endif
@@ -21,7 +21,7 @@ endfunction
 
 augroup TrimSpaces
 	autocmd!
-	autocmd BufWritePre * call s:trim_spaces()
+	autocmd BufWritePre * call TrimSpaces()
 	autocmd BufNewFile *.org let b:trim_spaces = 0
 augroup END
 
