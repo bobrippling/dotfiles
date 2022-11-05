@@ -51,6 +51,42 @@ function! s:terminate(buf) abort
 	q!
 endfunction
 
+function RustIncludeExpr(fname)
+	let fname = a:fname
+
+	if fname[:6] ==# 'crate::'
+		let crate_root = substitute(expand('%:h') . '/', 'src/\zs.*', '', '')
+
+		" replace crate:: with the root of the crate
+		let fname = substitute(fname, 'crate::', crate_root, '')
+	endif
+
+	let fname = substitute(fname, '::', '/', 'g')
+
+	" use a::b::{...}
+	let fname = substitute(fname, '[:/]\+$', '', '')
+
+	if !empty(findfile(fname))
+		return fname
+	endif
+
+	let candidate = fnamemodify(fname, ':h')
+	if !empty(findfile(candidate))
+		return candidate
+	endif
+
+	let candidate = candidate . '/mod.rs'
+	if !empty(findfile(candidate))
+		return candidate
+	endif
+
+	return fname
+endfunction
+
+setlocal include=^use\\>\\s\\+
+setlocal isfname+=:
+setlocal includeexpr=RustIncludeExpr(v:fname)
+
 setlocal expandtab tabstop=4
 
 command! -buffer -bar -nargs=* RustMonitor call s:RustMonitor(<q-args>)
