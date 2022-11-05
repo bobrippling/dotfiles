@@ -13,13 +13,21 @@ function! ShTag(pattern, flags, info) abort
 		let tag = a:pattern
 	endif
 
+	return s:tags_prefixed(tag)
+endfunction
+
+function! ShFileTags(pattern) abort
+	return s:tags_prefixed(empty(a:pattern) ? '\S+' : a:pattern)
+endfunction
+
+function s:tags_prefixed(prefix_pattern) abort
 	let thisfile = expand("%")
 	if empty(thisfile)
 		return []
 	endif
 
 	let tags = {}
-	while search('\C\v^<' . tag . '.*\m\(() *\|=\)', "bcW") > 0
+	while search('\C^\<' . a:prefix_pattern . '.*\m\(() *\|=\)', "bcW") > 0
 		let lno = line(".")
 		let line = getline(".")
 
