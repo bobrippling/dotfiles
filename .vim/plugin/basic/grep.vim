@@ -3,41 +3,39 @@ function! s:set(to, scope) abort
 endfunction
 
 function! s:setgrep(scope) abort
+	if &filetype ==# 'javascript'
+		let ignores = [
+		\   '*.d',
+		\   'node_modules/',
+		\   '*.min.*',
+		\   'dist/',
+		\ ]
+	elseif index(["c", "cpp", "objc", "objcpp"], &filetype) >= 0
+		let ignores = ['*.o']
+	else
+		let ignores = []
+	endif
+
 	let path = exepath("rg")
 	if !empty(path)
-		let rgcommon = "rg --vimgrep -g '!_*/**'"
+		let rgcommon = "rg --vimgrep"
 		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
 		if &smartcase || &ignorecase
 			let rgcommon .= " -i"
 		endif
 
-		if &filetype ==# 'javascript'
-			call s:set(
-			\   rgcommon . " -g '!*.d' --ignore node_modules -g '!*.min.*' --ignore 'dist/**'" . where,
-			\   a:scope
-			\ )
-		elseif index(["c", "cpp", "objc", "objcpp"], &filetype) >= 0
-			call s:set(rgcommon . " -g '!*.o'" . where, a:scope)
-		else
-			call s:set(rgcommon . where, a:scope)
-		endif
+		call map(ignores, { i, v -> "-g '!" . v . "'"})
 
+		call s:set(rgcommon . " " . join(ignores) . where, a:scope)
 		return
 	endif
 
 	let path = exepath("ag")
 	if !empty(path)
-		let agcommon = "ag --depth 6 --ignore '_[^_]*/'"
+		call map(ignores, { i, v -> "--ignore '" . v . "'"})
 
-		if &filetype ==# 'javascript'
-			call s:set(agcommon . " --ignore '\*.d' --ignore node_modules --ignore '\*.min.\*' --ignore dist", a:scope)
-		elseif index(["c", "cpp", "objc", "objcpp"], &filetype) >= 0
-			call s:set(agcommon . " --ignore '\*.o'", a:scope)
-		else
-			call s:set(agcommon, a:scope)
-		endif
-
+		call s:set("ag " . join(ignores), a:scope)
 		return
 	endif
 
