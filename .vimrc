@@ -183,3 +183,5 @@ if $TERM ==? "alacritty" || $TMUX_OUTER_TERM ==? "alacritty"
 else
 	colorscheme bogster
 endif
+
+let g:sh_fold_enabled = 1+2+4
