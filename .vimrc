@@ -98,6 +98,7 @@ set cinoptions+=j1,J1,l1,N-s,t0,k1,(1s,u0,k0,m1
 augroup VimrcIndent
 	autocmd!
 	autocmd FileType javascript,typescript setlocal cinoptions-=u0,k0,m1
+	autocmd FileType c,cpp setl cinkeys+=0#
 augroup END
 set cinoptions-=#0
 "               ^~ these will be undone by ftplugin/c.vim
