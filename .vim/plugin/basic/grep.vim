@@ -21,9 +21,10 @@ function! s:setgrep(scope) abort
 		let rgcommon = "rg --vimgrep"
 		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
-		if &smartcase || &ignorecase
-			let rgcommon .= " -i"
-		endif
+		" Always case sensitive, no hidden variables
+		"if &smartcase || &ignorecase
+		"	let rgcommon .= " -i"
+		"endif
 
 		call map(ignores, { i, v -> "-g '!" . v . "'"})
 
