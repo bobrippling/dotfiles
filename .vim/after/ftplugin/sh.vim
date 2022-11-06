@@ -35,6 +35,9 @@ function s:tags_prefixed(prefix_pattern) abort
 
 		let line = substitute(line, '[(=].*', '', '')
 		let tags[line] = lno
+		if line <= 1
+			break
+		endif
 	endwhile
 
 	let ents = []
