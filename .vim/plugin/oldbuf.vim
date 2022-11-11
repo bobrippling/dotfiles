@@ -66,7 +66,7 @@ function! Lst()
 		if when == 0
 			let when = "<unknown time>"
 		else
-			let when = strftime("%Y-%d-%m %H:%M", when)
+			let when = strftime("%Y-%m-%d %H:%M", when)
 		endif
 		echon "[" . i . "]\t"
 		if bufloaded(i)
