@@ -16,8 +16,7 @@ function! s:setgrep(scope) abort
 		let ignores = []
 	endif
 
-	let path = exepath("rg")
-	if !empty(path)
+	if executable("rg")
 		let rgcommon = "rg --vimgrep"
 		let where = ' $* /dev/null' " rg needs a dir, otherwise it searches stdin
 
@@ -32,8 +31,7 @@ function! s:setgrep(scope) abort
 		return
 	endif
 
-	let path = exepath("ag")
-	if !empty(path)
+	if executable("ag")
 		call map(ignores, { i, v -> "--ignore '" . v . "'"})
 
 		call s:set("ag " . join(ignores), a:scope)
