@@ -36,7 +36,7 @@ Plug 'bobrippling/vim-pinpoint' "Plug 'ctrlpvim/ctrlp.vim'
 exe "" | Plug 'bobrippling/vim-cmdline-match'
 
 " Filetype specific
-Plug 'axvr/org.vim', { 'for': 'org' }
+Plug 'bobrippling/org.vim', { 'for': 'org' }
 
 " Code
 Plug 'tpope/vim-commentary'
