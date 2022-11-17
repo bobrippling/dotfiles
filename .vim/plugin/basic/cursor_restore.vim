@@ -1,7 +1,7 @@
 function! s:jump_to_last()
 	if line("'\"") > 1
 	\ && line("'\"") <= line("$")
-	\ && &ft !=# "gitcommit"
+	\ && index(["gitcommit", "org"], &ft) == -1
 		exe "normal! g`\"zv"
 	endif
 endfunction
