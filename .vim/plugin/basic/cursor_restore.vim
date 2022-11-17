@@ -1,9 +1,22 @@
 function! s:jump_to_last()
-	if line("'\"") > 1
-	\ && line("'\"") <= line("$")
-	\ && index(["gitcommit", "org"], &ft) == -1
-		exe "normal! g`\"zv"
+	let m = line("'\"")
+
+	if m <= 1 || m > line("$")
+		return
 	endif
+
+	if &ft ==# "gitcommit"
+		return
+	endif
+
+	let post = "zv"
+
+	if &ft ==# "org"
+		" avoid fold slowdown
+		let post = ""
+	endif
+
+	exe "normal! g`\"" . post
 endfunction
 
 augroup CursorRestore
