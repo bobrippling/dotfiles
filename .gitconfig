@@ -20,7 +20,8 @@
 	dic = diff --cached
 	ff = merge --ff-only
 	lg = log --oneline
-	lgg = log --oneline --graph
+	lgg = log --graph --oneline
+	lggf = log --graph --abbrev-commit --pretty='format:%C(yellow)%h %C(blue)%ci (%cr)%C(reset) %s'
 	rbc = rebase --con
 	rbi = rebase -i
 	t = status -sb
