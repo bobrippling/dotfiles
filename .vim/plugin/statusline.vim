@@ -121,7 +121,7 @@ function! StatusLineAltFile()
 	" maybe don't show it
 	let approx_len_rest = 33
 	if len(cur) + approx_len_rest + len(alt) >= winwidth(0)
-		return ""
+		return "#.."
 	endif
 
 	return " " . alt . " "
