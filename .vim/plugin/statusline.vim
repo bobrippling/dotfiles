@@ -99,23 +99,7 @@ function! StatusLineAltFile()
 		let b = bufnr(alt)
 		let alt = "<#tty" . b . ">"
 	else
-		" replace common prefix with '&'
-		let l = 0
-		for l in range(min([len(alt), len(cur)]))
-			if alt[l] !=# cur[l]
-				break
-			endif
-		endfor
-		let l -= 1
-		while l > 0 && alt[l] !=# "/"
-			let l -= 1
-		endwhile
-
-		if alt[l] ==# "/" && l > 3
-			let alt = "&" . strpart(alt, l)
-		endif
-
-		let alt = substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
+		let alt = s:alt_common(cur, alt)
 	endif
 
 	" maybe don't show it
@@ -125,6 +109,29 @@ function! StatusLineAltFile()
 	endif
 
 	return " " . alt . " "
+endfunction
+
+function! s:alt_common(cur, alt)
+	let cur = a:cur
+	let alt = a:alt
+
+	" replace common prefix with '&'
+	let l = 0
+	for l in range(min([len(alt), len(cur)]))
+		if alt[l] !=# cur[l]
+			break
+		endif
+	endfor
+	let l -= 1
+	while l > 0 && alt[l] !=# "/"
+		let l -= 1
+	endwhile
+
+	if alt[l] ==# "/" && l > 3
+		let alt = "&" . strpart(alt, l)
+	endif
+
+	return substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
 endfunction
 
 set statusline=%!StatusLine()
