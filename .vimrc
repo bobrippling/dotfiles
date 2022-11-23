@@ -72,6 +72,7 @@ set complete-=u " unloaded buffers are too slow, but we'll take a dictionary
 set completeopt+=menuone,longest | set completeopt-=preview
 set cmdwinheight=20
 set fillchars=fold:\ |
+set cursorlineopt=screenline,number
 
 " display (gui)
 " m: menu bar
