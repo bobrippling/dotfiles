@@ -131,7 +131,7 @@ function! s:alt_common(cur, alt)
 		let alt = "&" . strpart(alt, l)
 	endif
 
-	return substitute(alt, "\\v([^/])[^/]+/", "\\1/", "g")
+	return pathshorten(alt)
 endfunction
 
 set statusline=%!StatusLine()
