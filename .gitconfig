@@ -110,3 +110,8 @@
 
 [remotes]
 	cloud = github-me bitbucket
+
+[remote "origin"]
+	fetch = +refs/notes/*:refs/notes/*
+[notes]
+	displayRef = refs/notes/*
