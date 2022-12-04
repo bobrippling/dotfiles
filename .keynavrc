@@ -1,0 +1,10 @@
+clear
+
+mod4+semicolon start
+Escape end
+space warp,click 1,end
+semicolon warp,end
+h cut-left
+j cut-down
+k cut-up
+l cut-right
