@@ -7,8 +7,8 @@ function! StatusLine()
 
 	let s = ""
 
-	let s .= file_highlight
 	let s .= " "
+	let s .= file_highlight
 	let s .= "%f" " filename
 
 	let s .= "%m" " 'modified'
@@ -16,8 +16,8 @@ function! StatusLine()
 	let s .= "%h" " help buffer flag
 	let s .= "%w" " preview window flag
 
-	let s .= " "
 	let s .= "%#StatusLineFlags#"
+	let s .= " "
 	let s .= "%y" " 'filetype'
 	let s .= "%{StatusLineBuftype()}" " 'fileformat'
 	let s .= "[%{&ff}]" " 'fileformat'
@@ -32,13 +32,13 @@ function! StatusLine()
 	let s .= "%#StatusLinePadding#"
 	let s .= "%=" " left + right flex space
 
-	let s .= "%#StatusLinePadding#"
+	let s .= " "
 
 	let s .= file_highlight
 	" must be called via %{...} to be in the context of the statusline's window
 	let s .= "%{StatusLineAltFile()}"
 
-	let s .= "%#StatusLineRuler#"
+	let s .= "%#StatusLineRuler# "
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
@@ -108,7 +108,7 @@ function! StatusLineAltFile()
 		return "#.."
 	endif
 
-	return " " . alt . " "
+	return alt
 endfunction
 
 function! s:alt_common(cur, alt)
