@@ -14,7 +14,7 @@ function! WrapAll()
 	elseif unwrapped == 0
 		let all = 0
 	else
-		let all = 0
+		let all = &l:wrap
 	endif
 
 	for i in range(1, winnr("$"))
