@@ -23,6 +23,8 @@ if exists("&breakindent")
 		set breakindentopt+=shift:1
 	endtry
 endif
+" add bullet pointed lists:
+let &formatlistpat = '^\s*\(\d\+\|-\s\+\)[\]:.)}\t ]\s*'
 
 " os/files
 set clipboard=
