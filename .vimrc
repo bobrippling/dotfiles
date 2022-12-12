@@ -17,7 +17,11 @@ set wrap
 set linebreak showbreak=>
 if exists("&breakindent")
 	set breakindent
-	set breakindentopt+=sbr
+	try
+		set breakindentopt+=shift:1,list:-1
+	catch /E474/
+		set breakindentopt+=shift:1
+	endtry
 endif
 
 " os/files
