@@ -66,6 +66,7 @@ zstyle ':completion:*:corrections' format "%F{red}%d%f (%F{blue}errors %e%f)"
 # Cursor shaping
 
 zshrc_cursor_block(){
+	# use $terminfo[smkx or whatever]
 	printf '\x1b[2 q'
 }
 zshrc_cursor_bar(){
