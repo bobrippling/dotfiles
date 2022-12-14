@@ -153,6 +153,7 @@ unset cmd
 # Completion (manual)
 
 compdef mkcd=mkdir
+compdef rg=grep
 
 # -------------------------------------------------------------------------------------
 # Enable colours
