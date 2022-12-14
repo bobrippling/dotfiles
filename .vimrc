@@ -182,8 +182,14 @@ filetype indent plugin on
 
 " execute pathogen#infect()
 
+let g:man_hardwrap = 1
 let g:tar_nomax = 1
 let g:pinpoint_preview_delay = 150
+
+let g:rust_fold = 1
+let g:rustfmt_autosave = 1
+
+let g:netrw_use_errorwindow = 0
 
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
