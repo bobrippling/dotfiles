@@ -1,5 +1,8 @@
 local M = {}
 
+-- to reload:
+-- :lua package.loaded['grep.health'] = nil
+
 local function maybe_with(exe)
 	if vim.call("executable", exe) then
 		vim.health.report_ok(("Using `%s`"):format(exe))
