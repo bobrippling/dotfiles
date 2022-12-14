@@ -52,10 +52,15 @@ zstyle :compinstall filename '/home/rob/.zshrc'
 
 # End of lines added by compinstall
 
+# man pages
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.*' insert-sections true
+
 # manual (https://thevaluable.dev/zsh-completion-guide-examples/)
 zstyle ':completion:*:messages' format '%F{blue}(%d)%f'
 zstyle ':completion:*:warnings' format '%F{red}! no matches%f'
 zstyle ':completion:*:descriptions' format '%F{green}# %d%f'
+zstyle ':completion:*:corrections' format "%F{red}%d%f (%F{blue}errors %e%f)"
 
 # -------------------------------------------------------------------------------------
 # Cursor shaping
