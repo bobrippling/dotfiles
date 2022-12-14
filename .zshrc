@@ -16,6 +16,7 @@ zstyle ':completion::complete:*' cache-path ~/.zshcache
 zstyle ':completion:*' completer _oldlist _complete _ignored _match _prefix
 zstyle ':completion:*' expand prefix
 zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:scp:*' group-order files all-files hosts-domain hosts-host hosts-ipaddr
 zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host hosts-ipaddr
