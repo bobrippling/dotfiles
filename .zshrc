@@ -242,6 +242,16 @@ bindkey -M menuselect 'm' accept-and-hold
 alias history-timestamp='history -i'
 
 # -------------------------------------------------------------------------------------
+# Watches
+
+MAILCHECK=600
+MAIL=/var/spool/mail/mail
+
+# login/out
+LOGCHECK=600
+watch=(all)
+
+# -------------------------------------------------------------------------------------
 # Prompt
 
 # man zshmisc(1)
