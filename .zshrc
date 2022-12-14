@@ -237,6 +237,11 @@ bindkey -M menuselect 'm' accept-and-hold
 # for interactive state, <Esc>:_complete_help
 
 # -------------------------------------------------------------------------------------
+# Aliases
+
+alias history-timestamp='history -i'
+
+# -------------------------------------------------------------------------------------
 # Prompt
 
 # man zshmisc(1)
