@@ -1,13 +1,8 @@
-let s:buf_test = 0
-let s:buf_run = 0
-
 function! s:RustMonitor(args) abort
 	let focus = win_getid()
 
-	if empty(a:args) && (s:buf_run || s:buf_test)
-		call s:disable()
-	else
-		call s:disable()
+	let was_running = s:disable()
+	if !empty(a:args) || !was_running
 		call s:enable(a:args)
 	endif
 
@@ -16,32 +11,31 @@ endfunction
 
 function! s:enable(args) abort
 	botright vnew
-	let s:buf_test = bufnr("")
 	execute "terminal find src/ -iname '*.rs' | entr -cr cargo test" a:args
+	let b:rustm = "test"
 
 	rightbelow new
-	let s:buf_run = bufnr("")
 	execute "terminal find src/ -iname '*.rs' | entr -cr cargo run" a:args
+	let b:rustm = "run"
 endfunction
 
 function! s:disable() abort
-	if s:buf_test
-		call s:terminate(s:buf_test)
-		let s:buf_test = 0
-	endif
-	if s:buf_run
-		call s:terminate(s:buf_run)
-		let s:buf_run = 0
-	endif
+	let r = 0
+
+	for w in range(winnr("$"), 1, -1)
+		let b = winbufnr(w)
+
+		if !empty(getbufvar(b, "rustm"))
+			call s:terminate(w)
+			let r = 1
+		endif
+	endfor
+
+	return r
 endfunction
 
-function! s:terminate(buf) abort
-	let w = bufwinnr(a:buf)
-	if w == -1
-		return
-	endif
-
-	let w = win_getid(w)
+function! s:terminate(win) abort
+	let w = win_getid(a:win)
 	if !w || !win_gotoid(w)
 		return
 	endif
