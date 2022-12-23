@@ -64,6 +64,7 @@ endfunction
 function! s:url(ci, begin, end)
 	let u = FugitiveRemoteUrl()
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
+	let u = substitute(u, '\.git$', '', '')
 
 	if u =~? 'gitlab.com/'
 		return s:suffix_gitlab(u, a:ci, a:begin, a:end)
