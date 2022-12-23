@@ -17,11 +17,7 @@ set wrap
 set linebreak showbreak=>
 if exists("&breakindent")
 	set breakindent
-	try
-		set breakindentopt+=shift:1,list:-1
-	catch /E474/
-		set breakindentopt+=shift:1
-	endtry
+	set breakindentopt+=shift:1
 endif
 " add bullet pointed lists:
 let &formatlistpat = '^\s*\(\d\+\|-\s\+\)[\]:.)}\t ]\s*'
