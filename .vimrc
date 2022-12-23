@@ -86,6 +86,9 @@ endif
 " L: left hand scrollbar when split
 set go-=m go+=M go-=T go-=r go-=L
 
+" display (colours)
+set termguicolors " see also: gui-colors
+
 " mouse
 " undo nvim's default:
 set mouse=
