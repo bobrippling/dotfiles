@@ -120,18 +120,19 @@ function! s:file_ver() abort
 		throw "No filename"
 	endif
 
-	let version_arg = ""
 	if fname =~? '^fugitive://'
-		let components = split(fname, "/", 1)
-		let git_index = index(components, ".git")
-
-		let ci = components[git_index + 2]
-		let fname = join(components[git_index + 3:], "/")
+		let [ci_obj, gitdir] = FugitiveParse(fname)
+		let [ci, fname] = split(ci_obj, ':')
 	else
 		let ci = ''
+		let tree = FugitiveWorkTree()
+		let fname = FugitiveReal(fname)
+
+		let fname = fname[len(tree) + 1:]
+		"                             ^ '/'
 	endif
 
-	return [ci, FugitivePath(fname, '')]
+	return [ci, fname]
 endfunction
 
 command! -range -nargs=* -bar Path2scm call Path2scm([<f-args>])
