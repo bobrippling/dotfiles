@@ -192,12 +192,8 @@ let g:netrw_use_errorwindow = 0
 
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
-if $TERM ==? "alacritty" || $TMUX_OUTER_TERM ==? "alacritty"
-	set background=light
-	colorscheme solarized
-else
-	colorscheme bogster
-endif
+set background=light
+colorscheme PaperColor
 
 let g:sh_fold_enabled = 1+2+4
 

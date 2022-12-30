@@ -1,6 +1,8 @@
 function! StatusLine()
+	let nc = ". (g:actual_curwin == win_getid() ? '' : 'NC') . "
+
 	if has("nvim") || has("patch2854")
-		let file_highlight = "%{% '%#StatusLineFile' . (g:actual_curwin == win_getid() ? '' : 'NC') . '#' %}"
+		let file_highlight = "%{% '%#StatusLineFile'" . nc . "'#' %}"
 	else
 		let file_highlight = "%#StatusLineFile#"
 	endif
@@ -16,7 +18,7 @@ function! StatusLine()
 	let s .= "%h" " help buffer flag
 	let s .= "%w" " preview window flag
 
-	let s .= "%#StatusLineFlags#"
+	"let s .= "%#StatusLineFlags#"
 	let s .= " "
 	let s .= "%y" " 'filetype'
 	let s .= "%{StatusLineBuftype()}" " 'fileformat'
@@ -29,7 +31,7 @@ function! StatusLine()
 	let s .= "%{&spell ? 'S' : ''}"
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
-	let s .= "%#StatusLinePadding#"
+	"let s .= "%#StatusLinePadding#"
 	let s .= "%=" " left + right flex space
 
 	let s .= " "
@@ -38,7 +40,7 @@ function! StatusLine()
 	" must be called via %{...} to be in the context of the statusline's window
 	let s .= "%{StatusLineAltFile()}"
 
-	let s .= "%#StatusLineRuler# "
+	"let s .= "%#StatusLineRuler# "
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
@@ -138,10 +140,18 @@ set statusline=%!StatusLine()
 
 function! s:highlight()
 	highlight default link StatusLineFile StatusLine
+	highlight default link StatusLineFlags StatusLine
+	highlight default link StatusLinePadding StatusLine
+	highlight default link StatusLineRuler StatusLine
+
 	highlight default link StatusLineFileNC StatusLineNC
-	highlight StatusLineFlags   cterm=underline ctermbg=7 ctermfg=green
-	highlight StatusLinePadding cterm=underline ctermbg=7 ctermfg=12
-	highlight StatusLineRuler   cterm=underline ctermbg=7 ctermfg=blue
+	highlight default link StatusLineFlagsNC StatusLineNC
+	highlight default link StatusLinePaddingNC StatusLineNC
+	highlight default link StatusLineRulerNC StatusLineNC
+
+	"highlight StatusLineFlags   cterm=underline ctermbg=7 ctermfg=green gui=bold,reverse guifg=#008f57 guibg=#e4e4e4
+	"highlight StatusLinePadding cterm=underline ctermbg=7 ctermfg=12    gui=bold,reverse guifg=#005f87 guibg=#e4e4e4
+	"highlight StatusLineRuler   cterm=underline ctermbg=7 ctermfg=blue  gui=bold,reverse guifg=#805f57 guibg=#e4e4e4
 endfunction
 call s:highlight()
 

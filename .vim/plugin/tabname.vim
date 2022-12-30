@@ -136,8 +136,15 @@ if has("gui")
 endif
 
 function! s:highlight()
-	highlight default link TabLineInfo StatusLineFlags
-	highlight TabLineIndex ctermfg=blue ctermbg=7
+	highlight default link TabLineInfo StatusLineNC
+	highlight default link TabLineFill StatusLineNC
+	highlight default link TabLineIndex StatusLineNC
+	highlight default link TabLineItalic StatusLineNC
+
+	highlight default link TabLineSel StatusLine
+	highlight default link TabLineSelItalic StatusLine
+
+	"highlight TabLineIndex ctermfg=blue ctermbg=7
 endfunction
 call s:highlight()
 
