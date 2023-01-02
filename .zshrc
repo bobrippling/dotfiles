@@ -168,6 +168,12 @@ autoload colors && colors
 #autoload -U url-quote-magic
 #zle -N self-insert url-quote-magic
 
+#autoload -U predict-on
+#zle -N predict-on
+#zle -N predict-off
+#bindkey -M viins "^Xp" predict-on
+#bindkey -M viins "^XP" predict-off
+
 # -------------------------------------------------------------------------------------
 # Options (man zshoptions)
 
