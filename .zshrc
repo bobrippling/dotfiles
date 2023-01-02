@@ -165,8 +165,8 @@ autoload colors && colors
 #  Useful mods
 
 # auto-quote urls
-autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
+#autoload -U url-quote-magic
+#zle -N self-insert url-quote-magic
 
 # -------------------------------------------------------------------------------------
 # Options (man zshoptions)
