@@ -12,8 +12,8 @@ syn match TodoBlocked /\[-\].*/
 syn match TodoDone /\[x\].*/
 
 hi TodoBacklog ctermfg=green guifg=green
-hi TodoInProgress ctermfg=yellow guifg=yellow
+hi TodoInProgress ctermfg=yellow guifg=#b58900
 hi TodoBlocked ctermfg=red guifg=red
-hi TodoDone ctermfg=blue guifg=blue
+hi TodoDone ctermfg=blue guifg=#268bd2
 
 setl foldmethod=indent
