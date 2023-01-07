@@ -25,6 +25,7 @@ Plug 'kana/vim-textobj-line'
 "Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
 Plug 'bobrippling/vim-textobj-indent' " ai, aI
 "Plug 'kana/vim-textobj-lastpat' " i/, a?
+Plug 'kana/vim-textobj-fold'
 
 Plug 'vim-scripts/ReplaceWithRegister' " script 2703
 Plug 'arthurxavierx/vim-caser'
