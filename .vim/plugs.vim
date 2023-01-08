@@ -35,6 +35,7 @@ Plug 'kana/vim-submode'
 Plug 'andymass/vim-tradewinds'
 Plug 'bobrippling/vim-pinpoint' "Plug 'ctrlpvim/ctrlp.vim'
 exe "" | Plug 'bobrippling/vim-cmdline-match'
+Plug 'bobrippling/a.vim'
 
 " Filetype specific
 Plug 'bobrippling/org.vim', { 'for': 'org' }
