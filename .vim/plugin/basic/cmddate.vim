@@ -5,12 +5,19 @@ function! s:get_date()
 	return strftime("%Y-%m-%d")
 endfunction
 
+function! s:get_date_orgzly()
+	return strftime("%Y-%m-%d %a %H:%M")
+endfunction
+
 function! s:get_time()
 	return strftime("%H:%M")
 endfunction
 
 cnoremap <expr> <C-R><C-D> <SID>get_date() . '-'
 inoremap <expr> <C-R><C-D> <SID>get_date()
+
+cnoremap <expr> <C-R><C-Z> <SID>get_date_orgzly() . '-'
+inoremap <expr> <C-R><C-Z> <SID>get_date_orgzly()
 
 cnoremap <expr> <C-R><C-T> <SID>get_time() . '-'
 inoremap <expr> <C-R><C-T> <SID>get_time()
