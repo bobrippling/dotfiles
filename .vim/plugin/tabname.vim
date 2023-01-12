@@ -49,13 +49,13 @@ endfunction
 function! TabLine()
 	let hl = {
 	\  "label": "%#TabLine#",
-	\  "label_pre": "TabLineItalic",
+	\  "label_pre": "",
 	\  "label_sel": "%#TabLineSel#",
-	\  "label_sel_pre": "TabLineSelItalic",
+	\  "label_sel_pre": "",
 	\}
 
 	let have_extra_hl = 0
-	if hlexists(hl.label_pre) && hlexists(hl.label_sel_pre)
+	if 0 && hlexists(hl.label_pre) && hlexists(hl.label_sel_pre)
 		let pre_output = execute("hi " . hl.label_pre)
 		let sel_output = execute("hi " . hl.label_sel_pre)
 
@@ -68,8 +68,8 @@ function! TabLine()
 		let hl.label_pre = "%#" . hl.label_pre . "#"
 		let hl.label_sel_pre = "%#" . hl.label_sel_pre . "#"
 	else
-		let hl.label_pre = "%#TabLineInfo#"
-		let hl.label_sel_pre = "%#TabLineInfo#"
+		let hl.label_pre = ""
+		let hl.label_sel_pre = ""
 	endif
 
 	let tabs = []
@@ -85,8 +85,9 @@ function! TabLine()
 
 		" tab page number for mouse clicks
 		let line =
+		\ hl_lbl .
 		\ "%" . i . "T"
-		\ . "%#TabLineIndex#[" . i . "]"
+		\ . "[" . i . "]"
 		\ . hl_pre
 		\ . "%{TabInfo(" . i . ")} "
 		\ . hl_lbl
@@ -104,10 +105,12 @@ function! TabLine()
 			let baseonly = fnamemodify(relative, ":t")
 			let trunc = baseonly ==# relative ? "" : ".../"
 
-			let tail .= " [" . trunc . baseonly . "]"
+			let obs = " [" . trunc . baseonly . "]"
 		else
-			let tail .= " [<no session>]"
+			let obs = " [<no session>]"
 		endif
+
+		let tail .= "%#TabLine#" . obs . "%#TabLineFill#"
 	endif
 
 	let tab_part = join(tabs, "")
@@ -119,7 +122,7 @@ function! TabLine()
 		let tab_part = tab_part . "%<"
 	endif
 
-	return tab_part . tail
+	return "%#TabLine#" . tab_part . tail
 endfunction
 
 function! GuiTabLabel()
@@ -135,21 +138,21 @@ if has("gui")
 	set guitablabel=%!GuiTabLabel()
 endif
 
-function! s:highlight()
-	highlight default link TabLineInfo StatusLineNC
-	highlight default link TabLineFill StatusLineNC
-	highlight default link TabLineIndex StatusLineNC
-	highlight default link TabLineItalic StatusLineNC
-
-	highlight default link TabLineSel StatusLine
-	highlight default link TabLineSelItalic StatusLine
-
-	"highlight TabLineIndex ctermfg=blue ctermbg=7
-endfunction
-call s:highlight()
-
-augroup TabLine
-	autocmd!
-
-	autocmd ColorScheme * call s:highlight()
-augroup END
+"function! s:highlight()
+"	"highlight default link TabLineInfo StatusLineNC
+"	"highlight default link TabLineIndex StatusLineNC
+"	"highlight default link TabLineItalic StatusLineNC
+"	"highlight default link TabLineSelItalic StatusLine
+"
+"	"highlight default link TabLine StatusLineNC
+"	"highlight default link TabLineSel StatusLine
+"	"highlight default link TabLineFill StatusLineNC
+"
+"	"highlight TabLineIndex ctermfg=blue ctermbg=7
+"endfunction
+"call s:highlight()
+"
+"augroup TabLine
+"	autocmd!
+"	autocmd ColorScheme * call s:highlight()
+"augroup END
