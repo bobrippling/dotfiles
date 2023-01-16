@@ -110,7 +110,7 @@ function! StatusLineAltFile()
 		return "#.."
 	endif
 
-	return alt
+	return alt . " "
 endfunction
 
 function! s:alt_common(cur, alt)
