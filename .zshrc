@@ -181,7 +181,14 @@ autoload colors && colors
 setopt append_history
 setopt auto_pushd
 setopt bsd_echo # no auto echo -e
-setopt extended_history
+setopt list_rows_first # completion menu is row-then-col
+
+unsetopt extended_glob # don't want ^ expanding
+unsetopt hist_beep
+unsetopt beep
+unsetopt correct_all
+unsetopt nomatch # no-matches aren't errors
+
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
 setopt hist_ignore_all_dups
@@ -190,15 +197,11 @@ setopt hist_ignore_space
 setopt hist_no_functions
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
-setopt inc_append_history
-setopt list_rows_first # completion menu is row-then-col
 
-unsetopt extended_glob # don't want ^ expanding
+setopt extended_history
+setopt inc_append_history
+
 unsetopt share_history
-unsetopt hist_beep
-unsetopt beep
-unsetopt correct_all
-unsetopt nomatch # no-matches aren't errors
 
 # -------------------------------------------------------------------------------------
 # Environment
