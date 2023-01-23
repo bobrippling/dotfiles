@@ -201,8 +201,10 @@ setopt hist_no_functions
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 
-setopt extended_history
-setopt inc_append_history
+setopt extended_history # record finish timestamps too - needs inc_append_history_time
+#setopt inc_append_history # add new lines to history as soon as they're executed
+setopt inc_append_history_time # save history when a command finishes, so we can record the time
+#setopt share_history # import new commands from the history file straight away
 
 unsetopt share_history
 
