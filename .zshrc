@@ -182,6 +182,9 @@ setopt append_history
 setopt auto_pushd
 setopt bsd_echo # no auto echo -e
 setopt list_rows_first # completion menu is row-then-col
+setopt list_packed # columns don't have to be same-width
+
+setopt interactive_comments # allow comments even in interactive shells
 
 unsetopt extended_glob # don't want ^ expanding
 unsetopt hist_beep
