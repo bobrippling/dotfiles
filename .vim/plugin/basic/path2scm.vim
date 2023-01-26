@@ -49,7 +49,7 @@ function! Path2scm(switches) abort
 
 	" currently all remotes don't distinguish between having a commit or branch in the url,
 	" so no need to pass through `resolve_ci`
-	let url = s:url(ci, line("'<"), line("'>"))
+	let url = s:url_for_curbuf(ci, line("'<"), line("'>"))
 
 	if mode ==# "open"
 		call system("xargs open", url)
@@ -61,21 +61,8 @@ function! Path2scm(switches) abort
 	endif
 endfunction
 
-function! s:url(ci, begin, end)
+function! s:url_for_curbuf(ci, begin, end)
 	let u = FugitiveRemoteUrl()
-	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
-	let u = substitute(u, '\.git$', '', '')
-
-	if u =~? 'gitlab.com/'
-		return s:suffix_gitlab(u, a:ci, a:begin, a:end)
-	elseif u =~? 'github.com/'
-		return s:suffix_github(u, a:ci, a:begin, a:end)
-	endif
-
-	throw "unrecognised remote (" . u . ")"
-endfunction
-
-function! s:suffix_gitlab(base, ci, start, end)
 	let [ci, fname] = s:file_ver()
 
 	if !empty(a:ci)
@@ -87,26 +74,33 @@ function! s:suffix_gitlab(base, ci, start, end)
 		endif
 	endif
 
-	let url = a:base . "/-/blob/" . ci . "/" . fname
+	return Path2Scm_Url(u, fname, ci, a:begin, a:end)
+endfunction
+
+function! Path2Scm_Url(u, fname, ci, begin, end)
+	let u = a:u
+	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
+	let u = substitute(u, '\.git$', '', '')
+
+	if u =~? 'gitlab.com/'
+		return s:suffix_gitlab(u, a:fname, a:ci, a:begin, a:end)
+	elseif u =~? 'github.com/'
+		return s:suffix_github(u, a:fname, a:ci, a:begin, a:end)
+	endif
+
+	throw "unrecognised remote (" . u . ")"
+endfunction
+
+function! s:suffix_gitlab(base, fname, ci, start, end)
+	let url = a:base . "/-/blob/" . a:ci . "/" . a:fname
 	if a:start
 		let url .= "#L" . a:start . (a:end == a:start ? "" : "-" . a:end)
 	endif
 	return url
 endfunction
 
-function! s:suffix_github(base, ci, start, end)
-	let [ci, fname] = s:file_ver()
-
-	if !empty(a:ci)
-		let ci = a:ci
-	elseif empty(ci)
-		let ci = FugitiveHead()
-		if empty(ci)
-			let ci = "master"
-		endif
-	endif
-
-	return a:base . "/blob/" . ci . "/" . fname . (a:start ? "#L" . a:start . "-L" . a:end . "=" : "")
+function! s:suffix_github(base, fname, ci, start, end)
+	return a:base . "/blob/" . a:ci . "/" . a:fname . (a:start ? "#L" . a:start . "-L" . a:end . "=" : "")
 endfunction
 
 function! s:suffix_tfs()
