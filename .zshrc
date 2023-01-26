@@ -1,3 +1,7 @@
+# extra completions - must be before `compinit`
+
+fpath+=~/.config/dotfiles/zshcompl
+
 # for compdef in aliases
 autoload -Uz compinit && compinit
 
