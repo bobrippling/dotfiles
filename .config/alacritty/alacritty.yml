@@ -224,7 +224,7 @@ url:
   #modifiers: None
 
 mouse:
-  hide_when_typing: true
+  hide_when_typing: false
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>"
