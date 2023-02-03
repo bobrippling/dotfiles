@@ -24,4 +24,7 @@ augroup ArgWraps
 	autocmd FileType json
 				\ let b:argwrap_tail_comma = 0 |
 				\ let b:argwrap_tail_comma_braces = ""
+
+	autocmd FileType vim
+				\ let b:argwrap_line_prefix = '\ '
 augroup END
