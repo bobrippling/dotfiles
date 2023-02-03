@@ -131,7 +131,7 @@ nnoremap <expr> <silent> <leader>J ":<C-U>" . v:count1 . "w\\|n<CR>"
 nnoremap <expr> <silent> <leader>t ":<C-U>" . v:count1 . "tabn<CR>"
 nnoremap <silent> <leader>h :noh<CR>
 nnoremap <silent> <leader>H :setl hls!<CR>
-nnoremap <silent> <leader>l :setl list!<CR>
+nnoremap <silent> <leader>l :setl list! list?<CR>
 nnoremap <silent> <leader>i :setl nu!<CR>
 nnoremap <silent> <leader>w :setl wrap!<CR>
 nnoremap <silent> <leader>S :setl spell!<CR>
