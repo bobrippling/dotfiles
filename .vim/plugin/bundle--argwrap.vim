@@ -20,4 +20,8 @@ augroup ArgWraps
 
 	autocmd FileType c
 				\ let b:argwrap_wrap_closing_brace = 0
+
+	autocmd FileType json
+				\ let b:argwrap_tail_comma = 0 |
+				\ let b:argwrap_tail_comma_braces = ""
 augroup END
