@@ -1,4 +1,4 @@
-vnoremap <silent> zV zMzv
+nnoremap <silent> zV zMzv
 
 finish " don't think these are needed
 vnoremap <silent> zo :foldopen<CR>
