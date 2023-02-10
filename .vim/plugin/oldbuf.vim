@@ -93,10 +93,13 @@ function! TrimOldBuffers(count, bang)
 	let names = map(copy(delete), { _, x -> bufname(x) })
 
 	execute "bdelete " . join(delete)
-	echo "Deleted old buffers"
-	for name in names
-		echom "  " name
-	endfor
+
+	if &verbose > 0
+		echo "Deleted old buffers"
+		for name in names
+			echom "  " name
+		endfor
+	endif
 endfunction
 
 function! s:fileexists(path)
@@ -144,10 +147,12 @@ function! TrimUnlinkedBuffers(bang)
 
 	execute "bdelete " . join(delete)
 
-	echom "Removed unlinked buffers:"
-	for name in names
-		echom "  " name
-	endfor
+	if &verbose > 0
+		echom "Removed unlinked buffers:"
+		for name in names
+			echom "  " name
+		endfor
+	endif
 endfunction
 
 command! -bar Ls call Lst()
