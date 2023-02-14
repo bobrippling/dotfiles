@@ -87,8 +87,8 @@ function! PyTag(pattern, flags, info) abort
 		let i = 1
 		while 1
 			let base = expand("%" . repeat(":h", i))
-			if base ==# '.' || empty(base)
-				break
+			if empty(base)
+				let base = "."
 			endif
 
 			let no_suff = base . '/' . mod
@@ -125,6 +125,9 @@ function! PyTag(pattern, flags, info) abort
 				\ }]
 			endif
 
+			if base ==# "."
+				break
+			endif
 			let i += 1
 		endwhile
 
