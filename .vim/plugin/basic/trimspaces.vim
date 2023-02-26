@@ -1,9 +1,26 @@
-let g:trim_spaces = 1
+if !exists("g:trim_spaces")
+	let g:trim_spaces = 1
+endif
+if !exists("g:trim_spaces_ignore")
+	let g:trim_spaces_ignore = []
+endif
 
 function! TrimSpaces()
-	if g:trim_spaces == 0 || (exists('b:trim_spaces') && b:trim_spaces == 0)
+	if g:trim_spaces == 0 || get(b:, 'trim_spaces', 1) == 0 || get(w:, 'trim_spaces', 1) == 0
 		return
 	endif
+
+	let full = expand("%:p")
+	for path in g:trim_spaces_ignore
+		if stridx(full, path) == 0
+			if &verbose > 0
+				echo "Not stripping spaces - ignore path matches\n"
+				" newline above - ensure this message is seen/not overwritten
+				" by the :w message
+			endif
+			return
+		endif
+	endfor
 
 	let where = getcurpos()
 	keeppatterns %s/\s\+$//e
