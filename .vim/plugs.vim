@@ -4,6 +4,7 @@ call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit' ] }
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ] }
 
 " Boost native functionality
 "Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
