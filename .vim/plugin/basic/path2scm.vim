@@ -1,4 +1,4 @@
-function! Path2scm(switches) abort
+function! Path2scm(switches) abort range
 	let mode = "open"
 	let ci = ""
 	let resolve_ci = 0
@@ -49,7 +49,7 @@ function! Path2scm(switches) abort
 
 	" currently all remotes don't distinguish between having a commit or branch in the url,
 	" so no need to pass through `resolve_ci`
-	let url = s:url_for_curbuf(ci, line("'<"), line("'>"))
+	let url = s:url_for_curbuf(ci, a:firstline, a:lastline)
 
 	if mode ==# "open"
 		call system("xargs open", url)
@@ -129,4 +129,4 @@ function! s:file_ver() abort
 	return [ci, fname]
 endfunction
 
-command! -range -nargs=* -bar Path2scm call Path2scm([<f-args>])
+command! -range -nargs=* -bar Path2scm :<line1>,<line2>call Path2scm([<f-args>])
