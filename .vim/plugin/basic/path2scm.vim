@@ -61,7 +61,7 @@ function! Path2scm(switches) abort
 	endif
 endfunction
 
-function! s:url_for_curbuf(ci, begin, end)
+function! s:url_for_curbuf(ci, start, end)
 	let u = FugitiveRemoteUrl()
 	let [ci, fname] = s:file_ver()
 
@@ -74,18 +74,18 @@ function! s:url_for_curbuf(ci, begin, end)
 		endif
 	endif
 
-	return Path2Scm_Url(u, fname, ci, a:begin, a:end)
+	return Path2Scm_Url(u, fname, ci, a:start, a:end)
 endfunction
 
-function! Path2Scm_Url(u, fname, ci, begin, end)
+function! Path2Scm_Url(u, fname, ci, start, end)
 	let u = a:u
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
 	let u = substitute(u, '\.git$', '', '')
 
 	if u =~? 'gitlab.com/'
-		return s:suffix_gitlab(u, a:fname, a:ci, a:begin, a:end)
+		return s:suffix_gitlab(u, a:fname, a:ci, a:start, a:end)
 	elseif u =~? 'github.com/'
-		return s:suffix_github(u, a:fname, a:ci, a:begin, a:end)
+		return s:suffix_github(u, a:fname, a:ci, a:start, a:end)
 	endif
 
 	throw "unrecognised remote (" . u . ")"
