@@ -43,7 +43,7 @@ function! TabInfo(n)
 		endif
 	endfor
 
-	return len(bufs) . "w" . (tty ? "T" : "") . (modified ? "+" : "")
+	return  (tty ? "T" : "") . len(bufs) . "w" .(modified ? "+" : "")
 endfunction
 
 function! TabLine()
