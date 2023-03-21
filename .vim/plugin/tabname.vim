@@ -136,15 +136,22 @@ if has("gui")
 endif
 
 function! s:highlight()
+	if &background ==# 'light'
+		highlight clear Tabline
+		highlight clear TabLineFill
+		highlight link TabLine StatusLineNC
+		highlight TabLineSel ctermfg=0 ctermbg=7 guifg=#eeeeee guibg=#0087af
+		"highlight TabLineIndex guifg=#5087af guibg=#afd7ff
+	endif
+
 	highlight default link TabLineInfo StatusLineNC
 	highlight default link TabLineFill StatusLineNC
-	highlight default link TabLineIndex StatusLineNC
 	highlight default link TabLineItalic StatusLineNC
 
 	highlight default link TabLineSel StatusLine
 	highlight default link TabLineSelItalic StatusLine
 
-	"highlight TabLineIndex ctermfg=blue ctermbg=7
+	highlight TabLineIndex ctermfg=blue ctermbg=7
 endfunction
 call s:highlight()
 
