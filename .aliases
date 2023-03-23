@@ -5,6 +5,9 @@ alias ls="ls --color=auto --group-directories-first -F"
 
 alias bc='bc -q'
 
+# debian
+alias fd=fdfind
+
 # shell
 alias fgfg=fg
 alias ifg=fg
