@@ -1,6 +1,8 @@
 # extra completions - must be before `compinit`
 
-fpath+=~/.config/dotfiles/zshcompl
+fpath+=(/usr/share/zsh/site-functions ~/.config/dotfiles/zshcompl)
+# ^ compinit to reload this (hence this first)
+# ^ and optionally rm ~/.zcompdump
 
 # for compdef in aliases
 autoload -Uz compinit && compinit
