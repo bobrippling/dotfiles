@@ -37,3 +37,9 @@ nh(){
 		disown %nohup
 	fi
 }
+
+pid_wait(){
+	while kill -0 "$1"
+	do sleep 5
+	done
+}
