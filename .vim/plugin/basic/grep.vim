@@ -42,11 +42,31 @@ function! s:setgrep(scope) abort
 	let &l:grepprg = substitute(&grepprg, '-', '-r', '')
 endfunction
 
+function! s:checkrg()
+	let qflist = getqflist()
+	for ent in qflist
+		if ent.valid
+			return
+		endif
+	endfor
+
+	echohl WarningMsg
+	try
+		echom "Warning: grep returned nothing and may have been invoked with just /dev/null"
+	finally
+		echohl none
+	endtry
+endfunction
+
 " set global grep, and then add autocmds for file-specific grep
 call s:setgrep("")
+let s:in_qf = 0
 
 augroup SetGrep
 	autocmd!
 
 	autocmd FileType * call s:setgrep("local")
+	autocmd ShellCmdPost * if s:in_qf | call s:checkrg() | endif
+	autocmd QuickFixCmdPre * let s:in_qf = 1
+	autocmd QuickFixCmdPost * let s:in_qf = 0
 augroup END
