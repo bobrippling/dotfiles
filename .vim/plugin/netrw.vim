@@ -23,3 +23,13 @@ if exists("#DirChanged")
 		autocmd VimEnter * call s:update_netrw_hide()
 	augroup END
 endif
+
+function! s:set()
+	vnoremap mf :normal mf<CR>
+	"                  ^ no !, need the netrw mapping
+endfunction
+
+augroup NetRwMap
+	autocmd!
+	autocmd FileType netrw call s:set()
+augroup END
