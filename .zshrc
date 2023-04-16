@@ -244,6 +244,7 @@ zle -N edit-command-line
 bindkey -M vicmd V edit-command-line
 bindkey -M vicmd v visual-mode
 
+# menu
 # \e[Z == <S-Tab>
 bindkey -M menuselect '\e[Z' vi-backward-char
 
@@ -253,6 +254,10 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect '\e' accept-line
 bindkey -M menuselect 'm' accept-and-hold
+
+# menu group
+bindkey -M menuselect '{' vi-backward-blank-word
+bindkey -M menuselect '}' vi-forward-blank-word
 
 # for more widgets, see https://github.com/zsh-users/zsh/tree/master/Functions/Zle or <Esc>:where-is/:describe-key-briefly
 # for interactive state, <Esc>:_complete_help
