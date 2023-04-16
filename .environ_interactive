@@ -71,3 +71,9 @@ fi
 
 # gpg-agent is autostart
 #__loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
+
+if test -e ~/.config/dotfiles/contrib/z
+then
+	#_Z_NO_PROMPT_COMMAND=1
+	. ~/.config/dotfiles/contrib/z/z.sh
+fi
