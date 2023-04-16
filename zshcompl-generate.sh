@@ -16,3 +16,7 @@ done
 
 #mkdir contrib
 #cd contrib && git clone https://github.com/rupa/z
+
+curl https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completion/_fd \
+	-fsSL \
+	-o "$here"/zshcompl/_fd
