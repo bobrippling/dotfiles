@@ -6,11 +6,13 @@ then
 	exit 2
 fi
 
+here=~/.config/dotfiles
+
 for cmd in cargo rustup
-do rustup completions zsh "$cmd" >~/.config/dotfiles/zshcompl/_"$cmd"
+do rustup completions zsh "$cmd" >"$here"/zshcompl/_"$cmd"
 done
 
-#ln -s <password-store>/src/completion/pass.zsh-completion ~/.config/dotfiles/zshcompl/_pass
+#ln -s <password-store>/src/completion/pass.zsh-completion "$here"/zshcompl/_pass
 
 #mkdir contrib
 #cd contrib && git clone https://github.com/rupa/z
