@@ -9,3 +9,8 @@ fi
 for cmd in cargo rustup
 do rustup completions zsh "$cmd" >~/.config/dotfiles/zshcompl/_"$cmd"
 done
+
+#ln -s <password-store>/src/completion/pass.zsh-completion ~/.config/dotfiles/zshcompl/_pass
+
+#mkdir contrib
+#cd contrib && git clone https://github.com/rupa/z
