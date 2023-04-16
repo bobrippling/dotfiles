@@ -3,8 +3,9 @@ live_config_reload: true
 # None | Error | Warn | Info | Debug | Trace
 log_level: Warn
 
-#shell:
-#  program: /bin/fish
+# macOS: workaround spawning as /bin/sh by default
+shell:
+  program: /bin/zsh
 #  args:
 #    - --login
 
