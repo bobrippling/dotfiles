@@ -66,6 +66,9 @@ mouse = "Middle"
 [selection]
 save_to_clipboard = false
 
+[shell]
+program = "/bin/zsh"
+
 [window]
 decorations = "full"
 
