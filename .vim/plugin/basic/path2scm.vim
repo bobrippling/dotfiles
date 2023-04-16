@@ -88,7 +88,7 @@ function! Path2Scm_Url(u, fname, ci, start, end)
 		return s:suffix_github(u, a:fname, a:ci, a:start, a:end)
 	endif
 
-	throw "unrecognised remote (" . u . ")"
+	throw "path2scm: unrecognised host \"" . u . "\" (\"" . a:u . "\")"
 endfunction
 
 function! s:suffix_gitlab(base, fname, ci, start, end)
