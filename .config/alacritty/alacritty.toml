@@ -32,6 +32,9 @@ foreground = "0x444444"
 [cursor]
 unfocused_hollow = true
 
+[env]
+SHELL = "/bin/zsh"
+
 [[hints.enabled]]
 command = "open"
 post_processing = true
@@ -67,8 +70,13 @@ mouse = "Middle"
 [selection]
 save_to_clipboard = false
 
+[terminal.shell]
+program = "/bin/zsh"
+
 [window]
 decorations = "full"
+
+[terminal]
 
 #schemes:
 #  solarized_dark: &scheme_solarized_dark
