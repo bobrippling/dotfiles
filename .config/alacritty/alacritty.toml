@@ -31,6 +31,9 @@ foreground = "0x444444"
 [cursor]
 unfocused_hollow = true
 
+[env]
+SHELL = "/bin/zsh"
+
 [[hints.enabled]]
 command = "open"
 post_processing = true
