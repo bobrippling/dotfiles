@@ -4,8 +4,8 @@ live_config_reload: true
 log_level: Warn
 
 # macOS: workaround spawning as /bin/sh by default
-shell:
-  program: /bin/zsh
+#shell:
+#  program: /bin/zsh
 #  args:
 #    - --login
 
@@ -13,7 +13,8 @@ shell:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   #save_to_clipboard: true
 
-#env:
+env:
+  SHELL: /bin/zsh
   # infocmp | ssh machine tic -x /dev/stdin
   #TERM: xterm-256color
 
