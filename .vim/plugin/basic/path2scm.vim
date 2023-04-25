@@ -63,6 +63,10 @@ endfunction
 
 function! s:url_for_curbuf(ci, start, end)
 	let u = FugitiveRemoteUrl()
+	if empty(u)
+		throw "empty remote url"
+	endif
+
 	let [ci, fname] = s:file_ver()
 
 	if !empty(a:ci)
