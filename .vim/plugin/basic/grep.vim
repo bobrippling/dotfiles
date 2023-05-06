@@ -28,6 +28,8 @@ function! s:setgrep(scope) abort
 		call map(ignores, { i, v -> "-g '!" . v . "'"})
 
 		call s:set(rgcommon . " " . join(ignores) . where, a:scope)
+		" from jon-g:
+		exe "set".a:scope "grepformat=%f:%l:%c:%m"
 		return
 	endif
 
