@@ -77,6 +77,7 @@ set fillchars=fold:\ |
 if exists('+cursorlineopt')
 	set cursorlineopt=screenline,number
 endif
+set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 
 " display (gui)
 " m: menu bar
