@@ -62,6 +62,11 @@ function! Path2scm(switches) abort range
 endfunction
 
 function! s:url_for_curbuf(ci, start, end)
+	if !exists("*FugitiveRemoteUrl")
+		" trigger plug.vim to load fugitive with a r/o git invocation
+		silent G rev-parse HEAD
+	endif
+
 	let u = FugitiveRemoteUrl()
 	if empty(u)
 		throw "empty remote url"
