@@ -31,7 +31,7 @@
 	ahead-behind = for-each-ref --format='%(color:green)%(refname:short)%(color:reset) tracking %(color:blue)%(upstream:lstrip=2) %(color:red)%(upstream:track)%(color:reset)' refs/heads
 	apply-strip = "!f(){ git diff -w -- \"$@\" | git apply --cached --whitespace=fix; }; f"
 	where = !"f(){ git rev-parse --show-prefix >/dev/null || exit $?; echo \"<repo>/$GIT_PREFIX\"; }; f"
-	br = "!f(){ git branch \"$@\" | cut -c3- | sed '/HEAD -> /d'; }; f"
+	br = "!f(){ git branch \"$@\" | cut -c3- | sed '/HEAD -> /d; /(HEAD detached at .*)/d'; }; f"
 	co-menu = "!f(){ _b=$(git br \"$@\" | tmenu); if test -n \"$_b\"; then git co \"$_b\"; else return 1; fi; }; f"
 
 	# skip-worktree - don't touch a file ever (modulo conflicts) and don't let it affect `git status`
