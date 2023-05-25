@@ -46,7 +46,8 @@ inoremap <expr> <C-R><C-Z> <SID>get_date_orgzly()
 cnoremap <expr> <C-R><C-T> <SID>get_time() . '-'
 inoremap <expr> <C-R><C-T> <SID>get_time()
 
-nnoremap g<C-Z> <Cmd>call <SID>orgzly_convert()<CR>
+nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
+nnoremap <expr> gzc 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
 
 if 0
 	function! s:check_date_typed()
