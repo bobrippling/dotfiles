@@ -33,7 +33,7 @@ function! s:orgzly_convert()
 "
 "	return "i>" . d . "<\<Esc>"
 	let p = getcurpos()
-	s/\v(\d{4}-\d{2}-\d{2}) [A-Z][a-z]+>/\=strftime("%Y-%m-%d %a", strptime("%Y-%m-%d", submatch(1)))/g
+	keeppatterns s/\v(\d{4}-\d{2}-\d{2}) [A-Z][a-z]+>/\=strftime("%Y-%m-%d %a", strptime("%Y-%m-%d", submatch(1)))/g
 	call setpos(".", p)
 endfunction
 
