@@ -80,4 +80,9 @@ fi
 if test -t 0
 then
 	test -x ~/bin/mail-check && ~/bin/mail-check
+
+	if find -L ~/.terminfo -maxdepth 1 -type l | grep .
+	then
+		printf >&2 '\x1b[31mBroken link in ~/.terminfo\x1b[0;0m\n'
+	fi
 fi
