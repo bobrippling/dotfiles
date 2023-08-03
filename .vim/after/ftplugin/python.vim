@@ -125,7 +125,7 @@ function! PyTag(pattern, flags, info) abort
 				\ }]
 			endif
 
-			if base ==# "."
+			if base ==# "." || base ==# "/"
 				break
 			endif
 			let i += 1
