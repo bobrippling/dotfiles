@@ -6,7 +6,7 @@ alias diff="diff --color=auto"
 alias bc='bc -q'
 
 # debian
-alias fd=fdfind
+#alias fd=fdfind
 
 # shell
 alias fgfg=fg
