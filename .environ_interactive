@@ -76,3 +76,8 @@ then
 	_Z_MAX_SCORE=18000
 	. ~/.config/dotfiles/contrib/z/z.sh
 fi
+
+if test -t 0
+then
+	test -x ~/bin/mail-check && ~/bin/mail-check
+fi
