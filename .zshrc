@@ -299,6 +299,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 PS1="
 %B%m%b \
 \${VIRTUAL_ENV:+<venv> }\
+\${PYENV_ROOT:+<pyenv> }\
 %(?..%F{red}%??%f )\
 %(1j.%F{yellow}%j&%f .)\
 %(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
