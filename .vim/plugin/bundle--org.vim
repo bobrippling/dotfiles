@@ -19,3 +19,5 @@ augroup org-manual
 	autocmd!
 	autocmd FileType org setl foldtext=OrgFoldText() fillchars-=fold:-
 augroup END
+
+let g:org_state_keywords = ['TODO', 'NEXT', 'DONE', 'STARTED']
