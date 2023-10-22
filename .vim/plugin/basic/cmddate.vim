@@ -37,6 +37,16 @@ function! s:orgzly_convert()
 	call setpos(".", p)
 endfunction
 
+function! s:orgzly_init()
+	let lines = [
+	\   ':PROPERTIES:',
+	\   ':CREATED:  [' . s:get_date_orgzly() . ']',
+	\   ':END:',
+	\   '',
+	\ ]
+	call append(line('.'), lines)
+endfunction
+
 cnoremap <expr> <C-R><C-D> <SID>get_date() . '-'
 inoremap <expr> <C-R><C-D> <SID>get_date()
 
@@ -48,6 +58,7 @@ inoremap <expr> <C-R><C-T> <SID>get_time()
 
 nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
 nnoremap <expr> gzc 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
+nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
 
 if 0
 	function! s:check_date_typed()
