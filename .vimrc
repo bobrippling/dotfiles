@@ -54,6 +54,9 @@ set noequalalways
 set novisualbell
 set scrolloff=1
 set sidescroll=1
+if has("nvim") && exists("&smoothscroll")
+	set smoothscroll
+endif
 set splitbelow splitright
 set wildmode=list:longest,full
 set wildmenu
