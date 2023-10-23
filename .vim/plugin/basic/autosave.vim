@@ -6,7 +6,7 @@ function! s:save(saved, ent) abort
 	if !empty(&buftype) || !&modified
 		return
 	endif
-	if exists('b:autosave') && b:autosave == 0
+	if !get(b:, 'autosave', 1)
 		return
 	endif
 	if empty(glob(expand("%")))
