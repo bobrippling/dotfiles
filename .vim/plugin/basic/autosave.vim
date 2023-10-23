@@ -14,6 +14,10 @@ function! s:save(saved, ent) abort
 	endif
 
 	silent update
+	if &modified
+		" save failed, abort
+		throw "save-fail:" . expand("%")
+	endif
 	call add(a:saved, a:ent)
 endfunction
 
@@ -52,34 +56,46 @@ function! Autosave() abort
 
 	let focus = win_getid()
 	let restore_wins = ''
+	let error = ''
 
 	let saved = []
-	for ent in modified
-		let buf = ent.bufnr
+	try
+		for ent in modified
+			let buf = ent.bufnr
 
-		if bufnr("") is buf
+			if bufnr("") is buf
+				call s:save(saved, ent)
+				continue
+			endif
+
+			let found = win_findbuf(buf)
+			if !empty(found) && win_gotoid(found[0])
+				call s:save(saved, ent)
+				continue
+			endif
+
+			if empty(restore_wins)
+				let restore_wins = winrestcmd()
+			endif
+
+			execute "sbuffer" buf
 			call s:save(saved, ent)
-			continue
-		endif
-
-		let found = win_findbuf(buf)
-		if !empty(found) && win_gotoid(found[0])
-			call s:save(saved, ent)
-			continue
-		endif
-
-		if empty(restore_wins)
-			let restore_wins = winrestcmd()
-		endif
-
-		execute "sbuffer" buf
-		call s:save(saved, ent)
-		close!
-	endfor
+			close!
+		endfor
+	catch /^save-fail:.*/
+		let buf = substitute(v:exception, '[^:]*:', '', '')
+		let error = "Error saving " . buf
+		" cleanup below
+	endtry
 
 	call win_gotoid(focus)
 	if !empty(restore_wins)
 		execute restore_wins
+	endif
+
+	if !empty(error)
+		echoerr error
+		return
 	endif
 
 	call map(saved, { _, ent -> fnamemodify(ent.name, ":~:.") })
