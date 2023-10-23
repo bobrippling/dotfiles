@@ -7,7 +7,11 @@ endfunction
 
 function! s:ShutTheDoor() abort
 	let buf = expand("<afile>")
-	if empty(buf) || !filereadable(buf)
+	if empty(buf)
+		return
+	endif
+	if !filereadable(buf)
+		echom "File not readable:" buf
 		return
 	endif
 
