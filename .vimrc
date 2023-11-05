@@ -81,6 +81,7 @@ if exists('+cursorlineopt')
 	set cursorlineopt=screenline,number
 endif
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
+set showmatch cpoptions-=m
 
 " display (gui)
 " m: menu bar
