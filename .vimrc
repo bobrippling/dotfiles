@@ -173,9 +173,6 @@ cnoremap <C-N> <Down>
 cnoremap <expr> <C-R>l '\%' .. getcurpos()[1] .. 'l'
 cnoremap <expr> <C-R>c '\%' .. getcurpos()[2] .. 'c'
 
-vnoremap g/ <Esc>'</\%V
-nnoremap <expr> g/ ":Bggrep  .\<Left>\<Left>"
-
 inoremap <C-G>j <Esc>jA
 inoremap <C-G>k <Esc>kA
 
