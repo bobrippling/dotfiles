@@ -167,6 +167,15 @@ map <C-W>gD <C-W>sgD
 " available <C-W> mappings: aeuy (g is taken by tradewinds plugin)
 nnoremap <silent> <C-W>y :set winfixheight!<CR>
 nnoremap <silent> <C-W>u :set winfixwidth!<CR>
+function! s:wineq_other()
+	let h = &winfixheight
+	let w = &winfixwidth
+	set winfixheight winfixwidth
+	wincmd =
+	let &winfixheight = h
+	let &winfixwidth = w
+endfunction
+nnoremap <silent> <C-W>g= :call <SID>wineq_other()<CR>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
