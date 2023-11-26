@@ -10,9 +10,9 @@ function! StatusLine()
 	let s = ""
 
 	let s .= " "
+	let s .= "%<" " truncate here if too long
 	let s .= file_highlight
 	let s .= "%f" " filename
-	let s .= "%<" " truncate here if too long
 
 	let s .= "%m" " 'modified'
 	let s .= "%r" " 'readonly'
