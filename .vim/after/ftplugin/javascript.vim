@@ -481,6 +481,8 @@ setlocal spelloptions+=camel
 
 setlocal indentexpr=
 
+setlocal cinoptions-=(1s
+
 setlocal omnifunc=Dotcomplete
 " if we're not noselect/noinsert, then step back to avoid auto-inserting on `.`
 "inoremap <expr> <buffer> . '.<C-X><C-O>' .. (&completeopt =~? '\vno(select\|insert)' ? '' : '<C-E>')
