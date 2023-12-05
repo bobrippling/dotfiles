@@ -25,12 +25,12 @@ function! s:bggrep_populate()
 	if v:count == 0
 		let dir = "."
 	else
-		" 1g/ --> Bggrep <cursor> %:h
-		" 2g/ --> Bggrep <cursor> %:h:h
+		" 1g/ --> Bggrep '<cursor>' %:h
+		" 2g/ --> Bggrep '<cursor>' %:h:h
 		let dir = "%" . repeat(":h", v:count)
 	endif
 
-	return ":\<C-U>Bggrep  " . dir . "\<Left>" . repeat("\<Left>", len(dir))
+	return ":\<C-U>Bggrep ' " . dir . repeat("\<Left>", len(dir) + 2) . "'"
 endfunction
 
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
