@@ -159,8 +159,15 @@ nnoremap <C-Y> 3<C-Y>
 nnoremap <C-E> 3<C-E>
 vnoremap <C-Y> 3<C-Y>
 vnoremap <C-E> 3<C-E>
+
+" modifications to existing commands:
 nnoremap Y y$
+vnoremap zD $zygv"_x
+" ^ see vim#8448, vimgolf#9v0063d76854000000000249, vim/vim#13695
+" make v_D behave like v_zy
 nnoremap <silent> gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
+
+" new commands
 nnoremap <silent> <C-W>2T <C-W>T:tabm-1<CR>
 map g<CR> gjg^
 map <C-W>gD <C-W>sgD
