@@ -11,6 +11,7 @@ function! s:bggrep_cmd(mode)
 	endif
 
 	let search = shellescape(search)
+	let search = escape(search, "%#")
 
 	let type = qf#loc_list_open() ? "l" : ""
 
