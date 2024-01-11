@@ -206,7 +206,7 @@ let g:tar_nomax = 1
 let g:pinpoint_preview_delay = 150
 
 let g:rust_fold = 1
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 
 let g:netrw_use_errorwindow = 0
 
