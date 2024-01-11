@@ -19,9 +19,14 @@ __ps1_jobs(){
 }
 __ps1_hostname=$(hostname | tr '[A-Z]' '[a-z]' | tr -d '\n')
 
+__ps1_col=32
+if test "$UID" = 0
+then __ps1_col=31
+fi
+
 # simpler prompt:
 export PS1='
-\[\e[1m\]${__ps1_hostname}\[\e[0m\] \[\e[0;31m\]$(__ps1_exitcode)\[\e[0;33m\]$(__ps1_jobs)\[\e[1;32m\]$\[\e[0;0m\] '
+\[\e[1m\]${__ps1_hostname}\[\e[0m\] \[\e[0;31m\]$(__ps1_exitcode)\[\e[0;33m\]$(__ps1_jobs)\[\e[1;${__ps1_col}m\]\$\[\e[0;0m\] '
 
 bind -m vi-insert '"\C-L": clear-screen'
 
