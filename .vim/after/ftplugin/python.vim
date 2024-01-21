@@ -12,7 +12,7 @@ endif
 
 " overwrite runtime/python.vim's indentexpr:
 function! s:set_indentexpr(...)
-	let &indentexpr = 'GetPythonIndent_2(v:lnum)'
+	let &l:indentexpr = 'GetPythonIndent_2(v:lnum)'
 endfunction
 call timer_start(25, function('s:set_indentexpr'))
 
