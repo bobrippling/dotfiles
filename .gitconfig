@@ -81,6 +81,8 @@
 	defaultToUpstream = true
 	tool = vimdiff
 	#conflictstyle = diff3
+[branch]
+	sort = -committerdate
 [fetch]
 	writeCommitGraph = true
 [diff]
