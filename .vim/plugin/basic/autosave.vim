@@ -1,7 +1,11 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
+let g:autosave_verbose = get(g:, "autosave_verbose", 0)
 
-function! s:save(saved, ent) abort
+function! s:save(ent, saved) abort
 	if !empty(&buftype) || !&modified
+		if g:autosave_verbose
+			echom "autosave, skipping buf=" . a:ent.bufnr . ", bt=" . &bt . ", mod=" . &mod
+		endif
 		return
 	endif
 	if !get(b:, 'autosave', 1)
@@ -57,18 +61,19 @@ function! Autosave() abort
 	let error = ''
 
 	let saved = []
+	let skipped = []
 	try
 		for ent in modified
 			let buf = ent.bufnr
 
 			if bufnr("") is buf
-				call s:save(saved, ent)
+				call s:save(ent, saved)
 				continue
 			endif
 
 			let found = win_findbuf(buf)
 			if !empty(found) && win_gotoid(found[0])
-				call s:save(saved, ent)
+				call s:save(ent, saved)
 				continue
 			endif
 
@@ -77,7 +82,7 @@ function! Autosave() abort
 			endif
 
 			execute "sbuffer" buf
-			call s:save(saved, ent)
+			call s:save(ent, saved)
 			close!
 		endfor
 	catch /^save-fail:.*/
