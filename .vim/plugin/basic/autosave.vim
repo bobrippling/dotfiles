@@ -1,6 +1,4 @@
-if !exists("g:autosave_enabled")
-	let g:autosave_enabled = 0
-endif
+let g:autosave_enabled = get(g:, "autosave_enabled", 0)
 
 function! s:save(saved, ent) abort
 	if !empty(&buftype) || !&modified
