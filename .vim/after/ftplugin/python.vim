@@ -190,6 +190,16 @@ endfunction
 
 function! s:import_search(name)
 	" c: cursor pos accept, n: no move cursor, w: wrap, b: backwards
+
+	" look for "as <name>" first
+	let found = search("\\C\\v^(from|import)\\s+.*<as>\\s+<" . a:name . ">", "cnwb")
+	if found > 0
+		return found
+	endif
+
+	call s:debug("'as' import not found, looking for normal...")
+
+	" look for no "as"
 	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "cnwb")
 	if found > 0
 		return found
