@@ -46,18 +46,18 @@ function! PyTag(pattern, flags, info) abort
 		let [tag, ident] = s:maybe_split_tag_string(a:pattern)
 	endif
 
-	let import_line = s:import_search(tag)
-	if import_line > 0
+	let import_line_nr = s:import_search(tag)
+	if import_line_nr > 0
 		" - go up to `from`
 		" - grab the module
 		" - convert to path, handling `.` and `..` (`...`) prefixes
 		" - try %:h/path, %:h:h/path, ...
-		let l = getline(import_line)
+		let import_line = getline(import_line_nr)
 
-		if l[:3] ==# 'from'
-			let mod = substitute(l, '^\vfrom\s+(\S+)\s+import\s+.*', '\1', '')
+		if import_line[:3] ==# 'from'
+			let mod = substitute(import_line, '^\vfrom\s+(\S+)\s+import\s+.*', '\1', '')
 		else
-			let mod = substitute(l, '^\vimport\s+(\S+)', '\1', '')
+			let mod = substitute(import_line, '^\vimport\s+(\S+)', '\1', '')
 		endif
 
 		let parts = split(mod, '\s\+as\s\+')
@@ -78,7 +78,7 @@ function! PyTag(pattern, flags, info) abort
 			let mod = substitute(mod, '^\.\+', repeat('../', ndots - 1), '')
 		endif
 
-		call s:debug("import, line: " . l . ", mod: " . mod) " . ', alias: ' . alias)
+		call s:debug("import, line: " . import_line . ", mod: " . mod) " . ', alias: ' . alias)
 
 		let suff = expand("%:e")
 
