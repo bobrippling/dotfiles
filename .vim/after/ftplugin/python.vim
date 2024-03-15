@@ -46,7 +46,7 @@ function! PyTag(pattern, flags, info) abort
 		let [tag, ident] = s:maybe_split_tag_string(a:pattern)
 	endif
 
-	let [import_line_nr, _tag_line_nr] = s:import_search(tag)
+	let [import_line_nr, tag_line_nr] = s:import_search(tag)
 	if import_line_nr > 0
 		" - go up to `from`
 		" - grab the module
@@ -58,12 +58,19 @@ function! PyTag(pattern, flags, info) abort
 			let mod = substitute(import_line, '^\vfrom\s+(\S+)\s+import\s+.*', '\1', '')
 		else
 			let mod = substitute(import_line, '^\vimport\s+(\S+)', '\1', '')
+			" handle `x as y` here (ignore 'as ...'), by trimming down `mod`
+			let mod = substitute(mod, '\v\s+as\s.*', '', '')
 		endif
+		call s:debug("extracted module: " . mod)
 
-		let parts = split(mod, '\s\+as\s\+')
-		if len(parts) == 2
-			let mod = parts[0]
-			"let alias = parts[1]
+		" extract any renames
+		let tag_line = getline(tag_line_nr)
+		let orig_name = substitute(tag_line, '\v.*\s(\S+)\s+<as>\s+\S+>', '\1', '')
+		if !empty(orig_name) && orig_name !=# tag_line
+			call s:debug("renaming tag (`" . tag . "` imported as `" . orig_name . "`)")
+			let tag = orig_name
+		else
+			call s:debug("using original tag (" . tag . ")")
 		endif
 
 		" a.b -> a/b
