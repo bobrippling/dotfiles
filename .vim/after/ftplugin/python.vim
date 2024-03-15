@@ -46,7 +46,7 @@ function! PyTag(pattern, flags, info) abort
 		let [tag, ident] = s:maybe_split_tag_string(a:pattern)
 	endif
 
-	let import_line_nr = s:import_search(tag)
+	let [import_line_nr, _tag_line_nr] = s:import_search(tag)
 	if import_line_nr > 0
 		" - go up to `from`
 		" - grab the module
@@ -194,7 +194,7 @@ function! s:import_search(name)
 	" look for "as <name>" first
 	let found = search("\\C\\v^(from|import)\\s+.*<as>\\s+<" . a:name . ">", "cnwb")
 	if found > 0
-		return found
+		return [found, found]
 	endif
 
 	call s:debug("'as' import not found, looking for normal...")
@@ -202,13 +202,13 @@ function! s:import_search(name)
 	" look for no "as"
 	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "cnwb")
 	if found > 0
-		return found
+		return [found, found]
 	endif
 
 	call s:debug("oneline import not found, looking for multiple...")
 
 	let linenr = 0
-	let found = 0
+	let tag_linenr = 0
 	for i in range(1, line("$"))
 		let line = getline(i)
 		if line =~? '^\v(import|from).*\(\s*$'
@@ -226,7 +226,7 @@ function! s:import_search(name)
 		endif
 	endfor
 
-	return found ? linenr : 0
+	return tag_linenr > 0 ? [linenr, tag_linenr] : [0, 0]
 endfunction
 
 " ----------------------- copied from javascript.vim
