@@ -84,33 +84,34 @@ function! s:url_for_curbuf(ci, start, end)
 		endif
 	endif
 
-	return Path2Scm_Url(u, fname, ci, a:start, a:end)
+	" pass type=blob and let the upstream deal with rewriting to tree
+	return Path2Scm_Url(u, fname, ci, a:start, a:end, "blob")
 endfunction
 
-function! Path2Scm_Url(u, fname, ci, start, end)
+function! Path2Scm_Url(u, fname, ci, start, end, type)
 	let u = a:u
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
 	let u = substitute(u, '\.git$', '', '')
 
 	if u =~? 'gitlab.com/'
-		return s:suffix_gitlab(u, a:fname, a:ci, a:start, a:end)
+		return s:suffix_gitlab(u, a:fname, a:ci, a:start, a:end, a:type)
 	elseif u =~? 'github.com/'
-		return s:suffix_github(u, a:fname, a:ci, a:start, a:end)
+		return s:suffix_github(u, a:fname, a:ci, a:start, a:end, a:type)
 	endif
 
 	throw "path2scm: unrecognised host \"" . u . "\" (\"" . a:u . "\")"
 endfunction
 
-function! s:suffix_gitlab(base, fname, ci, start, end)
-	let url = a:base . "/-/blob/" . a:ci . "/" . a:fname
+function! s:suffix_gitlab(base, fname, ci, start, end, type)
+	let url = a:base . "/-/" . a:type . "/" . a:ci . "/" . a:fname
 	if a:start
 		let url .= "#L" . a:start . (a:end == a:start ? "" : "-" . a:end)
 	endif
 	return url
 endfunction
 
-function! s:suffix_github(base, fname, ci, start, end)
-	return a:base . "/blob/" . a:ci . "/" . a:fname . (a:start ? "#L" . a:start . "-L" . a:end . "=" : "")
+function! s:suffix_github(base, fname, ci, start, end, type)
+	return a:base . "/" . a:type . "/" . a:ci . "/" . a:fname . (a:start ? "#L" . a:start . "-L" . a:end . "=" : "")
 endfunction
 
 function! s:suffix_tfs()
