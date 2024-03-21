@@ -60,6 +60,8 @@ export PAGER="less -iRS" # no -F - causes instant exit bug
 
 export ESCDELAY=10 # ncurses escape wait time (ms)
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 if test -z "$TMUX_OUTER_TERM"
 then export TMUX_OUTER_TERM="$TERM"
 fi
