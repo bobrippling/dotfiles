@@ -60,6 +60,12 @@ function! s:checkrg()
 	endtry
 endfunction
 
+function s:maybe_set_in_qf(amatch)
+	if a:amatch =~? '\vgrep|<rg>'
+		let s:in_qf = 1
+	endif
+endfunction
+
 " set global grep, and then add autocmds for file-specific grep
 call s:setgrep("")
 let s:in_qf = 0
@@ -69,6 +75,6 @@ augroup SetGrep
 
 	autocmd FileType * call s:setgrep("local")
 	autocmd ShellCmdPost * if s:in_qf | call s:checkrg() | endif
-	autocmd QuickFixCmdPre * let s:in_qf = 1
+	autocmd QuickFixCmdPre * call s:maybe_set_in_qf(expand("<amatch>"))
 	autocmd QuickFixCmdPost * let s:in_qf = 0
 augroup END
