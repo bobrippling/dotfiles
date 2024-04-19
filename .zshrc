@@ -62,11 +62,44 @@ zstyle :compinstall filename '/home/rob/.zshrc'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.*' insert-sections true
 
-# manual (https://thevaluable.dev/zsh-completion-guide-examples/)
+# manual (https://thevaluable.dev/zsh-completion-guide-examples/ & https://github.com/grml/grml-etc-core/blob/master/etc/zsh/zshrc)
 zstyle ':completion:*:messages' format '%F{blue}(%d)%f'
-zstyle ':completion:*:warnings' format '%F{red}! no matches%f'
-zstyle ':completion:*:descriptions' format '%F{green}# %d%f'
+zstyle ':completion:*:warnings' format '%F{red}! no matches (for %d)%f'
+zstyle ':completion:*:descriptions' format '%F{green}completing %d%f'
 zstyle ':completion:*:corrections' format "%F{red}%d%f (%F{blue}errors %e%f)"
+
+# automatically complete 'cd -<tab>' with menu
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+
+# insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ':completion:*:history-words' list false
+
+# activate menu
+zstyle ':completion:*:history-words' menu yes
+
+# ignore duplicate entries
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' stop yes
+
+# separate matches into groups
+zstyle ':completion:*:matches' group 'yes'
+
+# if there are more than 5 options allow selecting from a menu
+zstyle ':completion:*' menu select=5
+# see also setopt no_auto_menu
+
+# describe options in full
+zstyle ':completion:*:options' description 'yes'
+
+# offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+# slow (for commands), so disable
+zstyle ':completion:*:-command-:*:' verbose false
+
+# Ignore completion functions for commands you don't have:
+zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
 
 # -------------------------------------------------------------------------------------
 # Cursor shaping
