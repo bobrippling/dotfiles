@@ -60,6 +60,7 @@ function! s:setup()
 	-- rustup component add rust-analyzer
 	-- npm i -g [--prefix ~/src/npm/] pyright tsserver
 	local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
+	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
 			on_attach = on_attach,
@@ -67,6 +68,8 @@ function! s:setup()
 				debounce_text_changes = 150,
 			},
 			autostart = false,
+			-- this lets LSP give us back a few more things, like some snippets
+			capabilities = capabilities,
 		}
 	end
 EOF

@@ -52,6 +52,15 @@ Plug 'bobrippling/vim-supersleuth'
 if has('nvim')
 	" can't lazy load - see notes in plugin/lsp/rust.vim
 	Plug 'neovim/nvim-lspconfig' ", { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
+
+	" completion - use lsp's omnifunc (lsp/setup.vim)
+	" see plugin/bundle--nvim-cmp.vim
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'hrsh7th/cmp-nvim-lsp' " show completions from lsp (+capabilities, lsp/setup.vim)
+	Plug 'hrsh7th/cmp-buffer' " complete words from bufnr
+	"Plug 'hrsh7th/cmp-omni' " don't need - can invoke omni ourselves
+	"Plug 'hrsh7th/cmp-cmdline' " doesn't play with wildcards
+	"Plug 'hrsh7th/cmp-path' " C-X, C-F
 endif
 "Plug 'neoclide/coc.nvim'
 "Plug 'dense-analysis/ale'
