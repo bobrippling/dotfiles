@@ -234,8 +234,12 @@ selection:
 
 mouse_bindings:
   - { mouse: Middle, action: None }
-#key_bindings: # needs newer alacritty version
-  #- { key: N, mods: Command, action: CreateNewWindow }
+key_bindings:
+  #- { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: N, mods: Command, action: CreateNewWindow }
+  - { key: Q, mods: Command, action: Quit }
+  #- { key: W, mods: Command, action: Quit }
+  - { key: F, mods: Command|Control, action: ToggleFullscreen }
 
 # only open urls on ctrl+click
 # https://github.com/alacritty/alacritty/issues/2058
