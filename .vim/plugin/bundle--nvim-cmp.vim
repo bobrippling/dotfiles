@@ -48,7 +48,14 @@ lua <<EOF
 	})
 
 	cmp.setup.cmdline({ '/', '?' }, {
-		mapping = cmp.mapping.preset.cmdline(),
+		--[[
+		https://github.com/hrsh7th/nvim-cmp/issues/880
+		in short, don't call cmd.setup({ cmdline = ... }) or cmd.setup.cmdline()
+		or if you do, disable the Tab mapping:
+		]]
+		mapping = cmp.mapping.preset.insert({
+			['<Tab>'] = { i = cmp.config.disable, c = cmp.config.disable },
+		}),
 		sources = {
 			{ name = 'buffer' }
 		}
