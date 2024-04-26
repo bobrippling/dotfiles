@@ -73,10 +73,10 @@ function! s:maps(onoff)
 		vmap <silent> n :<C-U>call SearchIgnSyn("n", 1)<CR>
 		vmap <silent> N :<C-U>call SearchIgnSyn("N", 1)<CR>
 	else
-		try | nunmap n | catch | endtry
-		try | nunmap N | catch | endtry
-		try | nunmap n | catch | endtry
-		try | nunmap N | catch | endtry
+		try | nunmap n| catch | endtry
+		try | nunmap N| catch | endtry
+		try | vunmap n| catch | endtry
+		try | vunmap N| catch | endtry
 	endif
 
 	augroup SearchIgnoreSyn
