@@ -54,7 +54,8 @@ lua <<EOF
 		or if you do, disable the Tab mapping:
 		]]
 		mapping = cmp.mapping.preset.insert({
-			['<Tab>'] = { i = cmp.config.disable, c = cmp.config.disable },
+			['<Tab>'] = cmp.config.disable,
+			['<S-Tab>'] = cmp.config.disable,
 		}),
 		sources = {
 			{ name = 'buffer' }
