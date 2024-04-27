@@ -56,18 +56,7 @@ lua <<EOF
 	or if you do, disable the Tab mapping:
 	]]
 	local cmdmap = cmp.mapping.preset.cmdline()
-	-- these permit a fallback and handle search-only
-	cmdmap['<Tab>'] = {
-		c = function(fallback)
-			local ct = vim.fn.getcmdtype()
-			--print(("ct=%s"):format(ct))
-			if ct == "/" then
-				cmp.mapping.confirm({ select = true })(fallback)
-			else
-				fallback()
-			end
-		end
-	}
+	cmdmap['<Tab>'] = nil
 	cmdmap['<S-Tab>'] = nil
 	cmp.setup.cmdline({ '/', '?' }, {
 		mapping = cmdmap,
