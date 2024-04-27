@@ -23,11 +23,14 @@ lua <<EOF
 			documentation = cmp.config.window.bordered(),
 		},
 		mapping = cmp.mapping.preset.insert({
+			--[[
+			<CR> inserts a newline in insertmode and searchs in '/' mode (i.e. always passthru)
+			<Tab> accepts first entry [expanding snippets, etc] if cmp visible (check is done for us), otherwise inserts tab
+			]]
 			['<C-b>'] = cmp.mapping.scroll_docs(-4),
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
-			['<C-Space>'] = cmp.mapping.complete(),
-			['<C-e>'] = cmp.mapping.abort(),
-			['<CR>'] = cmp.mapping.confirm({ select = true }),
+			['<C-l>'] = cmp.mapping.complete_common_string(),
+			['<Tab>'] = cmp.mapping.confirm({ select = true }),
 		}),
 		sources = cmp.config.sources({
 			{ name = 'nvim_lsp' },
