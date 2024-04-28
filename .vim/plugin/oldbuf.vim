@@ -120,7 +120,12 @@ function! TrimUnlinkedBuffers(bang)
 		" if buffer open, ignore (unless -bang)
 		if !a:bang
 			let bufopen = bufwinid(buf) != -1
-			if bufopen | continue | endif
+			if bufopen
+				if &verbose > 0
+					echom "TrimUnlinkedBuffers: skipping open buffer \"" . name . "\""
+				endif
+				continue
+			endif
 		endif
 
 		if s:fileexists(name)
