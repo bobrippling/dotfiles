@@ -1,6 +1,10 @@
 lua <<EOF
 	-- https://github.com/hrsh7th/nvim-cmp/wiki
-	local cmp = require'cmp'
+	local ok, cmp = pcall(require, 'cmp')
+	if not ok then
+		vim.cmd.echom("'nvim-cmp not installed'")
+		return
+	end
 
 	cmp.setup({
 		--[[
