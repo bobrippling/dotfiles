@@ -55,7 +55,7 @@ if has('nvim')
 
 	" completion - use lsp's omnifunc (lsp/setup.vim)
 	" see plugin/bundle--nvim-cmp.vim
-	Plug 'hrsh7th/nvim-cmp'
+	Plug 'bobrippling/nvim-cmp', { 'branch': 'fix/cmdwin' } " fork of hrsh7th/nvim-cmp
 	Plug 'hrsh7th/cmp-nvim-lsp' " show completions from lsp (+capabilities, lsp/setup.vim)
 	Plug 'hrsh7th/cmp-buffer' " complete words from bufnr
 	"Plug 'hrsh7th/cmp-omni' " don't need - can invoke omni ourselves
