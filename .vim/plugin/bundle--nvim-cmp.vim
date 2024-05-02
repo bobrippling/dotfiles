@@ -48,10 +48,11 @@ lua <<EOF
 							bufs[vim.api.nvim_win_get_buf(win)] = true
 						end
 						return vim.tbl_keys(bufs)
-					end
+					end,
+					show_source = true,
 				}
 			}
-		})
+		}),
 	})
 
 	--[[
