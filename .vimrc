@@ -58,9 +58,10 @@ if has("nvim") && exists("&smoothscroll")
 	set smoothscroll
 endif
 set splitbelow splitright
-set wildmode=list:longest,full
+set wildmode=full " necessary for wildmenu
 set wildmenu
 set wildignorecase
+set wildoptions=pum
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
