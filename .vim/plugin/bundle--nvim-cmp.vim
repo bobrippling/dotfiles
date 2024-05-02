@@ -35,6 +35,13 @@ lua <<EOF
 			['<C-f>'] = cmp.mapping.scroll_docs(4),
 			['<C-l>'] = cmp.mapping.complete_common_string(),
 			['<Tab>'] = cmp.mapping.confirm({ select = true }),
+			['<C-g>'] = function()
+				if cmp.visible_docs() then
+					cmp.close_docs()
+				else
+					cmp.open_docs()
+				end
+			end,
 		}),
 		sources = cmp.config.sources({
 			{ name = 'nvim_lsp' },
