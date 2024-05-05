@@ -58,7 +58,7 @@ if has("nvim") && exists("&smoothscroll")
 	set smoothscroll
 endif
 set splitbelow splitright
-set wildmode=full " necessary for wildmenu
+set wildmode=longest:full,full " 'full' is necessary for wildmenu, comma to not jump into the menu straight away
 set wildmenu
 set wildignorecase
 set wildoptions=pum
