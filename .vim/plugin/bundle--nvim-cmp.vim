@@ -1,3 +1,7 @@
+if !has("nvim")
+	finish
+endif
+
 lua <<EOF
 	-- https://github.com/hrsh7th/nvim-cmp/wiki
 	local ok, cmp = pcall(require, 'cmp')
