@@ -48,7 +48,7 @@ function! Dotcomplete(findstart, base)
     if a:findstart
         let col = s:rewind_keyword(line, col - 1)
 
-        if s:debug
+        if s:debug || &verbose >= 11
             let t = line[col : col(".")]
             echom "--- Dotcomplete, start col:" col "text:" t
         endif
@@ -60,7 +60,7 @@ function! Dotcomplete(findstart, base)
         return []
     endif
 
-    if s:debug
+    if s:debug || &verbose >= 11
         execute 'echom "Dotcomplete: before dot=' . obj . ' (base=' . a:base . ')"'
     endif
 
@@ -79,7 +79,7 @@ function! Dotcomplete(findstart, base)
         let col = matchpos[2]
         let member = s:find_after_dot(getline(matchpos[1]), col)
 
-        if s:debug
+        if s:debug || &verbose >= 11
             execute 'echom "Dotcomplete match=' . member . ', at line ' . matchpos[1] . ', column ' . col . '"'
         endif
 

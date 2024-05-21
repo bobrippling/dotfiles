@@ -240,7 +240,7 @@ endfunction
 " ----------------------- copied from javascript.vim
 
 function! s:debug(s) abort
-	if 0
+	if 0 || &verbose >= 11
 		echom "pytag: " . a:s
 		" ^--- changed from javascript.vim
 	endif

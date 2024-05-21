@@ -5,7 +5,7 @@ let s:is_require = 'require'
 let s:is_import = 'from'
 
 function! s:debug(s) abort
-	if 0
+	if 0 || &verbose >= 11
 		echom "jstag: " . a:s
 	endif
 endfunction
