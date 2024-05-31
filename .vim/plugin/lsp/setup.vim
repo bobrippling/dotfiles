@@ -45,11 +45,7 @@ function! s:setup()
 		buf_set_keymap('n', '<space>c', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 		buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 
-		buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-		buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-
 		buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-		buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setqflist()<CR>', opts)
 
 		--buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format({ async = false })<CR>', opts)
 		buf_set_keymap('n', '<space>gq', '<cmd>lua vim.lsp.buf.format({ async = false })<CR>', opts)
