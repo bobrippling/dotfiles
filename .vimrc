@@ -202,6 +202,8 @@ filetype indent plugin on
 
 " execute pathogen#infect()
 
+let g:machine_fast = 1
+
 let g:man_hardwrap = 1
 let g:tar_nomax = 1
 let g:pinpoint_preview_delay = 150

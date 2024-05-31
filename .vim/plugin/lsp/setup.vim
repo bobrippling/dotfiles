@@ -74,7 +74,11 @@ endfunction
 " can't lazy load nvim-lspconfig, but we can delay this setup:
 " ... or can we? lua vim.lsp.stop_client(vim.lsp.get_active_clients())
 
-command! -bar LspVimrcSetup call s:setup()
+if g:machine_fast
+	call s:setup()
+else
+	command! -bar LspVimrcSetup call s:setup()
+endif
 
 hi DiagnosticUnderlineError cterm=none
 hi DiagnosticUnderlineWarn cterm=none
