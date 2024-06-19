@@ -83,6 +83,7 @@ if exists('+cursorlineopt')
 endif
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 set showmatch cpoptions-=m
+set report=1
 
 " display (gui)
 " m: menu bar
