@@ -2,6 +2,7 @@
 alias grep="grep --color=auto"
 alias ls="ls --color=auto --group-directories-first -F"
 alias diff="diff --color=auto"
+alias ip="ip -c"
 
 alias bc='bc -q'
 
