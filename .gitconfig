@@ -92,6 +92,7 @@
 	colormoved = default
 	# Ignore indentation changes when detecting moved blocks
 	colormovedws = allow-indentation-change
+	submodule = log
 [submodule]
 	recurse = true
 [blame]
@@ -99,6 +100,8 @@
 	#ignoreRevsFile = .git-blame-ignore-revs
 	markIgnoredLines = true
 	markUnblamableLines = true
+[status]
+	submoduleSummary = true
 
 # replacements
 [url "https://github.com/"]
