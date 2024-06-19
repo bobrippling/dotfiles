@@ -75,5 +75,7 @@ fi
 if test -e ~/.config/dotfiles/contrib/z
 then
 	#_Z_NO_PROMPT_COMMAND=1
+	_Z_NO_RESOLVE_SYMLINKS=1
+	_Z_MAX_SCORE=18000
 	. ~/.config/dotfiles/contrib/z/z.sh
 fi
