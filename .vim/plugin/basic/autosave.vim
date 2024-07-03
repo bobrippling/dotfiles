@@ -8,7 +8,7 @@ function! s:save(ent, saved) abort
 		endif
 		return
 	endif
-	if !get(b:, 'autosave', 1)
+	if !get(b:, 'autosave', 1) || !get(w:, 'autosave', 1) || !get(t:, 'autosave', 1)
 		return
 	endif
 	if empty(glob(expand("%")))
