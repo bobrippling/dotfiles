@@ -71,7 +71,7 @@
 # commands
 [rebase]
 	autosquash = true
-	#updaterefs = true
+	updaterefs = true
 [pull]
 	ff = only
 [push]
