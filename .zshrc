@@ -339,6 +339,10 @@ PS1="
 
 setopt prompt_subst
 
+zshrc_ps1_nohost(){
+	PS1="$(echo "$PS1" | sed 's;%B%m%b ;;')"
+}
+
 source_if_exists(){
 	if test -e "$1"
 	then source "$1"
