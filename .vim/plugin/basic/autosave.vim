@@ -56,6 +56,9 @@ function! Autosave() abort
 		return
 	endif
 
+	echo "autosaving..."
+	redraw
+
 	let focus = win_getid()
 	let restore_wins = ''
 	let error = ''
