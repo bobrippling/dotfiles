@@ -29,6 +29,7 @@ endfunction
 function! TabInfo(n)
 	let bufs = tabpagebuflist(a:n)
 
+	let is_prev = tabpagenr("#") == a:n
 	let modified = 0
 	let tty = 0
 	for buf in bufs
@@ -43,7 +44,7 @@ function! TabInfo(n)
 		endif
 	endfor
 
-	return  (tty ? "T" : "") . len(bufs) . "w" .(modified ? "+" : "")
+	return (is_prev ? "#" : "") . (tty ? "T" : "") . len(bufs) . "w" . (modified ? "+" : "")
 endfunction
 
 function! TabLine()
