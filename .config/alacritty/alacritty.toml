@@ -62,150 +62,173 @@ hide_when_typing = false
 action = "None"
 mouse = "Middle"
 
-[schemes.cobalt2.bright]
-black = "#555555"
-blue = "#5555ff"
-cyan = "#6ae3fa"
-green = "#3bd01d"
-magenta = "#ff55ff"
-red = "#f40e17"
-white = "#ffffff"
-yellow = "#edc809"
-
-[schemes.cobalt2.cursor]
-cursor = "#f0cc09"
-text = "#fefff2"
-
-[schemes.cobalt2.normal]
-black = "#000000"
-blue = "#1460d2"
-cyan = "#00bbbb"
-green = "#38de21"
-magenta = "#ff005d"
-red = "#ff0000"
-white = "#bbbbbb"
-yellow = "#ffe50a"
-
-[schemes.cobalt2.primary]
-background = "#132738"
-foreground = "#ffffff"
-
-[schemes.cobalt2.selection]
-background = "#18354f"
-text = "#b5b5b5"
-
-[schemes.papercolor_light.bright]
-black = "0xbcbcbc"
-blue = "0xd75f00"
-cyan = "0x005faf"
-green = "0xd70087"
-magenta = "0xd75f00"
-red = "0xd70000"
-white = "0x005f87"
-yellow = "0x8700af"
-
-[schemes.papercolor_light.cursor]
-cursor = "0x444444"
-text = "0xeeeeee"
-
-[schemes.papercolor_light.normal]
-black = "0x111111"
-blue = "0x0087af"
-cyan = "0x005fb7"
-green = "0x008700"
-magenta = "0xff87b7"
-red = "0xaf0000"
-white = "0xffffff"
-yellow = "0x5f8700"
-
-[schemes.papercolor_light.primary]
-background = "0xeeeeee"
-foreground = "0x444444"
-
-[schemes.solarized_dark.bright]
-black = "#002b36"
-blue = "#839496"
-cyan = "#93a1a1"
-green = "#586e75"
-magenta = "#6c71c4"
-red = "#cb4b16"
-white = "#fdf6e3"
-yellow = "#657b83"
-
-[schemes.solarized_dark.cursor]
-cursor = "#839496"
-text = "#002b36"
-
-[schemes.solarized_dark.normal]
-black = "#073642"
-blue = "#268bd2"
-cyan = "#2aa198"
-green = "#859900"
-magenta = "#d33682"
-red = "#dc322f"
-white = "#eee8d5"
-yellow = "#b58900"
-
-[schemes.solarized_dark.primary]
-background = "#002b36"
-foreground = "#839496"
-
-[schemes.solarized_light.bright]
-black = "#002b36"
-blue = "#469bf2"
-cyan = "#2aa1c8"
-green = "#189b25"
-magenta = "#6c71c4"
-red = "#cb4b16"
-white = "#fdf6e3"
-yellow = "#c59900"
-
-[schemes.solarized_light.normal]
-black = "#073642"
-blue = "#268bd2"
-cyan = "#2aa198"
-green = "#859900"
-magenta = "#d33682"
-red = "#dc322f"
-white = "#eee8d5"
-yellow = "#b58900"
-
-[schemes.solarized_light.primary]
-background = "#fdf6e3"
-foreground = "#586e75"
-
-[schemes.zenburn.bright]
-black = "#656565"
-blue = "#87ceeb"
-cyan = "#ffd700"
-green = "#55ff55"
-magenta = "#ff55ff"
-red = "#ff5555"
-white = "#ffffff"
-yellow = "#ffff55"
-
-[schemes.zenburn.cursor]
-cursor = "#00ff00"
-text = "#000000"
-
-[schemes.zenburn.normal]
-black = "#6d6d6d"
-blue = "#96853f"
-cyan = "#ffa0a0"
-green = "#98f898"
-magenta = "#ffdead"
-red = "#ff3333"
-white = "#f5deb3"
-yellow = "#f0e68c"
-
-[schemes.zenburn.primary]
-background = "#333333"
-bright_background = "#555555"
-bright_foreground = "#ffffff"
-foreground = "#ffffff"
 
 [selection]
 save_to_clipboard = false
 
 [window]
 decorations = "full"
+
+#schemes:
+#  solarized_dark: &scheme_solarized_dark
+#    # Default colors
+#    primary:
+#      background: '#002b36' # base03
+#      foreground: '#839496' # base0
+#
+#    # Cursor colors
+#    cursor:
+#      text:  '#002b36' # base03
+#      cursor: '#839496' # base0
+#
+#    # Normal colors
+#    normal:
+#      black:  '#073642' # base02
+#      red:   '#dc322f' # red
+#      green:  '#859900' # green
+#      yellow:  '#b58900' # yellow
+#      blue:   '#268bd2' # blue
+#      magenta: '#d33682' # magenta
+#      cyan:   '#2aa198' # cyan
+#      white:  '#eee8d5' # base2
+#
+#    # Bright colors
+#    bright:
+#      black:  '#002b36' # base03
+#      red:   '#cb4b16' # orange
+#      green:  '#586e75' # base01
+#      yellow:  '#657b83' # base00
+#      blue:   '#839496' # base0
+#      magenta: '#6c71c4' # violet
+#      cyan:   '#93a1a1' # base1
+#      white:  '#fdf6e3' # base3
+#
+#  solarized_light: &scheme_solarized_light
+#    primary:
+#      background: '#fdf6e3'
+#      foreground: '#586e75'
+#      #dim_foreground:    '#dbdbdb'
+#      #bright_foreground: '#d9d9d9'
+#      #dim_background:    '#202020'
+#      #bright_background: '#3a3a3a'
+#
+#    #cursor:
+#      #text:   '#2c2c2c'
+#      #cursor: '#d9d9d9'
+#
+#    normal:
+#      black:   '#073642'
+#      red:     '#dc322f'
+#      green:   '#859900'
+#      yellow:  '#b58900'
+#      blue:    '#268bd2'
+#      magenta: '#d33682'
+#      cyan:    '#2aa198'
+#      white:   '#eee8d5'
+#
+#    bright:
+#      black:   '#002b36'
+#      red:     '#cb4b16'
+#      green:   '#189b25'
+#      yellow:  '#c59900'
+#      blue:    '#469bf2'
+#      magenta: '#6c71c4'
+#      cyan:    '#2aa1c8'
+#      white:   '#fdf6e3'
+#
+#    #dim: [...] # If the dim colours are not set, they will be calculated automatically based on the `normal` colours.
+#
+#  zenburn: &scheme_zenburn
+#    primary:
+#      background: '#333333'
+#      foreground: '#ffffff'
+#
+#      bright_foreground: '#ffffff'
+#      bright_background: '#555555'
+#
+#    cursor:
+#      text:   '#000000'
+#      cursor:  '#00ff00'
+#
+#    normal:
+#      black:  '#6d6d6d'
+#      red:   '#ff3333'
+#      green:  '#98f898'
+#      yellow:  '#f0e68c'
+#      blue:   '#96853f'
+#      magenta: '#ffdead'
+#      cyan:   '#ffa0a0'
+#      white:  '#f5deb3'
+#
+#    bright:
+#      black:  '#656565'
+#      red:   '#ff5555'
+#      green:  '#55ff55'
+#      yellow:  '#ffff55'
+#      blue:   '#87ceeb'
+#      magenta: '#ff55ff'
+#      cyan:   '#ffd700'
+#      white:  '#ffffff'
+#
+#  cobalt2: &scheme_cobalt2
+#    cursor:
+#      text: "#fefff2"
+#      cursor: "#f0cc09"
+#
+#    selection:
+#      text: "#b5b5b5"
+#      background: "#18354f"
+#
+#    primary:
+#      background: "#132738"
+#      foreground: "#ffffff"
+#
+#    normal:
+#      black: "#000000"
+#      red: "#ff0000"
+#      green: "#38de21"
+#      yellow: "#ffe50a"
+#      blue: "#1460d2"
+#      magenta: "#ff005d"
+#      cyan: "#00bbbb"
+#      white: "#bbbbbb"
+#
+#    bright:
+#      black: "#555555"
+#      red: "#f40e17"
+#      green: "#3bd01d"
+#      yellow: "#edc809"
+#      blue: "#5555ff"
+#      magenta: "#ff55ff"
+#      cyan: "#6ae3fa"
+#      white: "#ffffff"
+#
+#    # https://github.com/eendroroy/alacritty-theme/blob/master/themes/papercolor_light.yaml
+#  papercolor_light: &scheme_papercolor_light
+#    primary:
+#      background: '0xeeeeee'
+#      foreground: '0x444444'
+#
+#    cursor:
+#      text: '0xeeeeee'
+#      cursor: '0x444444'
+#
+#    normal:
+#      black:   '0x111111'
+#      red:     '0xaf0000'
+#      green:   '0x008700'
+#      yellow:  '0x5f8700'
+#      blue:    '0x0087af'
+#      magenta: '0xff87b7'
+#      cyan:    '0x005fb7'
+#      white:   '0xffffff'
+#
+#    bright:
+#      black:   '0xbcbcbc'
+#      red:     '0xd70000'
+#      green:   '0xd70087'
+#      yellow:  '0x8700af'
+#      blue:    '0xd75f00'
+#      magenta: '0xd75f00'
+#      cyan:    '0x005faf'
+#      white:   '0x005f87'
