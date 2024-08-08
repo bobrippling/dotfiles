@@ -1,5 +1,4 @@
 live_config_reload = true
-log_level = "Warn"
 
 [colors.bright]
 black = "0xbcbcbc"
