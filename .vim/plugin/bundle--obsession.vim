@@ -2,7 +2,7 @@ if g:machine_fast | finish | endif
 
 let s:persist_fn = ''
 
-function! s:init()
+function! s:init(timer_id)
 	let funcs = split(execute('filter /[0-9]_persist\>/ func'), "\n")
 	if len(funcs) != 1
 		echoerr "obsession++: couldn't find persist function (found" len(funcs) "functions)"
@@ -30,4 +30,5 @@ endfunction
 
 let g:obsession_no_bufenter = 1
 
-call s:init()
+" wait for obsession to load
+call timer_start(500, funcref('s:init'))
