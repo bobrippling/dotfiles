@@ -67,7 +67,7 @@ endif
 
 " Colours
 Plug 'bobrippling/vim-illuminate' " https://github.com/RRethy/vim-illuminate
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'bobrippling/vim-papercolor' " NLKNguyen/papercolor-theme
 "Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 "Plug 'bobrippling/vim-colors-solarized' " https://github.com/altercation/vim-colors-solarized
 "Plug 'lifepillar/vim-solarized8' " solarized8_high
