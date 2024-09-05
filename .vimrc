@@ -84,6 +84,7 @@ endif
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 set showmatch cpoptions-=m
 set report=1
+set synmaxcol=160
 
 " display (gui)
 " m: menu bar
