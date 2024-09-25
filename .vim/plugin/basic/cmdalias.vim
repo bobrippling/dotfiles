@@ -15,7 +15,7 @@ endfunction
 
 call CmdAlias('vsb', 'vert sb')
 call CmdAlias('tabcp', 'tabc|tabp')
-call CmdAlias('tabxp', 'up|tabc|tabp')
+call CmdAlias('tabxp', 'exe "windo up"|tabc|tabp')
 call CmdAlias('tabb', 'tabnew|b')
 
 if has("nvim")
