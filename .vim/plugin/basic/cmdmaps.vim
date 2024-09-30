@@ -1,5 +1,6 @@
 cnoremap <expr> <C-K> <SID>clrtoeol_cmd()
 cnoremap <expr> <C-R><C-B> <SID>curbuf()
+cnoreabbrev '<,'> *
 
 function! s:clrtoeol_cmd() abort
     let cmd = getcmdline()
