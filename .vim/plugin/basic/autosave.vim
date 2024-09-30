@@ -121,8 +121,7 @@ function! Autosave() abort
 	let now = s:now() . " "
 	let full = now . msg
 
-	" -3, since vim seems to show the enter prompt even if we don't hit the end
-	if len(full) < (&columns * &cmdheight) - 3
+	if len(full) < v:echospace
 		echo full
 	else
 		echo now . "[" . len(saved) . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
