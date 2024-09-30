@@ -1,5 +1,6 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
 let g:autosave_verbose = get(g:, "autosave_verbose", 0)
+let g:autosave_paused = get(g:, "autosave_paused", 0)
 
 function! s:save(ent, saved) abort
 	if !empty(&buftype) || !&modified
@@ -48,6 +49,10 @@ function! Autosave() abort
 	if !g:autosave_enabled || !empty(getcmdwintype())
 		return
 	endif
+	if g:autosave_paused
+		echo s:now() . " autosave paused"
+		return
+	endif
 
 	let modified = getbufinfo({ "bufmodified": 1 })
 	call filter(modified, { _, ent -> s:can_autosave(ent) })
@@ -62,6 +67,12 @@ function! Autosave() abort
 	let focus = win_getid()
 	let restore_wins = ''
 	let error = ''
+
+	augroup autosave_tmp
+		autocmd!
+		" return empty, i.e. do nothing, not even prompt the user
+		autocmd FileChangedShell * let v:fcs_choice = ''
+	augroup END
 
 	let saved = []
 	let skipped = []
@@ -91,6 +102,9 @@ function! Autosave() abort
 	catch /^save-fail:.*/
 		let buf = substitute(v:exception, '[^:]*:', '', '')
 		let error = "Error saving " . buf
+		augroup autosave_tmp
+			autocmd!
+		augroup END
 		" cleanup below
 	endtry
 
@@ -132,11 +146,20 @@ function! s:now()
 	return "[" . strftime("%Y-%m-%d %H:%M:%S") . "]"
 endfunction
 
+function! AutosaveRestore()
+	let g:autosave_paused = 0
+	echo s:now() . " autosave resumed"
+endfunction
+
+function! AutosaveSleep()
+	let g:autosave_paused = 1
+endfunction
+
 augroup autosave
 	autocmd!
 
 	autocmd CursorHold * call Autosave()
 	"autocmd CursorHoldI * update|startinsert
 
-	autocmd FocusLost * call Autosave()
+	autocmd FocusLost * call AutosaveRestore() | call Autosave()
 augroup END
