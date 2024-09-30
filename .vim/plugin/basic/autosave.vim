@@ -118,7 +118,7 @@ function! Autosave() abort
 		let msg = "autosave, skipped " . nskipped
 	endif
 
-	let now = "[" . strftime("%Y-%m-%d %H:%M:%S") . "] "
+	let now = s:now() . " "
 	let full = now . msg
 
 	" -3, since vim seems to show the enter prompt even if we don't hit the end
@@ -127,6 +127,10 @@ function! Autosave() abort
 	else
 		echo now . "[" . len(saved) . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
 	endif
+endfunction
+
+function! s:now()
+	return "[" . strftime("%Y-%m-%d %H:%M:%S") . "]"
 endfunction
 
 augroup autosave
