@@ -147,6 +147,8 @@ function! s:now()
 endfunction
 
 function! AutosaveRestore()
+	if !g:autosave_paused | return | endif
+
 	let g:autosave_paused = 0
 	echo s:now() . " autosave resumed"
 endfunction
