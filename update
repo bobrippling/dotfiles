@@ -28,7 +28,10 @@ find . -type f \
     do
         template=$(echo $f | sed 's;tiny/;;')
 
-        installed=~/"$template"
+        case "$template" in
+            # *.minttyrc) installed=/h/"$template" ;;
+            *) installed=~/"$template" ;;
+        esac
 
         printf '\x1b[2Kchecking if %s exists...\r' "$template" >&2
 
