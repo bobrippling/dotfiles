@@ -54,8 +54,8 @@ function! s:setup()
 	end
 
 	-- rustup component add rust-analyzer
-	-- npm i -g [--prefix ~/src/npm/] pyright tsserver
-	local servers = { 'rust_analyzer', 'pyright', 'tsserver' }
+	-- npm i -g [--prefix ~/src/npm/] pyright ts_ls
+	local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
 	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
