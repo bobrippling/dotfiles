@@ -228,4 +228,5 @@ let g:org_highlight_tex = 0
 
 if !g:machine_fast
 	set redrawtime=250
+	set nofsync
 endif
