@@ -42,7 +42,7 @@ gen_z(){
 			git merge --ff-only --quiet
 		else
 			maybe_new z z
-			git clone --quiet https://github.com/rupa/z
+			git clone --quiet https://github.com/bobrippling/z
 		fi
 	)
 }
