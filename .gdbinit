@@ -13,6 +13,8 @@ set confirm on
 ## resume all threads on `continue`, `next`, etc
 set schedule-multiple on
 
+set disassemble-next-line auto
+
 # history
 set history save
 set history size 1000
