@@ -64,13 +64,7 @@ if test -z "$TMUX_OUTER_TERM"
 then export TMUX_OUTER_TERM="$TERM"
 fi
 
-if test -z "$SSH_AUTH_SOCK" && __loadagent ssh-agent "$HOME/.ssh/env_agent"
-then
-	nssh=$(ssh-add -l | grep '^[0-9]' | wc -l)
-	if test $nssh -eq 0
-	then echo >&2 "$0: environ: no ssh identities"
-	fi
-fi
+test -z "$SSH_AUTH_SOCK" && __loadagent ssh-agent "$HOME/.ssh/env_agent"
 
 # gpg-agent is autostart
 #__loadagent gpg-agent "$HOME/.ssh/gpg_env_agent"
