@@ -133,6 +133,11 @@ set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
 
 if has("nvim")
 	set inccommand=nosplit
+else
+	try
+		autocmd! vimHints
+	catch /E216/
+	endtry
 endif
 
 nnoremap <expr> <silent> <leader>j ":<C-U>" . v:count1 . "n<CR>"
