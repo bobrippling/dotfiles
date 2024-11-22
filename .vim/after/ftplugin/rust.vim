@@ -82,5 +82,6 @@ setlocal isfname+=:
 setlocal includeexpr=RustIncludeExpr(v:fname)
 
 setlocal expandtab tabstop=4
+setlocal cinoptions+=#1
 
 command! -buffer -bar -nargs=* RustMonitor call s:RustMonitor(<q-args>)
