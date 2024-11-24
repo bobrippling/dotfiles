@@ -48,23 +48,25 @@ lua <<EOF
 				end
 			end,
 		}),
-		sources = cmp.config.sources({
-			{ name = 'nvim_lsp' },
-		}, {
+		sources = cmp.config.sources(
 			{
-				name = 'buffer',
-				option = {
-					get_bufnrs = function()
-						local bufs = {}
-						for _, win in ipairs(vim.api.nvim_list_wins()) do
-							bufs[vim.api.nvim_win_get_buf(win)] = true
-						end
-						return vim.tbl_keys(bufs)
-					end,
-					show_source = true,
+				{ name = 'nvim_lsp' },
+			}, {
+				{
+					name = 'buffer',
+					option = {
+						get_bufnrs = function()
+							local bufs = {}
+							for _, win in ipairs(vim.api.nvim_list_wins()) do
+								bufs[vim.api.nvim_win_get_buf(win)] = true
+							end
+							return vim.tbl_keys(bufs)
+						end,
+						show_source = true,
+					}
 				}
 			}
-		}),
+		),
 	})
 
 	--[[
