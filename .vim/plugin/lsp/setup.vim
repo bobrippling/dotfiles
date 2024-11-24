@@ -57,6 +57,7 @@ function! s:setup()
 	-- npm i -g [--prefix ~/src/npm/] pyright ts_ls
 	local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
 	local capabilities = require('cmp_nvim_lsp').default_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = false
 	for _, lsp in ipairs(servers) do
 		nvim_lsp[lsp].setup {
 			on_attach = on_attach,
