@@ -62,7 +62,7 @@ set splitbelow splitright
 set wildmode=longest:full,full " 'full' is necessary for wildmenu, comma to not jump into the menu straight away
 set wildmenu
 set wildignorecase
-set wildoptions=pum
+try | set wildoptions=pum | catch /^E474:/ | endtry
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
