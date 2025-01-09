@@ -86,7 +86,7 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 set showmatch cpoptions-=m
 set report=1
 set synmaxcol=160
-set belloff=error,esc
+set belloff=error,esc,showmatch
 
 " display (gui)
 " m: menu bar
