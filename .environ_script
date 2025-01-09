@@ -43,3 +43,5 @@ fi
 ulimit -c unlimited
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/rg/config"
+
+export COPYFILE_DISABLE=1 # prevent macos tar from creating `._...` files
