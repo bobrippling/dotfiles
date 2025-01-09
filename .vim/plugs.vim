@@ -5,6 +5,7 @@ Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'G
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ] }
+Plug 'junegunn/vim-peekaboo'
 
 " Boost native functionality
 "Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
