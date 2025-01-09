@@ -48,6 +48,40 @@ lua <<EOF
 				end
 			end,
 		}),
+		sorting = {
+			priority_weight = 2,
+			comparators = {
+				function(a, b)
+					local kind_priority = {
+						Field = 1,
+						Method = 1,
+						Property = 2,
+						Function = 2,
+						Variable = 3,
+						Class = 4,
+						Interface = 4,
+						Module = 5,
+						Trait = 6,
+					}
+
+					local kind1 = kind_priority[a:get_kind()] or 100
+					local kind2 = kind_priority[b:get_kind()] or 100
+					-- lua print(vim.inspect(vim.lsp.protocol.CompletionItemKind))
+
+					if kind1 ~= kind2 then
+						return kind1 < kind2
+					end
+				end,
+				-- Use the default comparators from nvim-cmp after custom ones
+				cmp.config.compare.offset,
+				cmp.config.compare.exact,
+				cmp.config.compare.score,
+				cmp.config.compare.kind,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.length,
+				cmp.config.compare.order,
+			},
+		},
 		sources = cmp.config.sources(
 			{
 				{ name = 'nvim_lsp' },
