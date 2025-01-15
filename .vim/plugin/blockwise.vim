@@ -26,8 +26,48 @@ if exists('g:Blockwise_autoselect')
     endif
 endif
 
-command! -bar -range -nargs=+ -com=command   Blockwise    silent call VBCexec(<q-args>)
-command! -bar -range -nargs=* -bang          SortByBlock  silent call VBCsort('<bang>', <q-args>)
+if exists("&inccommand")
+    lua << trim EOF
+    local function preview(opts, hl_namespace, preview_buf)
+        local generated_cmd = opts.line1
+        .. ","
+        .. opts.line2
+        .. opts.name
+        .. " "
+        .. opts.args
+
+        -- override start/end - visual mode isn't active at this point
+        vim.api.nvim_buf_set_var(0, 'blockwise_start', vim.fn.getpos("'<"))
+        vim.api.nvim_buf_set_var(0, 'blockwise_end', vim.fn.getpos("'>"))
+
+        -- vim.api.nvim_buf_set_lines(preview_buf, 0, 0, false, { ... })
+        vim.cmd(generated_cmd)
+
+        vim.api.nvim_buf_del_var(0, 'blockwise_start')
+        vim.api.nvim_buf_del_var(0, 'blockwise_end')
+
+        -- no preview window
+        return 1
+    end
+
+    vim.api.nvim_create_user_command(
+        'Blockwise',
+        'silent call VBCexec(<q-args>)',
+        {
+          nargs = '+',
+          range = 1,
+          bar = true,
+          complete = 'command',
+          preview = preview,
+          force = true,
+        }
+    )
+    EOF
+else
+    command! -bar -range -nargs=+ -com=command Blockwise silent call VBCexec(<q-args>)
+endif
+
+command! -bar -range -nargs=* -bang SortByBlock silent call VBCsort('<bang>', <q-args>)
 
 
 "=====[ Implementation ]===================
@@ -44,8 +84,8 @@ function! VBCexec(cmd) range
     let orig_buflen = line('$')
 
     " Locate and record block being shifted...
-    let [buf_left,  line_left,  col_left,  offset_left ] = getpos("'<")
-    let [buf_right, line_right, col_right, offset_right] = getpos("'>")
+    let [buf_left,  line_left,  col_left,  offset_left ] = get(b:, "blockwise_start", getpos("'<"))
+    let [buf_right, line_right, col_right, offset_right] = get(b:, "blockwise_end", getpos("'>"))
 
     " Split lines into columns around selected block...
     if visualmode() == "\<C-V>"
