@@ -2,12 +2,6 @@
 " Maintainer:	Damian Conway
 " License:	This file is placed in the public domain.
 
-" If already loaded, we're done...
-if exists("loaded_blockwise")
-    finish
-endif
-let loaded_blockwise = 1
-
 " Preserve external compatibility options, then enable full vim compatibility...
 let s:save_cpo = &cpo
 set cpo&vim
