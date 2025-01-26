@@ -17,7 +17,7 @@ Plug 'bobrippling/vim-vmath' " https://github.com/nixon/vim-vmath
 
 " Motions, etc
 Plug 'tpope/vim-surround'
-Plug 'b4winckler/vim-angry'
+Plug 'cposture/vim-textobj-argument' " for [(, ]) etc, success of b4winckler/vim-angry
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'FooSoft/vim-argwrap'
 
