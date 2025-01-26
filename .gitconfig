@@ -32,6 +32,7 @@
 	apply-strip = "!f(){ git diff -w -- \"$@\" | git apply --cached --whitespace=fix; }; f"
 	where = !"f(){ git rev-parse --show-prefix >/dev/null || exit $?; echo \"<repo>/$GIT_PREFIX\"; }; f"
 	br = "!f(){ git branch --format='%(refname:short)' \"$@\" | sed '/HEAD -> /d; /(HEAD detached at .*)/d'; }; f"
+	brv = branch --format='%(objectname:short) %(if)%(HEAD)%(then)%(color:green)%(else)%(color:red)%(end)%(refname:short) %(color:default)%(authorname)'
 	co-menu = "!f(){ _b=$(git br \"$@\" | tmenu); if test -n \"$_b\"; then git co \"$_b\"; else return 1; fi; }; f"
 
 	# skip-worktree - don't touch a file ever (modulo conflicts) and don't let it affect `git status`
