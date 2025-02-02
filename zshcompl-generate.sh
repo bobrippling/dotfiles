@@ -8,7 +8,7 @@ usage(){
 	exit 2
 }
 
-here=~/.config/dotfiles
+zshcompl=~/.config/dotfiles/zshcompl
 
 maybe_new(){
 	if ! test -e "$2"
@@ -19,14 +19,14 @@ maybe_new(){
 gen_rust(){
 	for cmd in cargo rustup
 	do
-		dest="$here"/zshcompl/_"$cmd"
+		dest="$zshcompl"/_"$cmd"
 		maybe_new "$cmd" "$dest"
 		rustup completions zsh "$cmd" >"$dest"
 	done
 }
 
 gen_pass(){
-	dest="$here"/zshcompl/_pass
+	dest="$zshcompl"/_pass
 	maybe_new pass "$dest"
 	ln -fs "$1"/src/completion/pass.zsh-completion "$dest"
 }
@@ -48,7 +48,7 @@ gen_z(){
 }
 
 gen_fd(){
-	dest="$here"/zshcompl/_fd
+	dest="$zshcompl"/_fd
 	maybe_new fd "$dest"
 	curl https://raw.githubusercontent.com/sharkdp/fd/master/contrib/completion/_fd \
 		-fsSL \
@@ -66,7 +66,7 @@ do
 			gen_rust
 			gen_z
 			gen_fd
-			if ! test -e "$here"/zshcompl/_pass
+			if ! test -e "$zshcompl"/_pass
 			then echo >&2 "can't generate pass: no src"
 			fi
 			;;
