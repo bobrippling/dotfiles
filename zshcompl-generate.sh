@@ -4,6 +4,7 @@ set -e
 
 usage(){
 	echo >&2 "Usage: $0 --all"
+	echo >&2 "       $0 --list"
 	echo >&2 "       $0 [rust] [pass=src] [z] [fd]"
 	exit 2
 }
@@ -64,6 +65,22 @@ fi
 for arg
 do
 	case "$arg" in
+		--list)
+			if test $# -ne 1
+			then usage
+			fi
+			for f in "$zshcompl"/_*
+			do
+				b="$(basename "$f")"
+				if test "$b" = '_*'
+				then continue
+				fi
+				echo "$b"
+			done
+			if test -e contrib/z
+			then echo z
+			fi
+			;;
 		--all)
 			gen_rust
 			gen_z
