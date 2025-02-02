@@ -12,7 +12,9 @@ zshcompl=~/.config/dotfiles/zshcompl
 
 maybe_new(){
 	if ! test -e "$2"
-	then echo "new: $1"
+	then
+		echo "new: $1"
+		mkdir -p "$zshcompl"
 	fi
 }
 
