@@ -5,11 +5,12 @@ set -e
 usage(){
 	echo >&2 "Usage: $0 --all"
 	echo >&2 "       $0 --list"
-	echo >&2 "       $0 [rust] [pass=src] [z] [fd]"
+	echo >&2 "       $0 [rust] [pass=src] [z] [fd] [zsh-synhl] [zsh-suggest]"
 	exit 2
 }
 
-zshcompl=~/.config/dotfiles/zshcompl
+cfg=~/.config/dotfiles
+zshcompl="$cfg/zshcompl"
 
 maybe_new(){
 	if ! test -e "$2"
@@ -95,6 +96,17 @@ do
 			;;
 		z) gen_z ;;
 		fd) gen_fd ;;
+		zsh-synhl)
+			git clone \
+				git://github.com/zsh-users/zsh-syntax-highlighting \
+				"$cfg/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+			;;
+		zsh-suggest)
+			git clone \
+				git://github.com/zsh-users/zsh-autosuggestions \
+				"$cfg/zsh-autosuggestions/zsh-autosuggestions.zsh"
+			;;
+
 		*) usage ;;
 	esac
 done
