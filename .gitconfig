@@ -28,7 +28,7 @@
 	fe = fetch -p
 	smu = submodule update
 	logf = log --format=fuller --date=iso-strict
-	ahead-behind = for-each-ref --format='%(color:green)%(refname:short)%(color:reset) tracking %(color:blue)%(upstream:lstrip=2) %(color:red)%(upstream:track)%(color:reset)' refs/heads
+	ahead-behind = for-each-ref --format='%(color:green)%(refname:short)%(color:reset) tracking %(color:blue)%(upstream:short) %(color:red)%(upstream:track)%(color:reset)' refs/heads
 	apply-strip = "!f(){ git diff -w -- \"$@\" | git apply --cached --whitespace=fix; }; f"
 	where = !"f(){ git rev-parse --show-prefix >/dev/null || exit $?; echo \"<repo>/$GIT_PREFIX\"; }; f"
 	br = "!f(){ git branch --format='%(refname:short)' \"$@\" | sed '/HEAD -> /d; /(HEAD detached at .*)/d'; }; f"
