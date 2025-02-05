@@ -14,6 +14,7 @@ Plug 'bobrippling/vim-bg', { 'remote': 'github-me' }
 Plug 'bobrippling/vim-obsession', { 'remote': 'github-me' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
 Plug 'bobrippling/vim-vmath' " https://github.com/nixon/vim-vmath
+Plug 'bobrippling/vim-jump'
 
 " Motions, etc
 Plug 'tpope/vim-surround'
