@@ -114,10 +114,10 @@ zshrc_cursor_bar(){
 zshrc_disable_cursorshaping(){
 	zle -D zle-keymap-select
 	unset -f zle-keymap-select
-	#zshrc_cursor_block(){
-	#}
-	#zshrc_cursor_bar(){
-	#}
+	zshrc_cursor_block(){
+	}
+	zshrc_cursor_bar(){
+	}
 }
 
 # on keymap select, change shape
