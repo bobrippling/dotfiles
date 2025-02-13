@@ -150,6 +150,14 @@ function! Autosave() abort
 	else
 		echo now . "[" . nsaved . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
 	endif
+
+	if &verbose && nskipped > 0
+		for ent in modified
+			if ent.result !=# "saved"
+				echo ent.result . ":" fnamemodify(ent.name, ":~:.")
+			endif
+		endfor
+	endif
 endfunction
 
 function! s:now()
