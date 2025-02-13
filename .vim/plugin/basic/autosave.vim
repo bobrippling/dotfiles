@@ -1,12 +1,8 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
-let g:autosave_verbose = get(g:, "autosave_verbose", 0)
 let g:autosave_paused = get(g:, "autosave_paused", 0)
 
 function! s:save(ent, saved) abort
 	if !empty(&buftype) || !&modified
-		if g:autosave_verbose
-			echom "autosave, skipping buf=" . a:ent.bufnr . ", bt=" . &bt . ", mod=" . &mod
-		endif
 		return
 	endif
 	if !get(b:, 'autosave', 1) || !get(w:, 'autosave', 1) || !get(t:, 'autosave', 1)
