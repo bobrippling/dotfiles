@@ -1,15 +1,10 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
 let g:autosave_paused = get(g:, "autosave_paused", 0)
 
-function! s:save(ent, saved) abort
-	if !empty(&buftype) || !&modified
-		return
-	endif
-	if !get(b:, 'autosave', 1) || !get(w:, 'autosave', 1) || !get(t:, 'autosave', 1)
-		return
-	endif
-	if empty(glob(expand("%")))
-		return
+function! s:save(ent) abort
+	" can't check {w,t}:autosave any other way (easily)
+	if !get(w:, 'autosave', 1) || !get(t:, 'autosave', 1)
+		return "disabled"
 	endif
 
 	silent update
@@ -17,16 +12,23 @@ function! s:save(ent, saved) abort
 		" save failed, abort
 		throw "save-fail:" . expand("%")
 	endif
-	call add(a:saved, a:ent)
+	return "saved"
 endfunction
 
 function! s:can_autosave(ent)
-	if empty(a:ent.name) || getbufvar(a:ent.bufnr, "&buftype") ==? "terminal"
+	if empty(a:ent.name)
 		return 0
 	endif
 
-	let enabled = getbufvar(a:ent.bufnr, "autosave", 1)
-	if enabled == 0
+	if !getbufvar(a:ent.bufnr, "&modified")
+		return 0
+	endif
+
+	if !empty(getbufvar(a:ent.bufnr, "&buftype"))
+		return 0
+	endif
+
+	if getbufvar(a:ent.bufnr, "autosave", 1) == 0
 		return 0
 	endif
 
@@ -52,6 +54,9 @@ function! Autosave() abort
 
 	let modified = getbufinfo({ "bufmodified": 1 })
 	call filter(modified, { _, ent -> s:can_autosave(ent) })
+	for ent in modified
+		let ent.result = "<n/a>"
+	endfor
 
 	if empty(modified)
 		return
@@ -70,20 +75,19 @@ function! Autosave() abort
 		autocmd FileChangedShell * let v:fcs_choice = ''
 	augroup END
 
-	let saved = []
 	let skipped = []
 	try
 		for ent in modified
 			let buf = ent.bufnr
 
 			if bufnr("") is buf
-				call s:save(ent, saved)
+				let ent.result = s:save(ent)
 				continue
 			endif
 
 			let found = win_findbuf(buf)
 			if !empty(found) && win_gotoid(found[0])
-				call s:save(ent, saved)
+				let ent.result = s:save(ent)
 				continue
 			endif
 
@@ -92,7 +96,7 @@ function! Autosave() abort
 			endif
 
 			execute "sbuffer" buf
-			call s:save(ent, saved)
+			let ent.result = s:save(ent)
 			close!
 		endfor
 	catch /^save-fail:.*/
@@ -114,12 +118,22 @@ function! Autosave() abort
 		return
 	endif
 
-	call map(saved, { _, ent -> fnamemodify(ent.name, ":~:.") })
+	let nsaved = 0
+	for ent in modified
+		if ent.result ==# "saved"
+			let nsaved += 1
+		endif
+	endfor
 
-	let nskipped = len(modified) - len(saved)
-	if len(saved)
-		" truncate if too short
-		let msg = "autosaved: " . join(saved, ", ")
+	let nskipped = len(modified) - nsaved
+	if nsaved
+		let saved_summary = map(
+		\ filter(
+		\   copy(modified),
+		\   { _, ent -> ent.result ==# "saved" }),
+		\   { _, ent -> fnamemodify(ent.name, ":~:.") }
+		\ )
+		let msg = "autosaved: " . join(saved_summary, ", ")
 
 		if nskipped > 0
 			let msg .= " (" . nskipped . " skipped)"
@@ -134,7 +148,7 @@ function! Autosave() abort
 	if len(full) < v:echospace
 		echo full
 	else
-		echo now . "[" . len(saved) . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
+		echo now . "[" . nsaved . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
 	endif
 endfunction
 
