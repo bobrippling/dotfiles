@@ -38,11 +38,12 @@ function! s:orgzly_convert()
 endfunction
 
 function! s:orgzly_init()
+	let w = s:get_date_orgzly()
 	let lines = [
+	\   'SCHEDULED: <' . w . '>',
 	\   ':PROPERTIES:',
-	\   ':CREATED:  [' . s:get_date_orgzly() . ']',
+	\   ':CREATED:  [' . w . ']',
 	\   ':END:',
-	\   '',
 	\ ]
 	call append(line('.'), lines)
 endfunction
