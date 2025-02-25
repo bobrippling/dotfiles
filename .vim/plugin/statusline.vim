@@ -74,11 +74,14 @@ endfunction
 
 function! StatusLineEnc()
 	let ff = &fileencoding
-	if empty(ff) || ff == "utf-8"
+	if !&bomb && (empty(ff) || ff == "utf-8")
 		return ""
 	endif
 
-	return "[" . ff . "]"
+	let parts = []
+	if !empty(ff) | let parts += [ff] | endif
+	if &bomb | let parts += ["BOM"] | endif
+	return "[" . join(parts, ",") . "]"
 endfunction
 
 function! StatusLineBuftype()
