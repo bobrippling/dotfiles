@@ -31,7 +31,7 @@ function! s:bggrep_populate()
 		let dir = "%" . repeat(":h", v:count)
 	endif
 
-	return ":\<C-U>Bggrep ' " . dir . repeat("\<Left>", len(dir) + 2) . "'"
+	return ":\<C-U>Bggrep -i ' " . dir . repeat("\<Left>", len(dir) + 2) . "'"
 endfunction
 
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
