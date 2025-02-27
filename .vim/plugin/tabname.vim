@@ -115,6 +115,10 @@ function! TabLine()
 		let tail .= "[paste]"
 	endif
 
+	if get(g:, "autosave_enabled", 0)
+		let tail .= "[AS" . (get(g:, "autosave_paused", 0) ? "P" : "") . "]"
+	endif
+
 	let tab_part = join(tabs, "")
 
 	" truncate at the end furthest from the current tab
