@@ -47,10 +47,6 @@ function! Autosave() abort
 	if !g:autosave_enabled || !empty(getcmdwintype())
 		return
 	endif
-	if g:autosave_paused
-		echo s:now() . " autosave paused"
-		return
-	endif
 
 	let modified = getbufinfo({ "bufmodified": 1 })
 	call filter(modified, { _, ent -> s:can_autosave(ent) })
@@ -59,6 +55,12 @@ function! Autosave() abort
 	endfor
 
 	if empty(modified)
+		return
+	endif
+
+	" only log after we've found out there's buffers to save
+	if g:autosave_paused
+		echo s:now() . " autosave paused"
 		return
 	endif
 
