@@ -15,6 +15,7 @@ Plug 'bobrippling/vim-obsession', { 'remote': 'github-me' } " tpope/vim-obsessio
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
 Plug 'bobrippling/vim-vmath' " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump'
+Plug 'simnalamburt/vim-mundo'
 
 " Motions, etc
 Plug 'tpope/vim-surround'
