@@ -379,7 +379,8 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 			break
 		endif
 
-		let i += 1
+		" nextnonblank: optimisation
+		let i = nextnonblank(i + 1)
 	endwhile
 
 	return 0
