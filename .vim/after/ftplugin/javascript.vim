@@ -489,9 +489,7 @@ setlocal omnifunc=Dotcomplete
 "inoremap <expr> <buffer> . '.<C-X><C-O>' .. (&completeopt =~? '\vno(select\|insert)' ? '' : '<C-E>')
 
 if exists('b:undo_ftplugin')
-	if exists('b:undo_ftplugin')
-		let b:undo_ftplugin .= '|setlocal tagfunc<'
-	endif
+	let b:undo_ftplugin .= '|setlocal tagfunc<'
 
 	let b:undo_ftplugin .= '|setlocal suffixesadd<'
 	let b:undo_ftplugin .= '|setlocal spelloptions<'
