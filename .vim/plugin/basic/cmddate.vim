@@ -44,8 +44,14 @@ function! s:orgzly_init()
 	\   ':PROPERTIES:',
 	\   ':CREATED:  [' . w . ']',
 	\   ':END:',
+	\   ''
 	\ ]
 	call append(line('.'), lines)
+
+	mark [
+	keepjumps +5
+	mark ]
+	keepjumps -5
 endfunction
 
 cnoremap <expr> <C-R><C-D> <SID>get_date() . '-'
