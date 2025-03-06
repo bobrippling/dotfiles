@@ -34,9 +34,69 @@ function! s:bggrep_populate()
 	return ":\<C-U>Bggrep -i ' " . dir . repeat("\<Left>", len(dir) + 2) . "'"
 endfunction
 
+function! s:bggrep_curmove(cmdline, off)
+  " move cursor between end-of-search-str and end-of-options (`-i`)
+	try
+		let [matched, start, end] = matchstrpos(a:cmdline, '\vBg\S+\s+\zs\S+\s*')
+	catch /^E688/
+		" no match
+		return 0
+	endtry
+	if start is -1 && end is -1
+		return 0
+	endif
+	let start += a:off
+	let end += a:off
+
+	let cursor = getcmdpos() - 1
+
+	if matched !~ '^-'
+		let post_cmd = match(matched, '\v\S+\zs\s')
+		let post_cmd_idx = start + post_cmd
+
+		" want to move the cursor to post_cmd_idx and insert the option hyphen
+		return repeat("\<Left>", cursor - post_cmd_idx) . " -"
+	endif
+
+	if cursor >= end
+		let s:save_cmdpos = cursor
+		let whitespace = len(matchstr(matched, '\v\s+$'))
+		return repeat("\<Left>", cursor - end + whitespace)
+	else
+		let saved = get(s:, 'save_cmdpos', -1)
+		if saved == -1 || saved < cursor
+			return
+		endif
+		return repeat("\<Right>", saved - cursor)
+	endif
+endfunction
+
+function! s:bggrep_moreslash()
+	" add another `/` on the pinpoint path (`:Fs %:h:h/a/xyz.vim` + C-Q -> `:Fs %:h:h/a//xyz.vim`)
+	let cmdline = getcmdline()
+	let p = getcmdpos() - 1
+
+	let slash = strridx(cmdline[:p], '/')
+	if slash == -1
+		return ''
+	endif
+
+	let off = p - slash
+	return repeat("\<Left>", off) . "/" . repeat("\<Right>", off)
+endfunction
+
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
 nnoremap <silent> <expr> <leader>G <SID>bggrep_cmd(0)
 nnoremap <silent> <expr> g<leader>g <SID>bggrep_cmd(2)
 
 vnoremap g/ <Esc>'</\%V
 nnoremap <expr> g/ <SID>bggrep_populate()
+
+cnoremap <expr> <C-Q> <SID>bggrep_moreslash()
+
+if !exists('g:ctrlb_handlers')
+	let g:ctrlb_handlers = []
+endif
+if index(g:ctrlb_handlers, function('s:bggrep_curmove')) is -1
+	let g:ctrlb_handlers += [function('s:bggrep_curmove')]
+endif
