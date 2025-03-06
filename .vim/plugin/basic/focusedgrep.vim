@@ -34,9 +34,49 @@ function! s:bggrep_populate()
 	return ":\<C-U>Bggrep -i ' " . dir . repeat("\<Left>", len(dir) + 2) . "'"
 endfunction
 
+function! s:bggrep_curmove(cmdline, off)
+  " move cursor between end-of-search-str and end-of-options (`-i`)
+	try
+		let [matched, start, end] = matchstrpos(a:cmdline, '\vBg\S+\s+\zs\S+\s+')
+	catch /^E688/
+		" no match
+		return 0
+	endtry
+	if start is -1 && end is -1
+		return 0
+	endif
+	let start += a:off
+	let end += a:off
+
+	if matched !~ '^-'
+		echoerr "No options in bggrep cmd"
+		return 0
+	endif
+
+	let cursor = getcmdpos() - 1
+	if cursor >= end
+		let s:save_cmdpos = cursor
+		let whitespace = len(matchstr(matched, '\v\s+$'))
+		return repeat("\<Left>", cursor - end + whitespace)
+	else
+		let saved = get(s:, 'save_cmdpos', -1)
+		if saved == -1 || saved < cursor
+			return
+		endif
+		return repeat("\<Right>", saved - cursor)
+	endif
+endfunction
+
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
 nnoremap <silent> <expr> <leader>G <SID>bggrep_cmd(0)
 nnoremap <silent> <expr> g<leader>g <SID>bggrep_cmd(2)
 
 vnoremap g/ <Esc>'</\%V
 nnoremap <expr> g/ <SID>bggrep_populate()
+
+if !exists('g:ctrlb_handlers')
+	let g:ctrlb_handlers = []
+endif
+if index(g:ctrlb_handlers, function('s:bggrep_curmove')) is -1
+	let g:ctrlb_handlers += [function('s:bggrep_curmove')]
+endif
