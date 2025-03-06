@@ -16,9 +16,12 @@ function! s:handle_ctrlb()
 		endif
 	endfor
 
-	echo "ctrlb: no matches\n"
+	echohl ErrorMsg
+	echo "ctrlb: no matches"
+	echohl none
+	sleep 500m
 
-	return ''
+	return "\<C-L>"
 endfunction
 
 cnoremap <expr> <C-B> <SID>handle_ctrlb()
