@@ -73,6 +73,7 @@
 # commands
 [rebase]
 	autosquash = true
+	autostash = true
 	updaterefs = true
 [pull]
 	ff = only
@@ -85,6 +86,8 @@
 	#conflictstyle = diff3
 [branch]
 	sort = -committerdate
+[tag]
+	sort = version:refname
 [fetch]
 	writeCommitGraph = true
 [diff]
@@ -95,6 +98,7 @@
 	# Ignore indentation changes when detecting moved blocks
 	colormovedws = allow-indentation-change
 	submodule = log
+	algorithm = histogram
 [submodule]
 	recurse = true
 [blame]
@@ -104,6 +108,8 @@
 	markUnblamableLines = true
 [status]
 	submoduleSummary = true
+[init]
+	defaultBranch = main
 
 # replacements
 [url "https://github.com/"]
