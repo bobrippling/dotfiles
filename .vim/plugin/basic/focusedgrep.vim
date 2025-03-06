@@ -71,12 +71,28 @@ function! s:bggrep_curmove(cmdline, off)
 	endif
 endfunction
 
+function! s:bggrep_moreslash()
+	" add another `/` on the pinpoint path (`:Fs %:h:h/a/xyz.vim` + C-Q -> `:Fs %:h:h/a//xyz.vim`)
+	let cmdline = getcmdline()
+	let p = getcmdpos() - 1
+
+	let slash = strridx(cmdline[:p], '/')
+	if slash == -1
+		return ''
+	endif
+
+	let off = p - slash
+	return repeat("\<Left>", off) . "/" . repeat("\<Right>", off)
+endfunction
+
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
 nnoremap <silent> <expr> <leader>G <SID>bggrep_cmd(0)
 nnoremap <silent> <expr> g<leader>g <SID>bggrep_cmd(2)
 
 vnoremap g/ <Esc>'</\%V
 nnoremap <expr> g/ <SID>bggrep_populate()
+
+cnoremap <expr> <C-Q> <SID>bggrep_moreslash()
 
 if !exists('g:ctrlb_handlers')
 	let g:ctrlb_handlers = []
