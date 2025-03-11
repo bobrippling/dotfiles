@@ -6,6 +6,10 @@ function! s:save(ent) abort
 	if !get(w:, 'autosave', 1) || !get(t:, 'autosave', 1)
 		return "disabled"
 	endif
+	if empty(glob(expand(a:ent.name)))
+		" do this check here so we get a prompt about skipped files
+		return "enoent"
+	endif
 
 	silent update
 	if &modified
