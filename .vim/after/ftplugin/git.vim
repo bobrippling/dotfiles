@@ -48,3 +48,4 @@ catch //
 endtry
 
 setlocal keywordprg=:GitKeyword
+setlocal foldmethod=syntax
