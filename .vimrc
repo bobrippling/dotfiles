@@ -53,8 +53,8 @@ set viminfo+=r~/mnt/
 set noequalalways
 set novisualbell
 set scrolloff=1
-set sidescroll=3
-set sidescrolloff=10
+set sidescroll=15
+set sidescrolloff=5
 if has("nvim") && exists("&smoothscroll")
 	set smoothscroll
 endif
