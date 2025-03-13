@@ -78,11 +78,24 @@ function! s:bggrep_moreslash()
 
 	let slash = strridx(cmdline[:p], '/')
 	if slash == -1
-		return ''
+		" add ./ at the start of the term
+		let anchor = p
+		let p -= 1
+		while p > 0 && cmdline[p] =~ '\S'
+			let p -= 1
+		endwhile
+		if p == 0
+			return ''
+		endif
+		" cmdline[p] is a space, add a './' here
+		let off = anchor - p - 1
+		let ins = "./"
+	else
+		let off = p - slash
+		let ins = "/"
 	endif
 
-	let off = p - slash
-	return repeat("\<Left>", off) . "/" . repeat("\<Right>", off)
+	return repeat("\<Left>", off) . ins . repeat("\<Right>", off)
 endfunction
 
 nnoremap <silent> <expr> <leader>g <SID>bggrep_cmd(1)
