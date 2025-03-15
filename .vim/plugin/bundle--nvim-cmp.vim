@@ -54,14 +54,14 @@ lua <<EOF
 				function(a, b)
 					local kind_priority = {
 						Field = 1,
-						Method = 1,
-						Property = 2,
-						Function = 2,
-						Variable = 3,
-						Class = 4,
-						Interface = 4,
-						Module = 5,
+						Method = 2,
+						Property = 3,
+						Function = 4,
+						Variable = 5,
+						Class = 6,
+						Interface = 6,
 						Trait = 6,
+						Module = 7,
 					}
 
 					local kind1 = kind_priority[a:get_kind()] or 100
