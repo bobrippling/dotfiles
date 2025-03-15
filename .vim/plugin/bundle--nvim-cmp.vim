@@ -10,6 +10,8 @@ lua <<EOF
 		return
 	end
 
+	local cmptypes = require("cmp.types")
+
 	cmp.setup({
 		--[[
 		snippet = {
@@ -51,6 +53,7 @@ lua <<EOF
 		sorting = {
 			priority_weight = 2,
 			comparators = {
+				-- sort by kind, but custom ordering
 				function(a, b)
 					local kind_priority = {
 						Field = 1,
@@ -70,6 +73,28 @@ lua <<EOF
 
 					if kind1 ~= kind2 then
 						return kind1 < kind2
+					end
+				end,
+				-- sort methods by inherent or trait (rust)
+				function(a, b)
+					local method = cmptypes.lsp.CompletionItemKind.Method
+					local a_item = a:get_completion_item() ---@type lsp.CompletionItem
+					local b_item = b:get_completion_item() ---@type lsp.CompletionItem
+
+					if a_item.kind == method and b_item.kind == method then
+						-- a_item.detail: top-level plain detail about the item
+						-- a_item.labelDetails: more verbose, shown before detail
+						-- print(vim.inspect(a_item)), :source this file to refresh
+						local a_trait = (a_item.labelDetails and a_item.labelDetails.detail) ~= nil
+						local b_trait = (b_item.labelDetails and b_item.labelDetails.detail) ~= nil
+
+						if a_trait and b_trait then
+							-- return nil
+						elseif a_trait then
+							return false
+						elseif b_trait then
+							return true
+						end
 					end
 				end,
 				-- Use a mix of the comparators from nvim-cmp after custom ones
