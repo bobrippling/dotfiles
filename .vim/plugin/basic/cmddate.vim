@@ -64,7 +64,8 @@ cnoremap <expr> <C-R><C-T> <SID>get_time() . '-'
 inoremap <expr> <C-R><C-T> <SID>get_time()
 
 nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
-nnoremap <expr> gzc 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
+nmap <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )?/DONE /<CR>jgzC'
+nnoremap <expr> gzC 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
 nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
 
 if 0
