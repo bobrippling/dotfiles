@@ -54,19 +54,19 @@ function! s:orgzly_init()
 	keepjumps -5
 endfunction
 
-cnoremap <expr> <C-R><C-D> <SID>get_date() . '-'
-inoremap <expr> <C-R><C-D> <SID>get_date()
+cnoremap <buffer> <expr> <C-R><C-D> <SID>get_date() . '-'
+inoremap <buffer> <expr> <C-R><C-D> <SID>get_date()
 
-cnoremap <expr> <C-R><C-Z> <SID>get_date_orgzly() . '-'
-inoremap <expr> <C-R><C-Z> <SID>get_date_orgzly()
+cnoremap <buffer> <expr> <C-R><C-Z> <SID>get_date_orgzly() . '-'
+inoremap <buffer> <expr> <C-R><C-Z> <SID>get_date_orgzly()
 
-cnoremap <expr> <C-R><C-T> <SID>get_time() . '-'
-inoremap <expr> <C-R><C-T> <SID>get_time()
+cnoremap <buffer> <expr> <C-R><C-T> <SID>get_time() . '-'
+inoremap <buffer> <expr> <C-R><C-T> <SID>get_time()
 
-nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
-nmap <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )?/DONE /<CR>jgzC'
-nnoremap <expr> gzC 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
-nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
+nnoremap <buffer> gzu <Cmd>call <SID>orgzly_convert()<CR>
+nmap <buffer> <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )?/DONE /<CR>jgzC'
+nnoremap <buffer> <expr> gzC 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
+nnoremap <buffer> gzi <Cmd>call <SID>orgzly_init()<CR>
 
 if 0
 	function! s:check_date_typed()
