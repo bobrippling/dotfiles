@@ -67,6 +67,7 @@ nnoremap <buffer> gzu <Cmd>call <SID>orgzly_convert()<CR>
 nmap <buffer> <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )?/DONE /<CR>jgzC'
 nnoremap <buffer> <expr> gzC 'ICLOSED: [' . <SID>get_date_orgzly() . "] \<Esc>"
 nnoremap <buffer> gzi <Cmd>call <SID>orgzly_init()<CR>
+iabbrev <buffer> DONE <Esc>gzc
 
 if 0
 	function! s:check_date_typed()
