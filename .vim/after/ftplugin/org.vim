@@ -23,6 +23,14 @@ function! OrgFoldText() abort
 	return stars . more . l
 endfunction
 
+function! OrgSearchNote() abort
+	let at = getcmdpos() - 1
+
+	return "\<Home>^\\* .*" . repeat("\<Right>", at)
+endfunction
+
 hi orgStrikethrough cterm=none gui=none
 
 iabbrev <buffer> <expr> DONE getline('.') =~ '^\*' ? "\<Esc>gzc" : 'DONE'
+cnoremap <buffer> <expr> <C-o> OrgSearchNote()
+" ^ can't cabbrev: C-O isn't a word
