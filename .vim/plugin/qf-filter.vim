@@ -11,6 +11,8 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 			let match_mode = 't'
 		elseif arg =~# '^\v-f%[ile]$'
 			let match_mode = 'f'
+		elseif arg =~# '^\v-ty%[pe]$'
+			let match_mode = 'ty'
 		else
 			break
 		endif
@@ -49,12 +51,22 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 			endfunction
 
 			let Iter = function('s:FilterFile')
-		else
+		elseif match_mode ==# 't'
 			function! s:FilterText(i, dict) abort closure
 				return Matcher(a:dict.text, pattern) >= 0
 			endfunction
 
 			let Iter = function('s:FilterText')
+		elseif match_mode ==# 'ty'
+			if pattern =~? '^\v(error|warning|info|note)$'
+				let pattern = toupper(pattern[0])
+			endif
+
+			function! s:FilterType(i, dict) abort closure
+				return Matcher(a:dict.type, pattern) >= 0
+			endfunction
+
+			let Iter = function('s:FilterType')
 		endif
 	endif
 
@@ -91,7 +103,8 @@ endfunction
 
 " QFKeep [-re] -f[ile] <file>       - keep (or drop) entries where the file matches file-re
 " QFKeep [-re] [-t[ext]] <text>     - keep (or drop) entries where the text matches text-re
-" a,b QFKeep                  - keep (or drop) entries in range a...b
+" QFKeep -ty[pe] <type>             - keep (or drop) entries of type <type>
+" a,b QFKeep                        - keep (or drop) entries in range a...b
 
 command! -bar -range -nargs=* QFKeep call s:Filter([<f-args>], 0, <range>, <line1>, <line2>)
 command! -bar -range -nargs=* QFDrop call s:Filter([<f-args>], 1, <range>, <line1>, <line2>)
