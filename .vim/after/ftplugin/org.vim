@@ -26,7 +26,7 @@ endfunction
 function! OrgSearchNote() abort
 	let at = getcmdpos() - 1
 
-	return "\<Home>^\\* .*" . repeat("\<Right>", at)
+	return "\<Home>^\\*.*" . repeat("\<Right>", at)
 endfunction
 
 hi orgStrikethrough cterm=none gui=none
