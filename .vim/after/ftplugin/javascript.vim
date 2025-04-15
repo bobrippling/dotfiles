@@ -5,7 +5,7 @@ let s:is_require = 'require'
 let s:is_import = 'from'
 
 function! s:debug(s) abort
-	if 0 || &verbose >= 11
+	if 0 || &verbose >= 5
 		echom "jstag: " . a:s
 	endif
 endfunction
@@ -284,6 +284,8 @@ function! s:tag_from_stringpath(found_line, ident)
 		call s:debug("couldn't extract filename from import/require line")
 		return []
 	endif
+
+	call s:debug("found tag from import/require line")
 
 	let nextfile = s:file_from_import(nextfile)
 
