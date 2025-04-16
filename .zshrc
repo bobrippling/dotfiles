@@ -335,7 +335,6 @@ PS1="
 \${PYENV_ROOT:+<pyenv> }\
 %(?..%F{red}%??%f )\
 %(1j.%F{yellow}%j&%f .)\
-%F{blue}%!!%f \
 %(!.%F{red}.%F{green})%B%#\${SSH_CONNECTION:+%#}%b%f "
 
 setopt prompt_subst
