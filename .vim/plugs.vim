@@ -22,6 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'cposture/vim-textobj-argument' " for [(, ]) etc, success of b4winckler/vim-angry
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'FooSoft/vim-argwrap'
+Plug 'folke/which-key.nvim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
