@@ -94,7 +94,8 @@ set belloff=error,esc,showmatch
 " T: toolbar
 " r: right hand scrollbar
 " L: left hand scrollbar when split
-set go-=m go+=M go-=T go-=r go-=L
+set go-=m go-=T go-=r go-=L
+try | set go+=M | catch /E519/ | endtry
 
 " display (colours)
 set termguicolors " see also: gui-colors
