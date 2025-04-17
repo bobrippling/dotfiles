@@ -369,7 +369,8 @@ function! s:from_line_after_import_line(import_line, import_kind) abort
 
 	call s:debug("looking for require/from (" . a:import_kind . "), lines " . i . "-" . end)
 
-	while i <= end
+	" i > 0: nextnonblank() returns 0 for eof
+	while i > 0 && i <= end
 		let line = getline(i)
 
 		if match(line, re) >= 0

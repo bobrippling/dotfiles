@@ -219,7 +219,8 @@ function! s:import_search(name)
 	let tag_linenr = 0
 	let i = nextnonblank(1)
 	let lastline = line("$")
-	while i < lastline
+	" i > 0: nextnonblank() returns 0 for eof
+	while i > 0 && i < lastline
 		let line = getline(i)
 		if line =~? '^\v(import|from).*\(\s*$'
 			" started parens
@@ -234,6 +235,7 @@ function! s:import_search(name)
 				endif
 			endif
 		endif
+		" nextnonblank: optimisation
 		let i = nextnonblank(i + 1)
 	endwhile
 
