@@ -106,10 +106,19 @@ function! s:fileexists(path)
 	return !empty(glob(a:path, v:true))
 endfunction
 
-function! TrimUnlinkedBuffers(bang)
+function! TrimUnlinkedBuffers(bang, args)
 	let curbuf = bufnr("")
 	let newwin = 0
 	let delete = []
+	let dry = 0
+
+	if !empty(a:args)
+		if a:args ==# "-n"
+			let dry = 1
+		else
+			throw "TrimUnlinkedBuffers: expected -n or empty (got \"" . a:args . "\")"
+		endif
+	endif
 
 	for buf in s:buffers()
 		let name = bufname(buf)
@@ -144,13 +153,15 @@ function! TrimUnlinkedBuffers(bang)
 		return
 	endif
 
-	if newwin
-		botright new
-	endif
-
 	let names = map(copy(delete), { _, x -> bufname(x) })
 
-	execute "bdelete " . join(delete)
+	if !dry
+		if newwin
+			botright new
+		endif
+
+		execute "bdelete " . join(delete)
+	endif
 
 	if &verbose > 0
 		echom "Removed unlinked buffers:"
@@ -162,4 +173,4 @@ endfunction
 
 command! -bar Ls call Lst()
 command! -bar -bang -count=10 TrimOldBuffers call TrimOldBuffers(<count>, <bang>0)
-command! -bar -bang TrimUnlinkedBuffers call TrimUnlinkedBuffers(<bang>0)
+command! -bar -bang -nargs=? TrimUnlinkedBuffers call TrimUnlinkedBuffers(<bang>0, <q-args>)
