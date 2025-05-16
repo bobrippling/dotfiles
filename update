@@ -2,8 +2,10 @@
 
 # this script can be used should the host not support symlinking into the git repo
 
+set -e
+
 usage(){
-    echo >&2 "Usage: $0 install|collect|diff" >&2
+    echo >&2 "Usage: $0 install|collect|diff|defaults" >&2
     exit 2
 }
 
@@ -14,6 +16,19 @@ fi
 case "$1" in
     install|collect|diff)
         direction="$1"
+        ;;
+    defaults)
+        cd
+        for f in .aliases .bash_logout .bashrc .environ_interactive .environ_script .gitconfig .inputrc .logout .ssh .terminfo .tmux.conf .vim .vimrc .zlogout .zshenv .zshrc
+        do ln -s ".config/dotfiles/$f"
+        done
+
+        cd .config
+        for d in alacritty rg nvim git
+        do ln -s "dotfiles/.config/$d"
+        done
+
+        exit
         ;;
     *)
         usage
