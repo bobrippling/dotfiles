@@ -11,6 +11,12 @@ fi
 
 set -e
 
+if ! type jq >/dev/null 2>&1
+then
+	echo >&2 "$0: need jq"
+	exit 1
+fi
+
 ssh-keygen -R github.com
 curl -L https://api.github.com/meta |
 	jq -r '.ssh_keys | .[]' |
