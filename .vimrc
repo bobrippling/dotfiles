@@ -74,6 +74,7 @@ set tabstop=2 shiftwidth=0 noexpandtab smarttab
 set history=2000
 set lazyredraw
 set foldopen-=block
+set foldignore-=#
 try | set foldcolumn=auto:3 | catch /E521/ | endtry " introduced in nvim, #13571
 set complete-=u " unloaded buffers are too slow, but we'll take a dictionary
 set completeopt+=menuone,longest | set completeopt-=preview
