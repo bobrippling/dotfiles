@@ -70,9 +70,13 @@ function setup()
 		end
 	})
 
-	local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
-	for _, ls_name in ipairs(servers) do
-		vim.lsp.enable(ls_name)
+	if vim.lsp.enable then
+		local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
+		for _, ls_name in ipairs(servers) do
+			vim.lsp.enable(ls_name)
+		end
+	else
+		vim.cmd.echom("'lsp setup: new vim.lsp API not present'")
 	end
 end
 
