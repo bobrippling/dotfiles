@@ -17,6 +17,9 @@ alias ifg=fg
 alias gdb='gdb -q' # quiet
 alias make='make --no-print-directory'
 
+# sysadmin
+alias ip='ip -c=auto'
+
 # aliases affecting shell state
 mkcd(){
 	if [ $# -ne 1 ]
