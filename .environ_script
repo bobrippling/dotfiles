@@ -35,7 +35,10 @@ export NVIM_LOG_FILE=/dev/null
 
 addtopath "/usr/local/bin"
 addtopath "$HOME/bin" prepend
-addtopath "$HOME/.cargo/bin"
+if test -e "$HOME/.cargo/env"
+then . "$HOME/.cargo/env"
+else addtopath "$HOME/.cargo/bin"
+fi
 
 ulimit -c unlimited
 
