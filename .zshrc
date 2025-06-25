@@ -331,7 +331,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 
 PS1="
 %B%m%b \
-\${VIRTUAL_ENV:+<venv> }\
+\${VIRTUAL_ENV:+<\${VIRTUAL_ENV_PROMPT:-\${VIRTUAL_ENV##*/}}> }\
 \${PYENV_ROOT:+<pyenv> }\
 %(?..%F{red}%??%f )\
 %(1j.%F{yellow}%j&%f .)\
