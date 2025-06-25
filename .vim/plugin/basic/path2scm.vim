@@ -91,6 +91,7 @@ endfunction
 function! Path2Scm_Url(u, fname, ci, start, end, type)
 	let u = a:u
 	let u = substitute(u, 'git@\([^:]\+\):', 'https://\1/', '')
+	let u = substitute(u, '\vssh://([^@]+\@)?(.*)', 'https://\2/', '')
 	let u = substitute(u, '\.git$', '', '')
 
 	if u =~? 'gitlab.com/'
