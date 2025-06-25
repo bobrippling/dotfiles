@@ -3,6 +3,10 @@ function! s:handle_git_at(opts)
 
 	let url = substitute(remote, 'git@\([^:]\+\):', 'https://\1/', '')
 
+	if &verbose >= 5
+		echom "handle_git_at: remote is" remote
+	endif
+
 	if url !=# remote
 		return url
 	endif
@@ -13,6 +17,10 @@ function! s:handle_via_path2scm(opts)
 	" opts.path might be empty
 	"
 	" see also https://github.com/tpope/vim-fugitive/issues/1964
+
+	if &verbose >= 5
+		echom "handle_via_path2scm: opts =" a:opts
+	endif
 
 	if a:opts.type ==# "ref" || empty(a:opts.path)
 		" browse to commit
@@ -25,7 +33,13 @@ function! s:handle_via_path2scm(opts)
 	endif
 
 	try
-		return Path2Scm_Url(a:opts.remote, a:opts.path, a:opts.commit, a:opts.line1, a:opts.line2, type)
+		let r = Path2Scm_Url(a:opts.remote, a:opts.path, a:opts.commit, a:opts.line1, a:opts.line2, type)
+
+		if &verbose >= 5
+			echom "handle_via_path2scm: url is" r
+		endif
+
+		return r
 	catch /unrecognised/
 	endtry
 endfunction
