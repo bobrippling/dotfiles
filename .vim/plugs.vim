@@ -52,6 +52,7 @@ Plug 'bobrippling/org.vim', { 'for': 'org' }
 Plug 'tpope/vim-commentary'
 Plug 'bobrippling/vim-pear'
 Plug 'bobrippling/vim-supersleuth'
+Plug 'godlygeek/tabular', { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ]}
 
 " LSP
 if has('nvim')
