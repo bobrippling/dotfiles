@@ -178,7 +178,7 @@ nnoremap Y y$
 vnoremap zD $zygv"_x
 " ^ see vim#8448, vimgolf#9v0063d76854000000000249, vim/vim#13695
 " make v_D behave like v_zy
-nnoremap <silent> gt :<C-U>exec 'normal ' . repeat("gT", tabpagenr("$") - v:count1)<CR>
+nnoremap <silent> gt :<C-U>exec 'normal' (tabpagenr("$") - v:count1) . "gT"<CR>
 
 " new commands
 nnoremap <silent> <C-W>2T <C-W>T:tabm-1<CR>
