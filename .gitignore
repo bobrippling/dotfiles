@@ -13,5 +13,11 @@
 
 .terminfo/
 
+.gnupg/private-keys-v1.d/
+.gnupg/public-keys.d/
+.gnupg/S.*
+.gnupg/trustdb.gpg
+.gnupg/.gpg-connect_history
+
 zshcompl/
 contrib/
