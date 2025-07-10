@@ -1,16 +1,25 @@
-command! -bang -bar ShutTheDoorOnYourWayOut call s:ShutTheDoorOnYourWayOut(<bang>0)
+" no -bar: that removes comments, so will prevent any double-quotes
+command! -bang -nargs=* -complete=command ShutTheDoorOnYourWayOut call s:ShutTheDoorOnYourWayOut(<bang>0, <q-args>)
 
-function! s:ShutTheDoorOnYourWayOut(wipe) abort
+function! s:ShutTheDoorOnYourWayOut(wipe, cmd) abort
+	let esccmd = escape(a:cmd, '"\')
 	" BufWinLeave is still fired for :hide
-	execute 'autocmd BufUnload <buffer> ++once call s:ShutTheDoor(' . a:wipe . ')'
+	execute 'autocmd BufUnload <buffer> ++once call s:ShutTheDoor(' . a:wipe . ', "' . esccmd . '")'
 endfunction
 
-function! s:ShutTheDoor(wipe) abort
+function! s:ShutTheDoor(wipe, cmd) abort
+	if !empty(a:cmd)
+		execute a:cmd
+		if !a:wipe
+			" otherwise we're doing the command and deleting the buffer (+file)
+			return
+		endif
+	endif
+
 	let buf = expand("<afile>")
 	if empty(buf)
 		return
 	endif
-
 
 	if filereadable(buf)
 		if delete(buf) != 0
