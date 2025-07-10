@@ -65,7 +65,7 @@ inoremap <expr> <C-R><C-T> <SID>get_time()
 
 " orgzly specific but kept global as useful elsewhere
 nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
-nmap <silent> <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )? */DONE /<CR>jgzC'
+nmap <silent> <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )? */DONE /<CR>jgzCk'
 nnoremap <expr> gzC 'ICLOSED: [' . GetDateOrgzly() . "] \<Esc>"
 nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
 
