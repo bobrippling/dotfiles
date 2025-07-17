@@ -111,6 +111,10 @@ function! TabLine()
 		endif
 	endif
 
+	if &paste
+		let tail .= "[paste]"
+	endif
+
 	let tab_part = join(tabs, "")
 
 	" truncate at the end furthest from the current tab
