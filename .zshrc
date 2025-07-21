@@ -1,3 +1,4 @@
+if [[ $zshrc_profile ]]; then zmodload zsh/zprof; fi
 # extra completions - must be before `compinit`
 
 fpath+=(/usr/share/zsh/site-functions ~/.config/dotfiles/zshcompl)
@@ -384,3 +385,4 @@ source_if_exists \
 	# git://github.com/zsh-users/zsh-autosuggestions
 
 unset -f source_if_exists
+if [[ $zshrc_profile ]]; then zprof; fi
