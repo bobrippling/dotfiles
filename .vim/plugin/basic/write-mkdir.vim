@@ -1,4 +1,11 @@
 function! s:wmkdir(path)
+	try
+		w ++p
+		return
+	catch /E474:/
+		" unsupported, fallback to below
+	endtry
+
 	let dir = a:path
 	if empty(dir)
 		let dir = expand("%")
