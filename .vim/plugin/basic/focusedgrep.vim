@@ -37,7 +37,9 @@ endfunction
 function! s:bggrep_curmove(cmdline, off)
   " move cursor between end-of-search-str and end-of-options (`-i`)
 	try
-		let [first_arg, start, end] = matchstrpos(a:cmdline, '\vBg\S+\s+\zs\S+\s*')
+		let [first_arg, start, end] = matchstrpos(a:cmdline, '\vBg\S+\s+\zs\S+\ze\s*')
+		"                                                     Bggrep     arg-or-flag
+		"                                                                ^ \zs
 	catch /^E688/
 		" no match
 		return 0
@@ -51,14 +53,14 @@ function! s:bggrep_curmove(cmdline, off)
 	let cursor = getcmdpos() - 1
 
 	if first_arg !~ '^-'
-		let post_cmd = match(first_arg, '\v\S+\zs\s')
-		let post_cmd_idx = start + post_cmd
+		let post_cmd_idx = start - 1
+		let s:save_cmdpos = cursor + 2 " +2 for the " -"
 
 		" want to move the cursor to post_cmd_idx and insert the option hyphen
 		return repeat("\<Left>", cursor - post_cmd_idx) . " -"
 	endif
 
-	if cursor >= end
+	if cursor >= end + 1
 		let s:save_cmdpos = cursor
 		let whitespace = len(matchstr(first_arg, '\v\s+$'))
 		return repeat("\<Left>", cursor - end + whitespace)
