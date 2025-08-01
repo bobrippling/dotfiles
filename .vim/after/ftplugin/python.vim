@@ -215,8 +215,8 @@ function! s:import_search(name)
 
 	call s:debug("oneline import not found, looking for multiple...")
 
-	let linenr = 0
-	let tag_linenr = 0
+	let linenr_import = 0
+	let linenr_tag = 0
 	let i = nextnonblank(1)
 	let lastline = line("$")
 	" i > 0: nextnonblank() returns 0 for eof
@@ -224,13 +224,13 @@ function! s:import_search(name)
 		let line = getline(i)
 		if line =~? '^\v(import|from).*\(\s*$'
 			" started parens
-			let linenr = i
-		elseif linenr
+			let linenr_import = i
+		elseif linenr_import
 			if line =~ '^)'
-				let linenr = 0
+				let linenr_import = 0
 			else
 				if line =~# '\v<' . a:name . '>'
-					let found = 1
+					let linenr_tag = i
 					break
 				endif
 			endif
@@ -239,7 +239,7 @@ function! s:import_search(name)
 		let i = nextnonblank(i + 1)
 	endwhile
 
-	return tag_linenr > 0 ? [linenr, tag_linenr] : [0, 0]
+	return linenr_tag > 0 ? [linenr_import, linenr_tag] : [0, 0]
 endfunction
 
 " ----------------------- copied from javascript.vim
