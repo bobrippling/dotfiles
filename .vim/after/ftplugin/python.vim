@@ -154,7 +154,7 @@ function! PyTag(pattern, flags, info) abort
 
 		call s:debug("couldn't find module \"" . mod . "\" above \"" . expand("%:h") . "\"")
 	else
-		call s:debug("import line for \"" . tag . "." . ident . "\"not found")
+		call s:debug("import line for tag=\"" . tag . "\", ident=\"" . ident . "\" not found")
 	endif
 
 	return s:this_file_search(tag, ident)
@@ -205,7 +205,7 @@ function! s:import_search(name)
 		return [found, found]
 	endif
 
-	call s:debug("'as' import not found, looking for normal...")
+	call s:debug("'import <x> as " . a:name . "' import not found, looking for normal import...")
 
 	" look for no "as"
 	let found = search("\\C\\v^(from|import)\\s+.*<" . a:name . ">", "cnwb")
@@ -286,6 +286,7 @@ function! s:extended_tag_from_cursor() abort
 	else
 		let tag = expand("<cword>")
 		let ident = tag
+		call s:debug("no dot, using ident=tag='" . ident . "'")
 	endif
 
 	return [tag, ident]
