@@ -1,11 +1,16 @@
+let g:cartographer_enabled = 1
 call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
-Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
+Plug 'tpope/vim-fugitive', g:cartographer_enabled ? {} : { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo', 'commit': 'fa0263d456dd43f5926484d1c4c7022dfcb21ba9' }
-Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ], 'commit': '590927f57277666e032702b26e4e0c82717cc3cb' }
+Plug 'junegunn/goyo.vim', g:cartographer_enabled ? {} : { 'on': 'Goyo', 'commit': 'fa0263d456dd43f5926484d1c4c7022dfcb21ba9' }
+Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ], 'commit': '590927f57277666e032702b26e4e0c82717cc3cb' }
 "Plug 'junegunn/vim-peekaboo'
+
+if g:cartographer_enabled
+	Plug 'bobrippling/cartographer.vim', { 'commit': '51a0d391cc10f3ee7997fc19972875dea28cf7dc' }
+endif
 
 " Boost native functionality
 "Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
@@ -48,13 +53,13 @@ Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f'
 Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d018f8' } " yorickpeterse/brianhuster
 
 " Filetype specific
-Plug 'bobrippling/org.vim', { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
+Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
 
 " Code
 Plug 'tpope/vim-commentary', { 'commit': 'c4b8f52cbb7142ec239494e5a2c4a512f92c4d07' }
 Plug 'bobrippling/vim-pear', { 'commit': '0d11e43a536ef3b8181978e8bf931196f87ac2d2' }
 Plug 'bobrippling/vim-supersleuth', { 'commit': '457000d21d6407c33d29b1cc15ec09b2c9e595e5' }
-Plug 'godlygeek/tabular', { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ], 'commit': '12437cd1b53488e24936ec4b091c9324cafee311' }
+Plug 'godlygeek/tabular', g:cartographer_enabled ? {} : { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ], 'commit': '12437cd1b53488e24936ec4b091c9324cafee311' }
 " ^ or junegunn/vim-easy-align
 
 " LSP
@@ -84,7 +89,7 @@ Plug 'bobrippling/vim-papercolor', { 'commit': 'df4a9a6039143ad5e6d8138c1cd1674b
 "Plug 'rakr/vim-one'
 
 " Testing
-Plug 'junegunn/vader.vim', { 'for': 'vader', 'on': 'Vader', 'commit': '429b669e6158be3a9fc110799607c232e6ed8e29' }
+Plug 'junegunn/vader.vim', g:cartographer_enabled ? {} : { 'for': 'vader', 'on': 'Vader', 'commit': '429b669e6158be3a9fc110799607c232e6ed8e29' }
 "Plug 'dstein64/vim-startuptime'
 
 " nice but not useful enough:
