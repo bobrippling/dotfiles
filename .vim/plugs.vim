@@ -5,7 +5,7 @@ Plug 'tpope/vim-fugitive', { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'G
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ] }
-Plug 'junegunn/vim-peekaboo'
+"Plug 'junegunn/vim-peekaboo'
 
 " Boost native functionality
 "Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
@@ -15,7 +15,7 @@ Plug 'bobrippling/vim-obsession', { 'remote': 'github-me' } " tpope/vim-obsessio
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
 Plug 'bobrippling/vim-vmath' " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump'
-Plug 'simnalamburt/vim-mundo'
+Plug 'mbbill/undotree' " pure-vimscript undo
 
 " Motions, etc
 Plug 'tpope/vim-surround'
@@ -81,7 +81,15 @@ Plug 'bobrippling/vim-papercolor' " NLKNguyen/papercolor-theme
 
 " Testing
 Plug 'junegunn/vader.vim', { 'for': 'vader', 'on': 'Vader' }
-
 "Plug 'dstein64/vim-startuptime'
+
+" nice but not useful enough:
+"Plug 'justinmk/vim-ipmotion' " {} motions handle whitespace
+"Plug 'glacambre/firenvim' " vim in browser
+"Plug willothy/flatten.nvim / yorickpeterse/unnest.nvim " nested nvims
+"Plug 'mg979/vim-visual-multi' " multiple cursors
+"Plug 'yorickpeterse/nvim-pqf', { 'do': luaeval('require("pqf").setup()') } " pretty-qf
+"Plug 'tpope/vim-endwise' " vim-pear++
+"Plug 'bfredl/nvim-incnormal'
 
 call plug#end()
