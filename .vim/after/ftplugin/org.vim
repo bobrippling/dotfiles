@@ -29,7 +29,11 @@ function! OrgSearchNote() abort
 	return "\<Home>^\\*.*" . repeat("\<Right>", at)
 endfunction
 
-hi orgStrikethrough cterm=none gui=none
+function! OrgFixHl()
+	" this doesn't get applied after org syntax load, so:
+	hi clear orgStrikethrough
+endfunction
+call timer_start(1, {->OrgFixHl()})
 
 iabbrev <buffer> <expr> DONE getline('.') =~ '^\*' ? "\<Esc>gzc" : 'DONE'
 cnoremap <buffer> <expr> <C-o> OrgSearchNote()
