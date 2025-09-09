@@ -98,6 +98,7 @@ set belloff=error,esc,showmatch " no 'term', to propagate \7 from :term
 " L: left hand scrollbar when split
 set go-=m go-=T go-=r go-=L
 try | set go+=M | catch /E519/ | endtry
+if exists("&tabclose") | set tabclose=uselast | endif
 
 " display (colours)
 set termguicolors " see also: gui-colors
