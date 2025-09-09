@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ 'TermRequest' }, {
   group = 'luaterm',
   desc = 'Handles OSC 7 dir change requests',
   callback = function(ev)
-    if string.sub(ev.data.sequence, 1, 4) ~= '\x1b]7;' then
+    if not ev.data.sequence or string.sub(ev.data.sequence, 1, 4) ~= '\x1b]7;' then
       return
     end
 
