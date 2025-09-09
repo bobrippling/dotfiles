@@ -88,7 +88,7 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 set showmatch cpoptions-=m
 set report=1
 set synmaxcol=160
-set belloff=error,esc,showmatch
+set belloff=error,esc,showmatch " no 'term', to propagate \7 from :term
 
 " display (gui)
 " m: menu bar
