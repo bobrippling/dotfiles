@@ -248,6 +248,21 @@ setopt inc_append_history_time # save history when a command finishes, so we can
 unsetopt share_history
 
 # -------------------------------------------------------------------------------------
+# History
+
+#function _zshrc_history_hook() {
+#  local exit_code=$?
+#  if [[ $exit_code -ne 0 ]]; then
+#    # -s: save to history
+#    # -r: raw, i.e. no backslash-esc
+#    print -sr "# [exit:$exit_code] $(fc -l -n -1)"
+#  fi
+#}
+#
+#autoload -Uz add-zsh-hook
+#add-zsh-hook precmd _zshrc_history_hook
+
+# -------------------------------------------------------------------------------------
 # Environment
 
 HISTIGNORE="ls:exit:clear:logout"
