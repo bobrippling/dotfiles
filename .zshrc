@@ -111,13 +111,16 @@ zshrc_cursor_block(){
 zshrc_cursor_bar(){
 	printf '\x1b[6 q'
 }
-zshrc_disable_cursorshaping(){
+zshrc_disable_cursorshaping_etc(){
 	zle -D zle-keymap-select
 	unset -f zle-keymap-select
 	zshrc_cursor_block(){
 	}
 	zshrc_cursor_bar(){
 	}
+
+	preexec(){}
+	chpwd(){}
 }
 
 # on keymap select, change shape
@@ -139,8 +142,16 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 
 preexec(){
+	# :h terminal-osc7
+	printf '\x1b]133;A\x1b\\'
+
 	zshrc_cursor_block
 }
+
+chpwd(){
+	printf '\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
+}
+# or `add-zsh-hook chpwd cd_hook_fn`
 
 # -------------------------------------------------------------------------------------
 # vi text-objects (https://thevaluable.dev/zsh-install-configure-mouseless/)
