@@ -153,6 +153,7 @@ nnoremap <silent> <leader>H :setl hls!<CR>
 nnoremap <silent> <leader>l :setl list! list?<CR>
 nnoremap <silent> <leader>i :setl nu!<CR>
 nnoremap <silent> <leader>I :setl rnu!<CR>
+nnoremap <silent> <leader>f :let &l:fdc = &fdc ==# 'auto' ? '0' : 'auto'<CR>
 nnoremap <silent> <leader>w :setl wrap!<CR>
 nnoremap <silent> <leader>S :setl spell!<CR>
 nnoremap <silent> <leader>M :setl modifiable!<CR>
