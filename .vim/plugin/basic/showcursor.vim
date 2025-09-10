@@ -1,14 +1,8 @@
-let g:showcursor_enabled = 0
-
 let s:count = 0
 let s:orig_line = 0
 let s:orig_col = 0
 
 function! s:ShowCursor()
-	if !g:showcursor_enabled
-		return
-	endif
-
 	let s:count = 6
 
 	let s:orig_line = &cursorline
@@ -29,10 +23,16 @@ function! s:Toggle(timerid)
 	endif
 endfunction
 
+function! s:Enable(enable)
+	augroup ShowCursor
+		autocmd!
+
+		if a:enable
+			autocmd TabEnter,WinEnter * call s:ShowCursor()
+		endif
+	augroup END
+endfunction
+
 command! -bar ShowCursor call s:ShowCursor()
-
-augroup ShowCursor
-	autocmd!
-
-	autocmd TabEnter,WinEnter * ShowCursor
-augroup END
+command! -bar ShowCursorEnable call s:Enable(1)
+command! -bar ShowCursorDisable call s:Enable(0)
