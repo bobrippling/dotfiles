@@ -12,6 +12,27 @@ lua <<EOF
 
 	local cmptypes = require("cmp.types")
 
+	local insmap = cmp.mapping.preset.insert({
+		--[[
+		<CR> inserts a newline in insertmode and searchs in '/' mode (i.e. always passthru)
+		<Tab> accepts first entry [expanding snippets, etc] if cmp visible (check is done for us), otherwise inserts tab
+		]]
+		-- Ctrl-e ends completion
+		['<C-u>'] = cmp.mapping.scroll_docs(-4),
+		['<C-d>'] = cmp.mapping.scroll_docs(4),
+		['<C-l>'] = cmp.mapping.complete_common_string(),
+		['<Tab>'] = cmp.mapping.confirm({ select = true }),
+		['<C-g>'] = function()
+			if cmp.visible_docs() then
+				cmp.close_docs()
+			else
+				cmp.open_docs()
+			end
+		end,
+	})
+	insmap['<C-N>'] = nil
+	insmap['<C-P>'] = nil
+
 	cmp.setup({
 		--[[
 		snippet = {
@@ -32,24 +53,7 @@ lua <<EOF
 			completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
 		},
-		mapping = cmp.mapping.preset.insert({
-			--[[
-			<CR> inserts a newline in insertmode and searchs in '/' mode (i.e. always passthru)
-			<Tab> accepts first entry [expanding snippets, etc] if cmp visible (check is done for us), otherwise inserts tab
-			]]
-			-- Ctrl-e ends completion
-			['<C-u>'] = cmp.mapping.scroll_docs(-4),
-			['<C-d>'] = cmp.mapping.scroll_docs(4),
-			['<C-l>'] = cmp.mapping.complete_common_string(),
-			['<Tab>'] = cmp.mapping.confirm({ select = true }),
-			['<C-g>'] = function()
-				if cmp.visible_docs() then
-					cmp.close_docs()
-				else
-					cmp.open_docs()
-				end
-			end,
-		}),
+		mapping = insmap,
 		sorting = {
 			priority_weight = 2,
 			comparators = {
