@@ -23,6 +23,7 @@ then
 	then
 		compinit
 	else
+		# -C: create dump file only if one doesn't exist
 		compinit -C
 	fi
 fi
