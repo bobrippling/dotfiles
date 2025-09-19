@@ -23,6 +23,7 @@ endif
 let &formatlistpat = '^\s*\(\d\+\|-\s\+\)[\]:.)}\t ]\s*'
 
 " os/files
+let g:clipboard = 'osc52'
 set clipboard=
 set undofile
 if has("nvim")

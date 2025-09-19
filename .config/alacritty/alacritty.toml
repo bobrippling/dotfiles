@@ -67,6 +67,9 @@ mouse = "Middle"
 [selection]
 save_to_clipboard = false
 
+[terminal]
+osc52 = "CopyPaste"
+
 [window]
 decorations = "full"
 
