@@ -16,6 +16,7 @@ Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'commit': '82c9ac5e13
 Plug 'bobrippling/vim-vmath', { 'commit': '87762023ca8282173d5596c1e18d31dc9a9abf35' } " " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump', { 'commit': '9933f4765f7f4d2d212e9435b0d1a776e53f8725' }
 Plug 'mbbill/undotree', { 'commit': 'fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869' } " " pure-vimscript undo
+Plug 'bobrippling/nvim-osc52-tmux', { 'commit': 'c9423c46a42c8308fa61d6a42f36cf7676d81e43' }
 
 " Motions, etc
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
