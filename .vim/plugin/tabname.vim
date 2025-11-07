@@ -116,7 +116,7 @@ function! TabLine()
 	endif
 
 	if get(g:, "autosave_enabled", 0)
-		let tail .= "[AS" . (get(g:, "autosave_paused", 0) ? "P" : "") . "]"
+		let tail .= "[AS]"
 	endif
 
 	let tab_part = join(tabs, "")

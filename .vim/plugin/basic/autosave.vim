@@ -1,5 +1,4 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
-let g:autosave_paused = get(g:, "autosave_paused", 0)
 
 function! s:save(ent) abort
 	" can't check {w,t}:autosave any other way (easily)
@@ -59,12 +58,6 @@ function! Autosave() abort
 	endfor
 
 	if empty(modified)
-		return
-	endif
-
-	" only log after we've found out there's buffers to save
-	if g:autosave_paused
-		echo s:now() . " autosave paused"
 		return
 	endif
 
@@ -170,22 +163,11 @@ function! s:now()
 	return "[" . strftime("%Y-%m-%d %H:%M:%S") . "]"
 endfunction
 
-function! AutosaveRestore()
-	if !g:autosave_paused | return | endif
-
-	let g:autosave_paused = 0
-	echo s:now() . " autosave resumed"
-endfunction
-
-function! AutosaveSleep()
-	let g:autosave_paused = 1
-endfunction
-
 augroup autosave
 	autocmd!
 
 	autocmd CursorHold * call Autosave()
 	"autocmd CursorHoldI * update|startinsert
 
-	autocmd FocusLost * call AutosaveRestore() | call Autosave()
+	autocmd FocusLost * call Autosave()
 augroup END
