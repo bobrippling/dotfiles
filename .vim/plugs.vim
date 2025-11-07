@@ -13,14 +13,14 @@ Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Word
 Plug 'bobrippling/vim-bg', { 'remote': 'github-me', 'commit': '609433c6684c98e9c5f5c2e1793a1cc91f3d8202' }
 Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'commit': '82c9ac5e130c92a46e043dd9cd9e5b48d15e286d' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
-Plug 'bobrippling/vim-vmath', { 'commit': '87762023ca8282173d5596c1e18d31dc9a9abf35' } " " https://github.com/nixon/vim-vmath
+Plug 'bobrippling/vim-vmath', { 'commit': '87762023ca8282173d5596c1e18d31dc9a9abf35' } " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump', { 'commit': '9933f4765f7f4d2d212e9435b0d1a776e53f8725' }
-Plug 'mbbill/undotree', { 'commit': 'fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869' } " " pure-vimscript undo
+Plug 'mbbill/undotree', { 'commit': 'fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869' } " pure-vimscript undo
 Plug 'bobrippling/nvim-osc52-tmux', { 'commit': '95a8287de9bb10384f1db3f15504c64251a2d466' }
 
 " Motions, etc
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
-Plug 'cposture/vim-textobj-argument', { 'commit': 'f8f8758b3781f129149742730ba4c505ff534c38' } " " for [(, ]) etc, success of b4winckler/vim-angry
+Plug 'cposture/vim-textobj-argument', { 'commit': 'f8f8758b3781f129149742730ba4c505ff534c38' } " for [(, ]) etc, success of b4winckler/vim-angry
 Plug 'coderifous/textobj-word-column.vim', { 'commit': 'cb40e1459817a7fa23741ff6df05e4481bde5a33' }
 Plug 'FooSoft/vim-argwrap', { 'commit': 'f3e26a5ad249d09467804b92e760d08b1cc457a1' }
 "Plug 'folke/which-key.nvim'
@@ -30,19 +30,19 @@ Plug 'kana/vim-textobj-entire', { 'commit': '64a856c9dff3425ed8a863b9ec0a21dbaee
 Plug 'kana/vim-textobj-line', { 'commit': '1a6780d29adcf7e464e8ddbcd0be0a9df1a37339' }
 " too slow:
 "Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
-Plug 'bobrippling/vim-textobj-indent', { 'commit': '46f8e2404796cd9f7ba0fd964ea6ccbaaf50d489' } " " ai, aI
+Plug 'bobrippling/vim-textobj-indent', { 'commit': '46f8e2404796cd9f7ba0fd964ea6ccbaaf50d489' } " ai, aI
 "Plug 'kana/vim-textobj-lastpat' " i/, a?
 Plug 'kana/vim-textobj-fold', { 'commit': '78bfa22163133b0ca6cda63b5b5015ed4409b2ee' }
 Plug 'bobrippling/vim-textobj-lastchange', { 'commit': '21d5bbab0301933bc36c954ef1e323c773afa665' }
 Plug 'preservim/vim-textobj-sentence', { 'commit': 'c5dd562aff2c389dfc8cd55e6499854d352a80b8' }
 
-Plug 'vim-scripts/ReplaceWithRegister', { 'commit': '832efc23111d19591d495dc72286de2fb0b09345' } " " script 2703
+Plug 'vim-scripts/ReplaceWithRegister', { 'commit': '832efc23111d19591d495dc72286de2fb0b09345' } " script 2703
 Plug 'arthurxavierx/vim-caser', { 'commit': '6bc9f41d170711c58e0157d882a5fe8c30f34bf6' }
 
 " Windows, tabs etc
 Plug 'kana/vim-submode', { 'commit': 'd29de4f55c40a7a03af1d8134453a703d6affbd2' }
 Plug 'andymass/vim-tradewinds', { 'commit': '2266ab436d4777785f144f59bb5e854a312dcb24' }
-Plug 'bobrippling/vim-pinpoint', { 'commit': '7f6da89bcd881398a88c1fe9e888a99b3e67d180' } " "Plug 'ctrlpvim/ctrlp.vim'
+Plug 'bobrippling/vim-pinpoint', { 'commit': '7f6da89bcd881398a88c1fe9e888a99b3e67d180' } "Plug 'ctrlpvim/ctrlp.vim'
 exe "" | Plug 'bobrippling/vim-cmdline-match'
 Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f' }
 Plug 'yorickpeterse/unnest.nvim', { 'commit': '24734109b8a4e6aa158e85a49bf72a231fdd6d14' }
@@ -74,8 +74,8 @@ endif
 "Plug 'dense-analysis/ale'
 
 " Colours
-Plug 'bobrippling/vim-illuminate', { 'commit': '56e7df8f402a8302fa7f6cb21760d366a105d94c' } " " https://github.com/RRethy/vim-illuminate
-Plug 'bobrippling/vim-papercolor', { 'commit': 'df4a9a6039143ad5e6d8138c1cd1674b39581ed8' } " " NLKNguyen/papercolor-theme
+Plug 'bobrippling/vim-illuminate', { 'commit': '56e7df8f402a8302fa7f6cb21760d366a105d94c' } " https://github.com/RRethy/vim-illuminate
+Plug 'bobrippling/vim-papercolor', { 'commit': 'df4a9a6039143ad5e6d8138c1cd1674b39581ed8' } " NLKNguyen/papercolor-theme
 "Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 "Plug 'bobrippling/vim-colors-solarized' " https://github.com/altercation/vim-colors-solarized
 "Plug 'lifepillar/vim-solarized8' " solarized8_high
