@@ -61,8 +61,8 @@ function! TabLine()
 		let sel_output = execute("hi " . hl.label_sel_pre)
 
 		let have_extra_hl =
-		\ match(pre_output, "\\v(cterm|gui)[fb]g") >= 0 &&
-		\ match(sel_output, "\\v(cterm|gui)[fb]g") >= 0
+		\ match(pre_output, "\\v(cterm|gui)[fb]g| links to ") >= 0 &&
+		\ match(sel_output, "\\v(cterm|gui)[fb]g| links to ") >= 0
 	endif
 
 	if have_extra_hl
