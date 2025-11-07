@@ -1,4 +1,5 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
+let s:timer = -1
 
 function! s:save(ent) abort
 	" can't check {w,t}:autosave any other way (easily)
@@ -163,11 +164,24 @@ function! s:now()
 	return "[" . strftime("%Y-%m-%d %H:%M:%S") . "]"
 endfunction
 
+function! AutosaveTimerBump()
+	call AutosaveTimerStop()
+
+	let s:timer = timer_start(1000 * 60 * 10, { _ -> Autosave() })
+endfunction
+
+function! AutosaveTimerStop()
+	if s:timer is -1
+		return
+	endif
+
+	call timer_stop(s:timer)
+	let s:timer = -1
+endfunction
+
 augroup autosave
 	autocmd!
 
-	autocmd CursorHold * call Autosave()
-	"autocmd CursorHoldI * update|startinsert
-
-	autocmd FocusLost * call Autosave()
+	autocmd CursorHold * call AutosaveTimerBump()
+	autocmd InsertEnter * call AutosaveTimerStop()
 augroup END
