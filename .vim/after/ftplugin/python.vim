@@ -65,7 +65,7 @@ function! PyTag(pattern, flags, info) abort
 
 		" extract any renames
 		let tag_line = getline(tag_line_nr)
-		let orig_name = substitute(tag_line, '\v.*\s(\S+)\s+<as>\s+\S+>', '\1', '')
+		let orig_name = substitute(tag_line, '\v.*\s(\S+)\s+<as>\s+\S+>.*', '\1', '')
 		if orig_name !=# tag_line && !empty(orig_name)
 			" ^ should never be empty, but guard in case
 			call s:debug("renaming tag (`" . tag . "` imported as `" . orig_name . "`)")
