@@ -1,16 +1,10 @@
-if has('nvim')
-	" ok
-elseif has('lua')
-	" ok
+if vim.fn.has('nvim') then
+	-- ok
 else
-	finish
-endif
+	return
+end
 
-function! s:setup()
-	lua <<EOF
-	local nvim_lsp = require('lspconfig')
-	local util = require('vim.lsp.util')
-
+function setup()
 	-- Use an on_attach function to only map the following keys
 	-- after the language server attaches to the current buffer
 	local on_attach = function(client, bufnr)
@@ -55,33 +49,46 @@ function! s:setup()
 
 	-- rustup component add rust-analyzer
 	-- npm i -g [--prefix ~/src/npm/] pyright ts_ls
-	local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
 	local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = false
-	for _, lsp in ipairs(servers) do
-		nvim_lsp[lsp].setup {
-			on_attach = on_attach,
-			flags = {
-				debounce_text_changes = 150,
-			},
-			autostart = false,
-			-- this lets LSP give us back a few more things, like some snippets
-			capabilities = capabilities,
-		}
+
+	vim.lsp.config("*", {
+		-- this lets LSP give us back a few more things, like some snippets
+		capabilities = capabilities,
+	})
+
+	vim.api.nvim_create_augroup("LspVimrc", {clear = true})
+	vim.api.nvim_create_autocmd('LspAttach', {
+		desc = "lsp setup callback",
+		group = "LspVimrc",
+		callback = function(ev)
+			local client = vim.lsp.get_client_by_id(ev.data.client_id)
+			on_attach(client, ev.buf)
+		end
+	})
+
+	local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
+	for _, ls_name in ipairs(servers) do
+		vim.lsp.enable(ls_name)
 	end
-EOF
-endfunction
+end
 
-" can't lazy load nvim-lspconfig, but we can delay this setup:
-" ... or can we? lua vim.lsp.stop_client(vim.lsp.get_active_clients())
+-- can't lazy load nvim-lspconfig, but we can delay this setup
+-- ... or can we? lua vim.lsp.stop_client(vim.lsp.get_active_clients())
 
-if g:machine_fast
-	call s:setup()
+if vim.g.machine_fast then
+	setup()
 else
-	command! -bar LspVimrcSetup call s:setup()
-endif
+	vim.api.nvim_create_user_command(
+		'LspVimrcSetup',
+		setup,
+		{
+			bar = true,
+		}
+	)
+end
 
-hi DiagnosticUnderlineError cterm=none
-hi DiagnosticUnderlineWarn cterm=none
-hi DiagnosticUnderlineInfo cterm=none
-hi DiagnosticUnderlineHint cterm=none
+--hi DiagnosticUnderlineError cterm=none
+--hi DiagnosticUnderlineWarn cterm=none
+--hi DiagnosticUnderlineInfo cterm=none
+--hi DiagnosticUnderlineHint cterm=none

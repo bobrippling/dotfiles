@@ -58,7 +58,7 @@ Plug 'godlygeek/tabular', { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabul
 
 " LSP
 if has('nvim')
-	" can't lazy load - see notes in plugin/lsp/setup.vim
+	" can't lazy load - see notes in plugin/lsp/setup.lua
 	Plug 'neovim/nvim-lspconfig' ", { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ], 'commit': '99d3a0f26bfe402f45257c1398287aef252cbe2d' }
 
 	" completion - use lsp's omnifunc (lsp/setup.vim)
