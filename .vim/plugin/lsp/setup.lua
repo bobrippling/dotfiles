@@ -49,13 +49,16 @@ function setup()
 
 	-- rustup component add rust-analyzer
 	-- npm i -g [--prefix ~/src/npm/] pyright ts_ls
-	local capabilities = require('cmp_nvim_lsp').default_capabilities()
-	capabilities.textDocument.completion.completionItem.snippetSupport = false
+	local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+	if ok then
+		local capabilities = cmp_nvim_lsp.default_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-	vim.lsp.config("*", {
-		-- this lets LSP give us back a few more things, like some snippets
-		capabilities = capabilities,
-	})
+		vim.lsp.config("*", {
+			-- this lets LSP give us back a few more things, like some snippets
+			capabilities = capabilities,
+		})
+	end
 
 	vim.api.nvim_create_augroup("LspVimrc", {clear = true})
 	vim.api.nvim_create_autocmd('LspAttach', {
