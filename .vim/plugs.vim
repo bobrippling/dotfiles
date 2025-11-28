@@ -55,6 +55,7 @@ Plug 'tpope/vim-commentary', { 'commit': 'c4b8f52cbb7142ec239494e5a2c4a512f92c4d
 Plug 'bobrippling/vim-pear', { 'commit': '0d11e43a536ef3b8181978e8bf931196f87ac2d2' }
 Plug 'bobrippling/vim-supersleuth', { 'commit': '457000d21d6407c33d29b1cc15ec09b2c9e595e5' }
 Plug 'godlygeek/tabular', { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ], 'commit': '12437cd1b53488e24936ec4b091c9324cafee311' }
+" ^ or junegunn/vim-easy-align
 
 " LSP
 if has('nvim')
