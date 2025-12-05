@@ -13,7 +13,7 @@ Plug 'preservim/vim-wordy', { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Word
 Plug 'bobrippling/vim-bg', { 'remote': 'github-me', 'commit': '609433c6684c98e9c5f5c2e1793a1cc91f3d8202' }
 Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'commit': '82c9ac5e130c92a46e043dd9cd9e5b48d15e286d' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
-Plug 'bobrippling/vim-vmath', { 'commit': '87762023ca8282173d5596c1e18d31dc9a9abf35' } " https://github.com/nixon/vim-vmath
+Plug 'bobrippling/vim-vmath', { 'commit': '72156b3d52195eb159e46d7b82102c2b38de7a20' } " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump', { 'commit': '9933f4765f7f4d2d212e9435b0d1a776e53f8725' }
 Plug 'mbbill/undotree', { 'commit': 'fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869' } " pure-vimscript undo
 Plug 'bobrippling/nvim-osc52-tmux', { 'commit': '95a8287de9bb10384f1db3f15504c64251a2d466' }
