@@ -66,10 +66,7 @@ try | set wildoptions=pum | catch /^E474:/ | endtry
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
-try
-	set diffopt+=vertical
-catch /E474/
-endtry
+try | set diffopt+=vertical | catch /^E474:/ | endtry
 set tabstop=2 shiftwidth=0 noexpandtab smarttab
 set history=2000
 set lazyredraw
