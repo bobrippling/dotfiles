@@ -203,8 +203,8 @@ nnoremap <silent> <C-W>g= :call <SID>wineq_other()<CR>
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
-cnoremap <expr> <C-R>l '\%' .. getcurpos()[1] .. 'l'
-cnoremap <expr> <C-R>c '\%' .. getcurpos()[2] .. 'c'
+cnoremap <expr> <C-R>l stridx('/?', getcmdtype()) >= 0 ? '\%' .. getcurpos()[1] .. 'l' : getcurpos()[1]
+cnoremap <expr> <C-R>c stridx('/?', getcmdtype()) >= 0 ? '\%' .. getcurpos()[2] .. 'c' : getcurpos()[2]
 
 inoremap <C-G>j <Esc>jA
 inoremap <C-G>k <Esc>kA
