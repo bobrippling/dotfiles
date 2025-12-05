@@ -45,7 +45,7 @@ Plug 'andymass/vim-tradewinds', { 'commit': '2266ab436d4777785f144f59bb5e854a312
 Plug 'bobrippling/vim-pinpoint', { 'commit': '94cebeb9d1d7c64a619aa3773ed766f11ee72436' } "Plug 'ctrlpvim/ctrlp.vim'
 exe "" | Plug 'bobrippling/vim-cmdline-match'
 Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f' }
-Plug 'yorickpeterse/unnest.nvim', { 'commit': '24734109b8a4e6aa158e85a49bf72a231fdd6d14' }
+Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d018f8' } " yorickpeterse/brianhuster
 
 " Filetype specific
 Plug 'bobrippling/org.vim', { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
