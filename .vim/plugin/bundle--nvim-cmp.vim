@@ -30,8 +30,15 @@ lua <<EOF
 			end
 		end,
 	})
-	insmap['<C-N>'] = nil
-	insmap['<C-P>'] = nil
+
+	-- <C-n> is broken on some filetypes, but disabling isn't the fix
+	--insmap['<C-N>'] = (function (orig)
+	--	return function(...)
+	--		local r = orig(...)
+	--		return r
+	--	end
+	--end)(insmap['<C-N>'])
+	--insmap['<C-P>'] = ...
 
 	cmp.setup({
 		--[[
