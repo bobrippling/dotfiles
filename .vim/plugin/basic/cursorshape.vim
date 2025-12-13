@@ -1,6 +1,7 @@
 function! s:setup()
 	if has("nvim")
-		highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
+		"highlight TermCursorNC ctermfg=15 ctermbg=14 cterm=none
+		" ^ deprecated neovim 0.11
 	else
 		" change cursor shape on insert
 		let &t_SI = "\e[6 q"
