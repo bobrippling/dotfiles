@@ -35,6 +35,6 @@ function! OrgFixHl()
 endfunction
 call timer_start(1, {->OrgFixHl()})
 
-iabbrev <buffer> <expr> DONE getline('.') =~ '^\*' ? "\<Esc>gzc" : 'DONE'
+iabbrev <buffer> <expr> DONE getline('.') =~ '^\*' ? "\<Esc>gzcllllla" : 'DONE'
 cnoremap <buffer> <expr> <C-o> OrgSearchNote()
 " ^ can't cabbrev: C-O isn't a word

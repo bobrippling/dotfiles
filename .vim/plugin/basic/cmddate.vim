@@ -54,6 +54,20 @@ function! s:orgzly_init()
 	keepjumps -5
 endfunction
 
+function! s:orgzly_insclosed()
+	if getline('.') ==# ':PROPERTIES:'
+		let ins = 'O'
+		let spc = ''
+	else
+		let ins = 'I'
+		let spc = ' '
+	endif
+	let txt = 'CLOSED: [' . GetDateOrgzly() . ']' . spc
+	let back = repeat("\<Left>", len(txt))
+
+	return ins . txt . back . "\<Esc>"
+endfunction
+
 cnoremap <expr> <C-R><C-D> <SID>get_date() . '-'
 inoremap <expr> <C-R><C-D> <SID>get_date()
 
@@ -66,7 +80,7 @@ inoremap <expr> <C-R><C-T> <SID>get_time()
 " orgzly specific but kept global as useful elsewhere
 nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
 nmap <silent> <expr> gzc ':<C-U>keeppatterns s/^\v\*+ \zs((TODO\|STARTED\|NEXT) )? */DONE /<CR>jgzCk'
-nnoremap <expr> gzC (getline('.') ==# ':PROPERTIES:' ? 'O' : 'I') . 'CLOSED: [' . GetDateOrgzly() . "] \<Esc>"
+nnoremap <expr> gzC <SID>orgzly_insclosed()
 nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
 
 if 0
