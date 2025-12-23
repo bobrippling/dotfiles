@@ -183,5 +183,5 @@ augroup autosave
 	autocmd!
 
 	autocmd CursorHold * call AutosaveTimerBump()
-	autocmd InsertEnter * call AutosaveTimerStop()
+	autocmd InsertEnter,InsertLeave * call AutosaveTimerStop()
 augroup END
