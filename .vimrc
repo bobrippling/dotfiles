@@ -228,7 +228,11 @@ let g:netrw_use_errorwindow = 0
 execute "source" split(&runtimepath, ",")[0] . "/plugs.vim"
 
 set background=light
-colorscheme PaperColor
+try
+	colorscheme PaperColor
+catch /E185/
+	echom "vimrc: colorscheme not found"
+endtry
 
 let g:sh_fold_enabled = 1+2+4
 
