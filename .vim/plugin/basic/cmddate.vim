@@ -37,16 +37,20 @@ function! s:orgzly_convert()
 	call setpos(".", p)
 endfunction
 
-function! s:orgzly_init()
+function! s:orgzly_init(sched)
 	let w = GetDateOrgzly()
+
 	let lines = [
-	\   'SCHEDULED: <' . w . '>',
 	\   ':PROPERTIES:',
 	\   ':CREATED:  [' . w . ']',
 	\   ':END:',
 	\   ''
 	\ ]
 	call append(line('.'), lines)
+
+	if a:sched
+		call append(line('.'), 'SCHEDULED: <' . w . '>')
+	endif
 
 	mark [
 	keepjumps +5
@@ -81,7 +85,8 @@ inoremap <expr> <C-R><C-T> <SID>get_time()
 nnoremap gzu <Cmd>call <SID>orgzly_convert()<CR>
 nmap <silent> <expr> gzc ':<C-U>keeppatterns s/^\v\*+\zs( (TODO\|STARTED\|NEXT)>)?/ DONE/<CR>jgzCk'
 nnoremap <expr> gzC <SID>orgzly_insclosed()
-nnoremap gzi <Cmd>call <SID>orgzly_init()<CR>
+nnoremap gzi <Cmd>call <SID>orgzly_init(0)<CR>
+nnoremap gzI <Cmd>call <SID>orgzly_init(1)<CR>
 
 if 0
 	function! s:check_date_typed()
