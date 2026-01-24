@@ -103,7 +103,7 @@ function! TabLine()
 			" there's also v:this_session, but g:this_obsession is more appropriate
 			let relative = fnamemodify(g:this_obsession, ":~:.")
 			let baseonly = fnamemodify(relative, ":t")
-			let trunc = baseonly ==# relative ? "" : ".../"
+			let trunc = baseonly ==# relative ? "" : pathshorten(relative)
 
 			let tail .= " [" . trunc . baseonly . "]"
 		else
