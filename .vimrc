@@ -132,6 +132,7 @@ endif
 
 " terminal
 set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
+autocmd TermOpen * setl bufhidden=hide
 
 if has("nvim")
 	set inccommand=nosplit
