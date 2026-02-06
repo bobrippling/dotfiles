@@ -99,6 +99,7 @@ if exists("&tabclose") | set tabclose=uselast | endif
 
 " display (colours)
 set termguicolors " see also: gui-colors
+set signcolumn=auto:1
 
 " mouse
 " undo nvim's default:
