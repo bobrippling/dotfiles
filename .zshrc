@@ -170,7 +170,7 @@ preexec(){
 }
 
 chpwd(){
-	printf '\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD"
+	[[ -t 2 ]] && printf '\033]7;file://%s%s\033\\' "$HOSTNAME" "$PWD" >&2
 }
 # or `add-zsh-hook chpwd cd_hook_fn`
 
