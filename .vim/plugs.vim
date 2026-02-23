@@ -9,7 +9,7 @@ Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 
 "Plug 'junegunn/vim-peekaboo'
 
 if g:cartographer_enabled
-	Plug 'bobrippling/cartographer.vim', { 'commit': '51a0d391cc10f3ee7997fc19972875dea28cf7dc' }
+	Plug 'bobrippling/cartographer.vim', { 'commit': 'b3e22491aaf5b04b4c70eb0fb2c357fe16ad83e2' }
 endif
 
 " Boost native functionality
