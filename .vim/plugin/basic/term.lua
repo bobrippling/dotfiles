@@ -16,12 +16,14 @@ vim.api.nvim_create_autocmd({ 'TermRequest' }, {
 
     local host, dir = ev.data.sequence:match('\x1b]7;file://([^/]*)(.*)')
     if host:len() > 0 and host ~= vim.loop.os_gethostname() then
-      err('chdir on host: ' .. host .. ' (ignoring)')
+      err('chdir on host: ' .. host .. ' (ignoring)', bufnr)
       return
     end
 
+    err("host is " .. host, bufnr)
+
     if vim.fn.isdirectory(dir) == 0 then
-      err('invalid dir: ' .. dir)
+      err('invalid dir: ' .. dir, bufnr)
       return
     end
 
