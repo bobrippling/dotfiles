@@ -31,6 +31,7 @@ format_short_id(change_id)
 ++ " "
 ++ coalesce(description.first_line(), "(no description set)")
 ++ surround(" ", "", self.bookmarks().join(", "))
+++ if(conflict, label("conflict", " (conflict)"))
 ++ "\n"
 '''
 
