@@ -7,6 +7,8 @@ email = "robpilling@gmail.com"
 [ui]
 #editor = ":builtin"
 pager = ["less", "-FRiS"]
+diff-editor = ["nvim", "$left", "$right"]
+merge-editor = ["nvim", "-d", "$left", "$right"]
 
 [aliases]
 lgg = ["log", "-T", "oneline"]
