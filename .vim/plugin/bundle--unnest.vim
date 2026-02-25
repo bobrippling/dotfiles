@@ -3,6 +3,8 @@
 
 if !empty(filter(argv(), { _, f -> match(@%, '\v/jj-.*(left|resolve)') >= 0 }))
 	let g:loaded_unnest = 1
-	echom "`jj diffedit/resolve` detected -> unnest disabled (for jj.vim)"
+	if !empty($NVIM)
+		echom "`jj diffedit/resolve` detected -> unnest disabled (for jj.vim)"
+	endif
 endif
 
