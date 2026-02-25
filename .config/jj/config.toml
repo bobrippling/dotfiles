@@ -21,6 +21,12 @@ tug- = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "
 di = ["diff"]
 grep = ["util", "exec", "--", "jj-grep"]
 
+# todo: template shortcuts: description.split("\n").first()
+# todo: merge from dwp-m2
+
+[revset-aliases]
+'afterfork(revs)' = 'fork_point(revs)::revs'
+
 [template-aliases]
 oneline = '''
 separate(" ",
