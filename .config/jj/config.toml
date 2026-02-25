@@ -1,0 +1,29 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Rob Pilling"
+email = "robpilling@gmail.com"
+
+[ui]
+#editor = ":builtin"
+pager = ["less", "-FRiS"]
+
+[aliases]
+lgg = ["log", "-T", "oneline"]
+log-rem = ["log", "-r", "heads(remote_bookmarks() & ::@)::@"]
+log-dangling = ["log", "-r", "~ ::bookmarks() ~ ::remote_bookmarks()"]
+fe = ["git", "fetch"]
+tug  = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@"]
+tug- = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@-"]
+di = ["diff"]
+
+# todo: template shortcuts: description.split("\n").first()
+# todo: merge from dwp-m2
+
+[template-aliases]
+oneline = '''
+commit_id.short() ++ " " ++ coalesce(description.first_line(), "(no description set)") ++ "\n"
+'''
+
+[git]
+private-commits = "description(substring-i:'wip:*')"
