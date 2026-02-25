@@ -26,15 +26,14 @@ grep = ["util", "exec", "--", "jj-grep"]
 
 [template-aliases]
 oneline = '''
-format_short_change_id_with_change_offset(self)
-++ " "
-++ format_short_commit_id(commit_id)
-++ " "
-++ coalesce(description.first_line(), description_placeholder)
-++ surround(" ", "", self.bookmarks().join(", "))
-++ " "
-++ format_commit_labels(self)
-++ "\n"
+separate(" ",
+	format_short_change_id_with_change_offset(self),
+	format_short_commit_id(commit_id),
+	if(self.empty(), empty_commit_marker),
+	coalesce(description.first_line(), description_placeholder)
+	++ surround(" ", "", self.bookmarks().join(", ")),
+	format_commit_labels(self),
+) ++ "\n"
 '''
 
 [git]
