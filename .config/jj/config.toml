@@ -24,7 +24,9 @@ di = ["diff"]
 
 [template-aliases]
 oneline = '''
-commit_id.short()
+format_short_id(change_id)
+++ " "
+++ format_short_id(commit_id)
 ++ " "
 ++ coalesce(description.first_line(), "(no description set)")
 ++ surround(" ", "", self.bookmarks().join(", "))
