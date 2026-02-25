@@ -413,4 +413,4 @@ if [[ $zshrc_profile ]]; then zprof; fi
 # -------------------------------------------------------------------------------------
 # jj
 
-type jj >/dev/null && . <(jj util completion zsh)
+type jj >/dev/null && . <(COMPLETE=zsh jj)
