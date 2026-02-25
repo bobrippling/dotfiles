@@ -13,7 +13,7 @@ merge-editor = ["nvim", "-d", "$left", "$right"]
 [aliases]
 lgg = ["log", "-T", "oneline"]
 logf = ["log", "-T", "builtin_log_detailed"]
-log-rem = ["log", "-r", "heads(remote_bookmarks() & ::@)::@"]
+logr = ["log", "-r", "heads(remote_bookmarks() & ::@)::@"]
 log-dangling = ["log", "-r", "~ ::bookmarks() ~ ::remote_bookmarks()"]
 fe = ["git", "fetch"]
 tug  = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@"]
@@ -25,13 +25,14 @@ di = ["diff"]
 
 [template-aliases]
 oneline = '''
-format_short_id(change_id)
+format_short_change_id_with_change_offset(self)
 ++ " "
-++ format_short_id(commit_id)
+++ format_short_commit_id(commit_id)
 ++ " "
-++ coalesce(description.first_line(), "(no description set)")
+++ coalesce(description.first_line(), description_placeholder)
 ++ surround(" ", "", self.bookmarks().join(", "))
-++ if(conflict, label("conflict", " (conflict)"))
+++ " "
+++ format_commit_labels(self)
 ++ "\n"
 '''
 
