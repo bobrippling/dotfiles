@@ -409,3 +409,8 @@ source_if_exists \
 
 unset -f source_if_exists
 if [[ $zshrc_profile ]]; then zprof; fi
+
+# -------------------------------------------------------------------------------------
+# jj
+
+type jj >/dev/null && . <(jj util completion zsh)
