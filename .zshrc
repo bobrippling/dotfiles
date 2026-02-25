@@ -411,6 +411,8 @@ unset -f source_if_exists
 if [[ $zshrc_profile ]]; then zprof; fi
 
 # -------------------------------------------------------------------------------------
-# jj
+# jj, uv, etc
 
 type jj >/dev/null && . <(COMPLETE=zsh jj)
+
+type uv >/dev/null && . <(uv generate-shell-completion zsh)
