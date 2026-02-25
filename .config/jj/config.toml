@@ -12,6 +12,7 @@ merge-editor = ["nvim", "-d", "$left", "$right"]
 
 [aliases]
 lgg = ["log", "-T", "oneline"]
+logf = ["log", "-T", "builtin_log_detailed"]
 log-rem = ["log", "-r", "heads(remote_bookmarks() & ::@)::@"]
 log-dangling = ["log", "-r", "~ ::bookmarks() ~ ::remote_bookmarks()"]
 fe = ["git", "fetch"]
