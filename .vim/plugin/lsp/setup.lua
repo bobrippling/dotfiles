@@ -49,6 +49,7 @@ function setup()
 
 	-- rustup component add rust-analyzer
 	-- npm i -g [--prefix ~/src/npm/] pyright ts_ls
+	-- uv tool install ty@latest
 	local ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 	if ok then
 		local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -71,7 +72,7 @@ function setup()
 	})
 
 	if vim.lsp.enable then
-		local servers = { 'rust_analyzer', 'pyright', 'ts_ls' }
+		local servers = { 'rust_analyzer', 'ty', 'ts_ls' }
 		for _, ls_name in ipairs(servers) do
 			vim.lsp.enable(ls_name)
 		end
