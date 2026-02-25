@@ -54,7 +54,7 @@ Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d
 
 " Filetype specific
 Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
-Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': 'e6692d8aa6591bf74b912d252d11cbd4e030b82b' }
+Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': 'acf00ad558474761f5d9324de048a65807b9c951' }
 
 " Code
 Plug 'tpope/vim-commentary', { 'commit': 'c4b8f52cbb7142ec239494e5a2c4a512f92c4d07' }
