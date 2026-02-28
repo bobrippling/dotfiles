@@ -38,3 +38,5 @@ call timer_start(1, {->OrgFixHl()})
 iabbrev <buffer> <expr> DONE getline('.') =~ '^\*' ? "\<Esc>gzc2wXi" : 'DONE'
 cnoremap <buffer> <expr> <C-o> OrgSearchNote()
 " ^ can't cabbrev: C-O isn't a word
+
+imap <buffer> <expr> * getpos('.')[2] == 1 ? "\<C-V>*\<Esc>gzia" : '*'
