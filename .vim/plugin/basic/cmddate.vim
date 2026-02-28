@@ -55,7 +55,7 @@ function! s:orgzly_init(sched)
 	mark [
 	keepjumps +5
 	mark ]
-	keepjumps -5
+	keepjumps '[
 endfunction
 
 function! s:orgzly_insclosed()
