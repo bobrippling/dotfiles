@@ -75,6 +75,7 @@ endfunction
 
 function! s:bggrep_moreslash()
 	" add another `/` on the pinpoint path (`:Fs %:h:h/a/xyz.vim` + C-Q -> `:Fs %:h:h/a//xyz.vim`)
+	" or with a * if it's not pinpoint
 	let cmdline = getcmdline()
 	let p = getcmdpos() - 1
 
@@ -94,7 +95,12 @@ function! s:bggrep_moreslash()
 		let ins = "./"
 	else
 		let off = p - slash
-		let ins = "/"
+		if cmdline[:p] =~ '\C\v<[A-Z][a-z]+\s'
+			" assume pinpoint
+			let ins = "/"
+		else
+			let ins = "/*"
+		endif
 	endif
 
 	return repeat("\<Left>", off) . ins . repeat("\<Right>", off)
