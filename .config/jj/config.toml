@@ -19,6 +19,7 @@ fe = ["git", "fetch"]
 tug  = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@"]
 tug- = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@-"]
 di = ["diff"]
+grep = ["util", "exec", "--", "jj-grep"]
 
 # todo: template shortcuts: description.split("\n").first()
 # todo: merge from dwp-m2
