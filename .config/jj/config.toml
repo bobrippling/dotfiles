@@ -48,3 +48,8 @@ separate(" ",
 
 [git]
 private-commits = "description(substring-i:'wip:*')"
+
+[[--scope]]
+--when.commands = ["status"]
+[--scope.ui]
+paginate = "never"
