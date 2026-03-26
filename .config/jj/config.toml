@@ -25,16 +25,14 @@ logf = ["log", "-T", "builtin_log_detailed"]
 logr = ["log", "-r", "heads(immutable_heads() & ::@)::@"]
 log-dangling = ["log", "-r", "~ ::bookmarks() ~ ::remote_bookmarks()"]
 fe = ["git", "fetch"]
-tug  = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@"]
-tug- = ["bookmark", "move", "--from", "exactly(heads(::@- & bookmarks()), 1)", "--to", "@-"]
+tug  = ["bookmark", "move", "--from", "exactly(closest_bookmark(@-), 1)", "--to", "@"]
+tug- = ["bookmark", "move", "--from", "exactly(closest_bookmark(@-), 1)", "--to", "@-"]
 di = ["diff"]
 grep = ["util", "exec", "--", "jj-grep"]
 
-# todo: template shortcuts: description.split("\n").first()
-# todo: merge from dwp-m2
-
 [revset-aliases]
 'afterfork(revs)' = 'fork_point(revs)::revs'
+'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 
 [template-aliases]
 oneline = '''
