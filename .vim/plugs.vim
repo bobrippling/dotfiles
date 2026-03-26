@@ -8,7 +8,7 @@ Plug 'junegunn/goyo.vim', g:cartographer_enabled ? {} : { 'on': 'Goyo', 'commit'
 Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ], 'commit': '590927f57277666e032702b26e4e0c82717cc3cb' }
 "Plug 'junegunn/vim-peekaboo'
 
-if g:cartographer_enabled
+if g:cartographer_enabled && has('nvim')
 	Plug 'bobrippling/cartographer.vim', { 'commit': 'b3e22491aaf5b04b4c70eb0fb2c357fe16ad83e2' }
 endif
 
