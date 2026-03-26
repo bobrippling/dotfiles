@@ -8,7 +8,16 @@ email = "robpilling@gmail.com"
 #editor = ":builtin"
 pager = ["less", "-FRiS"]
 diff-editor = ["nvim", "$left", "$right"]
-merge-editor = ["nvim", "-d", "$left", "$right"]
+merge-editor = "diffconflicts" # can also use --tool ${merge-editor}
+
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    #"-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "DiffConflicts",
+    "$output"
+]
+merge-tool-edits-conflict-markers = true
 
 [aliases]
 lgg = ["log", "-T", "oneline"]
