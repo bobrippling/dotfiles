@@ -99,7 +99,7 @@ if exists("&tabclose") | set tabclose=uselast | endif
 
 " display (colours)
 set termguicolors " see also: gui-colors
-set signcolumn=auto:1
+try | set signcolumn=auto:1 | catch /E474:/ | endtry
 
 " mouse
 " undo nvim's default:
@@ -133,7 +133,9 @@ endif
 
 " terminal
 set notimeout ttimeout " timeout on keycodes only, wait forever for mappings
-autocmd TermOpen * setl bufhidden=hide
+if exists("#TermOpen")
+	autocmd TermOpen * setl bufhidden=hide
+endif
 
 if has("nvim")
 	set inccommand=nosplit
