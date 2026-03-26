@@ -47,7 +47,7 @@ separate(" ",
 '''
 
 [git]
-private-commits = "description(substring-i:'wip:*')"
+private-commits = "description(substring-i:'[wip]*')"
 
 [[--scope]]
 --when.commands = ["status"]
