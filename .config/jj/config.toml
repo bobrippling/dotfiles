@@ -53,3 +53,7 @@ private-commits = "description(substring-i:'[wip]*')"
 --when.commands = ["status"]
 [--scope.ui]
 paginate = "never"
+
+[fix.tools.terraform]
+command = ["terraform", "fmt", "-"]
+patterns = ["glob:**/*.tf", "glob:**/*.tfvars"]
