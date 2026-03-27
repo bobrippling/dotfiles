@@ -1,6 +1,9 @@
 vim.api.nvim_create_augroup('luaterm', { clear = true })
 
 local function err(msg, bufnr)
+  if bufnr == nil then
+    bufnr = "<nil>"
+  end
   vim.notify('buf' .. bufnr .. ': ' .. msg)
 end
 
@@ -19,8 +22,6 @@ vim.api.nvim_create_autocmd({ 'TermRequest' }, {
       err('chdir on host: ' .. host .. ' (ignoring)', bufnr)
       return
     end
-
-    err("host is " .. host, bufnr)
 
     if vim.fn.isdirectory(dir) == 0 then
       err('invalid dir: ' .. dir, bufnr)
