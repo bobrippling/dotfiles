@@ -2,11 +2,14 @@ let g:cartographer_enabled = 1
 call plug#begin(split(&runtimepath, ",")[0] . "/bundle")
 
 " Interface
-Plug 'tpope/vim-fugitive', g:cartographer_enabled ? {} : { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
 "Plug 'junegunn/gv.vim', { 'on': 'GV' }
 Plug 'junegunn/goyo.vim', g:cartographer_enabled ? {} : { 'on': 'Goyo', 'commit': 'fa0263d456dd43f5926484d1c4c7022dfcb21ba9' }
 Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 'NextWordy', 'PrevWordy', 'Wordy' ], 'commit': '590927f57277666e032702b26e4e0c82717cc3cb' }
 "Plug 'junegunn/vim-peekaboo'
+
+" VCS
+Plug 'tpope/vim-fugitive', g:cartographer_enabled ? {} : { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
+Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': '5a0f70b5f952aa21eabb3b738cac0d0d74c40ede' }
 
 if g:cartographer_enabled && has('nvim')
 	Plug 'bobrippling/cartographer.vim', { 'commit': 'b3e22491aaf5b04b4c70eb0fb2c357fe16ad83e2' }
@@ -54,7 +57,6 @@ Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d
 
 " Filetype specific
 Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
-Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': 'acf00ad558474761f5d9324de048a65807b9c951' }
 
 " Code
 Plug 'tpope/vim-commentary', { 'commit': 'c4b8f52cbb7142ec239494e5a2c4a512f92c4d07' }
