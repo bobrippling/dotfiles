@@ -31,7 +31,7 @@ Plug 'bobrippling/nvim-osc52-tmux', { 'commit': '95a8287de9bb10384f1db3f15504c64
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'cposture/vim-textobj-argument', { 'commit': 'f8f8758b3781f129149742730ba4c505ff534c38' } " for [(, ]) etc, success of b4winckler/vim-angry
 Plug 'coderifous/textobj-word-column.vim', { 'commit': 'cb40e1459817a7fa23741ff6df05e4481bde5a33' }
-Plug 'FooSoft/vim-argwrap', { 'commit': 'f3e26a5ad249d09467804b92e760d08b1cc457a1' }
+Plug 'https://git.sr.ht/~foosoft/vim-argwrap', { 'commit': 'f3e26a5ad249d09467804b92e760d08b1cc457a1' }
 "Plug 'folke/which-key.nvim'
 
 Plug 'kana/vim-textobj-user', { 'commit': '41a675ddbeefd6a93664a4dc52f302fe3086a933' }
@@ -60,7 +60,7 @@ Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d
 Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
 
 " Code
-Plug 'tpope/vim-commentary', { 'commit': 'c4b8f52cbb7142ec239494e5a2c4a512f92c4d07' }
+Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60c9' }
 Plug 'bobrippling/vim-pear', { 'commit': '0d11e43a536ef3b8181978e8bf931196f87ac2d2' }
 Plug 'bobrippling/vim-supersleuth', { 'commit': '5916d9073e291669b6a41eb8892c6cdaf20ab121' }
 Plug 'godlygeek/tabular', g:cartographer_enabled ? {} : { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ], 'commit': '12437cd1b53488e24936ec4b091c9324cafee311' }
