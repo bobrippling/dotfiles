@@ -53,7 +53,8 @@ description(substring-i:'wip:*')
 | description(substring-i:'[nopush]*')
 | files(root-prefix-glob-i:"**/*private*")
 | files(root-prefix-glob-i:"**/id_*")
-| files(root-prefix-glob-i:"**/*key*")
+| files(root-prefix-glob-i:"**/key*")
+| files(root-prefix-glob-i:"**/*[^a-z]key*")
 """
 
 [[--scope]]
