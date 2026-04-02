@@ -51,9 +51,9 @@ private-commits = """
 description(substring-i:'wip:*')
 | description(substring-i:'[wip]*')
 | description(substring-i:'[nopush]*')
-| files(glob-i:"**/*private*")
-| files(glob-i:"**/id_*")
-| files(glob-i:"**/*key*")
+| files(root-prefix-glob-i:"**/*private*")
+| files(root-prefix-glob-i:"**/id_*")
+| files(root-prefix-glob-i:"**/*key*")
 """
 
 [[--scope]]
@@ -63,4 +63,4 @@ paginate = "never"
 
 [fix.tools.terraform]
 command = ["terraform", "fmt", "-"]
-patterns = ["glob:**/*.tf", "glob:**/*.tfvars"]
+patterns = ["root-glob:**/*.tf", "root-glob:**/*.tfvars"]
