@@ -10,7 +10,7 @@ Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 
 " VCS
 Plug 'tpope/vim-fugitive', g:cartographer_enabled ? {} : { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
 Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': '5a0f70b5f952aa21eabb3b738cac0d0d74c40ede' }
-Plug 'bobrippling/diffconflicts', { 'commit': '2738a3fa719bcba5851ea2efd113fad44c1040fd' } " whiteinge/diffconflicts, or jj-specific: rafikdraoui/jj-diffconflicts
+Plug 'bobrippling/diffconflicts', { 'commit': 'da61748f79131c8d0b122e48e0b48c3d1d2b62c0' } " whiteinge/diffconflicts, or jj-specific: rafikdraoui/jj-diffconflicts
 
 if g:cartographer_enabled && has('nvim')
 	Plug 'bobrippling/cartographer.vim', { 'commit': '2a81c3c12f465dea000e83eb2b341fb3c4c12ed5' }

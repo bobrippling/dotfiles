@@ -18,6 +18,7 @@ merge-args = [
     "$output"
 ]
 merge-tool-edits-conflict-markers = true
+conflict-marker-style = "git"
 
 [aliases]
 lgg = ["log", "-T", "oneline"]
