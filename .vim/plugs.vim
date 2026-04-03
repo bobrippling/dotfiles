@@ -68,7 +68,7 @@ Plug 'godlygeek/tabular', g:cartographer_enabled ? {} : { 'on': [ 'Tabularize', 
 
 " LSP
 if has('nvim')
-	Plug 'neovim/nvim-lspconfig', { 'commit': '5bfcc89fd155b4ffc02d18ab3b7d19c2d4e246a7' }
+	Plug 'neovim/nvim-lspconfig', { 'tag': 'v2.7.0' }
 	" ^ can't lazy load - see notes in plugin/lsp/setup.lua
 	" { 'on': [ 'LspStart', 'LspInfo', 'LspRestart' ] }
 
