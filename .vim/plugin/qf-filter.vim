@@ -38,6 +38,14 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 
 		let Iter = function('s:FilterRange')
 	else
+		if empty(match_mode)
+			if is_re
+				let match_mode = 't'
+			else
+				throw "No match-mode given"
+			endif
+		endif
+
 		if empty(pattern)
 			throw "Need pattern to drop/keep"
 		endif
@@ -67,6 +75,8 @@ function! s:Filter(args, reject, range_count, range_start, range_end) abort
 			endfunction
 
 			let Iter = function('s:FilterType')
+		else
+			throw "Unknown mode '" .. match_mode .. "'"
 		endif
 	endif
 
