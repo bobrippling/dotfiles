@@ -417,6 +417,8 @@ type jj >/dev/null && . <(COMPLETE=zsh jj)
 
 type uv >/dev/null && . <(uv generate-shell-completion zsh)
 
+type rustup >/dev/null && . <(rustup completions zsh)
+
 # -------------------------------------------------------------------------------------
 # deno
 if [[ ":$FPATH:" != *":/Users/rpilling/.zsh/completions:"* ]]; then export FPATH="/Users/rpilling/.zsh/completions:$FPATH"; fi
