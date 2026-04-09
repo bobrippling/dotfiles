@@ -13,7 +13,7 @@ Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': '5a0f70b5f952aa21eab
 Plug 'bobrippling/diffconflicts', { 'commit': '2738a3fa719bcba5851ea2efd113fad44c1040fd' } " whiteinge/diffconflicts, or jj-specific: rafikdraoui/jj-diffconflicts
 
 if g:cartographer_enabled && has('nvim')
-	Plug 'bobrippling/cartographer.vim', { 'commit': 'b3e22491aaf5b04b4c70eb0fb2c357fe16ad83e2' }
+	Plug 'bobrippling/cartographer.vim', { 'commit': '2a81c3c12f465dea000e83eb2b341fb3c4c12ed5' }
 endif
 
 " Boost native functionality
