@@ -64,6 +64,10 @@ empty()
 [--scope.ui]
 paginate = "never"
 
+[fix.tools.rustfmt]
+command = ["rustfmt", "--edition=2024"]
+patterns = ["root-glob:**/*.rs"]
+
 [fix.tools.terraform]
 command = ["terraform", "fmt", "-"]
 patterns = ["root-glob:**/*.tf", "root-glob:**/*.tfvars"]
