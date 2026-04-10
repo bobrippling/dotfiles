@@ -49,9 +49,10 @@ separate(" ",
 
 [git]
 private-commits = """
-description(substring-i:'wip:*')
-| description(substring-i:'[wip]*')
-| description(substring-i:'[nopush]*')
+empty()
+| description(substring-i:'wip:')
+| description(substring-i:'[wip]')
+| description(substring-i:'[nopush]')
 | files(root-prefix-glob-i:"**/*private*")
 | files(root-prefix-glob-i:"**/id_*")
 | files(root-prefix-glob-i:"**/key*")
