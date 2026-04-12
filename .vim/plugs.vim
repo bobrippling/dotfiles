@@ -24,14 +24,14 @@ Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'commit': '82c9ac5e13
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
 Plug 'bobrippling/vim-vmath', { 'commit': '72156b3d52195eb159e46d7b82102c2b38de7a20' } " https://github.com/nixon/vim-vmath
 Plug 'bobrippling/vim-jump', { 'commit': '9933f4765f7f4d2d212e9435b0d1a776e53f8725' }
-Plug 'mbbill/undotree', { 'commit': 'fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869' } " pure-vimscript undo
+Plug 'mbbill/undotree', { 'commit': '6fa6b57cda8459e1e4b2ca34df702f55242f4e4d' } " pure-vimscript undo
 Plug 'bobrippling/nvim-osc52-tmux', { 'commit': '95a8287de9bb10384f1db3f15504c64251a2d466' }
 
 " Motions, etc
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
 Plug 'cposture/vim-textobj-argument', { 'commit': 'f8f8758b3781f129149742730ba4c505ff534c38' } " for [(, ]) etc, success of b4winckler/vim-angry
 Plug 'coderifous/textobj-word-column.vim', { 'commit': 'cb40e1459817a7fa23741ff6df05e4481bde5a33' }
-Plug 'https://git.sr.ht/~foosoft/vim-argwrap', { 'commit': 'f3e26a5ad249d09467804b92e760d08b1cc457a1' }
+Plug 'https://git.sr.ht/~foosoft/vim-argwrap', { 'tag': '24.1.15.0' }
 "Plug 'folke/which-key.nvim'
 
 Plug 'kana/vim-textobj-user', { 'commit': '41a675ddbeefd6a93664a4dc52f302fe3086a933' }
