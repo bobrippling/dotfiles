@@ -44,7 +44,8 @@ separate(" ",
 	format_short_commit_id(commit_id),
 	if(self.empty(), empty_commit_marker),
 	coalesce(description.first_line(), description_placeholder)
-	++ surround(" ", "", self.bookmarks().join(", ")),
+	++ surround(" ", "", self.bookmarks().join(", "))
+	++ surround(" ", "", self.tags().join(", ")),
 	format_commit_labels(self),
 ) ++ "\n"
 '''
