@@ -45,7 +45,8 @@ separate(" ",
 	if(self.empty(), empty_commit_marker),
 	coalesce(description.first_line(), description_placeholder)
 	++ surround(" ", "", self.bookmarks().join(", "))
-	++ surround(" ", "", self.tags().join(", ")),
+	++ surround(" ", "", self.tags().join(", "))
+	++ surround(" ", "", self.working_copies().map(|w| label("working_copy", w)).join(", ")),
 	format_commit_labels(self),
 ) ++ "\n"
 '''
