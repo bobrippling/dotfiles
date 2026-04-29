@@ -25,6 +25,7 @@ lgg = ["log", "-T", "oneline"]
 logf = ["log", "-T", "builtin_log_detailed"]
 logr = ["log", "-r", "heads(immutable_heads() & ::@)::@"]
 log-dangling = ["log", "-r", "~ ::bookmarks() ~ ::remote_bookmarks()"]
+lgf = ["lgg", "-r", "focus"]
 fe = ["git", "fetch"]
 tug  = ["bookmark", "move", "--from", "exactly(closest_bookmark(@-), 1)", "--to", "@"]
 tug- = ["bookmark", "move", "--from", "exactly(closest_bookmark(@-), 1)", "--to", "@-"]
@@ -34,6 +35,7 @@ grep = ["util", "exec", "--", "jj-grep"]
 [revset-aliases]
 'afterfork(revs)' = 'fork_point(revs)::revs'
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
+focus = 'descendants(trunk()..@)'
 
 [template-aliases]
 oneline = '''
