@@ -35,7 +35,7 @@ grep = ["util", "exec", "--", "jj-grep"]
 [revset-aliases]
 'afterfork(revs)' = 'fork_point(revs)::revs'
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
-focus = 'descendants(trunk()..@)'
+focus = 'descendants(trunk()..@) & ::@'
 'S(substr)' = 'subject(regex-i:substr)'
 
 [template-aliases]
