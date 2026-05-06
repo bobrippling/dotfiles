@@ -28,6 +28,7 @@ export_if_exists(){
 export_if_exists EDITOR ed
 
 export_if_exists VISUAL tim \
+	|| export_if_exists VISUAL nvim \
 	|| export_if_exists VISUAL vim \
 	|| export VISUAL=vi
 
