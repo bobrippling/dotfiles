@@ -20,12 +20,12 @@ case "$1" in
     defaults)
         cd
         for f in .aliases .bash_logout .bashrc .environ_interactive .environ_script .gitconfig .inputrc .logout .ssh .terminfo .tmux.conf .vim .vimrc .zlogout .zshenv .zshrc
-        do ln -s ".config/dotfiles/$f"
+        do ln -s ".config/dotfiles/$f" || :
         done
 
         cd .config
         for d in alacritty rg nvim git
-        do ln -s "dotfiles/.config/$d"
+        do ln -s "dotfiles/.config/$d" || :
         done
 
         exit
