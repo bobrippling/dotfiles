@@ -51,8 +51,12 @@ Plug 'arthurxavierx/vim-caser', { 'commit': '6bc9f41d170711c58e0157d882a5fe8c30f
 " Windows, tabs etc
 Plug 'kana/vim-submode', { 'commit': 'd29de4f55c40a7a03af1d8134453a703d6affbd2' }
 Plug 'andymass/vim-tradewinds', { 'commit': '2266ab436d4777785f144f59bb5e854a312dcb24' }
-Plug 'bobrippling/vim-pinpoint', { 'commit': '94cebeb9d1d7c64a619aa3773ed766f11ee72436' } "Plug 'ctrlpvim/ctrlp.vim'
-exe "" | Plug 'bobrippling/vim-cmdline-match'
+if 0 && g:machine_fast
+	Plug 'ctrlpvim/ctrlp.vim', { 'tag': '1.81' }
+else
+	Plug 'bobrippling/vim-pinpoint', { 'commit': '94cebeb9d1d7c64a619aa3773ed766f11ee72436' }
+endif
+Plug 'bobrippling/vim-cmdline-match'
 Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f' }
 Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d018f8' } " yorickpeterse/brianhuster
 
