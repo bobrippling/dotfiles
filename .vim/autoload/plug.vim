@@ -2732,6 +2732,7 @@ function! s:diff()
   endif
   normal! gg
   setlocal nomodifiable
+  setlocal foldmethod=indent | %foldclose!
 endfunction
 
 function! s:revert()
