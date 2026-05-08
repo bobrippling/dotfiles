@@ -20,4 +20,4 @@
 .gnupg/.gpg-connect_history
 
 zshcompl/
-contrib/
+contrib/*/
