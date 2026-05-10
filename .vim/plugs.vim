@@ -54,7 +54,7 @@ Plug 'andymass/vim-tradewinds', { 'commit': '2266ab436d4777785f144f59bb5e854a312
 if 0 && g:machine_fast
 	Plug 'ctrlpvim/ctrlp.vim', { 'tag': '1.81' }
 else
-	Plug 'bobrippling/vim-pinpoint', { 'commit': 'a554a94fd0300a9d1ae6d4b8a410e3dd911cf7b4' }
+	Plug 'bobrippling/vim-pinpoint', { 'commit': '2b9f40c8fc702ea0f936f63b27db5bddb5487f6e' }
 endif
 Plug 'bobrippling/vim-cmdline-match'
 Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f' }
