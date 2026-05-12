@@ -86,6 +86,7 @@ set showmatch cpoptions-=m
 set report=1
 set synmaxcol=160
 set belloff=error,esc,showmatch " no 'term', to propagate \7 from :term
+set spellsuggest+=20
 
 " display (gui)
 " m: menu bar
