@@ -63,9 +63,8 @@ hide_when_typing = false
 action = "None"
 mouse = "Middle"
 
-
 [selection]
-save_to_clipboard = false
+save_to_clipboard = true
 
 [terminal]
 osc52 = "CopyPaste"
