@@ -2,8 +2,30 @@
 
 set -e
 
-test $# -ne 0 && exit 2
+usage(){
+	echo >&2 "Usage: $0 [z] [tmux-resurrect]"
+	exit 2
+}
 
-cd "$(dirname "$0")"
+cd ~/.config/dotfiles/
 mkdir -p contrib
-git clone https://github.com/bobrippling/z z
+cd contrib
+
+if test $# -eq 0
+then set -- z tmux-resurrect
+fi
+
+for arg
+do
+	case "$arg" in
+		z)
+			git clone https://github.com/bobrippling/z
+			;;
+		tmux-resurrect)
+			git clone https://github.com/tmux-plugins/tmux-resurrect
+			;;
+		*)
+			usage
+			;;
+	esac
+done
