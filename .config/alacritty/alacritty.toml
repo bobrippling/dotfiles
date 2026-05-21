@@ -50,6 +50,17 @@ key = "B" # dvorak N
 mods = "Command"
 
 [[keyboard.bindings]]
+key = "K" # dvorak V
+mods = "Command"
+action = "Paste"
+
+[[keyboard.bindings]]
+# no need for copy - selected text is copied - but...
+key = "j" # dvorak C
+mods = "Command"
+action = "Copy"
+
+[[keyboard.bindings]]
 action = "Quit"
 key = "\"" # dvorak Q
 mods = "Command"
