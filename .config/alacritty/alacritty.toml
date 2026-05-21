@@ -46,12 +46,12 @@ mods = "Control"
 
 [[keyboard.bindings]]
 action = "CreateNewWindow"
-key = "N"
+key = "B" # dvorak N
 mods = "Command"
 
 [[keyboard.bindings]]
 action = "Quit"
-key = "Q"
+key = "\"" # dvorak Q
 mods = "Command"
 
 [[keyboard.bindings]]
