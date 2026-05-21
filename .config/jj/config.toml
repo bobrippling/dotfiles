@@ -62,6 +62,8 @@ empty()
 | files(root-prefix-glob-i:"**/id_*")
 | files(root-prefix-glob-i:"**/key*")
 | files(root-prefix-glob-i:"**/*[^a-z]key*")
+| files(root-prefix-glob-i:"**/*token*")
+| files(root-prefix-glob-i:"**/.env")
 """
 
 [[--scope]]
