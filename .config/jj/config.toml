@@ -57,7 +57,7 @@ private-commits = """
 empty()
 | description(substring-i:'wip:')
 | description(substring-i:'[wip]')
-| description(substring-i:'[nopush]')
+| description(substring-i:'[local]')
 | files(root-prefix-glob-i:"**/*private*")
 | files(root-prefix-glob-i:"**/id_*")
 | files(root-prefix-glob-i:"**/key*")
