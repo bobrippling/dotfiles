@@ -54,7 +54,7 @@ separate(" ",
 
 [git]
 private-commits = """
-empty()
+none()
 | description(substring-i:'wip:')
 | description(substring-i:'[wip]')
 | description(substring-i:'[local]')
