@@ -18,4 +18,5 @@ hi TodoBlocked ctermfg=red guifg=red
 hi TodoDone ctermfg=blue guifg=#268bd2
 hi TodoImportant ctermfg=3 ctermbg=15 guifg=#ffff5f guibg=#444444
 
-setl foldmethod=indent
+"setl foldmethod=indent
+setl foldexpr=MarkdownFold()
