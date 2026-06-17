@@ -11,4 +11,6 @@ function! s:get(use_curbuf, cmd) abort
 	1d_
 endf
 
-command! -bar -nargs=+ -bang -complete=command R call s:get(<bang>0, <q-args>)
+" `-bar` is omitted - this means backslashes don't need to be escaped and pipes work in matches,
+" e.g. :R g/a\|b/
+command! -nargs=+ -bang -complete=command R call s:get(<bang>0, <q-args>)
