@@ -244,6 +244,8 @@ let g:sh_fold_enabled = 1+2+4
 let g:org_use_italics = 0
 let g:org_highlight_tex = 0
 
+let g:autosave_enabled = 1
+
 if !g:machine_fast
 	set redrawtime=250
 	set nofsync
