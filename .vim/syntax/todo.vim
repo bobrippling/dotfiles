@@ -9,7 +9,7 @@ hi Separator ctermfg=green
 syn match TodoBacklog /\[ \].*/
 syn match TodoInProgress /\[\.\].*/
 syn match TodoBlocked /\[-\].*/
-syn match TodoDone /\[x\].*/
+syn match TodoDone /\[[x+]\].*/
 syn match TodoImportant /.*!!.*/
 
 hi TodoBacklog ctermfg=green guifg=#00aa00
