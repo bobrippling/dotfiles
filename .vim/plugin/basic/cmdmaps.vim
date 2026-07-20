@@ -1,5 +1,6 @@
 cnoremap <expr> <C-K> <SID>clrtoeol_cmd()
 cnoremap <expr> <C-R><C-B> <SID>curbuf()
+cnoremap <expr> <C-R>? <SID>search_term_no_boundaries()
 cnoreabbrev '<,'> *
 
 function! s:clrtoeol_cmd() abort
@@ -13,4 +14,8 @@ endfunction
 
 function! s:curbuf() abort
 	return bufnr("")
+endfunction
+
+function! s:search_term_no_boundaries()
+	return substitute(@/, '\(^\\<\|\\>$\)', '', 'g')
 endfunction
