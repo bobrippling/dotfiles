@@ -145,7 +145,7 @@ function! Autosave() abort
 	let now = s:now() . " "
 	let full = now . msg
 
-	if len(full) < v:echospace
+	if len(full) < v:echospace || s:has_ui2_no_enter()
 		echo full
 	else
 		echo now . "[" . nsaved . " auto" . (nskipped ? " " . nskipped . " skip" : "") . "]"
@@ -158,6 +158,19 @@ function! Autosave() abort
 			endif
 		endfor
 	endif
+endfunction
+
+function! s:has_ui2_no_enter()
+	if &ch >= 1 || !has("nvim")
+		return 0
+	endif
+
+	try
+		return luaeval('require"vim._core.ui2".cfg.enable')
+	catch /E5108\>/
+		" require() failed
+		return 0
+	endtry
 endfunction
 
 function! s:now()
