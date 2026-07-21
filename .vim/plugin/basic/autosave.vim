@@ -36,13 +36,21 @@ function! s:can_autosave(ent)
 		return 0
 	endif
 
-	let lines = getbufline(a:ent.bufnr, 1, "$")
-	for line in lines
-		if line =~# '^[<=>]\{7,}'
+	if exists("*matchbufline")
+		let markers = matchbufline(a:ent.bufnr, '^[<=>]\{7,}', 1, "$")
+		if !empty(markers)
 			" conflict in progress
 			return 0
 		endif
-	endfor
+	else
+		let lines = getbufline(a:ent.bufnr, 1, "$")
+		for line in lines
+			if line =~# '^[<=>]\{7,}'
+				" conflict in progress
+				return 0
+			endif
+		endfor
+	endif
 
 	return 1
 endfunction
