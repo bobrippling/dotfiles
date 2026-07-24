@@ -274,6 +274,7 @@ setopt hist_ignore_space
 setopt hist_no_functions
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
+#setopt hist_verify - show ! on <CR>
 
 setopt extended_history # record finish timestamps too - needs inc_append_history_time
 #setopt inc_append_history # add new lines to history as soon as they're executed
