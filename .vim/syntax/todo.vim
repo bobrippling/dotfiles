@@ -16,6 +16,6 @@ hi TodoBacklog ctermfg=green guifg=#00aa00
 hi TodoInProgress ctermfg=yellow guifg=#b58900
 hi TodoBlocked ctermfg=red guifg=red
 hi TodoDone ctermfg=blue guifg=#268bd2
-hi TodoImportant ctermfg=red guifg=#ff0000
+hi TodoImportant ctermfg=3 ctermbg=15 guifg=#ffff5f guibg=#444444
 
 setl foldmethod=indent
