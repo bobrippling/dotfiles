@@ -79,5 +79,5 @@ fi
 
 if test -t 0
 then
-	test -x ~/bin/mail-check && ~/bin/mail-check
+	test -x ~/bin/mail-check && ~/bin/mail-check >&2
 fi
