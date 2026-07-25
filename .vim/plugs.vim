@@ -9,23 +9,23 @@ Plug 'preservim/vim-wordy', g:cartographer_enabled ? {} :  { 'on': [ 'NoWordy', 
 
 " VCS
 Plug 'tpope/vim-fugitive', g:cartographer_enabled ? {} : { 'on': [ 'Gdiff', 'Ge', 'G', 'Gsplit', 'Gvsplit', 'GBrowse' ], 'commit': '1d18c696c4284e9ce9467a5c04d3adf8af43f994' }
-Plug 'https://codeberg.org/bobrippling/jj.vim', { 'commit': '503b0578ff5cddc0f6be352c1d132969bd700349' }
-Plug 'bobrippling/diffconflicts', { 'commit': 'da61748f79131c8d0b122e48e0b48c3d1d2b62c0' } " whiteinge/diffconflicts, or jj-specific: rafikdraoui/jj-diffconflicts
+Plug 'https://codeberg.org/bobrippling/jj.vim', { 'branch': 'main' }
+Plug 'bobrippling/diffconflicts', { 'branch': 'master' } " whiteinge/diffconflicts, or jj-specific: rafikdraoui/jj-diffconflicts
 
 if g:cartographer_enabled && has('nvim')
-	Plug 'bobrippling/cartographer.vim', { 'commit': '6727a548bcd6275fe304ef7f16b0fa72f0ef88d9' }
+	Plug 'bobrippling/cartographer.vim', { 'branch': 'master' }
 endif
 
 " Boost native functionality
 "Plug 'tpope/vim-abolish', { 'on': ['Abolish', 'Subvert'] }
 "Plug 'stefandtw/quickfix-reflector.vim'
-Plug 'bobrippling/vim-bg', { 'remote': 'github-me', 'commit': '609433c6684c98e9c5f5c2e1793a1cc91f3d8202' }
-Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'commit': '82c9ac5e130c92a46e043dd9cd9e5b48d15e286d' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
+Plug 'bobrippling/vim-bg', { 'remote': 'github-me', 'branch': 'master' }
+Plug 'bobrippling/vim-obsession', { 'remote': 'github-me', 'branch': 'master' } " tpope/vim-obsession " don't lazy load - need autocmds on :source <session>
 "Plug 'bobrippling/SkyBison' " https://github.com/paradigm/SkyBison
-Plug 'bobrippling/vim-vmath', { 'commit': '72156b3d52195eb159e46d7b82102c2b38de7a20' } " https://github.com/nixon/vim-vmath
-Plug 'bobrippling/vim-jump', { 'commit': '9933f4765f7f4d2d212e9435b0d1a776e53f8725' }
+Plug 'bobrippling/vim-vmath', { 'branch': 'master' } " https://github.com/nixon/vim-vmath
+Plug 'bobrippling/vim-jump', { 'branch': 'master' }
 Plug 'mbbill/undotree', { 'commit': '6fa6b57cda8459e1e4b2ca34df702f55242f4e4d' } " pure-vimscript undo
-Plug 'bobrippling/nvim-osc52-tmux', { 'commit': '95a8287de9bb10384f1db3f15504c64251a2d466' }
+Plug 'bobrippling/nvim-osc52-tmux', { 'branch': 'main' }
 
 " Motions, etc
 Plug 'tpope/vim-surround', { 'commit': '3d188ed2113431cf8dac77be61b842acb64433d9' }
@@ -39,10 +39,10 @@ Plug 'kana/vim-textobj-entire', { 'commit': '64a856c9dff3425ed8a863b9ec0a21dbaee
 Plug 'kana/vim-textobj-line', { 'commit': '1a6780d29adcf7e464e8ddbcd0be0a9df1a37339' }
 " too slow:
 "Plug 'tyru/vim-textobj-underscore', { 'branch': 'support-3-cases' } " a_, i_
-Plug 'bobrippling/vim-textobj-indent', { 'commit': '46f8e2404796cd9f7ba0fd964ea6ccbaaf50d489' } " ai, aI
+Plug 'bobrippling/vim-textobj-indent', { 'branch': 'master' } " ai, aI
 "Plug 'kana/vim-textobj-lastpat' " i/, a?
 Plug 'kana/vim-textobj-fold', { 'commit': '78bfa22163133b0ca6cda63b5b5015ed4409b2ee' }
-Plug 'bobrippling/vim-textobj-lastchange', { 'commit': '21d5bbab0301933bc36c954ef1e323c773afa665' }
+Plug 'bobrippling/vim-textobj-lastchange', { 'branch': 'master' }
 Plug 'preservim/vim-textobj-sentence', { 'commit': 'c5dd562aff2c389dfc8cd55e6499854d352a80b8' }
 
 Plug 'vim-scripts/ReplaceWithRegister', { 'commit': '832efc23111d19591d495dc72286de2fb0b09345' } " script 2703
@@ -54,19 +54,19 @@ Plug 'andymass/vim-tradewinds', { 'commit': '2266ab436d4777785f144f59bb5e854a312
 if 0 && g:machine_fast
 	Plug 'ctrlpvim/ctrlp.vim', { 'tag': '1.81' }
 else
-	Plug 'bobrippling/vim-pinpoint', { 'commit': '2b9f40c8fc702ea0f936f63b27db5bddb5487f6e' }
+	Plug 'bobrippling/vim-pinpoint', { 'branch': 'master' }
 endif
 Plug 'bobrippling/vim-cmdline-match'
-Plug 'bobrippling/a.vim', { 'commit': '53de1565c30669e5148462c3ba8fac510c06261f' }
-Plug 'bobrippling/unnest.nvim', { 'commit': '4e6eed08cb9792d82389ea50a6c27de378d018f8' } " yorickpeterse/brianhuster
+Plug 'bobrippling/a.vim', { 'branch': 'master' }
+Plug 'bobrippling/unnest.nvim', { 'branch': 'main' } " yorickpeterse/brianhuster
 
 " Filetype specific
-Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'commit': '1aa6361bfee2f211f17042c8aa6bf36060998ae2' }
+Plug 'bobrippling/org.vim', g:cartographer_enabled ? {} : { 'for': 'org', 'branch': 'master' }
 
 " Code
 Plug 'tpope/vim-commentary', { 'commit': '64a654ef4a20db1727938338310209b6a63f60c9' }
-Plug 'bobrippling/vim-pear', { 'commit': '0d11e43a536ef3b8181978e8bf931196f87ac2d2' }
-Plug 'bobrippling/vim-supersleuth', { 'commit': '5916d9073e291669b6a41eb8892c6cdaf20ab121' }
+Plug 'bobrippling/vim-pear', { 'branch': 'master' }
+Plug 'bobrippling/vim-supersleuth', { 'branch': 'master' }
 Plug 'godlygeek/tabular', g:cartographer_enabled ? {} : { 'on': [ 'Tabularize', 'AddTabularPattern', 'AddTabularPipeline' ], 'commit': '12437cd1b53488e24936ec4b091c9324cafee311' }
 " ^ or junegunn/vim-easy-align
 
@@ -80,7 +80,7 @@ if has('nvim')
 	" see plugin/bundle--nvim-cmp.vim
 	Plug 'hrsh7th/nvim-cmp', { 'commit': 'b5311ab3ed9c846b585c0c15b7559be131ec4be9' }
 	Plug 'hrsh7th/cmp-nvim-lsp', { 'commit': 'a8912b88ce488f411177fc8aed358b04dc246d7b' } " show completions from lsp (+capabilities, lsp/setup.vim)
-	Plug 'bobrippling/cmp-buffer', { 'branch': 'feat/show-source', 'commit': '19b9366c36d6a39c9b381f06fd3b17ce7a776dd7' } " complete words from bufnr, fork of hrsh7th/cmp-buffer
+	Plug 'bobrippling/cmp-buffer', { 'branch': 'feat/show-source' } " complete words from bufnr, fork of hrsh7th/cmp-buffer
 	"Plug 'hrsh7th/cmp-omni' " don't need - can invoke omni ourselves
 	"Plug 'hrsh7th/cmp-cmdline' " doesn't play with wildcards
 	"Plug 'hrsh7th/cmp-path' " C-X, C-F
@@ -89,8 +89,8 @@ endif
 "Plug 'dense-analysis/ale'
 
 " Colours
-Plug 'bobrippling/vim-illuminate', { 'commit': '56e7df8f402a8302fa7f6cb21760d366a105d94c' } " https://github.com/RRethy/vim-illuminate
-Plug 'bobrippling/vim-papercolor', { 'commit': 'df4a9a6039143ad5e6d8138c1cd1674b39581ed8' } " NLKNguyen/papercolor-theme
+Plug 'bobrippling/vim-illuminate', { 'branch': 'master' } " https://github.com/RRethy/vim-illuminate
+Plug 'bobrippling/vim-papercolor', { 'branch': 'master' } " NLKNguyen/papercolor-theme
 "Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 "Plug 'bobrippling/vim-colors-solarized' " https://github.com/altercation/vim-colors-solarized
 "Plug 'lifepillar/vim-solarized8' " solarized8_high
