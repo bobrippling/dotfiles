@@ -32,6 +32,11 @@ function! StatusLine()
 	let s .= "%{&spell ? 'S' : ''}"
 	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
 
+	let exists_showcmdloc = exists('+showcmdloc')
+	if exists_showcmdloc && &ch == 0
+		let s .= '%#ModeMsg#%{StatusLineMode()}'
+	endif
+
 	"let s .= "%#StatusLinePadding#"
 	let s .= "%=" " left + right flex space
 
@@ -45,6 +50,11 @@ function! StatusLine()
 	let s .= "%{&winfixwidth ? 'W' : ''}"
 	let s .= "%{&winfixheight ? 'H' : ''}"
 	let s .= "[%{winnr()}]"
+
+	if exists_showcmdloc
+		let s .= "%S"
+	endif
+
 	if &ruler
 		if empty(&rulerformat)
 			let s .= "[%l/%L]" " line number / total
@@ -117,6 +127,25 @@ function! StatusLineAltFile()
 	return alt . " "
 endfunction
 
+function! StatusLineMode()
+	let m = mode()
+	let n = m[0]
+
+	if n ==# 'n'
+		return ''
+	elseif n ==? 'v' || n ==# "\<C-v>"
+		return ' -- VISUAL ' .. (n == 'v' ? '' : n == 'V' ? 'LINE' : 'BLOCK') .. ' --'
+	elseif n == 'i'
+		return ' -- INSERT --'
+	elseif n ==# 'R'
+		return ' -- REPLACE --'
+	elseif n ==# 't'
+		return ' -- TERMINAL --'
+	endif
+
+	return ''
+endfunction
+
 function! s:alt_common(cur, alt)
 	let cur = a:cur
 	let alt = a:alt
@@ -141,6 +170,9 @@ function! s:alt_common(cur, alt)
 endfunction
 
 set statusline=%!StatusLine()
+if exists('+rulerformat')
+	set rulerformat=%l/%L
+endif
 
 function! s:highlight()
 	highlight default link StatusLineFile StatusLine
