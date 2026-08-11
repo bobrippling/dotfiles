@@ -35,7 +35,7 @@ function! StatusLine()
 
 	let exists_showcmdloc = exists('+showcmdloc')
 	if exists_showcmdloc && &ch == 0
-		let s .= '%#ModeMsg#%{StatusLineMode()}'
+		let s .= '%{%' . is_curwin . ' ? "%#ModeMsg#" .. StatusLineMode() : ""%}'
 	endif
 
 	"let s .= "%#StatusLinePadding#"
