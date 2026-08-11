@@ -1,7 +1,8 @@
 function! StatusLine()
-	let nc = ". (g:actual_curwin == win_getid() ? '' : 'NC') . "
+	let is_curwin = "g:actual_curwin == win_getid()"
 
 	if has("nvim") || has("patch2854")
+		let nc = ". (" . is_curwin . " ? '' : 'NC') . "
 		let file_highlight = "%{% '%#StatusLineFile'" . nc . "'#' %}"
 	else
 		let file_highlight = "%#StatusLineFile#"
