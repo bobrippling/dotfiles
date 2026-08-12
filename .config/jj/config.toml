@@ -38,8 +38,7 @@ show- = ["show", "@-"]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 focus = 'descendants(trunk()..@) & ::@'
 'S(substr)' = 'subject(regex-i:substr)'
-'merge_base(m)' = 'fork_point(m-)'
-'merge_base_latest()' = 'merge_base(heads(merges()))'
+'fork_point_latest()' = 'fork_point(heads(merges())-)'
 
 [template-aliases]
 oneline = '''
