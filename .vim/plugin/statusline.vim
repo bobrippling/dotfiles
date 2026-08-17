@@ -53,7 +53,7 @@ function! StatusLine()
 	let s .= "[%{winnr()}]"
 
 	if exists_showcmdloc
-		let s .= "%S"
+		let s .= "%{%" . is_curwin . " ? '%S' : '' %}"
 	endif
 
 	if &ruler
