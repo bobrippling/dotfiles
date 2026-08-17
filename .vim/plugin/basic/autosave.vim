@@ -110,10 +110,10 @@ function! Autosave() abort
 	catch /^save-fail:.*/
 		let buf = substitute(v:exception, '[^:]*:', '', '')
 		let error = "Error saving " . buf
+	finally
 		augroup autosave_tmp
 			autocmd!
 		augroup END
-		" cleanup below
 	endtry
 
 	call win_gotoid(focus)
