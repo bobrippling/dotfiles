@@ -151,7 +151,7 @@ function! Autosave() abort
 	endif
 
 	let now = s:now() . " "
-	let full = now . msg
+	let full = "\r" . now . msg
 
 	if len(full) < v:echospace || s:has_ui2_no_enter()
 		echo full
