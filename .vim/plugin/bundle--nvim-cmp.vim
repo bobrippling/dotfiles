@@ -139,6 +139,9 @@ lua <<EOF
 				}
 			}
 		),
+		performance = {
+			max_view_entries = 10,
+		},
 	})
 
 	--[[
