@@ -32,6 +32,7 @@ tug- = ["bookmark", "move", "--from", "exactly(closest_bookmark(@-), 1)", "--to"
 di = ["diff"]
 grep = ["util", "exec", "--", "jj-grep"]
 show- = ["show", "@-"]
+dupe = ["duplicate"]
 
 [revset-aliases]
 'afterfork(revs)' = 'fork_point(revs)::revs'
