@@ -39,6 +39,7 @@ dupe = ["duplicate"]
 'closest_bookmark(to)' = 'heads(::to & bookmarks())'
 focus = 'descendants(trunk()..@) & ::@'
 'S(substr)' = 'subject(regex-i:substr)'
+'D(substr)' = 'description(regex-i:substr)'
 'fork_point_latest()' = 'fork_point(heads(merges())-)'
 
 [template-aliases]
