@@ -1,5 +1,6 @@
 let g:autosave_enabled = get(g:, "autosave_enabled", 0)
 let s:timer = -1
+let s:active = 0
 
 function! s:save(ent) abort
 	" can't check {w,t}:autosave any other way (easily)
@@ -56,10 +57,19 @@ function! s:can_autosave(ent)
 endfunction
 
 function! Autosave() abort
-	if !g:autosave_enabled || !empty(getcmdwintype())
+	if !g:autosave_enabled || !empty(getcmdwintype()) || s:active
 		return
 	endif
+	let s:active = 1
 
+	try
+		call s:autosave()
+	finally
+		let s:active = 0
+	endtry
+endfunction
+
+function! s:autosave() abort
 	let modified = getbufinfo({ "bufmodified": 1 })
 	call filter(modified, { _, ent -> s:can_autosave(ent) })
 	for ent in modified
