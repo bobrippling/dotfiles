@@ -7,8 +7,13 @@ email = "robpilling@gmail.com"
 [ui]
 #editor = ":builtin"
 pager = ["less", "-FRiS"]
-diff-editor = ["nvim", "$left", "$right"]
+diff-editor = "nvim"
 merge-editor = "diffconflicts" # can also use --tool ${merge-editor}
+
+[merge-tools.nvim-single]
+program = "nvim"
+edit-args = ["$left", "$right", "-c vert all|windo difft"]
+edit-invocation-mode = "file-by-file"
 
 [merge-tools.diffconflicts]
 program = "nvim"
