@@ -17,6 +17,7 @@ edit-invocation-mode = "file-by-file"
 
 [merge-tools.diffconflicts]
 program = "nvim"
+edit-args = [] # disable for editing diffs
 merge-args = [
     #"-c", "let g:jj_diffconflicts_marker_length=$marker_length",
     "-c", "DiffConflicts",
