@@ -5,7 +5,7 @@ if !exists("g:trim_spaces_ignore")
 	let g:trim_spaces_ignore = []
 endif
 
-function! TrimSpaces()
+function! TrimSpaces() range
 	if g:trim_spaces == 0 || get(b:, 'trim_spaces', 1) == 0 || get(w:, 'trim_spaces', 1) == 0
 		return
 	endif
@@ -22,8 +22,16 @@ function! TrimSpaces()
 		endif
 	endfor
 
+	if a:firstline == a:lastline
+		" no way to detect missing range,
+		" so assume this instead
+		let range = '%'
+	else
+		let range = a:firstline .. ',' .. a:lastline
+	endif
+
 	let where = getcurpos()
-	keeppatterns %s/\s\+$//e
+	exe 'keeppatterns' range 's/\s\+$//e'
 	let jumped = getcurpos()
 
 	let lnum = 1
