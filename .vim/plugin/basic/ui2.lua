@@ -1,5 +1,5 @@
 -- doesn't seem to be present
-if vim.version.lt(vim.version(), {0, 12, 0}) || vim.env.UI2 == "0" then
+if vim.version.lt(vim.version(), {0, 12, 0}) or vim.env.UI2 == "0" then
 	return
 end
 
