@@ -47,6 +47,7 @@ focus = 'descendants(trunk()..@) & ::@'
 'S(substr)' = 'subject(regex-i:substr)'
 'D(substr)' = 'description(regex-i:substr)'
 'fork_point_latest()' = 'fork_point(heads(merges())-)'
+'U' = 'heads(bookmarks() & ::@)'
 
 [template-aliases]
 oneline = '''
