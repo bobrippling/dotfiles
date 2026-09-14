@@ -89,7 +89,7 @@ endif
 "Plug 'dense-analysis/ale'
 
 " Colours
-Plug 'bobrippling/vim-illuminate', { 'branch': 'master' } " https://github.com/RRethy/vim-illuminate
+"Plug 'bobrippling/vim-illuminate', { 'branch': 'master' } " https://github.com/RRethy/vim-illuminate
 Plug 'bobrippling/vim-papercolor', { 'branch': 'master' } " NLKNguyen/papercolor-theme
 "Plug 'bobrippling/vim-bogster', { 'remote': 'github-me' } " https://github.com/wojciechkepka/bogster
 "Plug 'bobrippling/vim-colors-solarized' " https://github.com/altercation/vim-colors-solarized
