@@ -1,3 +1,5 @@
+vim.cmd.highlight("link MCursor Cursor")
+
 -- can't use q-, since then vim hangs on `q` to close certain windows
 vim.api.nvim_set_keymap("n", "<leader>q-", "", {
 	desc = "stop multicursor mode",
