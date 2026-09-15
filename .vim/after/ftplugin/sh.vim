@@ -38,9 +38,9 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 
 		call cursor(lno - 1, 1)
 
-		let line = substitute(line, '[(=].*', '', '')
-		let tags[line] = lno
-		if line <= 1
+		let tag = substitute(line, '[(=].*', '', '')
+		let tags[tag] = lno
+		if lno <= 1
 			break
 		endif
 	endwhile
