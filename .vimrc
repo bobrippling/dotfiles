@@ -76,6 +76,7 @@ set foldignore-=#
 set complete-=u " unloaded buffers are too slow, but we'll take a dictionary
 set completeopt+=menuone,longest | set completeopt-=preview
 "try | set completeopt+=popup | catch /E521/ | endtry " introduced in nvim-0.10
+set completetimeout=500
 set cmdwinheight=20
 set fillchars=fold:\ |
 if exists('+cursorlineopt')
