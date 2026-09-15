@@ -32,6 +32,7 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 	\ : '^\<\V' .. substitute(a:prefix_pattern, '\', '&&', 'g')
 
 	let tags = {}
+	call cursor(line('$'), 0)
 	while search('\C' . pat . '.*\m\(() *\|=\)', "bcW") > 0
 		let lno = line(".")
 		let line = getline(".")
