@@ -10,6 +10,7 @@
   },
   "workspace": {
     "library": [
+      "${env:HOME}/src/neovim/runtime/lua",
       "${env:HOME}/.local/share/nvim/runtime/lua"
     ],
     // don't prompt to configure third-party library defs
