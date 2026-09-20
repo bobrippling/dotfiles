@@ -263,12 +263,15 @@ function! s:scoped_tag_search(ident) abort
 endfunction
 
 function! s:this_file_search(tag, ident) abort
+	let view = winsaveview()
+
 	" look for tag, ignore ident (for now)
 	keepjumps normal! gg0
 	" c: cursor pos accept, n: no move cursor, W: no wrap
 	let found = search("\\C\\v^\\S[^'\"]*<" . a:tag . ">", "cnW")
 	if found == 0
 		call s:debug("couldn't find global decl for " . a:tag)
+		call winrestview(view)
 		return []
 	endif
 
@@ -297,6 +300,8 @@ function! s:tag_from_stringpath(found_line, ident)
 endfunction
 
 function! s:import_require_search(tag) abort
+	let view = winsaveview()
+
 	" find the line that contains the string path import
 	" returns [lineno, s:{is_require|is_import|unknown}]
 	"
@@ -349,6 +354,8 @@ function! s:import_require_search(tag) abort
 		return [found_line, s:unknown]
 	endif
 
+	" not found, restore view
+	call winrestview(view)
 	return [0, s:unknown]
 endfunction
 
