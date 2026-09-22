@@ -99,6 +99,9 @@ else
 	)
 end
 
+--vim.lsp.codelens.enable()
+--vim.lsp.inlay_hint.enable()
+
 --hi DiagnosticUnderlineError cterm=none
 --hi DiagnosticUnderlineWarn cterm=none
 --hi DiagnosticUnderlineInfo cterm=none
