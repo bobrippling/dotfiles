@@ -74,7 +74,7 @@ function setup()
 	if vim.lsp.enable then
 		-- ty: pip install ...
 		-- ts_ls: npm i -g typescript-language-server typescript
-		local servers = { 'rust_analyzer', 'ty', 'ts_ls', 'lua_ls' }
+		local servers = { 'rust_analyzer', 'ty', 'ts_ls', 'lua_ls', 'clangd' }
 
 		for _, ls_name in ipairs(servers) do
 			vim.lsp.enable(ls_name)
