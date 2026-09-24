@@ -78,6 +78,7 @@ set completeopt+=menuone,longest | set completeopt-=preview
 "try | set completeopt+=popup | catch /E521/ | endtry " introduced in nvim-0.10
 if exists("+completetimeout") | set completetimeout=500 | endif
 set cmdwinheight=20
+set winheight=3 winminheight=0
 set fillchars=fold:\ |
 if exists('+cursorlineopt')
 	set cursorlineopt=screenline,number
