@@ -16,31 +16,31 @@ function! s:ShutTheDoor(wipe, cmd) abort
 		endif
 	endif
 
-	let buf = expand("<afile>")
-	if empty(buf)
+	let fname = expand("<afile>")
+	if empty(fname)
 		return
 	endif
 
-	if filereadable(buf)
-		if delete(buf) != 0
-			let msg = "Couldn't delete " . buf
+	if filereadable(fname)
+		if delete(fname) != 0
+			let msg = "Couldn't delete " . fname
 		else
-			let msg = "Deleted " . buf
+			let msg = "Deleted " . fname
 		endif
 	else
-		let msg = "File not readable: " . buf
+		let msg = "File not readable: " . fname
 	endif
 
 	if a:wipe
 		" can't :bwipe in an autocmd for the buffer, so:
-		call timer_start(1, { -> s:wipe(buf, msg) })
+		call timer_start(1, { -> s:wipe(fname, msg) })
 	else
 		call s:show(msg)
 	endif
 endfunction
 
-function! s:wipe(buf, msg)
-	execute 'silent bwipeout' a:buf
+function! s:wipe(fname, msg)
+	execute 'silent bwipeout' a:fname
 
 	call s:show(a:msg . " (wiped out)")
 endfunction
