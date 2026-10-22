@@ -51,7 +51,16 @@ find . -type f \
         printf '\x1b[2Kchecking if %s exists...\r' "$template" >&2
 
         if ! test -e "$installed"
-        then continue
+        then
+            nslashes=$(echo "$template" | tr -dc / | wc -c)
+            parent=${installed%/*};
+            if test $nslashes -gt 1 && test -e "$parent"
+            then
+                printf "${clrtoeol}%s doesn't exist, but its parent (%s) does, maybe install it\n" \
+                    "$installed" "$parent" >&2
+            fi
+
+            continue
         fi
 
         printf "$clrtoeol"'comparing %s...\r' "$template" >&2
