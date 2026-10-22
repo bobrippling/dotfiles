@@ -4,7 +4,20 @@ command! -bang -nargs=* -complete=command ShutTheDoorOnYourWayOut call s:ShutThe
 function! s:ShutTheDoorOnYourWayOut(wipe, cmd) abort
 	let esccmd = escape(a:cmd, '"\')
 	" BufWinLeave is still fired for :hide
-	execute 'autocmd BufUnload <buffer> ++once call s:ShutTheDoor(' . a:wipe . ', "' . esccmd . '")'
+
+	augroup ShutTheDoor
+		execute 'autocmd BufUnload <buffer> ++once call s:ShutTheDoor(' . a:wipe . ', "' . esccmd . '")'
+	augroup END
+
+	" disable ShutTheDoor, if buf renamed
+	autocmd BufFilePre <buffer> ++once call s:cancel()
+endfunction
+
+function! s:cancel() abort
+	augroup ShutTheDoor
+		autocmd! BufUnload <buffer=abuf>
+	augroup END
+	echom 'ShutTheDoor: disabled (buffer renamed)'
 endfunction
 
 function! s:ShutTheDoor(wipe, cmd) abort
