@@ -40,8 +40,8 @@ function! s:setgrep(scope) abort
 		return
 	endif
 
-	setlocal grepprg&vim
-	let &l:grepprg = substitute(&grepprg, '-', '-r', '')
+	" copy from global instead of default, in case the user's changed it
+	let &l:grepprg = substitute(&g:grepprg, '-', '-r', '')
 endfunction
 
 function! s:checkrg()
