@@ -5,6 +5,12 @@ if !exists("g:trim_spaces_ignore")
 	let g:trim_spaces_ignore = []
 endif
 
+" newline - ensure this message is seen/not overwritten by the :w message
+" ... except for ui2 pager, where all are visible
+let s:nl = has('nvim') && luaeval("require'vim._core.ui2'.wins.pager") != 0
+\ ? ''
+\ : "\n"
+
 function! TrimSpaces() range
 	if g:trim_spaces == 0 || get(b:, 'trim_spaces', 1) == 0 || get(w:, 'trim_spaces', 1) == 0
 		return
@@ -14,9 +20,7 @@ function! TrimSpaces() range
 	for path in g:trim_spaces_ignore
 		if stridx(full, path) == 0
 			if &verbose > 0
-				echo "Not stripping spaces - ignore path matches\n"
-				" newline above - ensure this message is seen/not overwritten
-				" by the :w message
+				echo "Not stripping spaces - ignore path matches" . s:nl
 			endif
 			return
 		endif
@@ -39,7 +43,7 @@ function! TrimSpaces() range
 	let off = 3
 
 	if where[lnum] != jumped[lnum] || where[col] != jumped[col]
-		echo "Stripped whitespace\n"
+		echo "Stripped whitespace" . s:nl
 	endif
 	call cursor(where[lnum], where[col], where[off])
 endfunction
