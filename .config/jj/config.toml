@@ -15,6 +15,11 @@ program = "nvim"
 edit-args = ["$left", "$right", "-c vert all|windo difft"]
 edit-invocation-mode = "file-by-file"
 
+[merge-tools.nvim-difftool]
+program = "nvim"
+edit-args = ["-c", "packadd nvim.difftool", "-d", "$left", "$right"]
+merge-args = ["-c", "packadd nvim.difftool", "-d", "$left", "$right"]
+
 [merge-tools.diffconflicts]
 program = "nvim"
 edit-args = [] # disable for editing diffs
