@@ -3,11 +3,6 @@ if vim.version.lt(vim.version(), {0, 12, 0}) or vim.env.UI2 == "0" then
 	return
 end
 
-vim.opt.cmdheight = 0
-if vim.fn.exists("+showcmdloc") then
-	vim.o.showcmdloc = "statusline"
-end
-
 -- vim.cmd.set('shm+=F') -- workaround before #41002
 
 require("vim._core.ui2").enable({
@@ -25,3 +20,9 @@ require("vim._core.ui2").enable({
 		]]
 	},
 })
+
+-- do this after we know ui2 has successfully setup
+vim.opt.cmdheight = 0
+if vim.fn.exists("+showcmdloc") then
+	vim.o.showcmdloc = "statusline"
+end
