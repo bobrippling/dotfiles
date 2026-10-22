@@ -41,7 +41,7 @@ find . -type f \
     | sed '/\.git\//d; /.vim\/undo\//d' \
     | while read f
     do
-        template=$(echo $f | sed 's;tiny/;;')
+        template=$(echo "$f" | sed 's;tiny/;;')
 
         case "$template" in
             # *.minttyrc) installed=/h/"$template" ;;
@@ -56,22 +56,22 @@ find . -type f \
 
         printf "$clrtoeol"'comparing %s...\r' "$template" >&2
 
-        if cmp "$installed" $f >/dev/null 2>&1
+        if cmp "$installed" "$f" >/dev/null 2>&1
         then continue
         fi
 
         case $direction in
             collect)
-                cp "$installed" $f
+                cp "$installed" "$f"
                 printf "$clrtoeol"'collected %s\n' "$f" >&2
                 ;;
             install)
-                cp $f "$installed"
+                cp "$f" "$installed"
                 printf "$clrtoeol"'installed %s\n' "$f" >&2
                 ;;
             diff)
                 printf "$clrtoeol" >&2
-                diff -u $f "$installed"
+                diff -u "$f" "$installed"
                 ;;
         esac
     done
