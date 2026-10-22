@@ -4,6 +4,9 @@ function! ShTag(pattern, flags, info) abort
 	let is_regex = stridx(a:flags, "r") >= 0
 
 	if for_completion
+		if &verbose
+			echom "ShTag: delegating to file tags"
+		endif
 		return ShFileTags(based_on_normalmode_cursor ? a:pattern : "", is_regex)
 	endif
 
@@ -22,6 +25,10 @@ function! ShFileTags(pattern, is_regex) abort
 endfunction
 
 function s:tags_prefixed(prefix_pattern, is_regex) abort
+	if &verbose
+		echom "ShTag: prefixed with '" .. a:prefix_pattern .. "' (regex=" .. a:is_regex .. ")"
+	endif
+
 	let thisfile = expand("%")
 	if empty(thisfile)
 		return []
@@ -30,6 +37,10 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 	let pat = a:is_regex
 	\ ? a:prefix_pattern
 	\ : '^\<\V' .. substitute(a:prefix_pattern, '\', '&&', 'g')
+
+	if &verbose
+		echom "ShTag: pat='" .. pat .. "'"
+	endif
 
 	let tags = {}
 	call cursor(line('$'), 0)
@@ -41,6 +52,10 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 
 		let tag = substitute(line, '[(=].*', '', '')
 		let tags[tag] = lno
+		if &verbose
+			echom "ShTag: found '" .. tag .. "' on line " .. lno
+		endif
+
 		if lno <= 1
 			break
 		endif
