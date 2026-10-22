@@ -16,7 +16,7 @@ addtopath(){
 }
 
 export_if_exists(){
-	if which "$2" >/dev/null
+	if command -v "$2" >/dev/null
 	then
 		export "$1=$2"
 		return 0
