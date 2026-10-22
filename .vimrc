@@ -52,6 +52,7 @@ set viminfo+=r~/mnt/
 " ('statusline' set in plugin/...)
 set noequalalways
 set novisualbell
+set belloff=error,esc,showmatch " no 'term', to propagate \7 from :term
 set scrolloff=1
 set sidescroll=15
 set sidescrolloff=5
@@ -59,10 +60,10 @@ if has("nvim") && exists("&smoothscroll")
 	set smoothscroll
 endif
 set splitbelow splitright
-set wildmode=longest:full,full " 'full' is necessary for wildmenu, comma to not jump into the menu straight away
+set wildmode=list:longest:lastused,list:full
 set wildmenu
 set wildignorecase
-try | set wildoptions=pum | catch /^E474:/ | endtry
+try | set wildoptions+=pum | catch /^E474:/ | endtry
 set laststatus=2
 set showcmd
 set shortmess=aoOTIt
@@ -74,7 +75,7 @@ set foldopen-=block
 set foldignore-=#
 "try | set foldcolumn=auto:3 | catch /E521/ | endtry " introduced in nvim, #13571
 set complete-=u " unloaded buffers are too slow, but we'll take a dictionary
-set completeopt+=menuone,longest | set completeopt-=preview
+set completeopt+=menuone,longest,popup,fuzzy | set completeopt-=preview
 "try | set completeopt+=popup | catch /E521/ | endtry " introduced in nvim-0.10
 if exists("+completetimeout") | set completetimeout=500 | endif
 set cmdwinheight=20
@@ -87,7 +88,6 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 set showmatch cpoptions-=m
 set report=1
 set synmaxcol=160
-set belloff=error,esc,showmatch " no 'term', to propagate \7 from :term
 set spellsuggest+=20
 
 " display (gui)
