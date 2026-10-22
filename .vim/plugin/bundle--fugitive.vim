@@ -41,6 +41,9 @@ function! s:handle_via_path2scm(opts)
 
 		return r
 	catch /unrecognised/
+		if &verbose >= 5
+			echom "handle_via_path2scm:" v:errmsg
+		endif
 	endtry
 endfunction
 
