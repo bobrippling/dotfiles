@@ -5,7 +5,7 @@ let s:persist_fn = ''
 function! s:init(timer_id)
 	let funcs = split(execute('filter /[0-9]_persist\>/ func'), "\n")
 	if len(funcs) != 1
-		echoerr "obsession++: couldn't find persist function (found" len(funcs) "functions)"
+		echoerr "obsession++: couldn't find persist function (found" len(funcs) "functions) - obsession likely isn't installed"
 		return
 	endif
 
