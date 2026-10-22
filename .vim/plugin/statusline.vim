@@ -1,11 +1,13 @@
 function! StatusLine()
 	let is_curwin = "g:actual_curwin == win_getid()"
+	let has_reeval = has("nvim") || (v:version >= 900 || has("patch2854")) " %{%...%}
 
-	if has("nvim") || has("patch2854")
-		let nc = ". (" . is_curwin . " ? '' : 'NC') . "
-		let file_highlight = "%{% '%#StatusLineFile'" . nc . "'#' %}"
+	if has_reeval
+		let file_highlight = s:add_nc_hl('StatusLineFile', is_curwin)
+		let restore_hl = s:add_nc_hl('StatusLine', is_curwin)
 	else
-		let file_highlight = "%#StatusLineFile#"
+		let file_highlight = ""
+		let restore_hl = ''
 	endif
 
 	let s = ""
@@ -13,56 +15,62 @@ function! StatusLine()
 	let s .= " "
 	let s .= "%<" " truncate here if too long
 	let s .= file_highlight
-	let s .= "%f" " filename
+		let s .= "%f" " filename
+	let s .= restore_hl
 
 	let s .= "%m" " 'modified'
 	let s .= "%r" " 'readonly'
 	let s .= "%h" " help buffer flag
 	let s .= "%w" " preview window flag
 
-	"let s .= "%#StatusLineFlags#"
 	let s .= " "
-	let s .= "%y" " 'filetype'
-	let s .= "%{StatusLineBuftype()}" " 'fileformat'
-	let s .= "[%{&ff}]" " 'fileformat'
-	let s .= "%{StatusLineEnc()}" " 'fileformat'
-	let s .= "[%n%{StatusLineBufCount()}]" " buffer number
-	if exists("*SuperSleuthIndicator")
-		let s .= "[%{SuperSleuthIndicator()}]"
-	endif
-	let s .= "%{&spell ? 'S' : ''}"
-	let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
+	let s .= has_reeval ? s:add_nc_hl('StatusLineFlags', is_curwin) : ''
+		let s .= "%y" " 'filetype'
+		let s .= "%{StatusLineBuftype()}" " 'fileformat'
+		let s .= "[%{&ff}]" " 'fileformat'
+		let s .= "%{StatusLineEnc()}" " 'fileformat'
+		let s .= "[%n%{StatusLineBufCount()}]" " buffer number
+		if exists("*SuperSleuthIndicator")
+			let s .= "[%{SuperSleuthIndicator()}]"
+		endif
+		let s .= "%{&spell ? 'S' : ''}"
+		let s .= "%{exists('w:quickfix_title') ? ' ' . w:quickfix_title : ''}"
+	let s .= restore_hl
 
 	let exists_showcmdloc = exists('+showcmdloc')
-	if exists_showcmdloc && &ch == 0
+	if has_reeval && exists_showcmdloc && &ch == 0
 		let s .= '%{%' . is_curwin . ' ? "%#ModeMsg#" .. StatusLineMode() : ""%}'
+		let s .= restore_hl
 	endif
 
-	"let s .= "%#StatusLinePadding#"
-	let s .= "%=" " left + right flex space
+	let s .= has_reeval ? s:add_nc_hl('StatusLinePadding', is_curwin) : ''
+		let s .= "%=" " left + right flex space
+	let s .= restore_hl
 
 	let s .= " "
 
 	let s .= file_highlight
-	" must be called via %{...} to be in the context of the statusline's window
-	let s .= "%{StatusLineAltFile()}"
+		" must be called via %{...} to be in the context of the statusline's window
+		let s .= "%{StatusLineAltFile()}"
+	let s .= restore_hl
 
-	"let s .= "%#StatusLineRuler# "
-	let s .= "%{&winfixwidth ? 'W' : ''}"
-	let s .= "%{&winfixheight ? 'H' : ''}"
-	let s .= "[%{winnr()}]"
+	let s .= has_reeval ? s:add_nc_hl('StatusLineRuler', is_curwin) : ''
+		let s .= "%{&winfixwidth ? 'W' : ''}"
+		let s .= "%{&winfixheight ? 'H' : ''}"
+		let s .= "[%{winnr()}]"
 
-	if exists_showcmdloc
-		let s .= "%{%" . is_curwin . " ? '%S' : '' %}"
-	endif
-
-	if &ruler
-		if empty(&rulerformat)
-			let s .= "[%l/%L]" " line number / total
-		else
-			let s .= "[" . &rulerformat . "]"
+		if exists_showcmdloc
+			let s .= "%{%" . is_curwin . " ? '%S' : '' %}"
 		endif
-	endif
+
+		if &ruler
+			if empty(&rulerformat)
+				let s .= "[%l/%L]" " line number / total
+			else
+				let s .= "[" . &rulerformat . "]"
+			endif
+		endif
+	let s .= restore_hl
 
 	return s
 endfunction
@@ -168,6 +176,11 @@ function! s:alt_common(cur, alt)
 	endif
 
 	return pathshorten(alt)
+endfunction
+
+function! s:add_nc_hl(hl, is_curwin_expr)
+	let nc_append = ". (" . a:is_curwin_expr . " ? '' : 'NC') . "
+	return "%{% '%#" . a:hl . "'" . nc_append . "'#' %}"
 endfunction
 
 set statusline=%!StatusLine()
