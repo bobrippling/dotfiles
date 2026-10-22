@@ -167,7 +167,7 @@ nnoremap <expr> <leader>e ":<C-U>e %" .. repeat(":h", v:count1) .. "/"
 nnoremap <expr> <leader>s ":<C-U>sp %" .. repeat(":h", v:count1) .. "/"
 nnoremap <expr> <leader>v ":<C-U>vs %" .. repeat(":h", v:count1) .. "/"
 "nnoremap <expr> <leader>t ":<C-U>tabe %" .. repeat(":h", v:count1) .. "/"
-nnoremap gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
+nnoremap <silent> gS :echo synIDattr(synID(getcurpos()[1], getcurpos()[2], 0), "name")<CR>
 
 nnoremap <silent> ZW :w<CR>
 nnoremap <silent> ZE :e<CR>
