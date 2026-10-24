@@ -70,6 +70,8 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 		\ })
 	endfor
 
+	call sort(ents, { a, b -> a.name < b.name ? -1 : a.name > b.name ? 1 : 0 })
+
 	return ents
 endfunction
 
