@@ -44,7 +44,7 @@ function s:tags_prefixed(prefix_pattern, is_regex) abort
 
 	let tags = {}
 	call cursor(line('$'), 0)
-	while search('\C' . pat . '.*\m\(() *\|=\)', "bcW") > 0
+	while search('\C' . pat . '\S*\m\(() *\|=\)', "bcW") > 0
 		let lno = line(".")
 		let line = getline(".")
 
